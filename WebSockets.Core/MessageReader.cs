@@ -1,7 +1,6 @@
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 
@@ -17,24 +16,21 @@ namespace WebSockets.Core
             _frameReader.Receive(data);
         }
 
-        public Queue<Message> Messages { get; } = new Queue<Message>();
-
-        public bool Process()
+        public Message? Process()
         {
             while (true)
             {
                 var frame = _frameReader.Process();
                 if (frame == null)
-                    return false;
+                    return null;
 
                 _frameBuffer.Enqueue(frame);
 
                 if (frame.IsFinal)
                 {
                     var message = CreateMessage(_frameBuffer.ToArray());
-                    Messages.Enqueue(message);
                     _frameBuffer.Clear();
-                    return true;
+                    return message;
                 }
             }
         }
