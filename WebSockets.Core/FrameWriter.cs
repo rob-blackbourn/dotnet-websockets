@@ -161,7 +161,15 @@ namespace WebSockets.Core
             {
                 if (_sendBuffer == null)
                 {
-                    _sendBuffer = new SendBuffer(frame.Payload);
+                    if (frame.Mask == null)
+                        _sendBuffer = new SendBuffer(frame.Payload);
+                    else
+                    {
+                        var buf = new byte[frame.Payload.Length];
+                        for (int i = 0; i < frame.Payload.Length; ++i)
+                            buf[i] = (byte)(frame.Payload[i] ^ frame.Mask[i % 4]);
+                        _sendBuffer = new SendBuffer(buf);
+                    }
                 }
                 
                 offset += _sendBuffer.CopyTo(buffer, offset);
