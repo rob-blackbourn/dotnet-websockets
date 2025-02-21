@@ -4,7 +4,7 @@ namespace WebSockets.Core
 {
     public class Frame
     {
-        public Frame(OpCode opCode, bool isFinal, bool isRsv1, bool isRsv2, bool isRsv3, byte[]? mask, byte[] payload)
+        public Frame(OpCode opCode, bool isFinal, bool isRsv1, bool isRsv2, bool isRsv3, byte[]? mask, ArrayBuffer<byte> payload)
         {
             if (!(mask == null || mask.Length == 4))
                 throw new ArgumentOutOfRangeException(nameof(mask));
@@ -27,7 +27,7 @@ namespace WebSockets.Core
         public bool IsRsv2 { get; private set; }
         public bool IsRsv3 { get; private set; }
         public byte[]? Mask { get; private set; }
-        public byte[] Payload { get; private set; }
+        public ArrayBuffer<byte> Payload { get; private set; }
     }
 }
 

@@ -16,40 +16,16 @@ namespace WebSockets.Core
             PAYLOAD
         }
 
-        class SendBuffer
-        {
-            public SendBuffer(byte[] buffer)
-            {
-                Buffer = buffer;
-                Offset = 0;
-            }
-
-            public byte[] Buffer { get; private set; }
-            public int Offset { get; private set; }
-            public int BytesUnwritten => Buffer.Length - Offset;
-
-            public int CopyTo(byte[] buffer, int offset)
-            {
-                var length = int.Min(Buffer.Length - Offset, buffer.Length - offset);
-                if (length > 0)
-                {
-                    Array.Copy(Buffer, Offset, buffer, offset, length);
-                    Offset += length;
-                }
-                return length;
-            }
-        }
-
         private readonly Queue<Frame> _frameQueue = new Queue<Frame>();
         private State _state = State.BYTE1;
-        private SendBuffer? _sendBuffer = null;
+        private ArrayBuffer<byte>? _sendBuffer = null;
         
         public void WriteFrame(Frame frame)
         {
             _frameQueue.Enqueue(frame);
         }
 
-        public bool Write(byte[] buffer, ref int offset)
+        public bool Write(byte[] buffer, ref long offset)
         {
             if (_frameQueue.Count == 0)
                 throw new InvalidOperationException("No frames to write");
@@ -80,12 +56,12 @@ namespace WebSockets.Core
 
                 byte value = (byte)(frame.Mask == null ? 0 : 0b10000000);
 
-                if (frame.Payload.Length < 126)
+                if (frame.Payload.Count < 126)
                 {
-                    value |= (byte)frame.Payload.Length;
+                    value |= (byte)frame.Payload.Count;
                     _state = frame.Mask != null ? State.MASK : State.PAYLOAD;
                 }
-                else if (frame.Payload.Length <= ushort.MaxValue)
+                else if (frame.Payload.Count <= ushort.MaxValue)
                 {
                     value |= (byte)0b01111110;
                     _state = State.SHORT_LENGTH;
@@ -105,13 +81,13 @@ namespace WebSockets.Core
                 if (_sendBuffer == null)
                 {
                     var buf = new byte[2];
-                    BinaryPrimitives.WriteUInt16BigEndian(buf, (ushort)frame.Payload.Length);
-                    _sendBuffer = new SendBuffer(buf);
+                    BinaryPrimitives.WriteUInt16BigEndian(buf, (ushort)frame.Payload.Count);
+                    _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyTo(buffer, offset);
+                offset += _sendBuffer.CopyInto(buffer, offset);
 
-                if (_sendBuffer.BytesUnwritten != 0)
+                if (_sendBuffer.Count != 0)
                     return false;
 
                 _sendBuffer = null;
@@ -123,13 +99,13 @@ namespace WebSockets.Core
                 if (_sendBuffer == null)
                 {
                     var buf = new byte[8];
-                    BinaryPrimitives.WriteUInt64BigEndian(buf, (ulong)frame.Payload.Length);
-                    _sendBuffer = new SendBuffer(buf);
+                    BinaryPrimitives.WriteUInt64BigEndian(buf, (ulong)frame.Payload.Count);
+                    _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyTo(buffer, offset);
+                offset += _sendBuffer.CopyInto(buffer, offset);
 
-                if (_sendBuffer.BytesUnwritten != 0)
+                if (_sendBuffer.Count != 0)
                     return false;
 
                 _sendBuffer = null;
@@ -144,12 +120,12 @@ namespace WebSockets.Core
                     if (frame.Mask == null)
                         throw new InvalidOperationException("Mask cannot be null");
 
-                    _sendBuffer = new SendBuffer(frame.Mask);
+                    _sendBuffer = new ArrayBuffer<byte>(frame.Mask);
                 }
 
-                offset += _sendBuffer.CopyTo(buffer, offset);
+                offset += _sendBuffer.CopyInto(buffer, offset);
 
-                if (_sendBuffer.BytesUnwritten != 0)
+                if (_sendBuffer.Count != 0)
                     return false;
 
                 _sendBuffer = null;
@@ -162,19 +138,19 @@ namespace WebSockets.Core
                 if (_sendBuffer == null)
                 {
                     if (frame.Mask == null)
-                        _sendBuffer = new SendBuffer(frame.Payload);
+                        _sendBuffer = frame.Payload.Slice(0);
                     else
                     {
-                        var buf = new byte[frame.Payload.Length];
-                        for (int i = 0; i < frame.Payload.Length; ++i)
+                        var buf = new byte[frame.Payload.Count];
+                        for (var i = 0L; i < frame.Payload.Count; ++i)
                             buf[i] = (byte)(frame.Payload[i] ^ frame.Mask[i % 4]);
-                        _sendBuffer = new SendBuffer(buf);
+                        _sendBuffer = new ArrayBuffer<byte>(buf);
                     }
                 }
                 
-                offset += _sendBuffer.CopyTo(buffer, offset);
+                offset += _sendBuffer.CopyInto(buffer, offset);
 
-                if (_sendBuffer.BytesUnwritten != 0)
+                if (_sendBuffer.Count != 0)
                     return true;
 
                 _sendBuffer = null;

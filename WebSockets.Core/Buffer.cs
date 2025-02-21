@@ -7,55 +7,13 @@ namespace WebSockets.Core
 {
     class Buffer
     {
-        struct LongArraySegment<T>
-        {
-            public LongArraySegment(T[] array)
-                : this(array, 0, array.LongLength)
-            {
-            }
-
-            public LongArraySegment(T[] array, long offset, long count)
-            {
-                Array = array;
-                Offset = offset;
-                Count = count;
-            }
-
-            public T[] Array { get; private set; }
-            public long Offset { get; private set; }
-            public long Count { get; private set; }
-
-            public LongArraySegment<T> Slice(long index)
-            {
-                if (Offset + index > Array.LongLength)
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                return new LongArraySegment<T>(Array, Offset + index, Count - index);
-            }
-
-            public LongArraySegment<T> Slice(long index, long count)
-            {
-                if (Offset + index > Array.LongLength)
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                if (Offset + index + count > Array.LongLength)
-                    throw new ArgumentOutOfRangeException(nameof(count));
-                return new LongArraySegment<T>(Array, Offset + index, count);
-            }
-
-            public void CopyTo(byte[] array, long offset)
-            {
-                System.Array.Copy(Array, Offset, array, offset, Count);
-            }
-            public static implicit operator LongArraySegment<T>(T[] array) => new LongArraySegment<T>(array);
-        }
-
-        // TODO: rework to chunked.
-        private readonly LinkedList<LongArraySegment<byte>> _buffer = new LinkedList<LongArraySegment<byte>>();
+        private readonly LinkedList<ArrayBuffer<byte>> _buffer = new LinkedList<ArrayBuffer<byte>>();
 
         public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); }}
 
         public void WriteByte(byte value)
         {
-            _buffer.AddFirst(new LongArraySegment<byte>([value]));
+            _buffer.AddFirst(new ArrayBuffer<byte>([value]));
         }
 
         public void Write(byte[] values)

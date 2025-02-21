@@ -31,18 +31,18 @@ namespace WebSockets.Core
 
     public abstract class DataMessage : Message
     {
-        public DataMessage(MessageType type, byte[] data)
+        public DataMessage(MessageType type, ArrayBuffer<byte> data)
             :   base(type)
         {
             Data = data;
         }
 
-        public byte[] Data { get; private set; }
+        public ArrayBuffer<byte> Data { get; private set; }
     }
 
     public class BinaryMessage : DataMessage
     {
-        public BinaryMessage(byte[] data)
+        public BinaryMessage(ArrayBuffer<byte> data)
             : base(MessageType.Binary, data)
         {
         }
@@ -50,7 +50,7 @@ namespace WebSockets.Core
 
     public class PingMessage : DataMessage
     {
-        public PingMessage(byte[] data)
+        public PingMessage(ArrayBuffer<byte> data)
             : base(MessageType.Ping, data)
         {
         }
@@ -58,7 +58,7 @@ namespace WebSockets.Core
 
     public class PongMessage : DataMessage
     {
-        public PongMessage(byte[] data)
+        public PongMessage(ArrayBuffer<byte> data)
             : base(MessageType.Pong, data)
         {
         }

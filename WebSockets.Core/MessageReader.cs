@@ -55,13 +55,13 @@ namespace WebSockets.Core
                     throw new InvalidOperationException("only the last frame can be final");
             }
 
-            var length = frames.Sum(x => x.Payload.Length);
+            var length = frames.Sum(x => x.Payload.Count);
             var buf = new byte[length];
-            var offset = 0;
+            var offset = 0L;
             foreach (var frame in frames)
             {
-                Array.Copy(frame.Payload, 0, buf, offset, frame.Payload.Length);
-                offset += frame.Payload.Length;
+                Array.Copy(frame.Payload.Array, frame.Payload.Offset, buf, offset, frame.Payload.Count);
+                offset += frame.Payload.Count;
             }
             return CreateMessage(frames[0].OpCode, buf);
         }
@@ -71,23 +71,23 @@ namespace WebSockets.Core
             return CreateMessage(frame.OpCode, frame.Payload);
         }
 
-        public Message CreateMessage(OpCode opCode, byte[] payload)
+        public Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
         {
             switch (opCode)
             {
                 case OpCode.Text:
-                    return new TextMessage(Encoding.UTF8.GetString(payload));
+                    return new TextMessage(Encoding.UTF8.GetString(payload.ToArray()));
                 case OpCode.Binary:
                     return new BinaryMessage(payload);
                 case OpCode.Close:
                 {
                     ushort? code = null;
-                    if (payload.Length == 1 || payload.Length > 125)
+                    if (payload.Count == 1 || payload.Count > 125)
                         throw new InvalidOperationException("Invalid close payload");
-                    else if (payload.Length >= 2)
-                        code = BinaryPrimitives.ReadUInt16BigEndian(payload);
+                    else if (payload.Count >= 2)
+                        code = BinaryPrimitives.ReadUInt16BigEndian(payload.Slice(0, 2).ToArray());
 
-                    var reason = payload.Length <= 2 ? null : Encoding.UTF8.GetString(payload, 2, payload.Length - 2);
+                    var reason = payload.Count <= 2 ? null : Encoding.UTF8.GetString(payload.Slice(2).ToArray());
 
                     return new CloseMessage(code, reason);
                 }
