@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using WebSockets.Core;
 
@@ -86,6 +88,34 @@ namespace WebSockets.Core.Test
             AssertFrameData(
                 OpCode.Pong, Encoding.UTF8.GetBytes("pong"),
                 [138, 4, 112, 111, 110, 103],
+                false);
+        }
+
+        public void TestLongPayload()
+        {
+            var payload = new byte[126];
+            Array.Fill(payload, (byte)97);
+            byte[] header = [130, 126, 0, 126];
+            var expected = new byte[header.Length + payload.Length];
+            Array.Copy(header, expected, header.Length);
+            Array.Copy(payload, 0, expected, header.Length, expected.Length);
+            AssertFrameData(
+                OpCode.Binary, payload,
+                expected,
+                false);
+        }
+
+        public void TestVeryLongPayload()
+        {
+            var payload = new byte[65536];
+            Array.Fill(payload, (byte)97);
+            byte[] header = [130, 127, 0, 0, 0, 0, 0, 1, 0, 0];
+            var expected = new byte[header.Length + payload.Length];
+            Array.Copy(header, expected, header.Length);
+            Array.Copy(payload, 0, expected, header.Length, expected.Length);
+            AssertFrameData(
+                OpCode.Binary, payload,
+                expected,
                 false);
         }
 
