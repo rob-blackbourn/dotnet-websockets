@@ -147,11 +147,13 @@ namespace WebSockets.Core
                 offset += _sendBuffer.CopyInto(buffer, offset);
 
                 if (_sendBuffer.Count != 0)
-                    return true;
+                    return false;
 
                 _sendBuffer = null;
 
                 _state = State.BYTE1;
+
+                return true;
             }
 
             throw new InvalidOperationException("Invalid state");

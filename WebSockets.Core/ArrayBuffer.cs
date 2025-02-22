@@ -36,13 +36,14 @@ namespace WebSockets.Core
             return new ArrayBuffer<T>(Array, Offset + index, count);
         }
 
-        public long CopyInto(byte[] array, long offset)
+        public long CopyInto(T[] array, long offset)
         {
             var length = long.Min(Array.LongLength - Offset, array.LongLength - offset);
             if (length > 0)
             {
                 System.Array.Copy(Array, Offset, array, offset, length);
                 Offset += length;
+                Count -= length;
             }
             return length;
         }
