@@ -74,7 +74,7 @@ namespace WebSockets.Core
 
             if (_state == State.SHORT_LENGTH)
             {
-                if (_sendBuffer == null)
+                if (_sendBuffer is null)
                 {
                     var buf = new byte[2];
                     BinaryPrimitives.WriteUInt16BigEndian(buf, (ushort)frame.Payload.Count);
@@ -92,7 +92,7 @@ namespace WebSockets.Core
             }
             else if (_state == State.LONG_LENGTH)
             {
-                if (_sendBuffer == null)
+                if (_sendBuffer is null)
                 {
                     var buf = new byte[8];
                     BinaryPrimitives.WriteUInt64BigEndian(buf, (ulong)frame.Payload.Count);
@@ -111,7 +111,7 @@ namespace WebSockets.Core
 
             if (_state == State.MASK)
             {
-                if (_sendBuffer == null)
+                if (_sendBuffer is null)
                 {
                     if (frame.Mask == null)
                         throw new InvalidOperationException("Mask cannot be null");
@@ -131,7 +131,7 @@ namespace WebSockets.Core
 
             if (_state == State.PAYLOAD)
             {
-                if (_sendBuffer == null)
+                if (_sendBuffer is null)
                 {
                     if (frame.Mask == null)
                         _sendBuffer = frame.Payload.Slice(0);

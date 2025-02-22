@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+
 namespace WebSockets.Core
 {
     public enum MessageType
@@ -9,7 +13,7 @@ namespace WebSockets.Core
         Close
     }
 
-    public abstract class Message
+    public abstract class Message : IEquatable<Message>
     {
         protected Message(MessageType type)
         {
@@ -17,9 +21,40 @@ namespace WebSockets.Core
         }
 
         public MessageType Type { get; private set; }
+
+        public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = long.MaxValue, INonceGenerator? nonceGenerator = null)
+        {
+            var writer = new MessageWriter(nonceGenerator ?? new NonceGenerator());
+            writer.Write(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
+            var buffers = new List<ArrayBuffer<byte>>();
+            var isDone = false;
+            while (!isDone)
+            {
+                var buf = new byte[1024];
+                var offset = 0L;
+                isDone = writer.Write(buf, ref offset);
+                buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
+            }
+            return buffers.ToFlatArray();
+        }
+
+        public static Message Deserialize(byte[] data)
+        {
+            var reader = new MessageReader();
+            reader.Receive(data);
+            var message = reader.Process();
+            if (message == null)
+                throw new InvalidOperationException("failed to deserialize message");
+            return message;
+        }
+
+        public bool Equals(Message? other)
+        {
+            return other is not null && Type == other.Type;
+        }
     }
 
-    public class TextMessage : Message
+    public class TextMessage : Message, IEquatable<TextMessage>
     {
         public TextMessage(string text)
             :   base(MessageType.Text)
@@ -27,9 +62,14 @@ namespace WebSockets.Core
             Text = text;
         }
         public string Text { get; private set; }
+
+        public bool Equals(TextMessage? other)
+        {
+            return base.Equals(other) && Text == other.Text;
+        }
     }
 
-    public abstract class DataMessage : Message
+    public abstract class DataMessage : Message, IEquatable<DataMessage>
     {
         public DataMessage(MessageType type, ArrayBuffer<byte> data)
             :   base(type)
@@ -38,6 +78,11 @@ namespace WebSockets.Core
         }
 
         public ArrayBuffer<byte> Data { get; private set; }
+
+        public bool Equals(DataMessage? other)
+        {
+            return base.Equals(other) && Data.Equals(other.Data);
+        }
     }
 
     public class BinaryMessage : DataMessage
@@ -64,7 +109,7 @@ namespace WebSockets.Core
         }
     }
 
-    public class CloseMessage : Message
+    public class CloseMessage : Message, IEquatable<CloseMessage>
     {
         public CloseMessage(ushort? code, string? reason)
             :   base(MessageType.Close)
@@ -75,5 +120,12 @@ namespace WebSockets.Core
 
         public ushort? Code { get; private set; }
         public string? Reason { get; private set; }
+
+        public bool Equals(CloseMessage? other)
+        {
+            return base.Equals(other) &&
+                ((Code == null && other.Code == null) || (Code == other.Code)) &&
+                ((Reason == null && other.Reason == null) || (Reason == other.Reason));
+        }
     }
 }

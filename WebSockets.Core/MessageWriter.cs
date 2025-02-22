@@ -21,9 +21,9 @@ namespace WebSockets.Core
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
             
-            while (payload.Count > 0)
+            while (payload.Count > 0 || opCode != OpCode.Continuation)
             {
-                var length = long.Max(payload.Count, maxFrameSize);
+                var length = long.Min(payload.Count, maxFrameSize);
                 var framePayload = payload.Slice(0, length);
                 payload = payload.Slice(length);
                 var isFinal = payload.Count == 0;
@@ -52,7 +52,7 @@ namespace WebSockets.Core
                 case MessageType.Close:
                 {
                     var closeMessage = (CloseMessage)message;
-                    if (!(closeMessage.Code.HasValue && closeMessage.Reason == null))
+                    if (!closeMessage.Code.HasValue && closeMessage.Reason != null)
                         throw new InvalidOperationException("a close message with reason text must have a code");
 
                     var data = new List<byte[]>();

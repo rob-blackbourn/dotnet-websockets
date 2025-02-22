@@ -75,7 +75,7 @@ namespace WebSockets.Core
 
         public bool Equals(ArrayBuffer<T>? other)
         {
-            return other != null &&
+            return other is not null &&
                 Offset == other.Offset &&
                 Count == other.Count &&
                 Array.SequenceEqual(other.Array);
