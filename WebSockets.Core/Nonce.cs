@@ -5,6 +5,7 @@ namespace WebSockets.Core
     public interface INonceGenerator
     {
         void GetBytes(byte[] buffer);
+        byte[] Create();
     }
 
     public class NonceGenerator : INonceGenerator
@@ -19,6 +20,13 @@ namespace WebSockets.Core
         public void GetBytes(byte[] buffer)
         {
             _random.NextBytes(buffer);
+        }
+
+        public byte[] Create()
+        {
+            var buf = new byte[4];
+            GetBytes(buf);
+            return buf;
         }
     }
 }

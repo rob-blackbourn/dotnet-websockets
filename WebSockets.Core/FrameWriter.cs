@@ -16,21 +16,17 @@ namespace WebSockets.Core
             PAYLOAD
         }
 
-        private readonly Queue<Frame> _frameQueue = new Queue<Frame>();
         private State _state = State.BYTE1;
         private ArrayBuffer<byte>? _sendBuffer = null;
-        
-        public void WriteFrame(Frame frame)
-        {
-            _frameQueue.Enqueue(frame);
-        }
+
+        public Queue<Frame> Frames { get; } = new Queue<Frame>();
 
         public bool Write(byte[] buffer, ref long offset)
         {
-            if (_frameQueue.Count == 0)
+            if (Frames.Count == 0)
                 throw new InvalidOperationException("No frames to write");
 
-            var frame = _frameQueue.Peek();
+            var frame = Frames.Peek();
 
             if (_state == State.BYTE1)
             {
