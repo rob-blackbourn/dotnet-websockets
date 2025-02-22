@@ -50,7 +50,7 @@ namespace WebSockets.Core
 
                 if (last.Value.Count <= bytesRequired)
                 {
-                    Array.Copy(last.Value.Array, buffer, offset);
+                    Array.Copy(last.Value.Array, last.Value.Offset, buffer, offset, last.Value.Count);
                     offset += last.Value.Count;
                     if (last.Value.Count == bytesRequired)
                         _buffer.RemoveLast();

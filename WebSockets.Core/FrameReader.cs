@@ -45,8 +45,8 @@ namespace WebSockets.Core
                     (buf[0] & 0b01000000) != 0,
                     (buf[0] & 0b00100000) != 0,
                     (buf[0] & 0b00010000) != 0);
-                _opCode = (OpCode)(buf[0] & 0b00001000);
-                _state = State.BYTE1;
+                _opCode = (OpCode)(buf[0] & 0b00001111);
+                _state = State.BYTE2;
             }
 
             if (_state == State.BYTE2)
@@ -70,7 +70,7 @@ namespace WebSockets.Core
                 }
                 else
                 {
-                    _payloadLength = (int)length;
+                    _payloadLength = length;
                     _state = _isMasked ? State.MASK : State.PAYLOAD;
                 }
             }

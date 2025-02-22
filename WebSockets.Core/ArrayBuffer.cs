@@ -1,8 +1,9 @@
 using System;
+using System.Linq;
 
 namespace WebSockets.Core
 {
-    public class ArrayBuffer<T>
+    public class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
     {
         public ArrayBuffer(T[] array)
             : this(array, 0, array.LongLength)
@@ -71,5 +72,36 @@ namespace WebSockets.Core
             System.Array.Copy(Array, Offset, buf, 0, Count);
             return buf;
         }
+
+        public bool Equals(ArrayBuffer<T>? other)
+        {
+            return other != null &&
+                Offset == other.Offset &&
+                Count == other.Count &&
+                Array.SequenceEqual(other.Array);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return base.Equals(obj as ArrayBuffer<T>);
+        }
+
+        public override int GetHashCode()
+        {
+            return Array.GetHashCode() ^ Offset.GetHashCode() ^ Count.GetHashCode();
+        }
+
+        public static bool operator ==(ArrayBuffer<T> obj1, ArrayBuffer<T> obj2)
+        {
+            if (ReferenceEquals(obj1, obj2)) 
+                return true;
+            if (ReferenceEquals(obj1, null)) 
+                return false;
+            if (ReferenceEquals(obj2, null))
+                return false;
+            return obj1.Equals(obj2);
+        }
+        
+        public static bool operator !=(ArrayBuffer<T> obj1, ArrayBuffer<T> obj2) => !(obj1 == obj2);
     }
 }

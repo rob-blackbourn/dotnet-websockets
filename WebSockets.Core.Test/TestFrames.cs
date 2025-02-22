@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
 using System.Text;
-using WebSockets.Core;
 
 namespace WebSockets.Core.Test
 {
@@ -125,6 +123,9 @@ namespace WebSockets.Core.Test
             var frame = new Frame(opCode, true, Reserved.AllFalse, mask, payload);
             var actual = frame.Serialize();
             Assert.IsTrue(actual.SequenceEqual(expected));
+
+            var roundTrip = Frame.Deserialize(actual);
+            Assert.AreEqual(frame, roundTrip);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace WebSockets.Core
 {
-    public struct Reserved
+    public struct Reserved : IEquatable<Reserved>
     {
         public static Reserved AllFalse {get;} = new Reserved(false, false, false);
 
@@ -18,9 +20,16 @@ namespace WebSockets.Core
         public bool IsRsv2 { get; private set; }
         public bool IsRsv3 { get; private set; }
 
+        public bool Equals(Reserved other)
+        {
+            return
+                IsRsv1 == other.IsRsv1 &&
+                IsRsv2 == other.IsRsv2 &&
+                IsRsv3 == other.IsRsv3;
+        }
     }
 
-    public class Frame
+    public class Frame : IEquatable<Frame>
     {
         public Frame(OpCode opCode, bool isFinal, Reserved reserved, byte[]? mask, ArrayBuffer<byte> payload)
         {
@@ -57,6 +66,33 @@ namespace WebSockets.Core
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
+        }
+
+        public static Frame Deserialize(byte[] data)
+        {
+            var reader = new FrameReader();
+            reader.Receive(data);
+            var frame = reader.Process();
+            if (frame == null)
+                throw new InvalidOperationException("failed to deserialize");
+            return frame;
+        }
+
+        public bool Equals(Frame? other)
+        {
+            return other != null &&
+                OpCode == other.OpCode &&
+                IsFinal == other.IsFinal &&
+                Reserved.Equals(other.Reserved) &&
+                (
+                    (Mask == null && other.Mask == null) ||
+                    (
+                        Mask != null &&
+                        other.Mask != null &&
+                        Mask.SequenceEqual(other.Mask)
+                    )
+                ) &&
+                Payload == other.Payload;
         }
     }
 }
