@@ -17,7 +17,8 @@ namespace WebSockets.Core
 
         private readonly Buffer _buffer = new Buffer();
         private State _state = State.BYTE1;
-        private bool _fin, _rsv1, _rsv2, _rsv3;
+        private bool _fin;
+        private Reserved _reserved;
         private OpCode _opCode;
         private bool _isMasked;
         private long _payloadLength;
@@ -40,9 +41,10 @@ namespace WebSockets.Core
                 _buffer.ReadExactly(buf);
 
                 _fin = (buf[0] & 0b10000000) != 0;
-                _rsv1 = (buf[0] & 0b01000000) != 0;
-                _rsv2 = (buf[0] & 0b00100000) != 0;
-                _rsv3 = (buf[0] & 0b00010000) != 0;
+                _reserved = new Reserved(
+                    (buf[0] & 0b01000000) != 0,
+                    (buf[0] & 0b00100000) != 0,
+                    (buf[0] & 0b00010000) != 0);
                 _opCode = (OpCode)(buf[0] & 0b00001000);
                 _state = State.BYTE1;
             }
@@ -117,7 +119,7 @@ namespace WebSockets.Core
 
                 _state = State.BYTE1;
 
-                return new Frame(_opCode, _fin, _rsv1, _rsv2, _rsv3, _isMasked ? _mask : null, _payload);
+                return new Frame(_opCode, _fin, _reserved, _isMasked ? _mask : null, _payload);
             }
 
             throw new InvalidOperationException();

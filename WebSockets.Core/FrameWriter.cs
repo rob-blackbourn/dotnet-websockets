@@ -34,9 +34,9 @@ namespace WebSockets.Core
                     return false;
 
                 byte value = (byte)(frame.IsFinal ? 0b10000000 : 0);
-                value |= (byte)(frame.IsRsv1 ? 0b01000000 : 0);
-                value |= (byte)(frame.IsRsv2 ? 0b00100000 : 0);
-                value |= (byte)(frame.IsRsv3 ? 0b00010000 : 0);
+                value |= (byte)(frame.Reserved.IsRsv1 ? 0b01000000 : 0);
+                value |= (byte)(frame.Reserved.IsRsv2 ? 0b00100000 : 0);
+                value |= (byte)(frame.Reserved.IsRsv3 ? 0b00010000 : 0);
                 value |= (byte)frame.OpCode;
 
                 buffer[offset] = value;
@@ -68,7 +68,7 @@ namespace WebSockets.Core
                     _state = State.SHORT_LENGTH;
                 }
                 
-                buffer[0] = value;
+                buffer[offset] = value;
                 offset += 1;
             }
 

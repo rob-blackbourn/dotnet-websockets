@@ -16,7 +16,7 @@ namespace WebSockets.Core
             _nonceGenerator = nonceGenerator;
         }
 
-        public void Write(Message message, bool isClient, bool isRsv1, bool isRsv2, bool isRsv3, long maxFrameSize = long.MaxValue)
+        public void Write(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
@@ -28,7 +28,7 @@ namespace WebSockets.Core
                 payload = payload.Slice(length);
                 var isFinal = payload.Count == 0;
                 var mask = isClient ? _nonceGenerator.Create() : null;
-                var frame = new Frame(opCode, isFinal, isRsv1, isRsv2, isRsv3, mask, framePayload);
+                var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
                 _frameWriter.Frames.Enqueue(frame);
                 opCode = OpCode.Continuation;
             }
@@ -72,16 +72,7 @@ namespace WebSockets.Core
                         data.Add(reasonBuf);
                     }
 
-                    var length = data.Sum(x => x.Length);
-                    var buf = new byte[length];
-                    var offset = 0;
-                    foreach (var item in data)
-                    {
-                        Array.Copy(item, 0, buf, offset, item.Length);
-                        offset += item.Length;
-                    }
-
-                    return buf;                    
+                    return data.ToFlatArray();
                 }
                 default:
                     throw new InvalidOperationException("unhandled message type");

@@ -1,0 +1,25 @@
+﻿using System.Linq;
+using System.Text;
+using WebSockets.Core;
+
+namespace WebSockets.Core.Test
+{
+    [TestClass]
+    public sealed class TestArrayBuffer
+    {
+        [TestMethod]
+        public void TestToArray()
+        {
+            var a = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var b = new ArrayBuffer<int>(a);
+            Assert.IsTrue(b.ToArray().SequenceEqual(a));
+
+            var c = b.Slice(0, 3);
+            Assert.IsTrue(c.ToArray().SequenceEqual([0, 1, 2]));
+
+            var d = b.Slice(3, 4);
+            Assert.IsTrue(d.ToArray().SequenceEqual([3, 4, 5, 6]));
+        }
+    }
+}
+
