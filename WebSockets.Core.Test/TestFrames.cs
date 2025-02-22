@@ -26,10 +26,28 @@ namespace WebSockets.Core.Test
             );
         }
 
+        [TestMethod]
+        public void TestBinaryUnmasked()
+        {
+            AssertFrameData(
+                OpCode.Binary, Encoding.UTF8.GetBytes("Eggs"),
+                [130, 4, 69, 103, 103, 115],
+                false);
+        }
+
+        [TestMethod]
+        public void TestBinaryMasked()
+        {
+            AssertFrameData(
+                OpCode.Binary, Encoding.UTF8.GetBytes("Eggs"),
+                [130, 132, 83, 205, 226, 137, 22, 170, 133, 250],
+                true);
+        }
+
         private void AssertFrameData(OpCode opCode, byte[] payload, byte[] expected, bool isMasked)
         {
             var mask = isMasked ? expected.Skip(2).Take(4).ToArray() : null;
-            var frame = new Frame(OpCode.Text, true, Reserved.AllFalse, mask, payload);
+            var frame = new Frame(opCode, true, Reserved.AllFalse, mask, payload);
             var actual = frame.Serialize();
             Assert.IsTrue(actual.SequenceEqual(expected));
         }
