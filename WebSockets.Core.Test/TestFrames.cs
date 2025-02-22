@@ -62,6 +62,33 @@ namespace WebSockets.Core.Test
                 true);
         }
 
+        [TestMethod]
+        public void TestClose()
+        {
+            AssertFrameData(
+                OpCode.Close, [],
+                [136, 0],
+                false);
+        }
+
+        [TestMethod]
+        public void TestPing()
+        {
+            AssertFrameData(
+                OpCode.Ping, Encoding.UTF8.GetBytes("ping"),
+                [137, 4, 112, 105, 110, 103],
+                false);
+        }
+
+        [TestMethod]
+        public void TestPong()
+        {
+            AssertFrameData(
+                OpCode.Pong, Encoding.UTF8.GetBytes("pong"),
+                [138, 4, 112, 111, 110, 103],
+                false);
+        }
+
         private void AssertFrameData(OpCode opCode, byte[] payload, byte[] expected, bool isMasked)
         {
             var mask = isMasked ? expected.Skip(2).Take(4).ToArray() : null;
