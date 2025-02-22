@@ -4,7 +4,6 @@ namespace WebSockets.Core
 {
     public interface INonceGenerator
     {
-        void GetBytes(byte[] buffer);
         byte[] Create();
     }
 
@@ -17,15 +16,10 @@ namespace WebSockets.Core
             _random = new Random((int)DateTime.Now.Ticks);
         }
 
-        public void GetBytes(byte[] buffer)
-        {
-            _random.NextBytes(buffer);
-        }
-
         public byte[] Create()
         {
             var buf = new byte[4];
-            GetBytes(buf);
+            _random.NextBytes(buf);
             return buf;
         }
     }
