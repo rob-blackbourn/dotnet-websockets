@@ -77,8 +77,10 @@ namespace WebSockets.Core
             {
                 case OpCode.Text:
                     return new TextMessage(Encoding.UTF8.GetString(payload.ToArray()));
+                    
                 case OpCode.Binary:
                     return new BinaryMessage(payload.ToArray());
+
                 case OpCode.Close:
                 {
                     ushort? code = null;
@@ -93,8 +95,10 @@ namespace WebSockets.Core
                 }
                 case OpCode.Ping:
                     return new PingMessage(payload.ToArray());
+
                 case OpCode.Pong:
                     return new PongMessage(payload.ToArray());
+
                 default:
                     throw new InvalidOperationException("Invalid op code");
             }
