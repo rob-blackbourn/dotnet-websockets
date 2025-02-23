@@ -10,18 +10,18 @@ namespace WebSockets.Core
     /// consolidated data is read out. This reduces the amount of buffer
     /// reallocation.
     /// </summary>
-    class FragmentBuffer
+    class FragmentBuffer<T>
     {
-        private readonly LinkedList<ArrayBuffer<byte>> _buffer = new LinkedList<ArrayBuffer<byte>>();
+        private readonly LinkedList<ArrayBuffer<T>> _buffer = new LinkedList<ArrayBuffer<T>>();
 
         public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); }}
 
-        public void Write(byte[] values)
+        public void Write(T[] values)
         {
             _buffer.AddFirst(values);
         }
 
-        public long Read(byte[] buffer)
+        public long Read(T[] buffer)
         {
             var offset = 0L;
             while (offset < buffer.LongLength && _buffer.Count > 0)
@@ -42,7 +42,7 @@ namespace WebSockets.Core
                 {
                     Array.Copy(last.Value.Array, last.Value.Offset, buffer, offset, last.Value.Count);
                     offset += last.Value.Count;
-                    if (last.Value.Count == bytesRequired)
+                    if (last.Value.Count <= bytesRequired)
                         _buffer.RemoveLast();
                 }
                 else
@@ -57,10 +57,10 @@ namespace WebSockets.Core
             return offset;
         }
 
-        public void ReadExactly(byte[] buffer)
+        public void ReadExactly(T[] buffer)
         {
-            var bytesRead = Read(buffer);
-            if (bytesRead != buffer.LongLength)
+            var TsRead = Read(buffer);
+            if (TsRead != buffer.LongLength)
                 throw new EndOfStreamException();
         }
     }

@@ -15,7 +15,7 @@ namespace WebSockets.Core
             PAYLOAD
         }
 
-        private readonly FragmentBuffer _buffer = new FragmentBuffer();
+        private readonly FragmentBuffer<byte> _buffer = new FragmentBuffer<byte>();
         private State _state = State.BYTE1;
         private bool _fin;
         private Reserved _reserved;
