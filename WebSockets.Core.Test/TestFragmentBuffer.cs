@@ -51,6 +51,15 @@ namespace WebSockets.Core.Test
             byte[] expected = [0, 1, 2, 3, 0, 0, 0, 0];
             Assert.IsTrue(expected.SequenceEqual(actual));
         }
+
+        [TestMethod]
+        public void TestReadWhenEmpty()
+        {
+            var fragmentBuffer = new FragmentBuffer<byte>();
+            var actual = new byte[8];
+            var bytesRead = fragmentBuffer.Read(actual);
+            Assert.AreEqual(bytesRead, 0);
+        }
     }
 }
 
