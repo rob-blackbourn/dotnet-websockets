@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A double ended queue where fragments of data are fed in, and
+    /// consolidated data is read out. This reduces the amount of buffer
+    /// reallocation.
+    /// </summary>
     class FragmentBuffer
     {
         private readonly LinkedList<ArrayBuffer<byte>> _buffer = new LinkedList<ArrayBuffer<byte>>();
