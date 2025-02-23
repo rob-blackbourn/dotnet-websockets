@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    class Buffer
+    class FragmentBuffer
     {
         private readonly LinkedList<ArrayBuffer<byte>> _buffer = new LinkedList<ArrayBuffer<byte>>();
 
