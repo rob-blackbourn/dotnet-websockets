@@ -3,6 +3,11 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// This class serves a similar purpose to Span and ArraySegment, but
+    /// supporting long length and offset.
+    /// </summary>
+    /// <typeparam name="T">The type of items in the buffer</typeparam>
     class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
     {
         public ArrayBuffer(T[] array)

@@ -10,6 +10,7 @@ namespace WebSockets.Core
     /// consolidated data is read out. This reduces the amount of buffer
     /// reallocation.
     /// </summary>
+    /// <typeparam name="T">The type of items in the buffer</typeparam>
     class FragmentBuffer<T>
     {
         private readonly LinkedList<ArrayBuffer<T>> _buffer = new LinkedList<ArrayBuffer<T>>();
