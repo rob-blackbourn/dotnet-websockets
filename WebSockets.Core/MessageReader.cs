@@ -35,7 +35,7 @@ namespace WebSockets.Core
             }
         }
 
-        public Message CreateMessage(Frame[] frames)
+        Message CreateMessage(Frame[] frames)
         {
             if (frames.Length == 0)
                 throw new ArgumentOutOfRangeException(nameof(frames));
@@ -66,19 +66,19 @@ namespace WebSockets.Core
             return CreateMessage(frames[0].OpCode, buf);
         }
 
-        public Message CreateMessage(Frame frame)
+        Message CreateMessage(Frame frame)
         {
             return CreateMessage(frame.OpCode, frame.Payload);
         }
 
-        public Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
+        Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
         {
             switch (opCode)
             {
                 case OpCode.Text:
                     return new TextMessage(Encoding.UTF8.GetString(payload.ToArray()));
                 case OpCode.Binary:
-                    return new BinaryMessage(payload);
+                    return new BinaryMessage(payload.ToArray());
                 case OpCode.Close:
                 {
                     ushort? code = null;
@@ -92,9 +92,9 @@ namespace WebSockets.Core
                     return new CloseMessage(code, reason);
                 }
                 case OpCode.Ping:
-                    return new PingMessage(payload);
+                    return new PingMessage(payload.ToArray());
                 case OpCode.Pong:
-                    return new PongMessage(payload);
+                    return new PongMessage(payload.ToArray());
                 default:
                     throw new InvalidOperationException("Invalid op code");
             }

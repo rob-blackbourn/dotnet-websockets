@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 
 namespace WebSockets.Core
 {
-    public class FrameReader
+    class FrameReader
     {
         enum State
         {

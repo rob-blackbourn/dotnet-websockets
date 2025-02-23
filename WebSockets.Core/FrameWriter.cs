@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WebSockets.Core
 {
-    public class FrameWriter
+    class FrameWriter
     {
         enum State
         {

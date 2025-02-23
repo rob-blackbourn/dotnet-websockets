@@ -71,13 +71,13 @@ namespace WebSockets.Core
 
     public abstract class DataMessage : Message, IEquatable<DataMessage>
     {
-        public DataMessage(MessageType type, ArrayBuffer<byte> data)
+        public DataMessage(MessageType type, byte[] data)
             :   base(type)
         {
             Data = data;
         }
 
-        public ArrayBuffer<byte> Data { get; private set; }
+        public byte[] Data { get; private set; }
 
         public bool Equals(DataMessage? other)
         {
@@ -87,7 +87,7 @@ namespace WebSockets.Core
 
     public class BinaryMessage : DataMessage
     {
-        public BinaryMessage(ArrayBuffer<byte> data)
+        public BinaryMessage(byte[] data)
             : base(MessageType.Binary, data)
         {
         }
@@ -95,7 +95,7 @@ namespace WebSockets.Core
 
     public class PingMessage : DataMessage
     {
-        public PingMessage(ArrayBuffer<byte> data)
+        public PingMessage(byte[] data)
             : base(MessageType.Ping, data)
         {
         }
@@ -103,7 +103,7 @@ namespace WebSockets.Core
 
     public class PongMessage : DataMessage
     {
-        public PongMessage(ArrayBuffer<byte> data)
+        public PongMessage(byte[] data)
             : base(MessageType.Pong, data)
         {
         }

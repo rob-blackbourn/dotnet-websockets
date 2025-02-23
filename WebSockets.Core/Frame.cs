@@ -29,7 +29,7 @@ namespace WebSockets.Core
         }
     }
 
-    public class Frame : IEquatable<Frame>
+    class Frame : IEquatable<Frame>
     {
         public Frame(OpCode opCode, bool isFinal, Reserved reserved, byte[]? mask, ArrayBuffer<byte> payload)
         {

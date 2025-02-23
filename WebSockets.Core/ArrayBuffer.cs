@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    public class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
+    class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
     {
         public ArrayBuffer(T[] array)
             : this(array, 0, array.LongLength)

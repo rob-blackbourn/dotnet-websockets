@@ -1,11 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace WebSockets.Core
 {
-    public static class ExtensionMethods
+    public static class PublicExtensionMethods
+    {
+        public static string? SingleValue(this IDictionary<string, IList<string>> headers, string key)
+        {
+            if (!headers.TryGetValue(key, out var list) || list.Count == 0)
+                return null;
+            if (list.Count > 1)
+                throw new InvalidOperationException("header contains multiple values");
+            return list[0];
+        }
+
+        public static string[]? SingleCommaValues(this IDictionary<string, IList<string>> headers, string key)
+        {
+            return headers.SingleValue(key)?.Split(',', StringSplitOptions.TrimEntries);
+        }
+    }
+
+    static class InternalExtensionMethods
     {
         public static T[] ToFlatArray<T>(this IList<T[]> buffers)
         {
@@ -33,20 +49,6 @@ namespace WebSockets.Core
             }
 
             return buf;                    
-        }
-
-        public static string? SingleValue(this IDictionary<string, IList<string>> headers, string key)
-        {
-            if (!headers.TryGetValue(key, out var list) || list.Count == 0)
-                return null;
-            if (list.Count > 1)
-                throw new InvalidOperationException("header contains multiple values");
-            return list[0];
-        }
-
-        public static string[]? SingleCommaValues(this IDictionary<string, IList<string>> headers, string key)
-        {
-            return headers.SingleValue(key)?.Split(',', StringSplitOptions.TrimEntries);
         }
     }
 }
