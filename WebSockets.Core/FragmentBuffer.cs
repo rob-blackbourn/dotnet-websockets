@@ -112,6 +112,7 @@ namespace WebSockets.Core
 
         public bool EndsWith(T[] pattern)
         {
+            // TODO: Convert to reverse search for speed-up.
             if (pattern.LongLength > Count)
                 return false;
             for (long i = 0L, j = Count - pattern.LongLength; i < pattern.LongLength; ++i, ++j)
