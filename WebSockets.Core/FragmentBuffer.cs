@@ -124,5 +124,18 @@ namespace WebSockets.Core
             }
             return true;
         }
+
+        public T[] ToArray()
+        {
+            var buf = new T[Count];
+            var offset = 0L;
+            foreach (var item in _buffer.Reverse())
+            {
+                Array.Copy(item.Array, item.Offset, buf, offset, item.Count);
+                offset += item.Count;
+            }
+
+            return buf;                    
+        }
     }
 }

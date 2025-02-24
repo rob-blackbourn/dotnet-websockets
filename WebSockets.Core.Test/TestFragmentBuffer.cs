@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 
 namespace WebSockets.Core.Test
 {
@@ -96,6 +97,18 @@ namespace WebSockets.Core.Test
             Assert.IsTrue(fragmentBuffer.EndsWith([6, 7, 8]));
             Assert.IsTrue(fragmentBuffer.EndsWith([5, 6, 7, 8]));
             Assert.IsFalse(fragmentBuffer.EndsWith([5, 6, 7]));
+        }
+
+        [TestMethod]
+        public void TestToArray()
+        {
+            var fragmentBuffer = new FragmentBuffer<int>();
+            fragmentBuffer.Write([0, 1, 2]);
+            fragmentBuffer.Write([3, 4, 5]);
+            fragmentBuffer.Write([6, 7, 8]);
+            var actual = fragmentBuffer.ToArray();
+            int[] expected = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            Assert.IsTrue(expected.SequenceEqual(actual));
         }
     }
 }
