@@ -83,6 +83,20 @@ namespace WebSockets.Core.Test
             var b = fragmentBuffer.IndexOf([0, 1, 2, 3], 1);
             Assert.AreEqual(10, b);
         }
+
+        [TestMethod]
+        public void TestEndsWith()
+        {
+            var fragmentBuffer = new FragmentBuffer<int>();
+            fragmentBuffer.Write([0, 1, 2]);
+            fragmentBuffer.Write([3, 4, 5]);
+            fragmentBuffer.Write([6, 7, 8]);
+            Assert.IsTrue(fragmentBuffer.EndsWith([8]));
+            Assert.IsTrue(fragmentBuffer.EndsWith([7, 8]));
+            Assert.IsTrue(fragmentBuffer.EndsWith([6, 7, 8]));
+            Assert.IsTrue(fragmentBuffer.EndsWith([5, 6, 7, 8]));
+            Assert.IsFalse(fragmentBuffer.EndsWith([5, 6, 7]));
+        }
     }
 }
 

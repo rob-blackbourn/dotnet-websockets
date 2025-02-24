@@ -96,7 +96,9 @@ namespace WebSockets.Core
                 bool found = true;
                 for (long j = 0L; j < pattern.LongLength; ++j)
                 {
-                    if (!(this[i + j]?.Equals(pattern[j]) ?? false))
+                    T a = this[i + j];
+                    T b = pattern[j];
+                    if (!((a is null && b is null) || (a is not null && b is not null && a.Equals(b))))
                     {
                         found = false;
                         break;
@@ -106,6 +108,20 @@ namespace WebSockets.Core
                     return i;
             }
             return -1;
+        }
+
+        public bool EndsWith(T[] pattern)
+        {
+            if (pattern.LongLength > Count)
+                return false;
+            for (long i = 0L, j = Count - pattern.LongLength; i < pattern.LongLength; ++i, ++j)
+            {
+                T a = this[j];
+                T b = pattern[i];
+                if (!((a is null && b is null) || (a is not null && b is not null && a.Equals(b))))
+                    return false;
+            }
+            return true;
         }
     }
 }

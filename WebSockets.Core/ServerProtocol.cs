@@ -38,6 +38,9 @@ namespace WebSockets.Core
         {
             var offset = long.Max(0, _handshakeBuffer.Count - 3);
             _handshakeBuffer.Write(data);
+            var index = _handshakeBuffer.IndexOf(HTTP_EOM, offset);
+            if (index == -1)
+                return;
         }
 
         private void ReceiveMessages(byte[] data)
