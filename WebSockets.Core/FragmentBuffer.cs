@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -63,6 +64,48 @@ namespace WebSockets.Core
             var TsRead = Read(buffer);
             if (TsRead != buffer.LongLength)
                 throw new EndOfStreamException();
+        }
+
+        public T this[long index]
+        {
+            get
+            {
+                var node = _buffer.Last;
+                if (node is null)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+
+                var start = 0L;
+                var end = 0L;
+                while (node != null)
+                {
+                    end = start + node.Value.Count;
+                    if (index >= start && index < end)
+                        return node.Value[index - start];
+                    node = node.Previous;
+                    start = end;
+                }
+
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+        }
+
+        public long IndexOf(T[] pattern, long offset)
+        {
+            for (long i = offset; i < 1 + Count - pattern.LongLength; ++i)
+            {
+                bool found = true;
+                for (long j = 0L; j < pattern.LongLength; ++j)
+                {
+                    if (!(this[i + j]?.Equals(pattern[j]) ?? false))
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return i;
+            }
+            return -1;
         }
     }
 }

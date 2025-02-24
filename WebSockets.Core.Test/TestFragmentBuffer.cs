@@ -58,6 +58,31 @@ namespace WebSockets.Core.Test
             var bytesRead = fragmentBuffer.Read(actual);
             Assert.AreEqual(bytesRead, 0);
         }
+
+        [TestMethod]
+        public void TestIndex()
+        {
+            var fragmentBuffer = new FragmentBuffer<long>();
+            fragmentBuffer.Write([0, 1, 2, 3, 4]);
+            fragmentBuffer.Write([5, 6, 7, 8, 9]);
+            for (var i = 0L; i < fragmentBuffer.Count; ++i)
+            {
+                Assert.AreEqual(i, fragmentBuffer[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestIndexOf()
+        {
+            var fragmentBuffer = new FragmentBuffer<int>();
+            fragmentBuffer.Write([0, 1, 2, 3, 4]);
+            fragmentBuffer.Write([5, 6, 7, 8, 9]);
+            fragmentBuffer.Write([0, 1, 2, 3, 4]);
+            var a = fragmentBuffer.IndexOf([0, 1, 2, 3], 0);
+            Assert.AreEqual(0, a);
+            var b = fragmentBuffer.IndexOf([0, 1, 2, 3], 1);
+            Assert.AreEqual(10, b);
+        }
     }
 }
 
