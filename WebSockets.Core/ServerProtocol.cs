@@ -140,8 +140,7 @@ namespace WebSockets.Core
                 if (_state == State.Connected)
                 {
                     // The client has started the close handshake.
-                    // Respond with a close frame with the same payload.
-                    SendMessage(closeMessage);
+                    // Should respond with a close frame with the same payload.
                     _state = State.Closing;
                 }
                 else if (_state == State.Closing)
@@ -152,12 +151,6 @@ namespace WebSockets.Core
                 {
                     throw new InvalidOperationException("received close message when not connected or closing");
                 }
-            }
-            else if (message.Type == MessageType.Ping)
-            {
-                var pingMessage = ((PingMessage)message);
-                var pongMessage = new PongMessage(pingMessage.Data);
-                SendMessage(pongMessage);
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net.Sockets;
 
@@ -22,10 +23,19 @@ namespace WebSocketServer
 
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
-            while (true)
+            var ok = true;
+            while (ok)
             {
+                Console.WriteLine("Waiting for a message");
+
                 var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
+                if (bytesRead == 0)
+                {
+                    Console.WriteLine("The client closed the connection.");
+                    ok = false;
+                    continue;
+                }
                 _protocol.Receive(buffer, 0, bytesRead);
 
                 while (_protocol.MessagesReceived.Count > 0)
@@ -34,36 +44,59 @@ namespace WebSocketServer
 
                     if (message.Type == MessageType.Text)
                     {
-                        var textMessage = ((TextMessage)message);
+                        var textMessage = (TextMessage)message;
+
+                        Console.WriteLine($"Received text message \"{textMessage.Text}\"");
+ 
                         if (textMessage.Text == "close")
+                        {
+                            Console.WriteLine("initiating close handshake");
+
                             _protocol.SendMessage(new CloseMessage(1000, "Server closed as requested"));
+                        }
                         else
+                        {
+                            Console.WriteLine("Echoing message back to client");
+
                             _protocol.SendMessage(message);
+                        }
                     }
                     else if (message.Type == MessageType.Ping)
                     {
+                        Console.WriteLine("Received ping, sending pong");
+
                         var pingMessage = ((PingMessage)message);
                         var pongMessage = new PongMessage(pingMessage.Data);
                         _protocol.SendMessage(pongMessage);
                     }
                     else if (message.Type == MessageType.Close)
                     {
+                        Console.WriteLine("Received close, sending close");
+
                         _protocol.SendMessage(message);
                     }
 
                     SendClientData();                    
                 }
             }
+
+            Console.WriteLine("Bye");
         }
 
         private void PerformHandshake()
         {
+            Console.WriteLine("Performing handshake");
+
             ReceiveHandshake();
             SendClientData();
+
+            Console.WriteLine("Handshake completed");
         }
 
         private void ReceiveHandshake()
         {
+            Console.WriteLine("Receiving request");
+
             bool isHandshakeReceived = false;
             var buffer = new byte[1024];
             while (!isHandshakeReceived)
@@ -82,6 +115,8 @@ namespace WebSocketServer
             {
                 var data = _protocol.SendBuffer.Dequeue();
                 _stream.Write(data);
+
+                Console.WriteLine("Sent client data");
             }
         }
     }
