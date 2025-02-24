@@ -46,7 +46,7 @@ namespace WebSockets.Core
         public static Frame Deserialize(byte[] data)
         {
             var reader = new FrameReader();
-            reader.Receive(data);
+            reader.Receive(data, 0, data.Length);
             var frame = reader.Process();
             if (frame == null)
                 throw new InvalidOperationException("failed to deserialize");

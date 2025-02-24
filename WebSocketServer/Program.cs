@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace WebSocketServer
 {
@@ -6,7 +8,13 @@ namespace WebSocketServer
     {
         static void Main(string [] args)
         {
-            Console.WriteLine("Hello, World!");
+            var listener = new TcpListener(IPAddress.Any, 8081);
+            while (true)
+            {
+                var client = listener.AcceptTcpClient();
+                var connection = new Connection(client);
+                Task.Factory.StartNew(connection.Start);
+            }
         }
     }
 }

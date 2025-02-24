@@ -40,7 +40,7 @@ namespace WebSockets.Core
         public static Message Deserialize(byte[] data)
         {
             var reader = new MessageReader();
-            reader.Receive(data);
+            reader.Receive(data, 0, data.Length);
             var message = reader.Process();
             if (message == null)
                 throw new InvalidOperationException("failed to deserialize message");

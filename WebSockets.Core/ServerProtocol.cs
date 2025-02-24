@@ -29,11 +29,11 @@ namespace WebSockets.Core
         private State _state = State.Handshake;
 
         public ServerProtocol(
-            string[] supportedSubProtocols,
+            string[]? supportedSubProtocols = null,
             IDateTimeProvider? dateTimeProvider = null,
             INonceGenerator? nonceGenerator = null)
         {
-            _supportedSubProtocols = supportedSubProtocols;
+            _supportedSubProtocols = supportedSubProtocols ?? [];
             _dateTimeProvider = dateTimeProvider ?? new DateTimeProvider();
 
             _messageWriter = new MessageWriter(nonceGenerator ?? new NonceGenerator());
@@ -48,15 +48,15 @@ namespace WebSockets.Core
             return _messageWriter.Write(buffer, ref offset);
         }
 
-        public bool Receive(byte[] data)
+        public bool Receive(byte[] buffer, long offset, long length)
         {
             switch (_state)
             {
                 case State.Handshake:
-                    return ReceiveHandshake(data);
+                    return ReceiveHandshake(buffer, offset, length);
                 case State.Connected:
                 case State.Closing:
-                    return ReceiveMessages(data);
+                    return ReceiveMessages(buffer, offset, length);
                 case State.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");
                 case State.Faulted:
@@ -66,9 +66,9 @@ namespace WebSockets.Core
             }
         }
 
-        private bool ReceiveHandshake(byte[] data)
+        private bool ReceiveHandshake(byte[] buffer, long offset, long length)
         {
-            _handshakeBuffer.Write(data);
+            _handshakeBuffer.Write(buffer, offset, length);
             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
 
@@ -114,9 +114,9 @@ namespace WebSockets.Core
             }
         }
 
-        private bool ReceiveMessages(byte[] data)
+        private bool ReceiveMessages(byte[] data, long offset, long length)
         {
-            _messageReader.Receive(data);
+            _messageReader.Receive(data, offset, length);
             var isDone = false;
             while (!isDone)
             {

@@ -18,9 +18,14 @@ namespace WebSockets.Core
 
         public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); }}
 
-        public void Write(T[] values)
+        public void Write(T[] array)
         {
-            _buffer.AddFirst(values);
+            Write(array, 0, array.LongLength);
+        }
+        
+        public void Write(T[] array, long offset, long length)
+        {
+            _buffer.AddFirst(new ArrayBuffer<T>(array, offset, length));
         }
 
         public long Read(T[] buffer)
