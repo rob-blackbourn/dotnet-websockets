@@ -58,7 +58,7 @@ namespace WebSockets.Core
             }
             else
             {
-                return _messageWriter.Write(buffer, ref offset);
+                return _messageWriter.Process(buffer, ref offset);
             }
         }
 

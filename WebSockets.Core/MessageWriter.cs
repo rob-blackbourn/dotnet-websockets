@@ -35,7 +35,7 @@ namespace WebSockets.Core
         /// <summary>
         /// Submits a message to the writer.
         /// 
-        /// The message must be written with the <see cref="Write"/> method.
+        /// The message must be written with the <see cref="Process"/> method.
         /// </summary>
         /// <param name="message">The message to send.</param>
         /// <param name="isClient">True if the sender is a client; otherwise false for a server.</param>
@@ -74,9 +74,9 @@ namespace WebSockets.Core
         /// <param name="buffer">The buffer to write messages to.</param>
         /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
         /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool Write(byte[] buffer, ref long offset)
+        public bool Process(byte[] buffer, ref long offset)
         {
-            return _frameWriter.Write(buffer, ref offset);
+            return _frameWriter.Process(buffer, ref offset);
         }
 
         private ArrayBuffer<byte> GetPayload(Message message)

@@ -32,7 +32,7 @@ namespace WebSockets.Core
         /// <summary>
         /// Add a frame to the queue of frames to write.
         /// 
-        /// Submitted frames can be written with the <see cref="Write"/> method. 
+        /// Submitted frames can be written with the <see cref="Process"/> method. 
         /// </summary>
         /// <param name="frame">The frame to be written</param>
         public void Submit(Frame frame)
@@ -49,7 +49,7 @@ namespace WebSockets.Core
         /// <param name="offset">The offset at which to write. This gets updated as the buffer is written.</param>
         /// <returns>True if the operation sent an entire frame, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">If there are no frames to write.</exception> <summary>
-        public bool Write(byte[] buffer, ref long offset)
+        public bool Process(byte[] buffer, ref long offset)
         {
             if (_frameQueue.Count == 0)
                 throw new InvalidOperationException("No frames to write");

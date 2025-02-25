@@ -37,7 +37,7 @@ namespace WebSockets.Core
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                isDone = writer.Write(buf, ref offset);
+                isDone = writer.Process(buf, ref offset);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
