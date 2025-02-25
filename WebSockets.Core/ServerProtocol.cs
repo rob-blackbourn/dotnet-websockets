@@ -7,6 +7,13 @@ using System.Text;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A sans-io implementation of the server side of the WebSocket protocol.
+    /// 
+    /// The business layer logic is not provided. For example when a ping is
+    /// received, the implementer is expected to return the pong. This is also
+    /// the case for a close.
+    /// </summary>
     public class ServerProtocol
     {
         enum State
@@ -43,12 +50,28 @@ namespace WebSockets.Core
         public bool IsOpen => _state == State.Connected;
         public bool IsWriteable => IsOpen && !(_handshakeWriteBuffer.Count == 0 && _messageWriter.IsEmpty);
 
-        public void SendMessage(Message message)
+        public void SubmitMessage(Message message)
         {
-            _messageWriter.Submit(message, false, Reserved.AllFalse);
+            switch (_state)
+            {
+                case State.Handshake:
+                    throw new InvalidOperationException("cannot send a message before the handshake is complete.");
+                case State.Connected:
+                    _messageWriter.SubmitMessage(message, false, Reserved.AllFalse);
+                    break;
+                case State.Closing:
+                    if (message.Type != MessageType.Close)
+                        throw new InvalidOperationException("can only send a close message when closing.");
+                    _messageWriter.SubmitMessage(message, false, Reserved.AllFalse);
+                    break;
+                case State.Closed:
+                    break;
+                case State.Faulted:
+                    break;
+            }
         }
 
-        public bool Write(byte[] buffer, ref long offset)
+        public bool Serialize(byte[] buffer, ref long offset)
         {
             if (_handshakeWriteBuffer.Count > 0)
             {
@@ -57,11 +80,11 @@ namespace WebSockets.Core
             }
             else
             {
-                return _messageWriter.Process(buffer, ref offset);
+                return _messageWriter.Serialize(buffer, ref offset);
             }
         }
 
-        public void Submit(byte[] buffer, long offset, long length)
+        public void SubmitData(byte[] buffer, long offset, long length)
         {
             switch (_state)
             {
@@ -70,7 +93,7 @@ namespace WebSockets.Core
                     break;
                 case State.Connected:
                 case State.Closing:
-                    _messageReader.Submit(buffer, offset, length);
+                    _messageReader.SubmitData(buffer, offset, length);
                     break;
                 case State.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");
@@ -128,9 +151,9 @@ namespace WebSockets.Core
             }
         }
 
-        public Message? Process()
+        public Message? Deserialize()
         {
-            var message = _messageReader.Process();
+            var message = _messageReader.Deserialize();
             if (message is null)
                 return null;
 

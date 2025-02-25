@@ -6,8 +6,8 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to read WebSocket frames.
     /// 
-    /// Data is submitted (<see cref="Submit"/>) to the reader, then
-    /// frames are produced when processed (<see cref="Process"/>).
+    /// Data is submitted (<see cref="SubmitData"/>) to the reader, then
+    /// frames are produced when processed (<see cref="Deserialize"/>).
     /// </summary>
     class FrameReader
     {
@@ -34,13 +34,13 @@ namespace WebSockets.Core
         /// <summary>
         /// Submit data to be processed to frames.
         /// 
-        /// After submitting the data <see cref="Process"/> must be called to
+        /// After submitting the data <see cref="Deserialize"/> must be called to
         /// generate the frames.
         /// </summary>
         /// <param name="data">The data to create the frames with.</param>
         /// <param name="offset"><The point to start reading the buffer./param>
         /// <param name="length">The length of the buffer to read.</param>
-        public void Submit(byte[] data, long offset, long length)
+        public void SubmitData(byte[] data, long offset, long length)
         {
             _buffer.Write(data, offset, length);
         }
@@ -49,7 +49,7 @@ namespace WebSockets.Core
         /// Process submitted data to produce frames.
         /// </summary>
         /// <returns>A frame, if there is sufficient data available.</returns>
-        public Frame? Process()
+        public Frame? Deserialize()
         {
             if (_state == State.BYTE1)
             {

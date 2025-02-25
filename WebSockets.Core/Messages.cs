@@ -42,13 +42,13 @@ namespace WebSockets.Core
         public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = long.MaxValue, INonceGenerator? nonceGenerator = null)
         {
             var writer = new MessageWriter(nonceGenerator ?? new NonceGenerator());
-            writer.Submit(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
+            writer.SubmitMessage(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
             var buffers = new List<ArrayBuffer<byte>>();
             while (!writer.IsEmpty)
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                writer.Process(buf, ref offset);
+                writer.Serialize(buf, ref offset);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
@@ -62,8 +62,8 @@ namespace WebSockets.Core
         public static Message Deserialize(byte[] data)
         {
             var reader = new MessageReader();
-            reader.Submit(data, 0, data.Length);
-            var message = reader.Process();
+            reader.SubmitData(data, 0, data.Length);
+            var message = reader.Deserialize();
             if (message == null)
                 throw new InvalidOperationException("failed to deserialize message");
             return message;

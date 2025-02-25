@@ -8,8 +8,8 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to write WebSocket messages.
     /// 
-    /// Messages are submitted (<see cref="Submit"/>) to the writer, and then processed (<see cref="Process"/>)
-    /// until the writer is empty (<see cref="IsEmpty"/>). One message may produce several frames to write.
+    /// Messages are submitted (<see cref="SubmitMessage"/>) to the writer, and then processed (<see cref="Serialize"/>)
+    /// into data buffers until the writer is empty (<see cref="IsEmpty"/>). Note that one message may produce several frames to write.
     /// </summary>
     public class MessageWriter
     {
@@ -36,14 +36,14 @@ namespace WebSockets.Core
         /// <summary>
         /// Submits a message to the writer.
         /// 
-        /// The message must be written with the <see cref="Process"/> method.
+        /// The message must be written with the <see cref="Serialize"/> method.
         /// </summary>
         /// <param name="message">The message to send.</param>
         /// <param name="isClient">True if the sender is a client; otherwise false for a server.</param>
         /// <param name="reserved">The reserved data.</param>
         /// <param name="maxFrameSize">The maximum size of a frame to write.</param>
         /// <returns>The number of frames being sent.</returns>
-        public int Submit(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
+        public int SubmitMessage(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
@@ -57,7 +57,7 @@ namespace WebSockets.Core
                 var isFinal = payload.Count == 0;
                 var mask = isClient ? _nonceGenerator.Create() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
-                _frameWriter.Submit(frame);
+                _frameWriter.SubmitFrame(frame);
                 frameCount += 1;
                 opCode = OpCode.Continuation;
             }
@@ -75,9 +75,9 @@ namespace WebSockets.Core
         /// <param name="buffer">The buffer to write messages to.</param>
         /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
         /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool Process(byte[] buffer, ref long offset)
+        public bool Serialize(byte[] buffer, ref long offset)
         {
-            return _frameWriter.Process(buffer, ref offset);
+            return _frameWriter.Serialize(buffer, ref offset);
         }
 
         private ArrayBuffer<byte> GetPayload(Message message)

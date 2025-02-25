@@ -36,12 +36,12 @@ namespace WebSocketServer
                     ok = false;
                     continue;
                 }
-                _protocol.Submit(buffer, 0, bytesRead);
+                _protocol.SubmitData(buffer, 0, bytesRead);
 
                 var isDone = false;
                 while (!isDone)
                 {
-                    var message = _protocol.Process();
+                    var message = _protocol.Deserialize();
                     if (message is null)
                     {
                         isDone = true;
@@ -58,13 +58,13 @@ namespace WebSocketServer
                         {
                             Console.WriteLine("initiating close handshake");
 
-                            _protocol.SendMessage(new CloseMessage(1000, "Server closed as requested"));
+                            _protocol.SubmitMessage(new CloseMessage(1000, "Server closed as requested"));
                         }
                         else
                         {
                             Console.WriteLine("Echoing message back to client");
 
-                            _protocol.SendMessage(message);
+                            _protocol.SubmitMessage(message);
                         }
                     }
                     else if (message.Type == MessageType.Ping)
@@ -73,13 +73,13 @@ namespace WebSocketServer
 
                         var pingMessage = ((PingMessage)message);
                         var pongMessage = new PongMessage(pingMessage.Data);
-                        _protocol.SendMessage(pongMessage);
+                        _protocol.SubmitMessage(pongMessage);
                     }
                     else if (message.Type == MessageType.Close)
                     {
                         Console.WriteLine("Received close, sending close");
 
-                        _protocol.SendMessage(message);
+                        _protocol.SubmitMessage(message);
                     }
 
                     SendClientData();                    
@@ -110,7 +110,7 @@ namespace WebSocketServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _protocol.Submit(buffer, 0, bytesRead);
+                _protocol.SubmitData(buffer, 0, bytesRead);
 
                 isHandshakeReceived = _protocol.Handshake();
             }
@@ -122,7 +122,7 @@ namespace WebSocketServer
             {
                 var buffer = new byte[1024];
                 var offset = 0L;
-                if (_protocol.Write(buffer, ref offset))
+                if (_protocol.Serialize(buffer, ref offset))
                 {
                     // This cast is safe. The offset must be less than
                     // the buffer length, which is an int.
