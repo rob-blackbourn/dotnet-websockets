@@ -6,6 +6,9 @@ namespace WebSockets.Core
 {
     /// <summary>
     /// A class to write WebSocket frames.
+    /// 
+    /// Frames are submitted (<see cref="Submit"/>) to the writer, and then processed (<see cref="Process"/>)
+    /// until the writer is empty (<see cref="IsEmpty"/>).
     /// </summary>
     class FrameWriter
     {

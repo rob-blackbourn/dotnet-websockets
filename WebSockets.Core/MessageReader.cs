@@ -6,16 +6,36 @@ using System.Text;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A class to read WebSocket messages.
+    /// 
+    /// Data is submitted (<see cref="Submit"/>) to the reader, then
+    /// messages are produced when processed (<see cref="Process"/>).
+    /// A message may consist of multiple frames.
+    /// </summary>
     public class MessageReader
     {
         private readonly FrameReader _frameReader = new FrameReader();
         private readonly Queue<Frame> _frameBuffer = new Queue<Frame>();
 
+        /// <summary>
+        /// Submit data to be processed to messages.
+        /// 
+        /// After submitting the data <see cref="Process"/> must be called to
+        /// generate the messages.
+        /// </summary>
+        /// <param name="data">The data to create the messages with.</param>
+        /// <param name="offset"><The point to start reading the buffer./param>
+        /// <param name="length">The length of the buffer to read.</param>
         public void Submit(byte[] data, long offset, long length)
         {
             _frameReader.Submit(data, offset, length);
         }
 
+        /// <summary>
+        /// Process submitted data to produce messages.
+        /// </summary>
+        /// <returns>A message, if there is sufficient data available.</returns>
         public Message? Process()
         {
             while (true)

@@ -8,7 +8,8 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to write WebSocket messages.
     /// 
-    /// Messages are sent as one or more frames of data.
+    /// Messages are submitted (<see cref="Submit"/>) to the writer, and then processed (<see cref="Process"/>)
+    /// until the writer is empty (<see cref="IsEmpty"/>). One message may produce several frames to write.
     /// </summary>
     public class MessageWriter
     {

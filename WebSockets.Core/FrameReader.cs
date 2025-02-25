@@ -3,6 +3,12 @@ using System.Buffers.Binary;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A class to read WebSocket frames.
+    /// 
+    /// Data is submitted (<see cref="Submit"/>) to the reader, then
+    /// frames are produced when processed (<see cref="Process"/>).
+    /// </summary>
     class FrameReader
     {
         enum State
@@ -15,21 +21,34 @@ namespace WebSockets.Core
             PAYLOAD
         }
 
-        private readonly FragmentBuffer<byte> _buffer = new FragmentBuffer<byte>();
+        private readonly FragmentBuffer<byte> _buffer = new();
         private State _state = State.BYTE1;
         private bool _fin;
         private Reserved _reserved;
         private OpCode _opCode;
         private bool _isMasked;
         private long _payloadLength;
-        private byte[] _mask = new byte[0];
-        private byte[] _payload = new byte[0];
+        private byte[] _mask = [];
+        private byte[] _payload = [];
 
+        /// <summary>
+        /// Submit data to be processed to frames.
+        /// 
+        /// After submitting the data <see cref="Process"/> must be called to
+        /// generate the frames.
+        /// </summary>
+        /// <param name="data">The data to create the frames with.</param>
+        /// <param name="offset"><The point to start reading the buffer./param>
+        /// <param name="length">The length of the buffer to read.</param>
         public void Submit(byte[] data, long offset, long length)
         {
             _buffer.Write(data, offset, length);
         }
 
+        /// <summary>
+        /// Process submitted data to produce frames.
+        /// </summary>
+        /// <returns>A frame, if there is sufficient data available.</returns>
         public Frame? Process()
         {
             if (_state == State.BYTE1)
