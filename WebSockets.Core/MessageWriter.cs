@@ -15,7 +15,7 @@ namespace WebSockets.Core
             _nonceGenerator = nonceGenerator;
         }
 
-        public void Write(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
+        public void Send(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
@@ -28,7 +28,7 @@ namespace WebSockets.Core
                 var isFinal = payload.Count == 0;
                 var mask = isClient ? _nonceGenerator.Create() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
-                _frameWriter.Frames.Enqueue(frame);
+                _frameWriter.Send(frame);
                 opCode = OpCode.Continuation;
             }
         }

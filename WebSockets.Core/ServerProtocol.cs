@@ -156,7 +156,7 @@ namespace WebSockets.Core
 
         public void SendMessage(Message message)
         {
-            _messageWriter.Write(message, false, Reserved.AllFalse);
+            _messageWriter.Send(message, false, Reserved.AllFalse);
 
             // TODO: Write the message to the send buffer.
         }

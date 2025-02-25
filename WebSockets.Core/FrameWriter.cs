@@ -18,15 +18,19 @@ namespace WebSockets.Core
 
         private State _state = State.BYTE1;
         private ArrayBuffer<byte>? _sendBuffer = null;
+        private readonly Queue<Frame> _frameQueue = new Queue<Frame>();
 
-        public Queue<Frame> Frames { get; } = new Queue<Frame>();
-
+        public void Send(Frame frame)
+        {
+            _frameQueue.Enqueue(frame);
+        }
+        
         public bool Write(byte[] buffer, ref long offset)
         {
-            if (Frames.Count == 0)
+            if (_frameQueue.Count == 0)
                 throw new InvalidOperationException("No frames to write");
 
-            var frame = Frames.Peek();
+            var frame = _frameQueue.Peek();
 
             if (_state == State.BYTE1)
             {

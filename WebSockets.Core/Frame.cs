@@ -30,7 +30,7 @@ namespace WebSockets.Core
         public byte[] Serialize()
         {
             var writer = new FrameWriter();
-            writer.Frames.Enqueue(this);
+            writer.Send(this);
             var buffers = new List<ArrayBuffer<byte>>();
             var isDone = false;
             while (!isDone)

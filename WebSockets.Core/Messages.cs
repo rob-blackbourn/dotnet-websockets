@@ -24,7 +24,7 @@ namespace WebSockets.Core
         public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = long.MaxValue, INonceGenerator? nonceGenerator = null)
         {
             var writer = new MessageWriter(nonceGenerator ?? new NonceGenerator());
-            writer.Write(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
+            writer.Send(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
             var buffers = new List<ArrayBuffer<byte>>();
             var isDone = false;
             while (!isDone)
