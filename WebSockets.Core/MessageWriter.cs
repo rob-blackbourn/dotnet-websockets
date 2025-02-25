@@ -5,23 +5,49 @@ using System.Text;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A class to write WebSocket messages.
+    /// 
+    /// Messages are sent as one or more frames of data.
+    /// </summary>
     public class MessageWriter
     {
         private readonly INonceGenerator _nonceGenerator;
         private readonly FrameWriter _frameWriter = new FrameWriter();
 
+        /// <summary>
+        /// Construct a message writer.
+        /// 
+        /// A factory is provided for the nonce generator to allow mocking during testing.
+        /// </summary>
+        /// <param name="nonceGenerator">This factory creates the masks used by client frames.</param>
         public MessageWriter(INonceGenerator nonceGenerator)
         {
             _nonceGenerator = nonceGenerator;
         }
 
+        /// <summary>
+        /// A property indicating if there is anything to write.
+        /// </summary>
+        /// <returns>True if there is not data to be sent; otherwise false.</returns>
         public bool IsEmpty => _frameWriter.IsEmpty;
 
-        public void Send(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
+        /// <summary>
+        /// Submits a message to the writer.
+        /// 
+        /// The message must be written with the <see cref="Write"/> method.
+        /// </summary>
+        /// <param name="message">The message to send.</param>
+        /// <param name="isClient">True if the sender is a client; otherwise false for a server.</param>
+        /// <param name="reserved">The reserved data.</param>
+        /// <param name="maxFrameSize">The maximum size of a frame to write.</param>
+        /// <returns>The number of frames being sent.</returns>
+        public int Send(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
             
+            var frameCount = 0;
             while (payload.Count > 0 || opCode != OpCode.Continuation)
             {
                 var length = long.Min(payload.Count, maxFrameSize);
@@ -31,10 +57,23 @@ namespace WebSockets.Core
                 var mask = isClient ? _nonceGenerator.Create() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
                 _frameWriter.Send(frame);
+                frameCount += 1;
                 opCode = OpCode.Continuation;
             }
+
+            return frameCount;
         }
 
+        /// <summary>
+        /// Write the message to the provided buffer.
+        /// 
+        /// The return value indicates whether a complete frame was sent. This is
+        /// typically not useful, as a message may consist of many frames. Also
+        /// many messages may be submitted before a write is called.
+        /// </summary>
+        /// <param name="buffer">The buffer to write messages to.</param>
+        /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
+        /// <returns>True if an entire frame was sent; otherwise false.</returns>
         public bool Write(byte[] buffer, ref long offset)
         {
             return _frameWriter.Write(buffer, ref offset);

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A class to write WebSocket frames.
+    /// </summary>
     class FrameWriter
     {
         enum State
@@ -20,13 +23,32 @@ namespace WebSockets.Core
         private ArrayBuffer<byte>? _sendBuffer = null;
         private readonly Queue<Frame> _frameQueue = new Queue<Frame>();
 
+        /// <summary>
+        /// A property to indicate if the frame writer has any data to be sent.
+        /// </summary>
+        /// <returns>True if there is not data to be sent; otherwise false.</returns>
         public bool IsEmpty => _frameQueue.Count == 0 && (_sendBuffer is null || _sendBuffer.Count == 0);
 
+        /// <summary>
+        /// Add a frame to the queue of frames to write.
+        /// 
+        /// Submitted frames can be written with the <see cref="Write"/> method. 
+        /// </summary>
+        /// <param name="frame">The frame to be written</param>
         public void Send(Frame frame)
         {
             _frameQueue.Enqueue(frame);
         }
 
+        /// <summary>
+        /// Writes frames queued by the <see cref="Send"/> method to the provided buffer.
+        /// 
+        /// This will throw an exception if there are no frames to write.
+        /// </summary>
+        /// <param name="buffer">The buffer to receive the serialized frame.</param>
+        /// <param name="offset">The offset at which to write. This gets updated as the buffer is written.</param>
+        /// <returns>True if the operation sent an entire frame, otherwise false.</returns>
+        /// <exception cref="InvalidOperationException">If there are no frames to write.</exception> <summary>
         public bool Write(byte[] buffer, ref long offset)
         {
             if (_frameQueue.Count == 0)
