@@ -21,7 +21,8 @@ namespace WebSockets.Core
         private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
 
-        private readonly FragmentBuffer<byte> _handshakeBuffer = new FragmentBuffer<byte>();
+        private readonly FragmentBuffer<byte> _handshakeReadBuffer = new FragmentBuffer<byte>();
+        private readonly FragmentBuffer<byte> _handshakeWriteBuffer = new FragmentBuffer<byte>();
         private readonly MessageReader _messageReader = new MessageReader();
         private readonly MessageWriter _messageWriter;
         private readonly string[] _supportedSubProtocols;
@@ -39,16 +40,29 @@ namespace WebSockets.Core
             _messageWriter = new MessageWriter(nonceGenerator ?? new NonceGenerator());
         }
 
-        public Queue<byte[]> SendBuffer { get; } = new Queue<byte[]>();
         public Queue<Message> MessagesReceived { get; } = new Queue<Message>();
         public bool IsOpen => _state == State.Connected;
+        public bool IsWriteable => IsOpen && !(_handshakeWriteBuffer.Count == 0 && _messageWriter.IsEmpty);
 
-        public bool Send(byte[] buffer, ref long offset)
+        public void SendMessage(Message message)
         {
-            return _messageWriter.Write(buffer, ref offset);
+            _messageWriter.Send(message, false, Reserved.AllFalse);
         }
 
-        public bool Receive(byte[] buffer, long offset, long length)
+        public bool Write(byte[] buffer, ref long offset)
+        {
+            if (_handshakeWriteBuffer.Count > 0)
+            {
+                offset = _handshakeWriteBuffer.Read(buffer);
+                return true;
+            }
+            else
+            {
+                return _messageWriter.Write(buffer, ref offset);
+            }
+        }
+
+        public bool Read(byte[] buffer, long offset, long length)
         {
             switch (_state)
             {
@@ -68,13 +82,13 @@ namespace WebSockets.Core
 
         private bool ReceiveHandshake(byte[] buffer, long offset, long length)
         {
-            _handshakeBuffer.Write(buffer, offset, length);
-            if (!_handshakeBuffer.EndsWith(HTTP_EOM))
+            _handshakeReadBuffer.Write(buffer, offset, length);
+            if (!_handshakeReadBuffer.EndsWith(HTTP_EOM))
                 return false;
 
             try
             {
-                var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
+                var text = Encoding.UTF8.GetString(_handshakeReadBuffer.ToArray());
                 var webRequest = WebRequest.Parse(text);
 
                 if (webRequest.Verb != "GET")
@@ -154,13 +168,6 @@ namespace WebSockets.Core
             }
         }
 
-        public void SendMessage(Message message)
-        {
-            _messageWriter.Send(message, false, Reserved.AllFalse);
-
-            // TODO: Write the message to the send buffer.
-        }
-
         private void SendHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
         {
             var builder = new StringBuilder();
@@ -177,7 +184,7 @@ namespace WebSockets.Core
 
             builder.Append("\r\n");
 
-            SendBuffer.Enqueue(Encoding.ASCII.GetBytes(builder.ToString()));
+            _handshakeWriteBuffer.Write(Encoding.ASCII.GetBytes(builder.ToString()));
         }
 
         private static string CreateResponseKey(string requestKey)
@@ -212,7 +219,7 @@ namespace WebSockets.Core
             var data = new byte[header.Length + body.Length];
             Array.Copy(header, data, header.Length);
             Array.Copy(body, 0, data, header.Length, body.Length);
-            SendBuffer.Enqueue(data);
+            _handshakeWriteBuffer.Write(data);
         }
     }
 }

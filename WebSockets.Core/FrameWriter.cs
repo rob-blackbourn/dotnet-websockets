@@ -20,11 +20,13 @@ namespace WebSockets.Core
         private ArrayBuffer<byte>? _sendBuffer = null;
         private readonly Queue<Frame> _frameQueue = new Queue<Frame>();
 
+        public bool IsEmpty => _frameQueue.Count == 0 && (_sendBuffer is null || _sendBuffer.Count == 0);
+
         public void Send(Frame frame)
         {
             _frameQueue.Enqueue(frame);
         }
-        
+
         public bool Write(byte[] buffer, ref long offset)
         {
             if (_frameQueue.Count == 0)
@@ -154,6 +156,7 @@ namespace WebSockets.Core
                     return false;
 
                 _sendBuffer = null;
+                _frameQueue.Dequeue();
 
                 _state = State.BYTE1;
 

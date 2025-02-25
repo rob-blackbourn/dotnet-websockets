@@ -15,6 +15,8 @@ namespace WebSockets.Core
             _nonceGenerator = nonceGenerator;
         }
 
+        public bool IsEmpty => _frameWriter.IsEmpty;
+
         public void Send(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);

@@ -36,7 +36,7 @@ namespace WebSocketServer
                     ok = false;
                     continue;
                 }
-                _protocol.Receive(buffer, 0, bytesRead);
+                _protocol.Read(buffer, 0, bytesRead);
 
                 while (_protocol.MessagesReceived.Count > 0)
                 {
@@ -105,16 +105,22 @@ namespace WebSocketServer
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
 
-                isHandshakeReceived = _protocol.Receive(buffer, 0, bytesRead);
+                isHandshakeReceived = _protocol.Read(buffer, 0, bytesRead);
             }
         }
 
         private void SendClientData()
         {
-            while (_protocol.SendBuffer.Count > 0)
+            while (_protocol.IsWriteable)
             {
-                var data = _protocol.SendBuffer.Dequeue();
-                _stream.Write(data);
+                var buffer = new byte[1024];
+                var offset = 0L;
+                if (_protocol.Write(buffer, ref offset))
+                {
+                    // This cast is safe. The offset must be less than
+                    // the buffer length, which is an int.
+                    _stream.Write(buffer, 0, (int)offset);
+                }
 
                 Console.WriteLine("Sent client data");
             }
