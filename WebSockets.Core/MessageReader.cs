@@ -35,7 +35,7 @@ namespace WebSockets.Core
             }
         }
 
-        Message CreateMessage(Frame[] frames)
+        private Message CreateMessage(Frame[] frames)
         {
             if (frames.Length == 0)
                 throw new ArgumentOutOfRangeException(nameof(frames));
@@ -66,12 +66,12 @@ namespace WebSockets.Core
             return CreateMessage(frames[0].OpCode, buf);
         }
 
-        Message CreateMessage(Frame frame)
+        private Message CreateMessage(Frame frame)
         {
             return CreateMessage(frame.OpCode, frame.Payload);
         }
 
-        Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
+        private Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
         {
             switch (opCode)
             {
@@ -103,7 +103,5 @@ namespace WebSockets.Core
                     throw new InvalidOperationException("Invalid op code");
             }
         }
-
-
     }
 }

@@ -96,6 +96,5 @@ namespace WebSockets.Core
                     throw new ArgumentOutOfRangeException(nameof(messageType));
             }
         }
-
     }
 }

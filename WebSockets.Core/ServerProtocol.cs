@@ -157,6 +157,8 @@ namespace WebSockets.Core
         public void SendMessage(Message message)
         {
             _messageWriter.Write(message, false, Reserved.AllFalse);
+
+            // TODO: Write the message to the send buffer.
         }
 
         private void SendHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
