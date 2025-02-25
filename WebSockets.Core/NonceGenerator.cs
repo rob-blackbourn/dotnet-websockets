@@ -4,7 +4,8 @@ namespace WebSockets.Core
 {
     public interface INonceGenerator
     {
-        byte[] Create();
+        byte[] CreateMask();
+        string CreateClientKey();
     }
 
     public class NonceGenerator : INonceGenerator
@@ -16,11 +17,18 @@ namespace WebSockets.Core
             _random = new Random((int)DateTime.Now.Ticks);
         }
 
-        public byte[] Create()
+        public byte[] CreateMask()
         {
-            var buf = new byte[4];
-            _random.NextBytes(buf);
-            return buf;
+            var nonce = new byte[4];
+            _random.NextBytes(nonce);
+            return nonce;
+        }
+
+        public string CreateClientKey()
+        {
+            var nonce = new byte[16];
+            _random.NextBytes(nonce);
+            return Convert.ToBase64String(nonce);
         }
     }
 }

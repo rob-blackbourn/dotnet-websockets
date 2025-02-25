@@ -118,7 +118,7 @@ namespace WebSockets.Core.Test
 
         private void AssertMessage(Message message, byte[] expected, bool isClient, long maxFrameSize = long.MaxValue)
         {
-            var nonceGenerator = isClient ? new MockNonceGenerator(expected.Skip(2).Take(4).ToArray()) : null;
+            var nonceGenerator = isClient ? new MockNonceGenerator(expected.Skip(2).Take(4).ToArray(), "x3JJHMbDL1EzLkh9GBhXDw==") : null;
             var actual = message.Serialize(isClient, Reserved.AllFalse, maxFrameSize, nonceGenerator);
             Assert.IsTrue(actual.SequenceEqual(expected));
 

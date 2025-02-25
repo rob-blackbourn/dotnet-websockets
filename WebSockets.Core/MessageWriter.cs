@@ -55,7 +55,7 @@ namespace WebSockets.Core
                 var framePayload = payload.Slice(0, length);
                 payload = payload.Slice(length);
                 var isFinal = payload.Count == 0;
-                var mask = isClient ? _nonceGenerator.Create() : null;
+                var mask = isClient ? _nonceGenerator.CreateMask() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
                 _frameWriter.SubmitFrame(frame);
                 frameCount += 1;
