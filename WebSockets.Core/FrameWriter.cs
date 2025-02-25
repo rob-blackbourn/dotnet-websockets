@@ -35,13 +35,13 @@ namespace WebSockets.Core
         /// Submitted frames can be written with the <see cref="Write"/> method. 
         /// </summary>
         /// <param name="frame">The frame to be written</param>
-        public void Send(Frame frame)
+        public void Submit(Frame frame)
         {
             _frameQueue.Enqueue(frame);
         }
 
         /// <summary>
-        /// Writes frames queued by the <see cref="Send"/> method to the provided buffer.
+        /// Writes frames queued by the <see cref="Submit"/> method to the provided buffer.
         /// 
         /// This will throw an exception if there are no frames to write.
         /// </summary>

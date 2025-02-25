@@ -46,7 +46,7 @@ namespace WebSockets.Core
 
         public void SendMessage(Message message)
         {
-            _messageWriter.Send(message, false, Reserved.AllFalse);
+            _messageWriter.Submit(message, false, Reserved.AllFalse);
         }
 
         public bool Write(byte[] buffer, ref long offset)
@@ -130,7 +130,7 @@ namespace WebSockets.Core
 
         private bool ReceiveMessages(byte[] data, long offset, long length)
         {
-            _messageReader.Receive(data, offset, length);
+            _messageReader.Submit(data, offset, length);
             var isDone = false;
             while (!isDone)
             {

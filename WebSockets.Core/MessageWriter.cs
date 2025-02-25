@@ -42,7 +42,7 @@ namespace WebSockets.Core
         /// <param name="reserved">The reserved data.</param>
         /// <param name="maxFrameSize">The maximum size of a frame to write.</param>
         /// <returns>The number of frames being sent.</returns>
-        public int Send(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
+        public int Submit(Message message, bool isClient, Reserved reserved, long maxFrameSize = long.MaxValue)
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
@@ -56,7 +56,7 @@ namespace WebSockets.Core
                 var isFinal = payload.Count == 0;
                 var mask = isClient ? _nonceGenerator.Create() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
-                _frameWriter.Send(frame);
+                _frameWriter.Submit(frame);
                 frameCount += 1;
                 opCode = OpCode.Continuation;
             }

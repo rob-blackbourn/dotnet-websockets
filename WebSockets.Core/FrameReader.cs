@@ -25,7 +25,7 @@ namespace WebSockets.Core
         private byte[] _mask = new byte[0];
         private byte[] _payload = new byte[0];
 
-        public void Receive(byte[] data, long offset, long length)
+        public void Submit(byte[] data, long offset, long length)
         {
             _buffer.Write(data, offset, length);
         }

@@ -11,9 +11,9 @@ namespace WebSockets.Core
         private readonly FrameReader _frameReader = new FrameReader();
         private readonly Queue<Frame> _frameBuffer = new Queue<Frame>();
 
-        public void Receive(byte[] data, long offset, long length)
+        public void Submit(byte[] data, long offset, long length)
         {
-            _frameReader.Receive(data, offset, length);
+            _frameReader.Submit(data, offset, length);
         }
 
         public Message? Process()
