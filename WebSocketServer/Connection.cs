@@ -36,11 +36,17 @@ namespace WebSocketServer
                     ok = false;
                     continue;
                 }
-                _protocol.Read(buffer, 0, bytesRead);
+                _protocol.Submit(buffer, 0, bytesRead);
 
-                while (_protocol.MessagesReceived.Count > 0)
+                var isDone = false;
+                while (!isDone)
                 {
-                    var message = _protocol.MessagesReceived.Dequeue();
+                    var message = _protocol.Process();
+                    if (message is null)
+                    {
+                        isDone = true;
+                        continue;
+                    }
 
                     if (message.Type == MessageType.Text)
                     {
@@ -104,8 +110,9 @@ namespace WebSocketServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
+                _protocol.Submit(buffer, 0, bytesRead);
 
-                isHandshakeReceived = _protocol.Read(buffer, 0, bytesRead);
+                isHandshakeReceived = _protocol.Handshake();
             }
         }
 

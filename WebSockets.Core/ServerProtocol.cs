@@ -40,7 +40,6 @@ namespace WebSockets.Core
             _messageWriter = new MessageWriter(nonceGenerator ?? new NonceGenerator());
         }
 
-        public Queue<Message> MessagesReceived { get; } = new Queue<Message>();
         public bool IsOpen => _state == State.Connected;
         public bool IsWriteable => IsOpen && !(_handshakeWriteBuffer.Count == 0 && _messageWriter.IsEmpty);
 
@@ -62,15 +61,17 @@ namespace WebSockets.Core
             }
         }
 
-        public bool Read(byte[] buffer, long offset, long length)
+        public void Submit(byte[] buffer, long offset, long length)
         {
             switch (_state)
             {
                 case State.Handshake:
-                    return ReceiveHandshake(buffer, offset, length);
+                    _handshakeReadBuffer.Write(buffer, offset, length);
+                    break;
                 case State.Connected:
                 case State.Closing:
-                    return ReceiveMessages(buffer, offset, length);
+                    _messageReader.Submit(buffer, offset, length);
+                    break;
                 case State.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");
                 case State.Faulted:
@@ -80,9 +81,8 @@ namespace WebSockets.Core
             }
         }
 
-        private bool ReceiveHandshake(byte[] buffer, long offset, long length)
+        public bool Handshake()
         {
-            _handshakeReadBuffer.Write(buffer, offset, length);
             if (!_handshakeReadBuffer.EndsWith(HTTP_EOM))
                 return false;
 
@@ -128,32 +128,16 @@ namespace WebSockets.Core
             }
         }
 
-        private bool ReceiveMessages(byte[] data, long offset, long length)
+        public Message? Process()
         {
-            _messageReader.Submit(data, offset, length);
-            var isDone = false;
-            while (!isDone)
-            {
-                var message = _messageReader.Process();
-                if (message is null)
-                    isDone = true;
-                else
-                    HandleMessage(message);
-            }
-
-            return MessagesReceived.Count > 0;
-        }
-
-        private void HandleMessage(Message message)
-        {
-            MessagesReceived.Enqueue(message);
+            var message = _messageReader.Process();
+            if (message is null)
+                return null;
 
             if (message.Type == MessageType.Close)
             {
                 if (_state == State.Connected)
                 {
-                    // The client has started the close handshake.
-                    // Should respond with a close frame with the same payload.
                     _state = State.Closing;
                 }
                 else if (_state == State.Closing)
@@ -165,6 +149,8 @@ namespace WebSockets.Core
                     throw new InvalidOperationException("received close message when not connected or closing");
                 }
             }
+
+            return message;
         }
 
         private void SendHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
