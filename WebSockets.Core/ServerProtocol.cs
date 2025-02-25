@@ -150,7 +150,6 @@ namespace WebSockets.Core
 
             if (message.Type == MessageType.Close)
             {
-                var closeMessage = ((CloseMessage)message);
                 if (_state == State.Connected)
                 {
                     // The client has started the close handshake.

@@ -80,6 +80,9 @@ namespace WebSockets.Core
         }
     }
 
+    /// <summary>
+    /// A message with text data.
+    /// </summary>
     public class TextMessage : Message, IEquatable<TextMessage>
     {
         public TextMessage(string text)
