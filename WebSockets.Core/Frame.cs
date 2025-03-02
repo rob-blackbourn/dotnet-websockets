@@ -30,14 +30,14 @@ namespace WebSockets.Core
         public byte[] Serialize()
         {
             var writer = new FrameWriter();
-            writer.SubmitFrame(this);
+            writer.WriteFrame(this);
             var buffers = new List<ArrayBuffer<byte>>();
             var isDone = false;
             while (!isDone)
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                isDone = writer.Serialize(buf, ref offset, buf.LongLength);
+                isDone = writer.ReadFrameData(buf, ref offset, buf.LongLength);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
@@ -46,8 +46,8 @@ namespace WebSockets.Core
         public static Frame Deserialize(byte[] data)
         {
             var reader = new FrameReader();
-            reader.SubmitData(data, 0, data.Length);
-            var frame = reader.Deserialize();
+            reader.WriteFrameData(data, 0, data.Length);
+            var frame = reader.ReadFrame();
             if (frame == null)
                 throw new InvalidOperationException("failed to deserialize");
             return frame;

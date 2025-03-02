@@ -39,17 +39,17 @@ namespace WebSockets.Core
 
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
 
-        public void SubmitMessage(Message message)
+        public void WriteMessage(Message message)
         {
             switch (State)
             {
                 case ConnectionState.Connected:
-                    _messageWriter.SubmitMessage(message, _isClient, Reserved.AllFalse);
+                    _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
                     break;
                 case ConnectionState.Closing:
                     if (message.Type != MessageType.Close)
                         throw new InvalidOperationException("can only send a close message when closing.");
-                    _messageWriter.SubmitMessage(message, _isClient, Reserved.AllFalse);
+                    _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
                     break;
                 case ConnectionState.Handshake:
                 case ConnectionState.Closed:
@@ -76,7 +76,7 @@ namespace WebSockets.Core
                     throw new InvalidOperationException("handshake not complete");
                 case ConnectionState.Connected:
                 case ConnectionState.Closing:
-                    _messageReader.SubmitData(buffer, offset, length);
+                    _messageReader.WriteMessageData(buffer, offset, length);
                     break;
                 case ConnectionState.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");

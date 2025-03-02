@@ -38,7 +38,7 @@ namespace WebSocketServer
                 }
                 _protocol.SubmitData(buffer, 0, bytesRead);
 
-                var message = _protocol.Deserialize();
+                var message = _protocol.ReadMessage();
                 if (message is null)
                 {
                     isDone = true;
@@ -55,13 +55,13 @@ namespace WebSocketServer
                     {
                         Console.WriteLine("initiating close handshake");
 
-                        _protocol.SubmitMessage(new CloseMessage(1000, "Server closed as requested"));
+                        _protocol.WriteMessage(new CloseMessage(1000, "Server closed as requested"));
                     }
                     else
                     {
                         Console.WriteLine("Echoing message back to client");
 
-                        _protocol.SubmitMessage(message);
+                        _protocol.WriteMessage(message);
                     }
                 }
                 else if (message.Type == MessageType.Ping)
@@ -70,13 +70,13 @@ namespace WebSocketServer
 
                     var pingMessage = ((PingMessage)message);
                     var pongMessage = new PongMessage(pingMessage.Data);
-                    _protocol.SubmitMessage(pongMessage);
+                    _protocol.WriteMessage(pongMessage);
                 }
                 else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close, sending close");
 
-                    _protocol.SubmitMessage(message);
+                    _protocol.WriteMessage(message);
                 }
 
                 SendClientData();                    
@@ -136,7 +136,7 @@ namespace WebSocketServer
             var offset = 0L;
             while (!isDone)
             {
-                isDone = _protocol.Serialize(buffer, ref offset, buffer.Length);
+                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }

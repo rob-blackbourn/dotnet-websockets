@@ -34,14 +34,14 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public bool Serialize(byte[] buffer, ref long offset, long length)
+        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
         {
-            return _messageWriter.Serialize(buffer, ref offset, length);
+            return _messageWriter.ReadMessageData(buffer, ref offset, length);
         }
 
-        public Message? Deserialize()
+        public Message? ReadMessage()
         {
-            var message = _messageReader.Deserialize();
+            var message = _messageReader.ReadMessage();
             if (message is null)
                 return null;
 

@@ -7,7 +7,7 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to write WebSocket frames.
     /// 
-    /// Frames are submitted (<see cref="SubmitFrame"/>) to the writer, and then processed (<see cref="Serialize"/>)
+    /// Frames are submitted (<see cref="WriteFrame"/>) to the writer, and then processed (<see cref="ReadFrameData"/>)
     /// until the writer is empty (<see cref="IsEmpty"/>).
     /// </summary>
     class FrameWriter
@@ -35,16 +35,16 @@ namespace WebSockets.Core
         /// <summary>
         /// Add a frame to the queue of frames to write.
         /// 
-        /// Submitted frames can be written with the <see cref="Serialize"/> method. 
+        /// Submitted frames can be written with the <see cref="ReadFrameData"/> method. 
         /// </summary>
         /// <param name="frame">The frame to be written</param>
-        public void SubmitFrame(Frame frame)
+        public void WriteFrame(Frame frame)
         {
             _frameQueue.Enqueue(frame);
         }
 
         /// <summary>
-        /// Writes frames queued by the <see cref="SubmitFrame"/> method to the provided buffer.
+        /// Writes frames queued by the <see cref="WriteFrame"/> method to the provided buffer.
         /// 
         /// This will throw an exception if there are no frames to write.
         /// </summary>
@@ -52,7 +52,7 @@ namespace WebSockets.Core
         /// <param name="offset">The offset at which to write. This gets updated as the buffer is written.</param>
         /// <returns>True if the operation sent an entire frame, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">If there are no frames to write.</exception> <summary>
-        public bool Serialize(byte[] buffer, ref long offset, long length)
+        public bool ReadFrameData(byte[] buffer, ref long offset, long length)
         {
             if (length > buffer.LongLength)
                 throw new ArgumentOutOfRangeException(nameof(length));

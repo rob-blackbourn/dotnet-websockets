@@ -34,7 +34,7 @@ namespace WebSocketClient
 
                 // Send a message.
                 Console.WriteLine("Sending message");
-                _protocol.SubmitMessage(new TextMessage(text));
+                _protocol.WriteMessage(new TextMessage(text));
                 SendData();
 
                 // Receive the echoed response.
@@ -48,7 +48,7 @@ namespace WebSocketClient
                 {
                     // Send the close back.
                     Console.WriteLine("Received close, responding with close");
-                    _protocol.SubmitMessage(response);
+                    _protocol.WriteMessage(response);
                     SendData();
                 }
             }
@@ -60,7 +60,7 @@ namespace WebSocketClient
             Message? message = null;
             while (message is null)
             {
-                message = _protocol.Deserialize();
+                message = _protocol.ReadMessage();
                 if (message is not null)
                     continue;
 
@@ -78,7 +78,7 @@ namespace WebSocketClient
             var offset = 0L;
             while (!isDone)
             {
-                isDone = _protocol.Serialize(buffer, ref offset, buffer.Length);
+                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }

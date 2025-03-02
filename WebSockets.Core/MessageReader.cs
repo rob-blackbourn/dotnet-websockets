@@ -9,8 +9,8 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to read WebSocket messages.
     /// 
-    /// Data is submitted (<see cref="SubmitData"/>) to the reader, then
-    /// messages are produced when processed (<see cref="Deserialize"/>).
+    /// Data is submitted (<see cref="WriteMessageData"/>) to the reader, then
+    /// messages are produced when processed (<see cref="ReadMessage"/>).
     /// A message may consist of multiple frames.
     /// </summary>
     public class MessageReader
@@ -21,26 +21,26 @@ namespace WebSockets.Core
         /// <summary>
         /// Submit data to be deserialized to messages.
         /// 
-        /// After submitting the data <see cref="Deserialize"/> must be called to
+        /// After submitting the data <see cref="ReadMessage"/> must be called to
         /// generate the messages.
         /// </summary>
         /// <param name="data">The data to create the messages with.</param>
         /// <param name="offset"><The point to start reading the buffer./param>
         /// <param name="length">The length of the buffer to read.</param>
-        public void SubmitData(byte[] data, long offset, long length)
+        public void WriteMessageData(byte[] data, long offset, long length)
         {
-            _frameReader.SubmitData(data, offset, length);
+            _frameReader.WriteFrameData(data, offset, length);
         }
 
         /// <summary>
         /// Process submitted data to produce messages.
         /// </summary>
         /// <returns>A message, if there is sufficient data available.</returns>
-        public Message? Deserialize()
+        public Message? ReadMessage()
         {
             while (true)
             {
-                var frame = _frameReader.Deserialize();
+                var frame = _frameReader.ReadFrame();
                 if (frame == null)
                     return null;
 
