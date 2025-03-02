@@ -1,7 +1,5 @@
 using System;
-using System.IO;
 using System.Net.Sockets;
-using System.Security.Cryptography;
 using WebSockets.Core;
 
 namespace WebSocketClient
@@ -40,14 +38,14 @@ namespace WebSocketClient
                     // Send a message.
                     Console.WriteLine("Initiating close handshake");
                     _protocol.WriteMessage(new CloseMessage(1000, "Client initiated close"));
-                    SendData();
+                    SendMessage();
                 }
                 else
                 {
                     // Send a message.
                     Console.WriteLine("Sending message");
                     _protocol.WriteMessage(new TextMessage(text));
-                    SendData();
+                    SendMessage();
                 }
 
                 // Receive the echoed response.
@@ -65,7 +63,7 @@ namespace WebSocketClient
                         // Send the close back.
                         Console.WriteLine("Responding with close (completing close handshake).");
                         _protocol.WriteMessage(response);
-                        SendData();
+                        SendMessage();
                     }
                     else if (_protocol.State == ConnectionState.Closed)
                     {
@@ -96,7 +94,7 @@ namespace WebSocketClient
             return message;
         }
 
-        private void SendData()
+        private void SendMessage()
         {
             var isDone = false;
             var buffer = new byte[1024];
@@ -145,8 +143,6 @@ namespace WebSocketClient
                     offset = 0;
                 isDone = _protocol.ProcessHandshakeResponse();
             }
-
         }
-
     }
 }

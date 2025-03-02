@@ -23,18 +23,19 @@ namespace WebSocketServer
 
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
+            var buffer = new byte[1024];
             while (_protocol.State == ConnectionState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
 
-                var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                if (bytesRead == 0)
+                if (bytesRead > 0)
+                    _protocol.WriteMessageData(buffer, 0, bytesRead);
+                else
                 {
                     Console.WriteLine("The client closed the connection.");
-                    break;;
+                    break;
                 }
-                _protocol.WriteMessageData(buffer, 0, bytesRead);
 
                 var message = _protocol.ReadMessage();
                 if (message is null)
@@ -54,14 +55,14 @@ namespace WebSocketServer
                         Console.WriteLine("Initiating close handshake");
 
                         _protocol.WriteMessage(new CloseMessage(1000, "Server closed as requested"));
-                        SendClientData();
+                        SendMessage();
                     }
                     else
                     {
                         Console.WriteLine("Echoing message back to client");
 
                         _protocol.WriteMessage(message);
-                        SendClientData();
+                        SendMessage();
                     }
                 }
                 else if (message.Type == MessageType.Ping)
@@ -71,7 +72,7 @@ namespace WebSocketServer
                     var pingMessage = ((PingMessage)message);
                     var pongMessage = new PongMessage(pingMessage.Data);
                     _protocol.WriteMessage(pongMessage);
-                    SendClientData();
+                    SendMessage();
                 }
                 else if (message.Type == MessageType.Close)
                 {
@@ -80,7 +81,7 @@ namespace WebSocketServer
                     {
                         Console.WriteLine("Sending close (completing close handshake).");
                         _protocol.WriteMessage(message);
-                        SendClientData();
+                        SendMessage();
                     } else if (_protocol.State == ConnectionState.Closed)
                     {
                         Console.WriteLine("Received close, done");
@@ -139,7 +140,7 @@ namespace WebSocketServer
             }
         }
 
-        private void SendClientData()
+        private void SendMessage()
         {
             var isDone = false;
             var buffer = new byte[1024];
