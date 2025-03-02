@@ -34,11 +34,6 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
-        {
-            return _messageWriter.ReadMessageData(buffer, ref offset, length);
-        }
-
         public Message? ReadMessage()
         {
             var message = _messageReader.ReadMessage();
