@@ -16,8 +16,8 @@ they are "written" to the protocol. the protocol decodes the bytes to
 higher level objects like web requests and websocket messages. Some
 business logic is applied to these higher level objects, which produce
 other higher level objects (like web responses or new websocket messages).
-These objects are then written to the protocol. Finally bytes are read
-from the protocol which are then written to the network.
+These objects are then written to the protocol which are encoded to bytes.
+Finally bytes are read from the protocol which are then written to the network.
 
 To Summarize there is a read flow and a write flow:
 
@@ -40,10 +40,12 @@ A WebSocket goes through two protocol lifecycle stages.
 * Connection Handshake
 * Messages
 
-The connection handshake takes a web request and attempts to negotiate a websocket connection.
-This statement suggests a more complicated workflow than actually exists.
-What happens here is the client sends a standard "GET" web request with some headers that indicate a websocket is requested.
-If the server supports websockets a response is sent, and all subsequent communication uses the websocket protocol.
+The connection handshake takes a web request and attempts to negotiate a
+websocket connection. This statement suggests a more complicated workflow
+than actually exists. What happens here is the client sends a standard "GET"
+web request with some headers that indicate a websocket is requested. If the
+server supports websockets an appropriate response is sent, and all
+subsequent communication uses the websocket protocol.
 
 ### Data Messages
 
