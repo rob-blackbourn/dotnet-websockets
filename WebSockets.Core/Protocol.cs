@@ -81,6 +81,11 @@ namespace WebSockets.Core
             return _handshakeBuffer.Read(buffer);
         }
 
+        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
+        {
+            return _messageWriter.ReadMessageData(buffer, ref offset, length);
+        }
+
         public void WriteMessageData(byte[] buffer, long offset, long length)
         {
             switch (State)

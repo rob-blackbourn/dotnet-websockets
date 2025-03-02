@@ -27,11 +27,6 @@ namespace WebSockets.Core
         {
         }
 
-        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
-        {
-            return _messageWriter.ReadMessageData(buffer, ref offset, length);
-        }
-
         public bool Handshake()
         {
             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
