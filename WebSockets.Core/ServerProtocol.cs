@@ -74,31 +74,6 @@ namespace WebSockets.Core
             }
         }
 
-        public Message? ReadMessage()
-        {
-            var message = _messageReader.ReadMessage();
-            if (message is null)
-                return null;
-
-            if (message.Type == MessageType.Close)
-            {
-                if (State == ConnectionState.Connected)
-                {
-                    State = ConnectionState.Closing;
-                }
-                else if (State == ConnectionState.Closing)
-                {
-                    State = ConnectionState.Closed;
-                }
-                else
-                {
-                    throw new InvalidOperationException("received close message when not connected or closing");
-                }
-            }
-
-            return message;
-        }
-
         private void SendHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
         {
             var builder = new StringBuilder();

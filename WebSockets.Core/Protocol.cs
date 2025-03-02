@@ -39,6 +39,31 @@ namespace WebSockets.Core
 
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
 
+        public Message? ReadMessage()
+        {
+            var message = _messageReader.ReadMessage();
+            if (message is null)
+                return null;
+
+            if (message.Type == MessageType.Close)
+            {
+                if (State == ConnectionState.Connected)
+                {
+                    State = ConnectionState.Closing;
+                }
+                else if (State == ConnectionState.Closing)
+                {
+                    State = ConnectionState.Closed;
+                }
+                else
+                {
+                    throw new InvalidOperationException("received close message when not connected or closing");
+                }
+            }
+
+            return message;
+        }
+
         public void WriteMessage(Message message)
         {
             switch (State)
