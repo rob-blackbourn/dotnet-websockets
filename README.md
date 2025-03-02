@@ -4,7 +4,7 @@ A sans-io implementation of WebSockets in .Net.
 
 ## Status
 
-This is working. Please report any issues.
+I believe this is working. Please report any issues.
 
 ## The API
 
