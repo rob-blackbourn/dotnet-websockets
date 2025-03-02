@@ -37,33 +37,30 @@ namespace WebSocketClient
                 {
                     // Send a message.
                     Console.WriteLine("Initiating close handshake");
-                    _protocol.WriteMessage(new CloseMessage(1000, "Client initiated close"));
-                    SendMessage();
+                    SendMessage(new CloseMessage(1000, "Client initiated close"));
                 }
                 else
                 {
                     // Send a message.
                     Console.WriteLine("Sending message");
-                    _protocol.WriteMessage(new TextMessage(text));
-                    SendMessage();
+                    SendMessage(new TextMessage(text));
                 }
 
                 // Receive the echoed response.
-                var response = ReceiveMessage();
-                if (response.Type == MessageType.Text)
+                var message = ReceiveMessage();
+                if (message.Type == MessageType.Text)
                 {
-                    var textMessage = (TextMessage)response;
+                    var textMessage = (TextMessage)message;
                     Console.WriteLine($"Received text message {textMessage.Text}");
                 }
-                else if (response.Type == MessageType.Close)
+                else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close.");
                     if (_protocol.State == ConnectionState.Closing)
                     {
                         // Send the close back.
                         Console.WriteLine("Responding with close (completing close handshake).");
-                        _protocol.WriteMessage(response);
-                        SendMessage();
+                        SendMessage(message);
                     }
                     else if (_protocol.State == ConnectionState.Closed)
                     {
@@ -94,13 +91,15 @@ namespace WebSocketClient
             return message;
         }
 
-        private void SendMessage()
+        private void SendMessage(Message message)
         {
+            _protocol.WriteMessage(message);
+
             var isDone = false;
             var buffer = new byte[1024];
-            var offset = 0L;
             while (!isDone)
             {
+                var offset = 0L;
                 isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");

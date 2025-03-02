@@ -53,26 +53,21 @@ namespace WebSocketServer
                     if (textMessage.Text == "close")
                     {
                         Console.WriteLine("Initiating close handshake");
-
-                        _protocol.WriteMessage(new CloseMessage(1000, "Server closed as requested"));
-                        SendMessage();
+                        SendMessage(new CloseMessage(1000, "Server closed as requested"));
                     }
                     else
                     {
                         Console.WriteLine("Echoing message back to client");
-
-                        _protocol.WriteMessage(message);
-                        SendMessage();
+                        SendMessage(message);
                     }
                 }
                 else if (message.Type == MessageType.Ping)
                 {
                     Console.WriteLine("Received ping, sending pong");
 
-                    var pingMessage = ((PingMessage)message);
+                    var pingMessage = (PingMessage)message;
                     var pongMessage = new PongMessage(pingMessage.Data);
-                    _protocol.WriteMessage(pongMessage);
-                    SendMessage();
+                    SendMessage(pongMessage);
                 }
                 else if (message.Type == MessageType.Close)
                 {
@@ -80,11 +75,10 @@ namespace WebSocketServer
                     if (_protocol.State == ConnectionState.Closing)
                     {
                         Console.WriteLine("Sending close (completing close handshake).");
-                        _protocol.WriteMessage(message);
-                        SendMessage();
+                        SendMessage(message);
                     } else if (_protocol.State == ConnectionState.Closed)
                     {
-                        Console.WriteLine("Received close, done");
+                        Console.WriteLine("Close handshake complete");
                     }
                     else
                     {
@@ -140,13 +134,15 @@ namespace WebSocketServer
             }
         }
 
-        private void SendMessage()
+        private void SendMessage(Message message)
         {
+            _protocol.WriteMessage(message);
+
             var isDone = false;
             var buffer = new byte[1024];
-            var offset = 0L;
             while (!isDone)
             {
+                var offset = 0L;
                 isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
