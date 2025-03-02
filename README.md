@@ -2,6 +2,10 @@
 
 An implementation of WebSockets in .Net using a sans-io approach.
 
+## Status
+
+This is working. Pleas report any issues.
+
 ## The API
 
 The API is actually very simple, but the semantics are confusing.
