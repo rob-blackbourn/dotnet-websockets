@@ -65,9 +65,10 @@ If a client receives a ping it is expected to respond with a pong with the same 
 
 #### Close
 
-While either participant can simply close the connection, the protocol specifies a close handshake.
-The handshake consists of one side sending a close message with an optional code and text reason,
-where the other side responds with a close containing the same data.
+Either participant can simply close the connection, however the protocol
+specifies a close handshake. The handshake consists of one side sending a
+close message with an optional code and text reason, where the other side
+responds with a close containing the same data.
 
 ## The Implementation
 
