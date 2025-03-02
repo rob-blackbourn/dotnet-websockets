@@ -11,7 +11,7 @@ I believe this is working. Please report any issues.
 The API is actually very simple, but the read/write semantics can be confusing.
 
 At the heart of a sans-io implementation is a processing engine; which
-is known here as a "protocol". When bytes are "read" from the network,
+is known here as the "protocol". When bytes are "read" from the network,
 they are "written" to the protocol. the protocol decodes the bytes to
 higher level objects like web requests and websocket messages. Some
 business logic is applied to these higher level objects, which produce
