@@ -8,7 +8,7 @@ namespace WebSockets.Core
     /// supporting long length and offset.
     /// </summary>
     /// <typeparam name="T">The type of items in the buffer</typeparam>
-    class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
+    internal class ArrayBuffer<T> : IEquatable<ArrayBuffer<T>>
     {
         public ArrayBuffer(T[] array)
             : this(array, 0, array.LongLength)

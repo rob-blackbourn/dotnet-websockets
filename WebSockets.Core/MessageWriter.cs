@@ -11,7 +11,7 @@ namespace WebSockets.Core
     /// Messages are submitted (<see cref="WriteMessage"/>) to the writer, and then processed (<see cref="ReadMessageData"/>)
     /// into data buffers until the writer is empty (<see cref="IsEmpty"/>). Note that one message may produce several frames to write.
     /// </summary>
-    public class MessageWriter
+    internal class MessageWriter
     {
         private readonly INonceGenerator _nonceGenerator;
         private readonly FrameWriter _frameWriter = new FrameWriter();

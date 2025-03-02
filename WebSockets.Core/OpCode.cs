@@ -1,6 +1,6 @@
 ﻿namespace WebSockets.Core
 {
-    enum OpCode : byte
+    internal enum OpCode : byte
     {
         Continuation = 0,
         Text = 1,

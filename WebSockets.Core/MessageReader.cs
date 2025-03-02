@@ -13,7 +13,7 @@ namespace WebSockets.Core
     /// messages are produced when processed (<see cref="ReadMessage"/>).
     /// A message may consist of multiple frames.
     /// </summary>
-    public class MessageReader
+    internal class MessageReader
     {
         private readonly FrameReader _frameReader = new FrameReader();
         private readonly Queue<Frame> _frameBuffer = new Queue<Frame>();

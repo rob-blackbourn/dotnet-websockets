@@ -10,7 +10,7 @@ namespace WebSockets.Core
     /// Frames are submitted (<see cref="WriteFrame"/>) to the writer, and then processed (<see cref="ReadFrameData"/>)
     /// until the writer is empty (<see cref="IsEmpty"/>).
     /// </summary>
-    class FrameWriter
+    internal class FrameWriter
     {
         enum State
         {

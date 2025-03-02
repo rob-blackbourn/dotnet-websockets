@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    class Frame : IEquatable<Frame>
+    internal class Frame : IEquatable<Frame>
     {
         public Frame(OpCode opCode, bool isFinal, Reserved reserved, byte[]? mask, ArrayBuffer<byte> payload)
         {

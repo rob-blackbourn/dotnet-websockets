@@ -1,4 +1,3 @@
 # dotnet-websockets
 
-An implementation of WebSockets in .Net with the intention
-of using a sans-io approach.
+An implementation of WebSockets in .Net using a sans-io approach.

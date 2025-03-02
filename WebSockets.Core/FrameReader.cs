@@ -9,7 +9,7 @@ namespace WebSockets.Core
     /// Data is submitted (<see cref="WriteFrameData"/>) to the reader, then
     /// frames are produced when processed (<see cref="ReadFrame"/>).
     /// </summary>
-    class FrameReader
+    internal class FrameReader
     {
         enum State
         {

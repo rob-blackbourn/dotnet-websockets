@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    public class WebResponse
+    internal class WebResponse
     {
         public WebResponse(string version, int code, string reason, IDictionary<string, IList<string>> headers)
         {
@@ -22,12 +22,6 @@ namespace WebSockets.Core
 
         public static WebResponse Parse(string data)
         {
-            /*
-HTTP/1.1 101 Switching Protocols
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
-Sec-WebSocket-Protocol: chat            */
             var lines = data.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (version, code, reason) = ParseResponseLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
