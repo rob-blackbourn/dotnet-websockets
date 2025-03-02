@@ -4,11 +4,11 @@ An implementation of WebSockets in .Net using a sans-io approach.
 
 ## Status
 
-This is working. Pleas report any issues.
+This is working. Please report any issues.
 
 ## The API
 
-The API is actually very simple, but the semantics are confusing.
+The API is actually very simple, but the read/write semantics can be confusing.
 
 At the heart of a sans-io implementation is a processing engine; which
 is known here as a "protocol". When bytes are "read" from the network,
