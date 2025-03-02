@@ -83,7 +83,9 @@ namespace WebSockets.Core
 
             builder.Append("\r\n");
 
-            _handshakeBuffer.Write(Encoding.ASCII.GetBytes(builder.ToString()));
+            var text = builder.ToString();
+            var data = Encoding.ASCII.GetBytes(text);
+            WriteHandshakeData(data, 0, data.Length);
         }
 
         public bool ProcessHandshakeResponse()

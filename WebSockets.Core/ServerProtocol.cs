@@ -120,7 +120,9 @@ namespace WebSockets.Core
 
             builder.Append("\r\n");
 
-            _handshakeBuffer.Write(Encoding.ASCII.GetBytes(builder.ToString()));
+            var text = builder.ToString();
+            var data = Encoding.ASCII.GetBytes(text);
+            WriteHandshakeData(data, 0, data.Length);
         }
 
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
@@ -149,7 +151,7 @@ namespace WebSockets.Core
             var data = new byte[header.Length + body.Length];
             Array.Copy(header, data, header.Length);
             Array.Copy(body, 0, data, header.Length, body.Length);
-            _handshakeBuffer.Write(data);
+            WriteHandshakeData(data, 0, data.Length);
         }
     }
 }

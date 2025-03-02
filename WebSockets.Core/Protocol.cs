@@ -15,7 +15,6 @@ namespace WebSockets.Core
 
     public class Protocol
     {
-
         private protected static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
         private protected readonly FragmentBuffer<byte> _handshakeBuffer = new FragmentBuffer<byte>();
