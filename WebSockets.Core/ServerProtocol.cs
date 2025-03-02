@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace WebSockets.Core
@@ -13,104 +12,34 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ServerProtocol
+    public class ServerProtocol : Protocol
     {
-        enum State
+        public ServerProtocol(string[] subProtocols)
+            :   this(subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
-            Handshake,
-            Connected,
-            Closing,
-            Closed,
-            Faulted
         }
-
-        private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
-        private const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-
-        private readonly FragmentBuffer<byte> _handshakeReadBuffer = new FragmentBuffer<byte>();
-        private readonly FragmentBuffer<byte> _handshakeWriteBuffer = new FragmentBuffer<byte>();
-        private readonly MessageReader _messageReader = new MessageReader();
-        private readonly MessageWriter _messageWriter;
-        private readonly string[] _supportedSubProtocols;
-        private readonly IDateTimeProvider _dateTimeProvider;
-        private State _state = State.Handshake;
 
         public ServerProtocol(
-            string[]? supportedSubProtocols = null,
-            IDateTimeProvider? dateTimeProvider = null,
-            INonceGenerator? nonceGenerator = null)
+            string[] subProtocols,
+            IDateTimeProvider dateTimeProvider,
+            INonceGenerator nonceGenerator)
+            :   base(false, subProtocols, dateTimeProvider, nonceGenerator)
         {
-            _supportedSubProtocols = supportedSubProtocols ?? [];
-            _dateTimeProvider = dateTimeProvider ?? new DateTimeProvider();
-
-            _messageWriter = new MessageWriter(nonceGenerator ?? new NonceGenerator());
         }
 
-        public bool IsOpen => _state == State.Connected;
-        public bool IsWriteable => IsOpen && !(_handshakeWriteBuffer.Count == 0 && _messageWriter.IsEmpty);
-
-        public void SubmitMessage(Message message)
+        public bool Serialize(byte[] buffer, ref long offset, long length)
         {
-            switch (_state)
-            {
-                case State.Handshake:
-                    throw new InvalidOperationException("cannot send a message before the handshake is complete.");
-                case State.Connected:
-                    _messageWriter.SubmitMessage(message, false, Reserved.AllFalse);
-                    break;
-                case State.Closing:
-                    if (message.Type != MessageType.Close)
-                        throw new InvalidOperationException("can only send a close message when closing.");
-                    _messageWriter.SubmitMessage(message, false, Reserved.AllFalse);
-                    break;
-                case State.Closed:
-                    break;
-                case State.Faulted:
-                    break;
-            }
-        }
-
-        public bool Serialize(byte[] buffer, ref long offset)
-        {
-            if (_handshakeWriteBuffer.Count > 0)
-            {
-                offset = _handshakeWriteBuffer.Read(buffer);
-                return true;
-            }
-            else
-            {
-                return _messageWriter.Serialize(buffer, ref offset);
-            }
-        }
-
-        public void SubmitData(byte[] buffer, long offset, long length)
-        {
-            switch (_state)
-            {
-                case State.Handshake:
-                    _handshakeReadBuffer.Write(buffer, offset, length);
-                    break;
-                case State.Connected:
-                case State.Closing:
-                    _messageReader.SubmitData(buffer, offset, length);
-                    break;
-                case State.Closed:
-                    throw new InvalidOperationException("cannot receive data when closed");
-                case State.Faulted:
-                    throw new InvalidOperationException("cannot receive data when faulted");
-                default:
-                    throw new InvalidOperationException("invalid internal state");
-            }
+            return _messageWriter.Serialize(buffer, ref offset, length);
         }
 
         public bool Handshake()
         {
-            if (!_handshakeReadBuffer.EndsWith(HTTP_EOM))
+            if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
 
             try
             {
-                var text = Encoding.UTF8.GetString(_handshakeReadBuffer.ToArray());
+                var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
                 var webRequest = WebRequest.Parse(text);
 
                 if (webRequest.Verb != "GET")
@@ -138,14 +67,14 @@ namespace WebSockets.Core
                 var subProtocols = webRequest.Headers.SingleCommaValues("Sec-WebSocket-Protocol");
 
                 SendHandshakeResponse(key, subProtocols);
-                _state = State.Connected;
+                State = ConnectionState.Connected;
                 return true;
 
             }
             catch (InvalidDataException error)
             {
                 SendBadRequest(error.Message);
-                _state = State.Faulted;
+                State = ConnectionState.Faulted;
                 return true;
             }
         }
@@ -158,13 +87,13 @@ namespace WebSockets.Core
 
             if (message.Type == MessageType.Close)
             {
-                if (_state == State.Connected)
+                if (State == ConnectionState.Connected)
                 {
-                    _state = State.Closing;
+                    State = ConnectionState.Closing;
                 }
-                else if (_state == State.Closing)
+                else if (State == ConnectionState.Closing)
                 {
-                    _state = State.Closed;
+                    State = ConnectionState.Closed;
                 }
                 else
                 {
@@ -191,21 +120,15 @@ namespace WebSockets.Core
 
             builder.Append("\r\n");
 
-            _handshakeWriteBuffer.Write(Encoding.ASCII.GetBytes(builder.ToString()));
-        }
-
-        private static string CreateResponseKey(string requestKey)
-        {
-            var nonce = SHA1.Create().ComputeHash(Encoding.ASCII.GetBytes(requestKey + WebSocketResponseGuid));
-            return Convert.ToBase64String(nonce);
+            _handshakeBuffer.Write(Encoding.ASCII.GetBytes(builder.ToString()));
         }
 
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
         {
-            if (_supportedSubProtocols.Length == 0 || candidateSubProtocols is null || candidateSubProtocols.Length == 0)
+            if (_subProtocols.Length == 0 || candidateSubProtocols is null || candidateSubProtocols.Length == 0)
                 return null;
 
-            var matches = candidateSubProtocols.Intersect(_supportedSubProtocols).ToList();
+            var matches = candidateSubProtocols.Intersect(_subProtocols).ToList();
             if (matches.Count == 0)
                 throw new InvalidDataException("No requested protocols supported");
 
@@ -226,7 +149,7 @@ namespace WebSockets.Core
             var data = new byte[header.Length + body.Length];
             Array.Copy(header, data, header.Length);
             Array.Copy(body, 0, data, header.Length, body.Length);
-            _handshakeWriteBuffer.Write(data);
+            _handshakeBuffer.Write(data);
         }
     }
 }

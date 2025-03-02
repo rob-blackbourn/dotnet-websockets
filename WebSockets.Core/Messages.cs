@@ -48,7 +48,7 @@ namespace WebSockets.Core
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                writer.Serialize(buf, ref offset);
+                writer.Serialize(buf, ref offset, buf.LongLength);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();

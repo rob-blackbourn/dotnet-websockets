@@ -11,7 +11,7 @@ namespace WebSockets.Core
     /// reallocation.
     /// </summary>
     /// <typeparam name="T">The type of items in the buffer</typeparam>
-    class FragmentBuffer<T>
+    internal class FragmentBuffer<T>
     {
         private readonly LinkedList<ArrayBuffer<T>> _buffer = new LinkedList<ArrayBuffer<T>>();
 
@@ -138,6 +138,8 @@ namespace WebSockets.Core
                 Array.Copy(item.Array, item.Offset, buf, offset, item.Count);
                 offset += item.Count;
             }
+
+            _buffer.Clear();
 
             return buf;                    
         }

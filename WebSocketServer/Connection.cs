@@ -14,7 +14,7 @@ namespace WebSocketServer
         public Connection(TcpClient client)
         {
             _stream = client.GetStream();
-            _protocol = new ServerProtocol();
+            _protocol = new ServerProtocol([]);
         }
 
         public void Start()
@@ -23,8 +23,8 @@ namespace WebSocketServer
 
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
-            var ok = true;
-            while (ok)
+            var isDone = false;
+            while (!isDone)
             {
                 Console.WriteLine("Waiting for a message");
 
@@ -33,57 +33,53 @@ namespace WebSocketServer
                 if (bytesRead == 0)
                 {
                     Console.WriteLine("The client closed the connection.");
-                    ok = false;
+                    isDone = true;
                     continue;
                 }
                 _protocol.SubmitData(buffer, 0, bytesRead);
 
-                var isDone = false;
-                while (!isDone)
+                var message = _protocol.Deserialize();
+                if (message is null)
                 {
-                    var message = _protocol.Deserialize();
-                    if (message is null)
+                    isDone = true;
+                    continue;
+                }
+
+                if (message.Type == MessageType.Text)
+                {
+                    var textMessage = (TextMessage)message;
+
+                    Console.WriteLine($"Received text message \"{textMessage.Text}\"");
+
+                    if (textMessage.Text == "close")
                     {
-                        isDone = true;
-                        continue;
+                        Console.WriteLine("initiating close handshake");
+
+                        _protocol.SubmitMessage(new CloseMessage(1000, "Server closed as requested"));
                     }
-
-                    if (message.Type == MessageType.Text)
+                    else
                     {
-                        var textMessage = (TextMessage)message;
-
-                        Console.WriteLine($"Received text message \"{textMessage.Text}\"");
- 
-                        if (textMessage.Text == "close")
-                        {
-                            Console.WriteLine("initiating close handshake");
-
-                            _protocol.SubmitMessage(new CloseMessage(1000, "Server closed as requested"));
-                        }
-                        else
-                        {
-                            Console.WriteLine("Echoing message back to client");
-
-                            _protocol.SubmitMessage(message);
-                        }
-                    }
-                    else if (message.Type == MessageType.Ping)
-                    {
-                        Console.WriteLine("Received ping, sending pong");
-
-                        var pingMessage = ((PingMessage)message);
-                        var pongMessage = new PongMessage(pingMessage.Data);
-                        _protocol.SubmitMessage(pongMessage);
-                    }
-                    else if (message.Type == MessageType.Close)
-                    {
-                        Console.WriteLine("Received close, sending close");
+                        Console.WriteLine("Echoing message back to client");
 
                         _protocol.SubmitMessage(message);
                     }
-
-                    SendClientData();                    
                 }
+                else if (message.Type == MessageType.Ping)
+                {
+                    Console.WriteLine("Received ping, sending pong");
+
+                    var pingMessage = ((PingMessage)message);
+                    var pongMessage = new PongMessage(pingMessage.Data);
+                    _protocol.SubmitMessage(pongMessage);
+                }
+                else if (message.Type == MessageType.Close)
+                {
+                    Console.WriteLine("Received close, sending close");
+
+                    _protocol.SubmitMessage(message);
+                }
+
+                SendClientData();                    
             }
 
             Console.WriteLine("Bye");
@@ -94,7 +90,7 @@ namespace WebSocketServer
             Console.WriteLine("Performing handshake");
 
             ReceiveHandshake();
-            SendClientData();
+            SendHandshakeData();
 
             Console.WriteLine("Handshake completed");
         }
@@ -110,25 +106,38 @@ namespace WebSocketServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _protocol.SubmitData(buffer, 0, bytesRead);
+                _protocol.WriteHandshakeData(buffer, 0, bytesRead);
 
                 isHandshakeReceived = _protocol.Handshake();
             }
         }
 
-        private void SendClientData()
+        private void SendHandshakeData()
         {
-            while (_protocol.IsWriteable)
+            bool isDone = false;
+            while (!isDone)
             {
                 var buffer = new byte[1024];
-                var offset = 0L;
-                if (_protocol.Serialize(buffer, ref offset))
+                var bytesRead = _protocol.ReadHandshakeData(buffer);
+                if (bytesRead == 0)
+                    isDone = true;
+                else
                 {
-                    // This cast is safe. The offset must be less than
-                    // the buffer length, which is an int.
-                    _stream.Write(buffer, 0, (int)offset);
+                    _stream.Write(buffer, 0, (int)bytesRead);
+                    Console.WriteLine("Sent client data");
                 }
+            }
+        }
 
+        private void SendClientData()
+        {
+            var isDone = false;
+            var buffer = new byte[1024];
+            var offset = 0L;
+            while (!isDone)
+            {
+                isDone = _protocol.Serialize(buffer, ref offset, buffer.Length);
+                _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }
         }

@@ -26,7 +26,7 @@ namespace WebSockets.Core.Test
         {
             var a = new ArrayBuffer<int>([3, 4, 5, 6]);
             int[] b = [0, 1, 2, 9, 9, 9, 9];
-            a.CopyInto(b, 3);
+            a.CopyInto(b, 3, b.LongLength);
             Assert.IsTrue(b.SequenceEqual([0, 1, 2, 3, 4, 5, 6]));
             Assert.AreEqual(a.Count, 0);
         }

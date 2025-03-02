@@ -20,6 +20,25 @@ namespace WebSockets.Core.Test
         }
 
         [TestMethod]
+        public void TestWriteReadWriteRead()
+        {
+            var actual = new byte[4];
+
+            var fragmentBuffer = new FragmentBuffer<byte>();
+            fragmentBuffer.Write([0, 1, 2, 3], 0, 4);
+            var bytesRead = fragmentBuffer.Read(actual);
+            Assert.AreEqual(bytesRead, 4);
+            byte[] expected = [0, 1, 2, 3];
+            Assert.IsTrue(expected.SequenceEqual(actual));
+
+            fragmentBuffer.Write([4, 5, 6, 7], 0, 4);
+            bytesRead = fragmentBuffer.Read(actual);
+            Assert.AreEqual(bytesRead, 4);
+            expected = [4, 5, 6, 7];
+            Assert.IsTrue(expected.SequenceEqual(actual));
+        }
+
+        [TestMethod]
         public void TestWriteOnceReadMany()
         {
             var fragmentBuffer = new FragmentBuffer<byte>();

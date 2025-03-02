@@ -42,16 +42,16 @@ namespace WebSockets.Core
             return new ArrayBuffer<T>(Array, Offset + index, count);
         }
 
-        public long CopyInto(T[] array, long offset)
+        public long CopyInto(T[] array, long offset, long length)
         {
-            var length = long.Min(Array.LongLength - Offset, array.LongLength - offset);
-            if (length > 0)
+            var availableLength = long.Min(Array.LongLength - Offset, length - offset);
+            if (availableLength > 0)
             {
-                System.Array.Copy(Array, Offset, array, offset, length);
-                Offset += length;
-                Count -= length;
+                System.Array.Copy(Array, Offset, array, offset, availableLength);
+                Offset += availableLength;
+                Count -= availableLength;
             }
-            return length;
+            return availableLength;
         }
 
         public static implicit operator ArrayBuffer<T>(T[] array) => new ArrayBuffer<T>(array);

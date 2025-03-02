@@ -74,10 +74,11 @@ namespace WebSockets.Core
         /// </summary>
         /// <param name="buffer">The buffer to write messages to.</param>
         /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
+        /// <param name="offset">The length of the buffer.</param>
         /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool Serialize(byte[] buffer, ref long offset)
+        public bool Serialize(byte[] buffer, ref long offset, long length)
         {
-            return _frameWriter.Serialize(buffer, ref offset);
+            return _frameWriter.Serialize(buffer, ref offset, length);
         }
 
         private ArrayBuffer<byte> GetPayload(Message message)
