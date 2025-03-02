@@ -22,6 +22,9 @@ namespace WebSocketClient
             Console.WriteLine("Performing handshake");
             PerformHandshake();
 
+            Console.WriteLine("Processing messages.");
+            Console.WriteLine("Sending 'close' will cause the server to initiate a close handshake.");
+            Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
             while (_protocol.State == ConnectionState.Connected)
             {
                 Console.Write("Message (<ENTER> to quit): ");
@@ -32,10 +35,20 @@ namespace WebSocketClient
                     break;
                 }
 
-                // Send a message.
-                Console.WriteLine("Sending message");
-                _protocol.WriteMessage(new TextMessage(text));
-                SendData();
+                if (text == "CLOSE")
+                {
+                    // Send a message.
+                    Console.WriteLine("Initiating close handshake");
+                    _protocol.WriteMessage(new CloseMessage(1000, "Client initiated close"));
+                    SendData();
+                }
+                else
+                {
+                    // Send a message.
+                    Console.WriteLine("Sending message");
+                    _protocol.WriteMessage(new TextMessage(text));
+                    SendData();
+                }
 
                 // Receive the echoed response.
                 var response = ReceiveMessage();
@@ -46,10 +59,22 @@ namespace WebSocketClient
                 }
                 else if (response.Type == MessageType.Close)
                 {
-                    // Send the close back.
-                    Console.WriteLine("Received close, responding with close");
-                    _protocol.WriteMessage(response);
-                    SendData();
+                    Console.WriteLine("Received close.");
+                    if (_protocol.State == ConnectionState.Closing)
+                    {
+                        // Send the close back.
+                        Console.WriteLine("Responding with close (completing close handshake).");
+                        _protocol.WriteMessage(response);
+                        SendData();
+                    }
+                    else if (_protocol.State == ConnectionState.Closed)
+                    {
+                        Console.WriteLine("Close handshake complete");
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Closed received from invalid state {_protocol.State}");
+                    }
                 }
             }
             Console.WriteLine("bye");
@@ -66,7 +91,7 @@ namespace WebSocketClient
 
                 var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                _protocol.SubmitData(buffer, 0, bytesRead);
+                _protocol.WriteMessageData(buffer, 0, bytesRead);
             }
             return message;
         }

@@ -44,16 +44,29 @@ namespace WebSockets.Core
             switch (State)
             {
                 case ConnectionState.Connected:
+
                     _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
+
+                    if (message.Type == MessageType.Close)
+                        State = ConnectionState.Closing;
+
                     break;
+
                 case ConnectionState.Closing:
+
                     if (message.Type != MessageType.Close)
                         throw new InvalidOperationException("can only send a close message when closing.");
+
                     _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
+
+                    State = ConnectionState.Closed;
+
                     break;
+
                 case ConnectionState.Handshake:
                 case ConnectionState.Closed:
                 case ConnectionState.Faulted:
+
                     throw new InvalidOperationException($"cannot send a message in state {State}.");
             }
         }
@@ -68,7 +81,7 @@ namespace WebSockets.Core
             return _handshakeBuffer.Read(buffer);
         }
 
-        public void SubmitData(byte[] buffer, long offset, long length)
+        public void WriteMessageData(byte[] buffer, long offset, long length)
         {
             switch (State)
             {

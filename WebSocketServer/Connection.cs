@@ -23,8 +23,7 @@ namespace WebSocketServer
 
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
-            var isDone = false;
-            while (!isDone)
+            while (_protocol.State == ConnectionState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
 
@@ -33,15 +32,14 @@ namespace WebSocketServer
                 if (bytesRead == 0)
                 {
                     Console.WriteLine("The client closed the connection.");
-                    isDone = true;
-                    continue;
+                    break;;
                 }
-                _protocol.SubmitData(buffer, 0, bytesRead);
+                _protocol.WriteMessageData(buffer, 0, bytesRead);
 
                 var message = _protocol.ReadMessage();
                 if (message is null)
                 {
-                    isDone = true;
+                    Console.WriteLine("Not enough data for message");
                     continue;
                 }
 
@@ -53,15 +51,17 @@ namespace WebSocketServer
 
                     if (textMessage.Text == "close")
                     {
-                        Console.WriteLine("initiating close handshake");
+                        Console.WriteLine("Initiating close handshake");
 
                         _protocol.WriteMessage(new CloseMessage(1000, "Server closed as requested"));
+                        SendClientData();
                     }
                     else
                     {
                         Console.WriteLine("Echoing message back to client");
 
                         _protocol.WriteMessage(message);
+                        SendClientData();
                     }
                 }
                 else if (message.Type == MessageType.Ping)
@@ -71,15 +71,25 @@ namespace WebSocketServer
                     var pingMessage = ((PingMessage)message);
                     var pongMessage = new PongMessage(pingMessage.Data);
                     _protocol.WriteMessage(pongMessage);
+                    SendClientData();
                 }
                 else if (message.Type == MessageType.Close)
                 {
-                    Console.WriteLine("Received close, sending close");
-
-                    _protocol.WriteMessage(message);
+                    Console.WriteLine("Received close.");
+                    if (_protocol.State == ConnectionState.Closing)
+                    {
+                        Console.WriteLine("Sending close (completing close handshake).");
+                        _protocol.WriteMessage(message);
+                        SendClientData();
+                    } else if (_protocol.State == ConnectionState.Closed)
+                    {
+                        Console.WriteLine("Received close, done");
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Invalid state");
+                    }
                 }
-
-                SendClientData();                    
             }
 
             Console.WriteLine("Bye");
