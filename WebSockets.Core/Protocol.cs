@@ -4,14 +4,6 @@ using System.Text;
 
 namespace WebSockets.Core
 {
-    public enum ConnectionState
-    {
-        Handshake,
-        Connected,
-        Closing,
-        Closed,
-        Faulted
-    }
 
     public class Protocol
     {
@@ -38,6 +30,40 @@ namespace WebSockets.Core
         }
 
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
+
+        public long ReadHandshakeData(byte[] buffer)
+        {
+            return _handshakeBuffer.Read(buffer);
+        }
+
+        public void WriteHandshakeData(byte[] buffer, long offset, long length)
+        {
+            _handshakeBuffer.Write(buffer, offset, length);
+        }
+
+        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
+        {
+            return _messageWriter.ReadMessageData(buffer, ref offset, length);
+        }
+
+        public void WriteMessageData(byte[] buffer, long offset, long length)
+        {
+            switch (State)
+            {
+                case ConnectionState.Handshake:
+                    throw new InvalidOperationException("handshake not complete");
+                case ConnectionState.Connected:
+                case ConnectionState.Closing:
+                    _messageReader.WriteMessageData(buffer, offset, length);
+                    break;
+                case ConnectionState.Closed:
+                    throw new InvalidOperationException("cannot receive data when closed");
+                case ConnectionState.Faulted:
+                    throw new InvalidOperationException("cannot receive data when faulted");
+                default:
+                    throw new InvalidOperationException("invalid internal state");
+            }
+        }
 
         public Message? ReadMessage()
         {
@@ -93,40 +119,6 @@ namespace WebSockets.Core
                 case ConnectionState.Faulted:
 
                     throw new InvalidOperationException($"cannot send a message in state {State}.");
-            }
-        }
-
-        public void WriteHandshakeData(byte[] buffer, long offset, long length)
-        {
-            _handshakeBuffer.Write(buffer, offset, length);
-        }
-
-        public long ReadHandshakeData(byte[] buffer)
-        {
-            return _handshakeBuffer.Read(buffer);
-        }
-
-        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
-        {
-            return _messageWriter.ReadMessageData(buffer, ref offset, length);
-        }
-
-        public void WriteMessageData(byte[] buffer, long offset, long length)
-        {
-            switch (State)
-            {
-                case ConnectionState.Handshake:
-                    throw new InvalidOperationException("handshake not complete");
-                case ConnectionState.Connected:
-                case ConnectionState.Closing:
-                    _messageReader.WriteMessageData(buffer, offset, length);
-                    break;
-                case ConnectionState.Closed:
-                    throw new InvalidOperationException("cannot receive data when closed");
-                case ConnectionState.Faulted:
-                    throw new InvalidOperationException("cannot receive data when faulted");
-                default:
-                    throw new InvalidOperationException("invalid internal state");
             }
         }
 
