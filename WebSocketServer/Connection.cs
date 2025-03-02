@@ -94,13 +94,13 @@ namespace WebSocketServer
         {
             Console.WriteLine("Performing handshake");
 
-            ReceiveHandshake();
-            SendHandshakeData();
+            ReceiveHandshakeRequest();
+            SendHandshakeResponse();
 
             Console.WriteLine("Handshake completed");
         }
 
-        private void ReceiveHandshake()
+        private void ReceiveHandshakeRequest()
         {
             Console.WriteLine("Receiving request");
 
@@ -113,11 +113,11 @@ namespace WebSocketServer
                     throw new EndOfStreamException();
                 _protocol.WriteHandshakeData(buffer, 0, bytesRead);
 
-                isHandshakeReceived = _protocol.Handshake();
+                isHandshakeReceived = _protocol.ProcessHandshakeRequest();
             }
         }
 
-        private void SendHandshakeData()
+        private void SendHandshakeResponse()
         {
             bool isDone = false;
             while (!isDone)

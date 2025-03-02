@@ -27,7 +27,7 @@ namespace WebSockets.Core
         {
         }
 
-        public bool Handshake()
+        public bool ProcessHandshakeRequest()
         {
             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
