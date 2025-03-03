@@ -86,7 +86,7 @@ namespace WebSocketClient
 
                 var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteMessageData(buffer, 0, bytesRead);
+                _protocol.WriteData(buffer, 0, bytesRead);
             }
             return message;
         }
@@ -100,7 +100,7 @@ namespace WebSocketClient
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
+                isDone = _protocol.ReadData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }
@@ -115,12 +115,14 @@ namespace WebSocketClient
         private void SendHandshakeRequest()
         {
             Console.WriteLine("Sending handshake request");
-            _protocol.SendHandshakeRequest("/chat", "www.example.com");
+            var data = _protocol.CreateHandshakeRequest("/chat", "www.example.com");
+            _protocol.WriteData(data, 0, data.LongLength);
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
-                var bytesRead = _protocol.ReadHandshakeData(buffer);
+                var bytesRead = 0L;
+                _protocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -137,7 +139,7 @@ namespace WebSocketClient
             while (!isDone)
             {
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteHandshakeData(buffer, offset, bytesRead);
+                _protocol.WriteData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
                 isDone = _protocol.ProcessHandshakeResponse();

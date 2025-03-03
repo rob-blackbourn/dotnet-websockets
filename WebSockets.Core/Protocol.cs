@@ -31,27 +31,27 @@ namespace WebSockets.Core
 
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
 
-        public long ReadHandshakeData(byte[] buffer)
+        public bool ReadData(byte[] buffer, ref long offset, long length)
         {
-            return _handshakeBuffer.Read(buffer);
+            if (State == ConnectionState.Handshake)
+            {
+                // TODO: Doesn't support offset and length.
+                _handshakeBuffer.Read(buffer);
+                // TODO: Doesn't return bool.
+                return true;
+            }
+            else
+                return _messageWriter.ReadMessageData(buffer, ref offset, length);
         }
 
-        public void WriteHandshakeData(byte[] buffer, long offset, long length)
-        {
-            _handshakeBuffer.Write(buffer, offset, length);
-        }
-
-        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
-        {
-            return _messageWriter.ReadMessageData(buffer, ref offset, length);
-        }
-
-        public void WriteMessageData(byte[] buffer, long offset, long length)
+        public void WriteData(byte[] buffer, long offset, long length)
         {
             switch (State)
             {
                 case ConnectionState.Handshake:
-                    throw new InvalidOperationException("handshake not complete");
+                    // TODO: Doesn't use length.
+                    offset = _handshakeBuffer.Read(buffer);
+                    return;
                 case ConnectionState.Connected:
                 case ConnectionState.Closing:
                     _messageReader.WriteMessageData(buffer, offset, length);

@@ -30,7 +30,7 @@ namespace WebSocketServer
 
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead > 0)
-                    _protocol.WriteMessageData(buffer, 0, bytesRead);
+                    _protocol.WriteData(buffer, 0, bytesRead);
                 else
                 {
                     Console.WriteLine("The client closed the connection.");
@@ -111,7 +111,7 @@ namespace WebSocketServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _protocol.WriteHandshakeData(buffer, 0, bytesRead);
+                _protocol.WriteData(buffer, 0, bytesRead);
 
                 isHandshakeReceived = _protocol.ProcessHandshakeRequest();
             }
@@ -123,7 +123,8 @@ namespace WebSocketServer
             while (!isDone)
             {
                 var buffer = new byte[1024];
-                var bytesRead = _protocol.ReadHandshakeData(buffer);
+                var bytesRead = 0L;
+                _protocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -143,7 +144,7 @@ namespace WebSocketServer
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
+                isDone = _protocol.ReadData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }

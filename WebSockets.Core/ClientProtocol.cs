@@ -32,7 +32,7 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public void SendHandshakeRequest(string path, string host)
+        public byte[] CreateHandshakeRequest(string path, string host)
         {
             var builder = new StringBuilder();
 
@@ -53,7 +53,7 @@ namespace WebSockets.Core
 
             var text = builder.ToString();
             var data = Encoding.ASCII.GetBytes(text);
-            WriteHandshakeData(data, 0, data.Length);
+            return data;
         }
 
         public bool ProcessHandshakeResponse()
@@ -63,7 +63,13 @@ namespace WebSockets.Core
 
             var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
             var webResponse = WebResponse.Parse(text);
+            ValidateResponse(webResponse);
+            State = ConnectionState.Connected;
+            return true;           
+        }
 
+        private void ValidateResponse(WebResponse webResponse)
+        {
             if (webResponse.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");
 
@@ -85,9 +91,6 @@ namespace WebSockets.Core
                 throw new InvalidDataException("Invalid Sec-WebSocket-Accept token");
 
             _selectedSubProtocol = webResponse.Headers.SingleValue("Sec-WebSocket-Protocol");
-
-            State = ConnectionState.Connected;
-            return true;           
         }
     }
 }

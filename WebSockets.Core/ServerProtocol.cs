@@ -36,45 +36,53 @@ namespace WebSockets.Core
             {
                 var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
                 var webRequest = WebRequest.Parse(text);
+                var data = CreateHandshakeResponse(webRequest);
+                WriteData(data, 0, data.Length);
 
-                if (webRequest.Verb != "GET")
-                    throw new InvalidDataException("Expected GET request");
-
-                if (webRequest.Version != "HTTP/1.1")
-                    throw new InvalidDataException("Expected version HTTP/1.1");
-                    
-                if (webRequest.Headers.SingleValue("Connection")?.ToLowerInvariant() != "upgrade")
-                    throw new InvalidDataException("Expected connection header to be \"upgrade\"");
-                    
-                if (webRequest.Headers.SingleValue("Upgrade")?.ToLowerInvariant() != "websocket")
-                    throw new InvalidDataException("Expected upgrade header to be \"websocket\"");
-
-                var key = webRequest.Headers.SingleValue("Sec-WebSocket-Key"); 
-                if (key is null)
-                    throw new InvalidDataException("Mandatory header Sec-WebSocket-Key missing");
-
-                var version = webRequest.Headers.SingleValue("Sec-WebSocket-Version"); 
-                if (version is null)
-                    throw new InvalidDataException("Mandatory header Sec-WebSocket-Version missing");
-                if (version != "13")
-                    throw new InvalidDataException("Unsupported version");
-
-                var subProtocols = webRequest.Headers.SingleCommaValues("Sec-WebSocket-Protocol");
-
-                SendHandshakeResponse(key, subProtocols);
                 State = ConnectionState.Connected;
                 return true;
 
             }
             catch (InvalidDataException error)
             {
-                SendBadRequest(error.Message);
+                var data = BuildBadRequest(error.Message);
+                WriteData(data, 0, data.Length);
+
                 State = ConnectionState.Faulted;
                 return true;
             }
         }
 
-        private void SendHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
+        private byte[] CreateHandshakeResponse(WebRequest webRequest)
+        {
+            if (webRequest.Verb != "GET")
+                throw new InvalidDataException("Expected GET request");
+
+            if (webRequest.Version != "HTTP/1.1")
+                throw new InvalidDataException("Expected version HTTP/1.1");
+                
+            if (webRequest.Headers.SingleValue("Connection")?.ToLowerInvariant() != "upgrade")
+                throw new InvalidDataException("Expected connection header to be \"upgrade\"");
+                
+            if (webRequest.Headers.SingleValue("Upgrade")?.ToLowerInvariant() != "websocket")
+                throw new InvalidDataException("Expected upgrade header to be \"websocket\"");
+
+            var key = webRequest.Headers.SingleValue("Sec-WebSocket-Key"); 
+            if (key is null)
+                throw new InvalidDataException("Mandatory header Sec-WebSocket-Key missing");
+
+            var version = webRequest.Headers.SingleValue("Sec-WebSocket-Version"); 
+            if (version is null)
+                throw new InvalidDataException("Mandatory header Sec-WebSocket-Version missing");
+            if (version != "13")
+                throw new InvalidDataException("Unsupported version");
+
+            var subProtocols = webRequest.Headers.SingleCommaValues("Sec-WebSocket-Protocol");
+
+            return BuildHandshakeResponse(key, subProtocols);
+        }
+
+        private byte[] BuildHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
         {
             var builder = new StringBuilder();
 
@@ -92,7 +100,7 @@ namespace WebSockets.Core
 
             var text = builder.ToString();
             var data = Encoding.ASCII.GetBytes(text);
-            WriteHandshakeData(data, 0, data.Length);
+            return data;
         }
 
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
@@ -107,7 +115,7 @@ namespace WebSockets.Core
             return matches[0];
         }
 
-        private void SendBadRequest(string reason)
+        private byte[] BuildBadRequest(string reason)
         {
             var body = Encoding.UTF8.GetBytes(reason);
             var header = Encoding.UTF8.GetBytes(
@@ -121,7 +129,7 @@ namespace WebSockets.Core
             var data = new byte[header.Length + body.Length];
             Array.Copy(header, data, header.Length);
             Array.Copy(body, 0, data, header.Length, body.Length);
-            WriteHandshakeData(data, 0, data.Length);
+            return data;
         }
     }
 }
