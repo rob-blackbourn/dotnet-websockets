@@ -115,8 +115,8 @@ namespace WebSocketClient
         private void SendHandshakeRequest()
         {
             Console.WriteLine("Sending handshake request");
-            var data = _protocol.CreateHandshakeRequest("/chat", "www.example.com");
-            _protocol.WriteData(data, 0, data.LongLength);
+            _protocol.WriteHandshakeRequest("/chat", "www.example.com");
+
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
@@ -142,7 +142,7 @@ namespace WebSocketClient
                 _protocol.WriteData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
-                isDone = _protocol.ProcessHandshakeResponse();
+                isDone = _protocol.ReadHandshakeResponse();
             }
         }
     }

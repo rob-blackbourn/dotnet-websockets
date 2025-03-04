@@ -32,7 +32,13 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public byte[] CreateHandshakeRequest(string path, string host)
+        public void WriteHandshakeRequest(string path, string host)
+        {
+            var data = CreateHandshakeRequest(path, host);
+            WriteData(data, 0, data.LongLength);
+        }
+
+        private byte[] CreateHandshakeRequest(string path, string host)
         {
             var builder = new StringBuilder();
 
@@ -56,7 +62,7 @@ namespace WebSockets.Core
             return data;
         }
 
-        public bool ProcessHandshakeResponse()
+        public bool ReadHandshakeResponse()
         {
              if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
