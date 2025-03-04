@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    internal class WebRequest
+    public class WebRequest
     {
         public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers)
         {

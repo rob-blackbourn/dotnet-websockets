@@ -104,17 +104,19 @@ namespace WebSocketServer
         {
             Console.WriteLine("Receiving request");
 
-            bool isHandshakeReceived = false;
+            WebRequest? webRequest = null;
             var buffer = new byte[1024];
-            while (!isHandshakeReceived)
+            while (webRequest is null)
             {
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
                 _protocol.WriteData(buffer, 0, bytesRead);
 
-                isHandshakeReceived = _protocol.ProcessHandshakeRequest();
+                webRequest = _protocol.ReadHandshakeRequest();
             }
+
+            _protocol.ProcessHandshakeRequest(webRequest);
         }
 
         private void SendHandshakeResponse()

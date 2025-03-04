@@ -27,15 +27,21 @@ namespace WebSockets.Core
         {
         }
 
-        public bool ProcessHandshakeRequest()
+        public WebRequest? ReadHandshakeRequest()
         {
             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
-                return false;
+                return null;
 
+            var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
+            var webRequest = WebRequest.Parse(text);
+
+            return webRequest;
+        }
+
+        public bool ProcessHandshakeRequest(WebRequest webRequest)
+        {
             try
             {
-                var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
-                var webRequest = WebRequest.Parse(text);
                 var data = CreateHandshakeResponse(webRequest);
                 WriteData(data, 0, data.Length);
 

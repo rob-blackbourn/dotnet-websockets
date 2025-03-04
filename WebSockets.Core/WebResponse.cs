@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    internal class WebResponse
+    public class WebResponse
     {
         public WebResponse(string version, int code, string reason, IDictionary<string, IList<string>> headers)
         {
