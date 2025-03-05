@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -40,24 +41,24 @@ namespace WebSockets.Core
 
         private byte[] CreateHandshakeRequest(string path, string host)
         {
-            var builder = new StringBuilder();
-
-            builder.AppendFormat("GET {0} HTTP/1.1\r\n", path);
-            builder.AppendFormat("Host: {0}\r\n", host);
-            builder.Append("Upgrade: websocket\r\n");
-            builder.Append("Connection: Upgrade\r\n");
-            builder.AppendFormat("Sec-WebSocket-Key: {0}\r\n", _key);
-
+            var webRequest = new WebRequest(
+                "GET",
+                path,
+                "HTTP/1.1",
+                new Dictionary<string, IList<string>>
+                {
+                    {"Host", new List<string> { host }},
+                    {"Upgrade", new List<string> { "websocket" }},
+                    {"Connection", new List<string> { "Upgrade" }},
+                    {"Origin", new List<string> { _origin }},
+                    {"Sec-WebSocket-Version", new List<string> { "13" }},
+                    {"Sec-WebSocket-Key", new List<string> { _key }},
+                }
+            );
             if (_subProtocols is not null && _subProtocols.Length > 0)
-                builder.AppendFormat("Sec-WebSocket-Protocol: {0}\r\n", string.Join(',', _subProtocols));
+                webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', _subProtocols) });
 
-            builder.Append("Sec-WebSocket-Version: 13\r\n");
-
-            builder.AppendFormat("Origin: {0}\r\n", _origin);
-
-            builder.Append("\r\n");
-
-            var text = builder.ToString();
+            var text = webRequest.ToString();
             var data = Encoding.ASCII.GetBytes(text);
             return data;
         }
