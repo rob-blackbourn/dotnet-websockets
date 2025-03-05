@@ -44,7 +44,7 @@ namespace WebSockets.Core
         }
 
         /// <summary>
-        /// Writes frames queued by the <see cref="WriteFrame"/> method to the provided buffer.
+        /// Read frame data queued by the <see cref="WriteFrame"/> method to the provided buffer.
         /// 
         /// This will throw an exception if there are no frames to write.
         /// </summary>
@@ -57,7 +57,7 @@ namespace WebSockets.Core
             if (length > buffer.LongLength)
                 throw new ArgumentOutOfRangeException(nameof(length));
             if (_frameQueue.Count == 0)
-                throw new InvalidOperationException("No frames to write");
+                throw new InvalidOperationException("No frames to read");
 
             var frame = _frameQueue.Peek();
 

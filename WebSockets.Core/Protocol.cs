@@ -31,12 +31,26 @@ namespace WebSockets.Core
 
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
 
-        public bool ReadData(byte[] buffer, ref long offset, long length)
+        public bool ReadHandshakeData(byte[] buffer, ref long offset, long length)
+        {
+            // TODO: Doesn't support offset and length.
+            offset = _handshakeBuffer.Read(buffer);
+            // TODO: Doesn't return bool.
+            return true;
+        }
+
+        public void WriteHandshakeData(byte[] buffer, long offset, long length)
+        {
+            _handshakeBuffer.Write(buffer, offset, length);
+            return;
+        }
+
+        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
         {
             if (State == ConnectionState.Handshake)
             {
                 // TODO: Doesn't support offset and length.
-                _handshakeBuffer.Read(buffer);
+                offset = _handshakeBuffer.Read(buffer);
                 // TODO: Doesn't return bool.
                 return true;
             }
@@ -44,14 +58,12 @@ namespace WebSockets.Core
                 return _messageWriter.ReadMessageData(buffer, ref offset, length);
         }
 
-        public void WriteData(byte[] buffer, long offset, long length)
+        public void WriteMessageData(byte[] buffer, long offset, long length)
         {
             switch (State)
             {
                 case ConnectionState.Handshake:
-                    // TODO: Doesn't use length.
-                    offset = _handshakeBuffer.Read(buffer);
-                    return;
+                    throw new InvalidOperationException("cannot receive data before handshake completed");
                 case ConnectionState.Connected:
                 case ConnectionState.Closing:
                     _messageReader.WriteMessageData(buffer, offset, length);

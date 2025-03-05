@@ -38,12 +38,12 @@ namespace WebSockets.Core
             return webRequest;
         }
 
-        public bool ProcessHandshakeRequest(WebRequest webRequest)
+        public bool WriteHandshakeResponse(WebRequest webRequest)
         {
             try
             {
                 var data = CreateHandshakeResponse(webRequest);
-                WriteData(data, 0, data.Length);
+                WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Connected;
                 return true;
@@ -52,7 +52,7 @@ namespace WebSockets.Core
             catch (InvalidDataException error)
             {
                 var data = BuildBadRequest(error.Message);
-                WriteData(data, 0, data.Length);
+                WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Faulted;
                 return true;

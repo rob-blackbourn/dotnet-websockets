@@ -17,7 +17,6 @@ namespace WebSocketClient
 
         public void Start()
         {
-            Console.WriteLine("Performing handshake");
             PerformHandshake();
 
             Console.WriteLine("Processing messages.");
@@ -86,7 +85,7 @@ namespace WebSocketClient
 
                 var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteData(buffer, 0, bytesRead);
+                _protocol.WriteMessageData(buffer, 0, bytesRead);
             }
             return message;
         }
@@ -100,7 +99,7 @@ namespace WebSocketClient
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _protocol.ReadData(buffer, ref offset, buffer.Length);
+                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }
@@ -108,8 +107,12 @@ namespace WebSocketClient
 
         private void PerformHandshake()
         {
+            Console.WriteLine("Performing handshake");
+
             SendHandshakeRequest();
             ReceiveHandshakeResponse();
+
+            Console.WriteLine("Handshake completed");
         }
 
         private void SendHandshakeRequest()
@@ -122,7 +125,7 @@ namespace WebSocketClient
             while (!isDone)
             {
                 var bytesRead = 0L;
-                _protocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                _protocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -139,7 +142,7 @@ namespace WebSocketClient
             while (!isDone)
             {
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteData(buffer, offset, bytesRead);
+                _protocol.WriteHandshakeData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
                 isDone = _protocol.ReadHandshakeResponse();

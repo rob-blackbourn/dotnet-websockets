@@ -35,7 +35,7 @@ namespace WebSockets.Core
         public void WriteHandshakeRequest(string path, string host)
         {
             var data = CreateHandshakeRequest(path, host);
-            WriteData(data, 0, data.LongLength);
+            WriteHandshakeData(data, 0, data.LongLength);
         }
 
         private byte[] CreateHandshakeRequest(string path, string host)
