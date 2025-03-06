@@ -2,12 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace WebSockets.Core
 {
     public class WebResponse
     {
-        public WebResponse(string version, int code, string reason, IDictionary<string, IList<string>> headers, string? body)
+        // TODO: This is shared by WedRequest
+        private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
+
+        public WebResponse(
+            string version,
+            int code,
+            string reason,
+            IDictionary<string, IList<string>> headers,
+            byte[]? body)
         {
             Version = version;
             Code = code;
@@ -20,16 +29,16 @@ namespace WebSockets.Core
         public int Code { get; private set; }
         public string Reason { get; private set; }
         public IDictionary<string, IList<string>> Headers { get; private set; }
-        public string? Body { get; }
+        public byte[]? Body { get; }
 
-        public static WebResponse Parse(string data)
+        public static WebResponse Parse(byte[] data)
         {
-            var index = data.IndexOf("\r\n\r\n");
+            var index = data.IndexOf(HTTP_EOM);
             if (index == -1)
                 throw new ArgumentOutOfRangeException("Expected header terminator");
 
-            var header = data.Substring(0, index + 2);
-            var body = data.Length == index + 4 ? null : data.Substring(index + 4);
+            var header = Encoding.UTF8.GetString(data.SubArray(0, index + 2));
+            var body = data.Length == index + 4 ? null : data.SubArray(index + 4);
 
             var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (version, code, reason) = ParseResponseLine(lines[0]);

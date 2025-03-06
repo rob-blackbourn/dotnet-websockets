@@ -68,8 +68,7 @@ namespace WebSockets.Core
              if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
 
-            var text = Encoding.UTF8.GetString(_handshakeBuffer.ToArray());
-            var webResponse = WebResponse.Parse(text);
+            var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
             ValidateResponse(webResponse);
             State = ConnectionState.Connected;
             return true;           

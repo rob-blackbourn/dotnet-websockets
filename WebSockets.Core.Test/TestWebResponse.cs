@@ -17,7 +17,8 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=\r\n" +
                 "Sec-WebSocket-Protocol: chat\r\n" +
                 "\r\n";
-            var webResponse = WebResponse.Parse(text);
+            var data = Encoding.UTF8.GetBytes(text);
+            var webResponse = WebResponse.Parse(data);
             Assert.AreEqual("HTTP/1.1", webResponse.Version);
             Assert.AreEqual(101, webResponse.Code);
             Assert.AreEqual("Switching Protocols", webResponse.Reason);
