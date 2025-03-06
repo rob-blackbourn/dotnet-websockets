@@ -78,5 +78,35 @@ namespace WebSockets.Core
             var value = headerLine.Substring(index+1).Trim();
             return (name.ToLowerInvariant(), value);
         }
+
+        public byte[] ToBytes()
+        {
+            var builder = new StringBuilder();
+
+            builder.AppendFormat("{0} {1} {2}\r\n", Version, Code, Reason);
+            foreach (var (key, values) in Headers)
+            {
+                foreach (var value in values)
+                {
+                    builder.AppendFormat("{0}: {1}\r\n", key, value);
+                }
+            }
+            if (Body is not null && Body.Length > 0)
+                builder.AppendFormat("Content-Length: {0}\r\n", Body.Length);
+
+            builder.Append("\r\n");
+
+            var text = builder.ToString();
+            var header = Encoding.ASCII.GetBytes(text);
+            if (Body is null || Body.Length == 0)
+                return header;
+
+            var data = new byte[header.Length + Body.Length];
+            Array.Copy(header, 0, data, 0, header.Length);
+            Array.Copy(Body, 0, data, header.Length, Body.Length);
+            
+            return data;
+
+        }
     }
 }
