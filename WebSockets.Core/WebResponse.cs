@@ -7,25 +7,27 @@ namespace WebSockets.Core
 {
     public class WebResponse
     {
-        public WebResponse(string version, int code, string reason, IDictionary<string, IList<string>> headers)
+        public WebResponse(string version, int code, string reason, IDictionary<string, IList<string>> headers, byte[]? body)
         {
             Version = version;
             Code = code;
             Reason = reason;
             Headers = headers;
+            Body = body;
         }
 
         public string Version { get; private set; }
         public int Code { get; private set; }
         public string Reason { get; private set; }
         public IDictionary<string, IList<string>> Headers { get; private set; }
+        public byte[]? Body { get; }
 
         public static WebResponse Parse(string data)
         {
             var lines = data.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (version, code, reason) = ParseResponseLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
-            return new WebResponse(version, code, reason, headers);
+            return new WebResponse(version, code, reason, headers, null);
         }
 
         private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
