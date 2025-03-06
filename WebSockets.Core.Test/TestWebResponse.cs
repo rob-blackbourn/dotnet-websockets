@@ -17,13 +17,13 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=\r\n" +
                 "Sec-WebSocket-Protocol: chat\r\n" +
                 "\r\n";
-            var webresponse = WebResponse.Parse(text);
-            Assert.AreEqual("HTTP/1.1", webresponse.Version);
-            Assert.AreEqual(101, webresponse.Code);
-            Assert.AreEqual("Switching Protocols", webresponse.Reason);
-            Assert.AreEqual(webresponse.Headers.SingleValue("Connection"), "Upgrade");
-            Assert.AreEqual(webresponse.Headers.SingleValue("Sec-WebSocket-Accept"), "HSmrc0sMlYUkAGmm5OPpG2HaGWk=");
-            Assert.AreEqual(webresponse.Headers.SingleValue("Sec-WebSocket-Protocol"), "chat");
+            var webResponse = WebResponse.Parse(text);
+            Assert.AreEqual("HTTP/1.1", webResponse.Version);
+            Assert.AreEqual(101, webResponse.Code);
+            Assert.AreEqual("Switching Protocols", webResponse.Reason);
+            Assert.AreEqual(webResponse.Headers.SingleValue("Connection"), "Upgrade");
+            Assert.AreEqual(webResponse.Headers.SingleValue("Sec-WebSocket-Accept"), "HSmrc0sMlYUkAGmm5OPpG2HaGWk=");
+            Assert.AreEqual(webResponse.Headers.SingleValue("Sec-WebSocket-Protocol"), "chat");
         }
     }
 }
