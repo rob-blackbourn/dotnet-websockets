@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,7 @@ namespace WebSockets.Core
             }
             catch (InvalidDataException error)
             {
-                var data = BuildBadRequest(error.Message);
+                var data = BuildErrorResponse(error.Message);
                 WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Faulted;
@@ -121,21 +122,20 @@ namespace WebSockets.Core
             return matches[0];
         }
 
-        private byte[] BuildBadRequest(string reason)
+        private byte[] BuildErrorResponse(string reason)
         {
-            var body = Encoding.UTF8.GetBytes(reason);
-            var header = Encoding.UTF8.GetBytes(
-                "HTTP/1.1 400 Bad Request\r\n" +
-                $"Date: {_dateTimeProvider.Now.ToUniversalTime():r}\r\n" +
-                "Connection: close\r\n" +
-                $"Content-Length: {body.Length}\r\n" +
-                "Content-Type: text/plain; charset=utf-8\r\n" +
-                "\r\n"
+            var webResponse = new WebResponse(
+                "HTTP/1.1",
+                400,
+                "Bad Request",
+                new Dictionary<string, IList<string>>
+                {
+                    { "Connection", new List<string> { "close" }},
+                    { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
+                },
+                Encoding.UTF8.GetBytes(reason)
             );
-            var data = new byte[header.Length + body.Length];
-            Array.Copy(header, data, header.Length);
-            Array.Copy(body, 0, data, header.Length, body.Length);
-            return data;
+            return webResponse.ToBytes();
         }
     }
 }
