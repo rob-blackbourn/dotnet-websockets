@@ -43,7 +43,10 @@ namespace WebSockets.Core
         {
             try
             {
-                var data = CreateHandshakeResponse(webRequest);
+                var (responseKey, subProtocol) = ProcessHandshakeRequest(webRequest);
+                var webResponse = BuildHandshakeResponse(responseKey, subProtocol);
+
+                var data = webResponse.ToBytes();
                 WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Connected;
@@ -52,7 +55,9 @@ namespace WebSockets.Core
             }
             catch (InvalidDataException error)
             {
-                var data = BuildErrorResponse(error.Message);
+                var webResponse = BuildErrorResponse(error.Message);
+
+                var data = webResponse.ToBytes();
                 WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Faulted;
@@ -60,7 +65,7 @@ namespace WebSockets.Core
             }
         }
 
-        private byte[] CreateHandshakeResponse(WebRequest webRequest)
+        private (string responseKey, string? subProtocol) ProcessHandshakeRequest(WebRequest webRequest)
         {
             if (webRequest.Verb != "GET")
                 throw new InvalidDataException("Expected GET request");
@@ -88,10 +93,10 @@ namespace WebSockets.Core
             var subProtocol = NegotiateSubProtocols(subProtocols);
             var responseKey = CreateResponseKey(requestKey);
 
-            return BuildHandshakeResponse(responseKey, subProtocol);
+            return (responseKey, subProtocol);
         }
 
-        private byte[] BuildHandshakeResponse(string responseKey, string? subProtocol)
+        private WebResponse BuildHandshakeResponse(string responseKey, string? subProtocol)
         {
             var webResponse = new WebResponse(
                 "HTTP/1.1",
@@ -108,7 +113,7 @@ namespace WebSockets.Core
             if (subProtocol is not null)
                 webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string>{ subProtocol });
 
-            return webResponse.ToBytes();
+            return webResponse;
         }
 
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
@@ -123,7 +128,7 @@ namespace WebSockets.Core
             return matches[0];
         }
 
-        private byte[] BuildErrorResponse(string reason)
+        private WebResponse BuildErrorResponse(string reason)
         {
             var webResponse = new WebResponse(
                 "HTTP/1.1",
@@ -136,7 +141,7 @@ namespace WebSockets.Core
                 },
                 Encoding.UTF8.GetBytes(reason)
             );
-            return webResponse.ToBytes();
+            return webResponse;
         }
     }
 }
