@@ -15,12 +15,13 @@ namespace WebSockets.Core
     {
         private readonly string _origin;
         private readonly string _key;
-        private string? _selectedSubProtocol;
 
         public ClientProtocol(string origin, string[] subProtocols)
             :   this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
+
+        public string? SelectedSubProtocol { get; private set; } = null;
 
         public ClientProtocol(
             string origin,
@@ -46,7 +47,7 @@ namespace WebSockets.Core
                 return false;
 
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
-            _selectedSubProtocol = ProcessHandshakeResponse(webResponse);
+            SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
             State = ConnectionState.Connected;
             return true;           
         }
