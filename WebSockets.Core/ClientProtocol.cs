@@ -40,6 +40,17 @@ namespace WebSockets.Core
             WriteHandshakeData(data, 0, data.LongLength);
         }
 
+        public bool ReadHandshakeResponse()
+        {
+             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
+                return false;
+
+            var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
+            _selectedSubProtocol = ProcessHandshakeResponse(webResponse);
+            State = ConnectionState.Connected;
+            return true;           
+        }
+
         private WebRequest BuildHandshakeRequest(string path, string host)
         {
             var webRequest = new WebRequest(
@@ -60,17 +71,6 @@ namespace WebSockets.Core
                 webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', _subProtocols) });
 
             return webRequest;
-        }
-
-        public bool ReadHandshakeResponse()
-        {
-             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
-                return false;
-
-            var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
-            _selectedSubProtocol = ProcessHandshakeResponse(webResponse);
-            State = ConnectionState.Connected;
-            return true;           
         }
 
         private string? ProcessHandshakeResponse(WebResponse webResponse)
