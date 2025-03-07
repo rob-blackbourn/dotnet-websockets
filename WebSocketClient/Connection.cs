@@ -18,7 +18,11 @@ namespace WebSocketClient
         public void Start()
         {
             PerformHandshake();
+            ProcessMessages();
+        }
 
+        private void ProcessMessages()
+        {
             Console.WriteLine("Processing messages.");
             Console.WriteLine("Sending 'close' will cause the server to initiate a close handshake.");
             Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
