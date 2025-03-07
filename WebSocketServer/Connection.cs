@@ -20,7 +20,11 @@ namespace WebSocketServer
         public void Start()
         {
             PerformHandshake();
+            ProcessMessages();
+        }
 
+        private void ProcessMessages()
+        {
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
             var buffer = new byte[1024];

@@ -50,5 +50,59 @@ namespace WebSockets.Core
 
             return buf;                    
         }
+
+        public static int IndexOf<T>(this T[] data, T[] pattern)
+        where T: struct
+        {
+            for (var i = 0; i < 1 + data.Length - pattern.Length; ++i)
+            {
+                bool found = true;
+                for (var j = 0; j < pattern.Length; ++j)
+                {
+                    T a = data[i + j];
+                    T b = pattern[j];
+                    if (!a.Equals(b))
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return i;
+            }
+            return -1;
+        }
+
+        public static T[] SubArray<T>(this T[] data, int start)
+        where T: struct
+        {
+            if (start < 0)
+                throw new ArgumentOutOfRangeException("start must be zero or positive");
+            if (start > data.Length)
+                throw new ArgumentOutOfRangeException("start is past the end of the array");
+            if (start == data.Length)
+                return new T[0];
+            var length = data.Length - start;
+            var copy = new T[length];
+            Array.Copy(data, start, copy, 0, length);
+            return data;
+        }
+
+        public static T[] SubArray<T>(this T[] data, int start, int count)
+        where T: struct
+        {
+            if (start < 0)
+                throw new ArgumentOutOfRangeException("start must be zero or positive");
+            if (count < 0)
+                throw new ArgumentOutOfRangeException("count must be zero or positive");
+            if (start + count > data.Length)
+                throw new ArgumentOutOfRangeException("insufficient data");
+            if (count == 0 || start == data.Length)
+                return new T[0];
+            var copy = new T[count];
+            Array.Copy(data, start, copy, 0, count);
+            return data;
+        }
+
     }
 }
