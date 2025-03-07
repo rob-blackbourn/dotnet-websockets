@@ -74,8 +74,8 @@ namespace WebSockets.Core
             if (webRequest.Headers.SingleValue("Upgrade")?.ToLowerInvariant() != "websocket")
                 throw new InvalidDataException("Expected upgrade header to be \"websocket\"");
 
-            var key = webRequest.Headers.SingleValue("Sec-WebSocket-Key"); 
-            if (key is null)
+            var requestKey = webRequest.Headers.SingleValue("Sec-WebSocket-Key"); 
+            if (requestKey is null)
                 throw new InvalidDataException("Mandatory header Sec-WebSocket-Key missing");
 
             var version = webRequest.Headers.SingleValue("Sec-WebSocket-Version"); 
@@ -85,29 +85,30 @@ namespace WebSockets.Core
                 throw new InvalidDataException("Unsupported version");
 
             var subProtocols = webRequest.Headers.SingleCommaValues("Sec-WebSocket-Protocol");
+            var subProtocol = NegotiateSubProtocols(subProtocols);
+            var responseKey = CreateResponseKey(requestKey);
 
-            return BuildHandshakeResponse(key, subProtocols);
+            return BuildHandshakeResponse(responseKey, subProtocol);
         }
 
-        private byte[] BuildHandshakeResponse(string requestKey, string[]? candidateSubProtocols)
+        private byte[] BuildHandshakeResponse(string responseKey, string? subProtocol)
         {
-            var builder = new StringBuilder();
-
-            builder.Append("HTTP/1.1 101 Switching Protocols\r\n");
-            builder.Append("Upgrade: websocket\r\n");
-            builder.Append("Connection: Upgrade\r\n");
-
-            var subProtocol = NegotiateSubProtocols(candidateSubProtocols);
+            var webResponse = new WebResponse(
+                "HTTP/1.1",
+                101,
+                "Switching Protocols",
+                new Dictionary<string, IList<string>>
+                {
+                    {"Upgrade", new List<string> { "websocket" }},
+                    {"Connection", new List<string> { "upgrade" }},
+                    {"Sec-WebSocket-Accept", new List<string> { responseKey }},
+                },
+                null
+            );
             if (subProtocol is not null)
-                builder.AppendFormat("Sec-WebSocket-Protocol: {0}\r\n", subProtocol);
+                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string>{ subProtocol });
 
-            builder.AppendFormat("Sec-WebSocket-Accept: {0}\r\n", CreateResponseKey(requestKey));
-
-            builder.Append("\r\n");
-
-            var text = builder.ToString();
-            var data = Encoding.ASCII.GetBytes(text);
-            return data;
+            return webResponse.ToBytes();
         }
 
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
