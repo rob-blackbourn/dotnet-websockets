@@ -35,11 +35,12 @@ namespace WebSockets.Core
 
         public void WriteHandshakeRequest(string path, string host)
         {
-            var data = CreateHandshakeRequest(path, host);
+            var webRequest = BuildHandshakeRequest(path, host);
+            var data = Encoding.ASCII.GetBytes(webRequest.ToString());
             WriteHandshakeData(data, 0, data.LongLength);
         }
 
-        private byte[] CreateHandshakeRequest(string path, string host)
+        private WebRequest BuildHandshakeRequest(string path, string host)
         {
             var webRequest = new WebRequest(
                 "GET",
@@ -58,9 +59,7 @@ namespace WebSockets.Core
             if (_subProtocols is not null && _subProtocols.Length > 0)
                 webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', _subProtocols) });
 
-            var text = webRequest.ToString();
-            var data = Encoding.ASCII.GetBytes(text);
-            return data;
+            return webRequest;
         }
 
         public bool ReadHandshakeResponse()
@@ -69,12 +68,12 @@ namespace WebSockets.Core
                 return false;
 
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
-            ValidateResponse(webResponse);
+            _selectedSubProtocol = ProcessHandshakeResponse(webResponse);
             State = ConnectionState.Connected;
             return true;           
         }
 
-        private void ValidateResponse(WebResponse webResponse)
+        private string? ProcessHandshakeResponse(WebResponse webResponse)
         {
             if (webResponse.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");
@@ -96,7 +95,7 @@ namespace WebSockets.Core
             if (accept != expected)
                 throw new InvalidDataException("Invalid Sec-WebSocket-Accept token");
 
-            _selectedSubProtocol = webResponse.Headers.SingleValue("Sec-WebSocket-Protocol");
+            return webResponse.Headers.SingleValue("Sec-WebSocket-Protocol");
         }
     }
 }
