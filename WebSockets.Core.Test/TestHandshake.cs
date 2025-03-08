@@ -45,10 +45,7 @@ namespace WebSockets.Core.Test
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                {
                     clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
-                    Console.WriteLine("Sent client data");
-                }
             }
 
             var isComplete = clientProtocol.ReadHandshakeResponse();
