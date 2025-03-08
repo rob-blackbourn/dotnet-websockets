@@ -34,7 +34,7 @@ namespace WebSockets.Core
                 offset += item.Length;
             }
 
-            return buf;                    
+            return buf;
         }
 
         public static T[] ToFlatArray<T>(this IList<ArrayBuffer<T>> buffers)
@@ -48,11 +48,11 @@ namespace WebSockets.Core
                 offset += item.Count;
             }
 
-            return buf;                    
+            return buf;
         }
 
         public static int IndexOf<T>(this T[] data, T[] pattern)
-        where T: struct
+        where T : struct
         {
             for (var i = 0; i < 1 + data.Length - pattern.Length; ++i)
             {
@@ -74,7 +74,7 @@ namespace WebSockets.Core
         }
 
         public static T[] SubArray<T>(this T[] data, int start)
-        where T: struct
+        where T : struct
         {
             if (start < 0)
                 throw new ArgumentOutOfRangeException("start must be zero or positive");
@@ -89,7 +89,7 @@ namespace WebSockets.Core
         }
 
         public static T[] SubArray<T>(this T[] data, int start, int count)
-        where T: struct
+        where T : struct
         {
             if (start < 0)
                 throw new ArgumentOutOfRangeException("start must be zero or positive");

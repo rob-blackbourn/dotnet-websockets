@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSockets.Core", "WebSocke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSockets.Core.Test", "WebSockets.Core.Test\WebSockets.Core.Test.csproj", "{D4FB17B1-8954-43FA-BDAD-116A65AEAB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketServer", "WebSocketServer\WebSocketServer.csproj", "{CD1BFAF2-0808-48D2-BD7B-D96C34159F5B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{37112B6A-57BA-4E27-BA7C-590968BB32CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketClient", "WebSocketClient\WebSocketClient.csproj", "{F8080D08-60A4-45BC-919A-CD6419CE4CC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoServer", "Examples\EchoServer\EchoServer.csproj", "{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EchoClient", "Examples\EchoClient\EchoClient.csproj", "{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,13 +30,17 @@ Global
 		{D4FB17B1-8954-43FA-BDAD-116A65AEAB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4FB17B1-8954-43FA-BDAD-116A65AEAB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4FB17B1-8954-43FA-BDAD-116A65AEAB83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD1BFAF2-0808-48D2-BD7B-D96C34159F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD1BFAF2-0808-48D2-BD7B-D96C34159F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD1BFAF2-0808-48D2-BD7B-D96C34159F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD1BFAF2-0808-48D2-BD7B-D96C34159F5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8080D08-60A4-45BC-919A-CD6419CE4CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8080D08-60A4-45BC-919A-CD6419CE4CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8080D08-60A4-45BC-919A-CD6419CE4CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8080D08-60A4-45BC-919A-CD6419CE4CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22E400ED-4CA0-4B5A-BA2B-307C3582C3E5} = {37112B6A-57BA-4E27-BA7C-590968BB32CC}
+		{FA37D4EB-D6BB-4A7A-ABAF-51F31A51734B} = {37112B6A-57BA-4E27-BA7C-590968BB32CC}
 	EndGlobalSection
 EndGlobal

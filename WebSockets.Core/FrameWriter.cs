@@ -100,7 +100,7 @@ namespace WebSockets.Core
                     value |= (byte)0b01111111;
                     _state = State.SHORT_LENGTH;
                 }
-                
+
                 buffer[offset] = value;
                 offset += 1;
             }
@@ -176,7 +176,7 @@ namespace WebSockets.Core
                         _sendBuffer = new ArrayBuffer<byte>(buf);
                     }
                 }
-                
+
                 offset += _sendBuffer.CopyInto(buffer, offset, length);
 
                 if (_sendBuffer.Count != 0)

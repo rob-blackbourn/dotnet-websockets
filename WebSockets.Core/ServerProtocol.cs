@@ -16,7 +16,7 @@ namespace WebSockets.Core
     public class ServerProtocol : Protocol
     {
         public ServerProtocol(string[] subProtocols)
-            :   this(subProtocols, new DateTimeProvider(), new NonceGenerator())
+            : this(subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
@@ -24,7 +24,7 @@ namespace WebSockets.Core
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
-            :   base(false, subProtocols, dateTimeProvider, nonceGenerator)
+            : base(false, subProtocols, dateTimeProvider, nonceGenerator)
         {
         }
 
@@ -72,18 +72,18 @@ namespace WebSockets.Core
 
             if (webRequest.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");
-                
+
             if (webRequest.Headers.SingleValue("Connection")?.ToLowerInvariant() != "upgrade")
                 throw new InvalidDataException("Expected connection header to be \"upgrade\"");
-                
+
             if (webRequest.Headers.SingleValue("Upgrade")?.ToLowerInvariant() != "websocket")
                 throw new InvalidDataException("Expected upgrade header to be \"websocket\"");
 
-            var requestKey = webRequest.Headers.SingleValue("Sec-WebSocket-Key"); 
+            var requestKey = webRequest.Headers.SingleValue("Sec-WebSocket-Key");
             if (requestKey is null)
                 throw new InvalidDataException("Mandatory header Sec-WebSocket-Key missing");
 
-            var version = webRequest.Headers.SingleValue("Sec-WebSocket-Version"); 
+            var version = webRequest.Headers.SingleValue("Sec-WebSocket-Version");
             if (version is null)
                 throw new InvalidDataException("Mandatory header Sec-WebSocket-Version missing");
             if (version != "13")
@@ -111,7 +111,7 @@ namespace WebSockets.Core
                 null
             );
             if (subProtocol is not null)
-                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string>{ subProtocol });
+                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string> { subProtocol });
 
             return webResponse;
         }

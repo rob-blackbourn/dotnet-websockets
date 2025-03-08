@@ -86,7 +86,7 @@ namespace WebSockets.Core
     public class TextMessage : Message, IEquatable<TextMessage>
     {
         public TextMessage(string text)
-            :   base(MessageType.Text)
+            : base(MessageType.Text)
         {
             Text = text;
         }
@@ -101,7 +101,7 @@ namespace WebSockets.Core
     public abstract class DataMessage : Message, IEquatable<DataMessage>
     {
         public DataMessage(MessageType type, byte[] data)
-            :   base(type)
+            : base(type)
         {
             Data = data;
         }
@@ -141,7 +141,7 @@ namespace WebSockets.Core
     public class CloseMessage : Message, IEquatable<CloseMessage>
     {
         public CloseMessage(ushort? code, string? reason)
-            :   base(MessageType.Close)
+            : base(MessageType.Close)
         {
             Code = code;
             Reason = reason;

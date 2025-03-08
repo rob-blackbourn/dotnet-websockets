@@ -43,7 +43,7 @@ namespace WebSockets.Core
         /// The state of the connection.
         /// </summary>
         /// <value>The connection state.</value>
-        public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
+        public ConnectionState State { get; protected set; } = ConnectionState.Handshake;
 
         /// <summary>
         /// Read handshake data from the network into the protocol buffer.

@@ -97,22 +97,22 @@ namespace WebSockets.Core
             {
                 case OpCode.Text:
                     return new TextMessage(Encoding.UTF8.GetString(payload.ToArray()));
-                    
+
                 case OpCode.Binary:
                     return new BinaryMessage(payload.ToArray());
 
                 case OpCode.Close:
-                {
-                    ushort? code = null;
-                    if (payload.Count == 1 || payload.Count > 125)
-                        throw new InvalidOperationException("Invalid close payload");
-                    else if (payload.Count >= 2)
-                        code = BinaryPrimitives.ReadUInt16BigEndian(payload.Slice(0, 2).ToArray());
+                    {
+                        ushort? code = null;
+                        if (payload.Count == 1 || payload.Count > 125)
+                            throw new InvalidOperationException("Invalid close payload");
+                        else if (payload.Count >= 2)
+                            code = BinaryPrimitives.ReadUInt16BigEndian(payload.Slice(0, 2).ToArray());
 
-                    var reason = payload.Count <= 2 ? null : Encoding.UTF8.GetString(payload.Slice(2).ToArray());
+                        var reason = payload.Count <= 2 ? null : Encoding.UTF8.GetString(payload.Slice(2).ToArray());
 
-                    return new CloseMessage(code, reason);
-                }
+                        return new CloseMessage(code, reason);
+                    }
                 case OpCode.Ping:
                     return new PingMessage(payload.ToArray());
 

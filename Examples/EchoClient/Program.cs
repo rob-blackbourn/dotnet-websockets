@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using WebSockets.Core;
 
-namespace  WebSocketClient
+namespace EchoClient
 {
     class Program
     {
@@ -19,5 +18,5 @@ namespace  WebSocketClient
             var connection = new Connection(tcpClient, "brick.jetblack.net", []);
             connection.Start();
         }
-    }    
+    }
 }

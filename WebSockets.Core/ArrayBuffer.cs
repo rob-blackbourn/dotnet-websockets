@@ -72,7 +72,7 @@ namespace WebSockets.Core
         {
             if (Offset == 0 && Count == Array.LongLength)
                 return Array;
-                
+
             var buf = new T[Count];
             System.Array.Copy(Array, Offset, buf, 0, Count);
             return buf;
@@ -98,15 +98,15 @@ namespace WebSockets.Core
 
         public static bool operator ==(ArrayBuffer<T> obj1, ArrayBuffer<T> obj2)
         {
-            if (ReferenceEquals(obj1, obj2)) 
+            if (ReferenceEquals(obj1, obj2))
                 return true;
-            if (ReferenceEquals(obj1, null)) 
+            if (ReferenceEquals(obj1, null))
                 return false;
             if (ReferenceEquals(obj2, null))
                 return false;
             return obj1.Equals(obj2);
         }
-        
+
         public static bool operator !=(ArrayBuffer<T> obj1, ArrayBuffer<T> obj2) => !(obj1 == obj2);
     }
 }

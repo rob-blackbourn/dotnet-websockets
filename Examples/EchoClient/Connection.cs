@@ -2,7 +2,7 @@ using System;
 using System.Net.Sockets;
 using WebSockets.Core;
 
-namespace WebSocketClient
+namespace EchoClient
 {
     class Connection
     {

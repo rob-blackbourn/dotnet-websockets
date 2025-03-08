@@ -4,7 +4,7 @@ namespace WebSockets.Core
 {
     public struct Reserved : IEquatable<Reserved>
     {
-        public static Reserved AllFalse {get;} = new Reserved(false, false, false);
+        public static Reserved AllFalse { get; } = new Reserved(false, false, false);
 
         public Reserved(bool isRsv1, bool isRsv2, bool isRsv3)
         {
