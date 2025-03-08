@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Text;
-using WebSockets.Core;
 
 namespace WebSockets.Core.Test
 {
