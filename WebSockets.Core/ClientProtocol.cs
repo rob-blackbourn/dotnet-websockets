@@ -42,10 +42,17 @@ namespace WebSockets.Core
 
         public bool ReadHandshakeResponse()
         {
-            if (!_handshakeBuffer.EndsWith(HTTP_EOM))
+            var index = _handshakeBuffer.IndexOf(HTTP_EOM, 0);
+            if (index == -1)
                 return false;
 
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
+            if (webResponse.Code != 101)
+            {
+                State = ConnectionState.Faulted;
+                return true;
+            }
+            
             SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
             State = ConnectionState.Connected;
             return true;

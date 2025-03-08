@@ -7,7 +7,7 @@ namespace WebSockets.Core.Test
     public sealed class TestWebResponse
     {
         [TestMethod]
-        public void TestParseWebSocketRequest()
+        public void TestParseResponseNoBody()
         {
             var text =
                 "HTTP/1.1 101 Switching Protocols\r\n" +
@@ -25,6 +25,31 @@ namespace WebSockets.Core.Test
             Assert.AreEqual(webResponse.Headers.SingleValue("Sec-WebSocket-Accept"), "HSmrc0sMlYUkAGmm5OPpG2HaGWk=");
             Assert.AreEqual(webResponse.Headers.SingleValue("Sec-WebSocket-Protocol"), "chat");
         }
+
+        [TestMethod]
+        public void TestParseResponseWithBody()
+        {
+            var text =
+                "HTTP/1.1 400 Bad Request\r\n" +
+                "Date: websocket\r\n" +
+                "Connection-Type: close\r\n" +
+                "Content-Type: text/plain\r\n" +
+                "Content-Length: 12\r\n" +
+                "\r\n" +
+                "invalid path";
+            var data = Encoding.UTF8.GetBytes(text);
+            var webResponse = WebResponse.Parse(data);
+            Assert.AreEqual("HTTP/1.1", webResponse.Version);
+            Assert.AreEqual(400, webResponse.Code);
+            Assert.AreEqual("Bad Request", webResponse.Reason);
+            Assert.AreEqual(webResponse.Headers.SingleValue("Connection-Type"), "close");
+            Assert.AreEqual(webResponse.Headers.SingleValue("Content-Type"), "text/plain");
+            Assert.AreEqual(webResponse.Headers.SingleValue("Content-Length"), "12");
+            Assert.IsNotNull(webResponse.Body);
+            var body = Encoding.UTF8.GetString(webResponse.Body);
+            Assert.AreEqual("invalid path", body);
+        }
+
 
         [TestMethod]
         public void TestRoundTrip()

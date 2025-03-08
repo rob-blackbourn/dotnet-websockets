@@ -38,7 +38,9 @@ namespace WebSockets.Core
                 throw new ArgumentOutOfRangeException("Expected header terminator");
 
             var header = Encoding.UTF8.GetString(data.SubArray(0, index + 2));
-            var body = data.Length == index + 4 ? null : data.SubArray(index + 4);
+            var body = data.Length == index + 4
+                ? null
+                : data.SubArray(index + 4);
 
             var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (version, code, reason) = ParseResponseLine(lines[0]);

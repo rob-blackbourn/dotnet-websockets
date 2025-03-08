@@ -54,13 +54,18 @@ namespace WebSockets.Core
             }
             catch (InvalidDataException error)
             {
-                var webResponse = BuildErrorResponse(error.Message);
-
-                var data = webResponse.ToBytes();
-                WriteHandshakeData(data, 0, data.Length);
-
-                State = ConnectionState.Faulted;
+                WriteHandshakeRejectResponse(error.Message);
             }
+        }
+
+        public void WriteHandshakeRejectResponse(string reason)
+        {
+            var webResponse = BuildErrorResponse(reason);
+
+            var data = webResponse.ToBytes();
+            WriteHandshakeData(data, 0, data.Length);
+
+            State = ConnectionState.Faulted;
         }
 
         private (string responseKey, string? subProtocol) ProcessHandshakeRequest(WebRequest webRequest)

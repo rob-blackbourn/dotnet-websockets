@@ -85,7 +85,7 @@ namespace WebSockets.Core
             var length = data.Length - start;
             var copy = new T[length];
             Array.Copy(data, start, copy, 0, length);
-            return data;
+            return copy;
         }
 
         public static T[] SubArray<T>(this T[] data, int start, int count)
@@ -101,7 +101,7 @@ namespace WebSockets.Core
                 return new T[0];
             var copy = new T[count];
             Array.Copy(data, start, copy, 0, count);
-            return data;
+            return copy;
         }
 
     }
