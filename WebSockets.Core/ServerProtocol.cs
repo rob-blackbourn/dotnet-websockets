@@ -134,6 +134,7 @@ namespace WebSockets.Core
                 "Bad Request",
                 new Dictionary<string, IList<string>>
                 {
+                    { "Date", new List<string> { _dateTimeProvider.Now.ToUniversalTime().ToString("r") }},
                     { "Connection", new List<string> { "close" }},
                     { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
                 },
