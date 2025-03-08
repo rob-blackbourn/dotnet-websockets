@@ -6,7 +6,7 @@ namespace WebSockets.Core.Test
     public sealed class TestHandshake
     {
         [TestMethod]
-        public void TestEndToEnd()
+        public void TestOpenHandshake()
         {
             var clientProtocol = new ClientProtocol(
                 "gandalf.rivendell.com",
@@ -53,6 +53,8 @@ namespace WebSockets.Core.Test
 
             var isComplete = clientProtocol.ReadHandshakeResponse();
             Assert.IsTrue(isComplete);
+            Assert.AreEqual("bar", clientProtocol.SelectedSubProtocol);
+            Assert.AreEqual("bar", serverProtocol.SelectedSubProtocol);
         }
     }
 }

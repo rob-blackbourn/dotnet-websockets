@@ -44,6 +44,7 @@ namespace WebSockets.Core
         /// </summary>
         /// <value>The connection state.</value>
         public ConnectionState State { get; protected set; } = ConnectionState.Handshake;
+        public string? SelectedSubProtocol { get; protected set; } = null;
 
         /// <summary>
         /// Read handshake data from the network into the protocol buffer.

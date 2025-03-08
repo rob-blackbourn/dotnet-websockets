@@ -39,7 +39,7 @@ namespace WebSockets.Core
             return webRequest;
         }
 
-        public bool WriteHandshakeResponse(WebRequest webRequest)
+        public void WriteHandshakeResponse(WebRequest webRequest)
         {
             try
             {
@@ -49,9 +49,8 @@ namespace WebSockets.Core
                 var data = webResponse.ToBytes();
                 WriteHandshakeData(data, 0, data.Length);
 
+                SelectedSubProtocol = subProtocol;
                 State = ConnectionState.Connected;
-                return true;
-
             }
             catch (InvalidDataException error)
             {
@@ -61,7 +60,6 @@ namespace WebSockets.Core
                 WriteHandshakeData(data, 0, data.Length);
 
                 State = ConnectionState.Faulted;
-                return true;
             }
         }
 

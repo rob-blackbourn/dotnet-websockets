@@ -21,7 +21,6 @@ namespace WebSockets.Core
         {
         }
 
-        public string? SelectedSubProtocol { get; private set; } = null;
 
         public ClientProtocol(
             string origin,
