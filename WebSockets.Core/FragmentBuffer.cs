@@ -15,13 +15,13 @@ namespace WebSockets.Core
     {
         private readonly LinkedList<ArrayBuffer<T>> _buffer = new LinkedList<ArrayBuffer<T>>();
 
-        public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); }}
+        public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); } }
 
         public void Write(T[] array)
         {
             Write(array, 0, array.LongLength);
         }
-        
+
         public void Write(T[] array, long offset, long length)
         {
             _buffer.AddFirst(new ArrayBuffer<T>(array, offset, length));
@@ -141,7 +141,7 @@ namespace WebSockets.Core
 
             _buffer.Clear();
 
-            return buf;                    
+            return buf;
         }
     }
 }

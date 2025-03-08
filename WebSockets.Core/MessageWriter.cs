@@ -47,7 +47,7 @@ namespace WebSockets.Core
         {
             var opCode = GetOpCode(message.Type);
             var payload = GetPayload(message);
-            
+
             var frameCount = 0;
             while (payload.Count > 0 || opCode != OpCode.Continuation)
             {
@@ -92,30 +92,30 @@ namespace WebSockets.Core
                 case MessageType.Pong:
                     return ((DataMessage)message).Data;
                 case MessageType.Close:
-                {
-                    var closeMessage = (CloseMessage)message;
-                    if (!closeMessage.Code.HasValue && closeMessage.Reason != null)
-                        throw new InvalidOperationException("a close message with reason text must have a code");
-
-                    var data = new List<byte[]>();
-
-                    if (closeMessage.Code.HasValue)
                     {
-                        var codeBuf = new byte[2];
-                        BinaryPrimitives.WriteUInt16BigEndian(codeBuf, closeMessage.Code.Value);
-                        data.Add(codeBuf);
-                    }
+                        var closeMessage = (CloseMessage)message;
+                        if (!closeMessage.Code.HasValue && closeMessage.Reason != null)
+                            throw new InvalidOperationException("a close message with reason text must have a code");
 
-                    if (closeMessage.Reason != null)
-                    {
-                        var reasonBuf = Encoding.UTF8.GetBytes(closeMessage.Reason);
-                        if (reasonBuf.Length > 123)
-                            throw new InvalidOperationException("close reason must be 123 bytes or less");
-                        data.Add(reasonBuf);
-                    }
+                        var data = new List<byte[]>();
 
-                    return data.ToFlatArray();
-                }
+                        if (closeMessage.Code.HasValue)
+                        {
+                            var codeBuf = new byte[2];
+                            BinaryPrimitives.WriteUInt16BigEndian(codeBuf, closeMessage.Code.Value);
+                            data.Add(codeBuf);
+                        }
+
+                        if (closeMessage.Reason != null)
+                        {
+                            var reasonBuf = Encoding.UTF8.GetBytes(closeMessage.Reason);
+                            if (reasonBuf.Length > 123)
+                                throw new InvalidOperationException("close reason must be 123 bytes or less");
+                            data.Add(reasonBuf);
+                        }
+
+                        return data.ToFlatArray();
+                    }
                 default:
                     throw new InvalidOperationException("unhandled message type");
             }

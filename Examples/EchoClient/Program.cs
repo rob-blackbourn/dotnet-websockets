@@ -18,5 +18,5 @@ namespace EchoClient
             var connection = new Connection(tcpClient, "brick.jetblack.net", []);
             connection.Start();
         }
-    }    
+    }
 }

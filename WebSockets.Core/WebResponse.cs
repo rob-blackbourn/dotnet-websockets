@@ -75,7 +75,7 @@ namespace WebSockets.Core
             if (index == -1)
                 throw new InvalidDataException("A header line should contain a colon");
             var name = headerLine.Substring(0, index).Trim();
-            var value = headerLine.Substring(index+1).Trim();
+            var value = headerLine.Substring(index + 1).Trim();
             return (name.ToLowerInvariant(), value);
         }
 
@@ -104,7 +104,7 @@ namespace WebSockets.Core
             var data = new byte[header.Length + Body.Length];
             Array.Copy(header, 0, data, 0, header.Length);
             Array.Copy(Body, 0, data, header.Length, Body.Length);
-            
+
             return data;
 
         }

@@ -80,7 +80,8 @@ namespace EchoServer
                     {
                         Console.WriteLine("Sending close (completing close handshake).");
                         SendMessage(message);
-                    } else if (_protocol.State == ConnectionState.Closed)
+                    }
+                    else if (_protocol.State == ConnectionState.Closed)
                     {
                         Console.WriteLine("Close handshake complete");
                     }

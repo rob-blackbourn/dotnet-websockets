@@ -17,7 +17,7 @@ namespace WebSockets.Core
         private readonly string _key;
 
         public ClientProtocol(string origin, string[] subProtocols)
-            :   this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
+            : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
@@ -28,7 +28,7 @@ namespace WebSockets.Core
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
-            :   base(true, subProtocols, dateTimeProvider, nonceGenerator)
+            : base(true, subProtocols, dateTimeProvider, nonceGenerator)
         {
             _origin = origin;
             _key = nonceGenerator.CreateClientKey();
@@ -43,13 +43,13 @@ namespace WebSockets.Core
 
         public bool ReadHandshakeResponse()
         {
-             if (!_handshakeBuffer.EndsWith(HTTP_EOM))
+            if (!_handshakeBuffer.EndsWith(HTTP_EOM))
                 return false;
 
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
             SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
             State = ConnectionState.Connected;
-            return true;           
+            return true;
         }
 
         private WebRequest BuildHandshakeRequest(string path, string host)
@@ -81,17 +81,17 @@ namespace WebSockets.Core
 
             if (webResponse.Code != 101)
                 throw new InvalidDataException("Expected response code 101");
-                
+
             if (webResponse.Headers.SingleValue("Connection")?.ToLowerInvariant() != "upgrade")
                 throw new InvalidDataException("Expected connection header to be \"upgrade\"");
-                
+
             if (webResponse.Headers.SingleValue("Upgrade")?.ToLowerInvariant() != "websocket")
                 throw new InvalidDataException("Expected upgrade header to be \"websocket\"");
 
-            var accept = webResponse.Headers.SingleValue("Sec-WebSocket-Accept"); 
+            var accept = webResponse.Headers.SingleValue("Sec-WebSocket-Accept");
             if (accept is null)
                 throw new InvalidDataException("Mandatory header Sec-WebSocket-Accept missing");
-            
+
             var expected = CreateResponseKey(_key);
             if (accept != expected)
                 throw new InvalidDataException("Invalid Sec-WebSocket-Accept token");
