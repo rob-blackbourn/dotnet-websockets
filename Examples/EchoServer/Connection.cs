@@ -4,7 +4,7 @@ using System.Net.Sockets;
 
 using WebSockets.Core;
 
-namespace WebSocketServer
+namespace EchoServer
 {
     class Connection
     {

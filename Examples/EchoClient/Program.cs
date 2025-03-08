@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using WebSockets.Core;
 
-namespace  WebSocketClient
+namespace EchoClient
 {
     class Program
     {
