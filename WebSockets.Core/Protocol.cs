@@ -4,8 +4,11 @@ using System.Text;
 
 namespace WebSockets.Core
 {
-
-    public class Protocol
+    /// <summary>
+    /// The base protocol class providing functionality shared by both clients
+    /// and servers.
+    /// </summary>
+    public abstract class Protocol
     {
         private protected static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
@@ -16,7 +19,14 @@ namespace WebSockets.Core
         private protected readonly IDateTimeProvider _dateTimeProvider;
         private protected bool _isClient;
 
-        public Protocol(
+        /// <summary>
+        /// Construct the protocol.
+        /// </summary>
+        /// <param name="isClient">If true the protocol is for a client; otherwise it is for a server.</param>
+        /// <param name="subProtocols">The supported sub-protocols.</param>
+        /// <param name="dateTimeProvider">A date/time provider.</param>
+        /// <param name="nonceGenerator">A generator for secrets.</param>
+        protected Protocol(
             bool isClient,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
@@ -29,14 +39,23 @@ namespace WebSockets.Core
             _messageWriter = new MessageWriter(nonceGenerator);
         }
 
+        /// <summary>
+        /// The state of the connection.
+        /// </summary>
+        /// <value>The connection state.</value>
         public ConnectionState State {get; protected set; } = ConnectionState.Handshake;
 
-        public bool ReadHandshakeData(byte[] buffer, ref long offset, long length)
+        /// <summary>
+        /// Read handshake data from the network into the protocol buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer containing the data.</param>
+        /// <param name="offset">The offset into the buffer.</param>
+        /// <param name="length">The length of the data.</param>
+        public void ReadHandshakeData(byte[] buffer, ref long offset, long length)
         {
             // TODO: Doesn't support offset and length.
             offset = _handshakeBuffer.Read(buffer);
             // TODO: Doesn't return bool.
-            return true;
         }
 
         public void WriteHandshakeData(byte[] buffer, long offset, long length)
@@ -47,15 +66,7 @@ namespace WebSockets.Core
 
         public bool ReadMessageData(byte[] buffer, ref long offset, long length)
         {
-            if (State == ConnectionState.Handshake)
-            {
-                // TODO: Doesn't support offset and length.
-                offset = _handshakeBuffer.Read(buffer);
-                // TODO: Doesn't return bool.
-                return true;
-            }
-            else
-                return _messageWriter.ReadMessageData(buffer, ref offset, length);
+            return _messageWriter.ReadMessageData(buffer, ref offset, length);
         }
 
         public void WriteMessageData(byte[] buffer, long offset, long length)
