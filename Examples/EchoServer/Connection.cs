@@ -36,7 +36,7 @@ namespace EchoServer
 
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead > 0)
-                    _messageProtocol.WriteMessageData(buffer, 0, bytesRead);
+                    _messageProtocol.WriteData(buffer, 0, bytesRead);
                 else
                 {
                     Console.WriteLine("The client closed the connection.");
@@ -118,12 +118,12 @@ namespace EchoServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _handshakeProtocol.WriteHandshakeData(buffer, 0, bytesRead);
+                _handshakeProtocol.WriteData(buffer, 0, bytesRead);
 
-                webRequest = _handshakeProtocol.ReadHandshakeRequest();
+                webRequest = _handshakeProtocol.ReadRequest();
             }
 
-            _handshakeProtocol.WriteHandshakeResponse(webRequest);
+            _handshakeProtocol.WriteResponse(webRequest);
         }
 
         private void SendHandshakeResponse()
@@ -133,7 +133,7 @@ namespace EchoServer
             {
                 var buffer = new byte[1024];
                 var bytesRead = 0L;
-                _handshakeProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -153,7 +153,7 @@ namespace EchoServer
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _messageProtocol.ReadMessageData(buffer, ref offset, buffer.Length);
+                isDone = _messageProtocol.ReadData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }

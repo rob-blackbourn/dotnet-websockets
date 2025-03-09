@@ -32,32 +32,32 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public void WriteHandshakeRequest(string path, string host)
+        public void WriteRequest(string path, string host)
         {
-            var webRequest = BuildHandshakeRequest(path, host);
+            var webRequest = BuildRequest(path, host);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
-            WriteHandshakeData(data, 0, data.LongLength);
+            WriteData(data, 0, data.LongLength);
         }
 
-        public WebResponse? ReadHandshakeResponse()
+        public WebResponse? ReadResponse()
         {
-            var index = _handshakeBuffer.IndexOf(HTTP_EOM, 0);
+            var index = _buffer.IndexOf(HTTP_EOM, 0);
             if (index == -1)
                 return null;
 
-            var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
+            var webResponse = WebResponse.Parse(_buffer.ToArray());
             if (webResponse.Code != 101)
             {
                 State = HandshakeState.Failed;
                 return webResponse;
             }
             
-            SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
+            SelectedSubProtocol = ProcessResponse(webResponse);
             State = HandshakeState.Succeeded;
             return webResponse;
         }
 
-        private WebRequest BuildHandshakeRequest(string path, string host)
+        private WebRequest BuildRequest(string path, string host)
         {
             var webRequest = new WebRequest(
                 "GET",
@@ -79,7 +79,7 @@ namespace WebSockets.Core
             return webRequest;
         }
 
-        private string? ProcessHandshakeResponse(WebResponse webResponse)
+        private string? ProcessResponse(WebResponse webResponse)
         {
             if (webResponse.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");

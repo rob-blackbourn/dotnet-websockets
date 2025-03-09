@@ -18,36 +18,36 @@ namespace WebSockets.Core.Test
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
-            clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
+            clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                clientProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    serverProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webRequest = serverProtocol.ReadHandshakeRequest();
+            var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteHandshakeResponse(webRequest);
+            serverProtocol.WriteResponse(webRequest);
 
             isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                serverProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webResponse = clientProtocol.ReadHandshakeResponse();
+            var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
             Assert.AreEqual(HandshakeState.Succeeded, clientProtocol.State);
             Assert.AreEqual(HandshakeState.Succeeded, serverProtocol.State);
@@ -68,36 +68,36 @@ namespace WebSockets.Core.Test
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
-            clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
+            clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                clientProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    serverProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webRequest = serverProtocol.ReadHandshakeRequest();
+            var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteHandshakeRejectResponse("invalid path");
+            serverProtocol.WriteRejectResponse("invalid path");
 
             isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                serverProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webResponse = clientProtocol.ReadHandshakeResponse();
+            var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
             Assert.AreEqual(HandshakeState.Failed, clientProtocol.State);
             Assert.AreEqual(HandshakeState.Failed, serverProtocol.State);

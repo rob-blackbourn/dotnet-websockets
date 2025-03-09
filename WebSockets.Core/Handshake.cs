@@ -12,7 +12,7 @@ namespace WebSockets.Core
     {
         private protected static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-        private protected readonly FragmentBuffer<byte> _handshakeBuffer = new FragmentBuffer<byte>();
+        private protected readonly FragmentBuffer<byte> _buffer = new FragmentBuffer<byte>();
         private protected readonly string[] _subProtocols;
         private protected readonly IDateTimeProvider _dateTimeProvider;
 
@@ -45,16 +45,16 @@ namespace WebSockets.Core
         /// <param name="buffer">The buffer containing the data.</param>
         /// <param name="offset">The offset into the buffer.</param>
         /// <param name="length">The length of the data.</param>
-        public void ReadHandshakeData(byte[] buffer, ref long offset, long length)
+        public void ReadData(byte[] buffer, ref long offset, long length)
         {
             // TODO: Doesn't support offset and length.
-            offset = _handshakeBuffer.Read(buffer);
+            offset = _buffer.Read(buffer);
             // TODO: Doesn't return bool.
         }
 
-        public void WriteHandshakeData(byte[] buffer, long offset, long length)
+        public void WriteData(byte[] buffer, long offset, long length)
         {
-            _handshakeBuffer.Write(buffer, offset, length);
+            _buffer.Write(buffer, offset, length);
             return;
         }
 
