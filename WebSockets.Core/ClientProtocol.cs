@@ -21,7 +21,6 @@ namespace WebSockets.Core
         {
         }
 
-
         public ClientProtocol(
             string origin,
             string[] subProtocols,
@@ -49,12 +48,12 @@ namespace WebSockets.Core
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
             if (webResponse.Code != 101)
             {
-                State = ConnectionState.Faulted;
+                HandshakeState = HandshakeState.Failed;
                 return webResponse;
             }
             
             SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
-            State = ConnectionState.Connected;
+            HandshakeState = HandshakeState.Succeeded;
             return webResponse;
         }
 

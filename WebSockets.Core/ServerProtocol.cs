@@ -50,7 +50,7 @@ namespace WebSockets.Core
                 WriteHandshakeData(data, 0, data.Length);
 
                 SelectedSubProtocol = subProtocol;
-                State = ConnectionState.Connected;
+                HandshakeState = HandshakeState.Succeeded;
             }
             catch (InvalidDataException error)
             {
@@ -65,7 +65,7 @@ namespace WebSockets.Core
             var data = webResponse.ToBytes();
             WriteHandshakeData(data, 0, data.Length);
 
-            State = ConnectionState.Faulted;
+            HandshakeState = HandshakeState.Failed;
         }
 
         private (string responseKey, string? subProtocol) ProcessHandshakeRequest(WebRequest webRequest)

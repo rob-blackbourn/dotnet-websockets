@@ -43,7 +43,8 @@ namespace WebSockets.Core
         /// The state of the connection.
         /// </summary>
         /// <value>The connection state.</value>
-        public ConnectionState State { get; protected set; } = ConnectionState.Handshake;
+        public ConnectionState State { get; protected set; } = ConnectionState.Connected;
+        public HandshakeState HandshakeState { get; protected set; } = HandshakeState.Pending;
         public string? SelectedSubProtocol { get; protected set; } = null;
 
         /// <summary>
@@ -72,10 +73,11 @@ namespace WebSockets.Core
 
         public void WriteMessageData(byte[] buffer, long offset, long length)
         {
+            if (HandshakeState != HandshakeState.Succeeded)
+                throw new InvalidOperationException("cannot receive data before handshake completed");
+
             switch (State)
             {
-                case ConnectionState.Handshake:
-                    throw new InvalidOperationException("cannot receive data before handshake completed");
                 case ConnectionState.Connected:
                 case ConnectionState.Closing:
                     _messageReader.WriteMessageData(buffer, offset, length);
@@ -116,6 +118,9 @@ namespace WebSockets.Core
 
         public void WriteMessage(Message message)
         {
+            if (HandshakeState != HandshakeState.Succeeded)
+                throw new InvalidOperationException("cannot receive data before handshake completed");
+
             switch (State)
             {
                 case ConnectionState.Connected:
@@ -138,7 +143,6 @@ namespace WebSockets.Core
 
                     break;
 
-                case ConnectionState.Handshake:
                 case ConnectionState.Closed:
                 case ConnectionState.Faulted:
 
