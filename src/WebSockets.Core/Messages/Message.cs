@@ -4,10 +4,14 @@ using System.Collections.Generic;
 namespace WebSockets.Core.Messages
 {
     /// <summary>
-    /// A WebSocket message.
+    /// The base class for all WebSocket messages.
     /// </summary>
     public abstract class Message : IEquatable<Message>
     {
+        /// <summary>
+        /// Construct a message.
+        /// </summary>
+        /// <param name="type">The message type.</param>
         protected Message(MessageType type)
         {
             Type = type;
@@ -57,11 +61,7 @@ namespace WebSockets.Core.Messages
             return message;
         }
 
-        /// <summary>
-        /// Check for equality.
-        /// </summary>
-        /// <param name="other">The other message.</param>
-        /// <returns>True if the messages are the same.</returns>
+        /// <inheritdoc />
         public bool Equals(Message? other)
         {
             return other is not null && Type == other.Type;
