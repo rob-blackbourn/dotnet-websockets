@@ -20,7 +20,7 @@ namespace EchoServer
 
                 Console.WriteLine("Socket accepted");
 
-                var connection = new Connection(client);
+                var connection = new Connection(client, []);
                 Task.Factory.StartNew(connection.Start);
             }
         }

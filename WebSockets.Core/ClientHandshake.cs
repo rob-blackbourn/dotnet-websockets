@@ -11,53 +11,53 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ClientProtocol : Protocol
+    public class ClientHandshake : Handshake
     {
         private readonly string _origin;
         private readonly string _key;
 
-        public ClientProtocol(string origin, string[] subProtocols)
+        public ClientHandshake(string origin, string[] subProtocols)
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
-        public ClientProtocol(
+        public ClientHandshake(
             string origin,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
-            : base(true, subProtocols, dateTimeProvider, nonceGenerator)
+            : base(true, subProtocols, dateTimeProvider)
         {
             _origin = origin;
             _key = nonceGenerator.CreateClientKey();
         }
 
-        public void WriteHandshakeRequest(string path, string host)
+        public void WriteRequest(string path, string host)
         {
-            var webRequest = BuildHandshakeRequest(path, host);
+            var webRequest = BuildRequest(path, host);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
-            WriteHandshakeData(data, 0, data.LongLength);
+            WriteData(data, 0, data.LongLength);
         }
 
-        public WebResponse? ReadHandshakeResponse()
+        public WebResponse? ReadResponse()
         {
-            var index = _handshakeBuffer.IndexOf(HTTP_EOM, 0);
+            var index = _buffer.IndexOf(HTTP_EOM, 0);
             if (index == -1)
                 return null;
 
-            var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
+            var webResponse = WebResponse.Parse(_buffer.ToArray());
             if (webResponse.Code != 101)
             {
-                HandshakeState = HandshakeState.Failed;
+                State = HandshakeState.Failed;
                 return webResponse;
             }
             
-            SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
-            HandshakeState = HandshakeState.Succeeded;
+            SelectedSubProtocol = ProcessResponse(webResponse);
+            State = HandshakeState.Succeeded;
             return webResponse;
         }
 
-        private WebRequest BuildHandshakeRequest(string path, string host)
+        private WebRequest BuildRequest(string path, string host)
         {
             var webRequest = new WebRequest(
                 "GET",
@@ -79,7 +79,7 @@ namespace WebSockets.Core
             return webRequest;
         }
 
-        private string? ProcessHandshakeResponse(WebResponse webResponse)
+        private string? ProcessResponse(WebResponse webResponse)
         {
             if (webResponse.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");

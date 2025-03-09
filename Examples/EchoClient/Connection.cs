@@ -7,12 +7,14 @@ namespace EchoClient
     class Connection
     {
         private readonly NetworkStream _stream;
-        private readonly ClientProtocol _protocol;
+        private readonly ClientHandshake _handshakeProtocol;
+        private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string origin, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _protocol = new ClientProtocol(origin, subProtocols);
+            _handshakeProtocol = new ClientHandshake(origin, subProtocols);
+            _messageProtocol = new MessageProtocol(true, new NonceGenerator());
         }
 
         public void Start()
@@ -26,7 +28,7 @@ namespace EchoClient
             Console.WriteLine("Processing messages.");
             Console.WriteLine("Sending 'close' will cause the server to initiate a close handshake.");
             Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
-            while (_protocol.State == ConnectionState.Connected)
+            while (_messageProtocol.State == ProtocolState.Connected)
             {
                 Console.Write("Message (<ENTER> to quit): ");
                 var text = Console.ReadLine();
@@ -59,19 +61,19 @@ namespace EchoClient
                 else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close.");
-                    if (_protocol.State == ConnectionState.Closing)
+                    if (_messageProtocol.State == ProtocolState.Closing)
                     {
                         // Send the close back.
                         Console.WriteLine("Responding with close (completing close handshake).");
                         SendMessage(message);
                     }
-                    else if (_protocol.State == ConnectionState.Closed)
+                    else if (_messageProtocol.State == ProtocolState.Closed)
                     {
                         Console.WriteLine("Close handshake complete");
                     }
                     else
                     {
-                        throw new InvalidOperationException($"Closed received from invalid state {_protocol.State}");
+                        throw new InvalidOperationException($"Closed received from invalid state {_handshakeProtocol.State}");
                     }
                 }
             }
@@ -83,27 +85,27 @@ namespace EchoClient
             Message? message = null;
             while (message is null)
             {
-                message = _protocol.ReadMessage();
+                message = _messageProtocol.ReadMessage();
                 if (message is not null)
                     continue;
 
                 var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteMessageData(buffer, 0, bytesRead);
+                _messageProtocol.WriteData(buffer, 0, bytesRead);
             }
             return message;
         }
 
         private void SendMessage(Message message)
         {
-            _protocol.WriteMessage(message);
+            _messageProtocol.WriteMessage(message);
 
             var isDone = false;
             var buffer = new byte[1024];
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
+                isDone = _messageProtocol.ReadData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }
@@ -122,14 +124,14 @@ namespace EchoClient
         private void SendHandshakeRequest()
         {
             Console.WriteLine("Sending handshake request");
-            _protocol.WriteHandshakeRequest("/chat", "www.example.com");
+            _handshakeProtocol.WriteRequest("/chat", "www.example.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                _protocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -146,10 +148,10 @@ namespace EchoClient
             while (!isDone)
             {
                 var bytesRead = _stream.Read(buffer);
-                _protocol.WriteHandshakeData(buffer, offset, bytesRead);
+                _handshakeProtocol.WriteData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
-                isDone = _protocol.ReadHandshakeResponse() is not null;
+                isDone = _handshakeProtocol.ReadResponse() is not null;
             }
         }
     }

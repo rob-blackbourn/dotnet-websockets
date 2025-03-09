@@ -8,7 +8,7 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to write WebSocket messages.
     /// 
-    /// Messages are submitted (<see cref="WriteMessage"/>) to the writer, and then processed (<see cref="ReadMessageData"/>)
+    /// Messages are submitted (<see cref="WriteMessage"/>) to the writer, and then processed (<see cref="ReadData"/>)
     /// into data buffers until the writer is empty (<see cref="IsEmpty"/>). Note that one message may produce several frames to write.
     /// </summary>
     internal class MessageWriter
@@ -36,7 +36,7 @@ namespace WebSockets.Core
         /// <summary>
         /// Submits a message to the writer.
         /// 
-        /// The message must be written with the <see cref="ReadMessageData"/> method.
+        /// The message must be written with the <see cref="ReadData"/> method.
         /// </summary>
         /// <param name="message">The message to send.</param>
         /// <param name="isClient">True if the sender is a client; otherwise false for a server.</param>
@@ -76,9 +76,9 @@ namespace WebSockets.Core
         /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
         /// <param name="offset">The length of the buffer.</param>
         /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool ReadMessageData(byte[] buffer, ref long offset, long length)
+        public bool ReadData(byte[] buffer, ref long offset, long length)
         {
-            return _frameWriter.ReadFrameData(buffer, ref offset, length);
+            return _frameWriter.ReadData(buffer, ref offset, length);
         }
 
         private ArrayBuffer<byte> GetPayload(Message message)

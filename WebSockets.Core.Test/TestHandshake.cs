@@ -8,50 +8,49 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshake()
         {
-            var clientProtocol = new ClientProtocol(
+            var clientProtocol = new ClientHandshake(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
                 new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
-            var serverProtocol = new ServerProtocol(
+            var serverProtocol = new ServerHandshake(
                 ["bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1)),
-                new MockNonceGenerator([91, 251,255, 168], "x3JJHMbDL1EzLkh9GBhXDw==")
+                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
-            clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
+            clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                clientProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    serverProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webRequest = serverProtocol.ReadHandshakeRequest();
+            var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteHandshakeResponse(webRequest);
+            serverProtocol.WriteResponse(webRequest);
 
             isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                serverProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webResponse = clientProtocol.ReadHandshakeResponse();
+            var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(ConnectionState.Connected, clientProtocol.State);
-            Assert.AreEqual(ConnectionState.Connected, serverProtocol.State);
+            Assert.AreEqual(HandshakeState.Succeeded, clientProtocol.State);
+            Assert.AreEqual(HandshakeState.Succeeded, serverProtocol.State);
             Assert.AreEqual("bar", clientProtocol.SelectedSubProtocol);
             Assert.AreEqual("bar", serverProtocol.SelectedSubProtocol);
         }
@@ -59,50 +58,49 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshakeReject()
         {
-            var clientProtocol = new ClientProtocol(
+            var clientProtocol = new ClientHandshake(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
                 new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
-            var serverProtocol = new ServerProtocol(
+            var serverProtocol = new ServerHandshake(
                 ["bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1)),
-                new MockNonceGenerator([91, 251,255, 168], "x3JJHMbDL1EzLkh9GBhXDw==")
+                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
-            clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
+            clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                clientProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    serverProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webRequest = serverProtocol.ReadHandshakeRequest();
+            var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteHandshakeRejectResponse("invalid path");
+            serverProtocol.WriteRejectResponse("invalid path");
 
             isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                serverProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
-                    clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
+                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
             }
 
-            var webResponse = clientProtocol.ReadHandshakeResponse();
+            var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(ConnectionState.Faulted, clientProtocol.State);
-            Assert.AreEqual(ConnectionState.Faulted, serverProtocol.State);
+            Assert.AreEqual(HandshakeState.Failed, clientProtocol.State);
+            Assert.AreEqual(HandshakeState.Failed, serverProtocol.State);
         }
     }
 }

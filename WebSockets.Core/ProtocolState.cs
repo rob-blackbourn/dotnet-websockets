@@ -7,7 +7,7 @@ namespace WebSockets.Core
         Failed
     }
 
-    public enum ConnectionState
+    public enum ProtocolState
     {
         Connected,
         Closing,
