@@ -1,0 +1,744 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Test.TestMessages
+  commentId: T:WebSockets.Core.Test.TestMessages
+  id: TestMessages
+  parent: WebSockets.Core.Test
+  children:
+  - WebSockets.Core.Test.TestMessages.TestBinaryClient
+  - WebSockets.Core.Test.TestMessages.TestBinaryServer
+  - WebSockets.Core.Test.TestMessages.TestClose
+  - WebSockets.Core.Test.TestMessages.TestLongPayload
+  - WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient
+  - WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer
+  - WebSockets.Core.Test.TestMessages.TestPing
+  - WebSockets.Core.Test.TestMessages.TestPong
+  - WebSockets.Core.Test.TestMessages.TestTextClient
+  - WebSockets.Core.Test.TestMessages.TestTextServer
+  - WebSockets.Core.Test.TestMessages.TestVeryLongPayload
+  langs:
+  - csharp
+  - vb
+  name: TestMessages
+  nameWithType: TestMessages
+  fullName: WebSockets.Core.Test.TestMessages
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestMessages
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 6
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestClass]
+
+      public sealed class TestMessages
+    content.vb: >-
+      <TestClass>
+
+      Public NotInheritable Class TestMessages
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestTextServer
+  commentId: M:WebSockets.Core.Test.TestMessages.TestTextServer
+  id: TestTextServer
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestTextServer()
+  nameWithType: TestMessages.TestTextServer()
+  fullName: WebSockets.Core.Test.TestMessages.TestTextServer()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestTextServer
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 9
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestTextServer()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestTextServer()
+  overload: WebSockets.Core.Test.TestMessages.TestTextServer*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestTextClient
+  commentId: M:WebSockets.Core.Test.TestMessages.TestTextClient
+  id: TestTextClient
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestTextClient()
+  nameWithType: TestMessages.TestTextClient()
+  fullName: WebSockets.Core.Test.TestMessages.TestTextClient()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestTextClient
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 18
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestTextClient()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestTextClient()
+  overload: WebSockets.Core.Test.TestMessages.TestTextClient*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestBinaryServer
+  commentId: M:WebSockets.Core.Test.TestMessages.TestBinaryServer
+  id: TestBinaryServer
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestBinaryServer()
+  nameWithType: TestMessages.TestBinaryServer()
+  fullName: WebSockets.Core.Test.TestMessages.TestBinaryServer()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestBinaryServer
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 27
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestBinaryServer()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestBinaryServer()
+  overload: WebSockets.Core.Test.TestMessages.TestBinaryServer*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestBinaryClient
+  commentId: M:WebSockets.Core.Test.TestMessages.TestBinaryClient
+  id: TestBinaryClient
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestBinaryClient()
+  nameWithType: TestMessages.TestBinaryClient()
+  fullName: WebSockets.Core.Test.TestMessages.TestBinaryClient()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestBinaryClient
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 36
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestBinaryClient()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestBinaryClient()
+  overload: WebSockets.Core.Test.TestMessages.TestBinaryClient*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer
+  commentId: M:WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer
+  id: TestNonAsciiTextServer
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestNonAsciiTextServer()
+  nameWithType: TestMessages.TestNonAsciiTextServer()
+  fullName: WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestNonAsciiTextServer
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 45
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestNonAsciiTextServer()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestNonAsciiTextServer()
+  overload: WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient
+  commentId: M:WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient
+  id: TestNonAsciiTextClient
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestNonAsciiTextClient()
+  nameWithType: TestMessages.TestNonAsciiTextClient()
+  fullName: WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestNonAsciiTextClient
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 54
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestNonAsciiTextClient()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestNonAsciiTextClient()
+  overload: WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestClose
+  commentId: M:WebSockets.Core.Test.TestMessages.TestClose
+  id: TestClose
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestClose()
+  nameWithType: TestMessages.TestClose()
+  fullName: WebSockets.Core.Test.TestMessages.TestClose()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestClose
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 63
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestClose()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestClose()
+  overload: WebSockets.Core.Test.TestMessages.TestClose*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestPing
+  commentId: M:WebSockets.Core.Test.TestMessages.TestPing
+  id: TestPing
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestPing()
+  nameWithType: TestMessages.TestPing()
+  fullName: WebSockets.Core.Test.TestMessages.TestPing()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestPing
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 72
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestPing()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestPing()
+  overload: WebSockets.Core.Test.TestMessages.TestPing*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestPong
+  commentId: M:WebSockets.Core.Test.TestMessages.TestPong
+  id: TestPong
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestPong()
+  nameWithType: TestMessages.TestPong()
+  fullName: WebSockets.Core.Test.TestMessages.TestPong()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestPong
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 81
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestPong()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestPong()
+  overload: WebSockets.Core.Test.TestMessages.TestPong*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestMessages.TestLongPayload
+  commentId: M:WebSockets.Core.Test.TestMessages.TestLongPayload
+  id: TestLongPayload
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestLongPayload()
+  nameWithType: TestMessages.TestLongPayload()
+  fullName: WebSockets.Core.Test.TestMessages.TestLongPayload()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestLongPayload
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 90
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: public void TestLongPayload()
+    content.vb: Public Sub TestLongPayload()
+  overload: WebSockets.Core.Test.TestMessages.TestLongPayload*
+- uid: WebSockets.Core.Test.TestMessages.TestVeryLongPayload
+  commentId: M:WebSockets.Core.Test.TestMessages.TestVeryLongPayload
+  id: TestVeryLongPayload
+  parent: WebSockets.Core.Test.TestMessages
+  langs:
+  - csharp
+  - vb
+  name: TestVeryLongPayload()
+  nameWithType: TestMessages.TestVeryLongPayload()
+  fullName: WebSockets.Core.Test.TestMessages.TestVeryLongPayload()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestMessages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestVeryLongPayload
+    path: src/WebSockets.Core.Test/TestMessages.cs
+    startLine: 104
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: public void TestVeryLongPayload()
+    content.vb: Public Sub TestVeryLongPayload()
+  overload: WebSockets.Core.Test.TestMessages.TestVeryLongPayload*
+references:
+- uid: WebSockets.Core.Test
+  commentId: N:WebSockets.Core.Test
+  href: WebSockets.html
+  name: WebSockets.Core.Test
+  nameWithType: WebSockets.Core.Test
+  fullName: WebSockets.Core.Test
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.Test.TestMessages.TestTextServer*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestTextServer
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestTextServer
+  name: TestTextServer
+  nameWithType: TestMessages.TestTextServer
+  fullName: WebSockets.Core.Test.TestMessages.TestTextServer
+- uid: WebSockets.Core.Test.TestMessages.TestTextClient*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestTextClient
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestTextClient
+  name: TestTextClient
+  nameWithType: TestMessages.TestTextClient
+  fullName: WebSockets.Core.Test.TestMessages.TestTextClient
+- uid: WebSockets.Core.Test.TestMessages.TestBinaryServer*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestBinaryServer
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestBinaryServer
+  name: TestBinaryServer
+  nameWithType: TestMessages.TestBinaryServer
+  fullName: WebSockets.Core.Test.TestMessages.TestBinaryServer
+- uid: WebSockets.Core.Test.TestMessages.TestBinaryClient*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestBinaryClient
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestBinaryClient
+  name: TestBinaryClient
+  nameWithType: TestMessages.TestBinaryClient
+  fullName: WebSockets.Core.Test.TestMessages.TestBinaryClient
+- uid: WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestNonAsciiTextServer
+  name: TestNonAsciiTextServer
+  nameWithType: TestMessages.TestNonAsciiTextServer
+  fullName: WebSockets.Core.Test.TestMessages.TestNonAsciiTextServer
+- uid: WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestNonAsciiTextClient
+  name: TestNonAsciiTextClient
+  nameWithType: TestMessages.TestNonAsciiTextClient
+  fullName: WebSockets.Core.Test.TestMessages.TestNonAsciiTextClient
+- uid: WebSockets.Core.Test.TestMessages.TestClose*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestClose
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestClose
+  name: TestClose
+  nameWithType: TestMessages.TestClose
+  fullName: WebSockets.Core.Test.TestMessages.TestClose
+- uid: WebSockets.Core.Test.TestMessages.TestPing*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestPing
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestPing
+  name: TestPing
+  nameWithType: TestMessages.TestPing
+  fullName: WebSockets.Core.Test.TestMessages.TestPing
+- uid: WebSockets.Core.Test.TestMessages.TestPong*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestPong
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestPong
+  name: TestPong
+  nameWithType: TestMessages.TestPong
+  fullName: WebSockets.Core.Test.TestMessages.TestPong
+- uid: WebSockets.Core.Test.TestMessages.TestLongPayload*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestLongPayload
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestLongPayload
+  name: TestLongPayload
+  nameWithType: TestMessages.TestLongPayload
+  fullName: WebSockets.Core.Test.TestMessages.TestLongPayload
+- uid: WebSockets.Core.Test.TestMessages.TestVeryLongPayload*
+  commentId: Overload:WebSockets.Core.Test.TestMessages.TestVeryLongPayload
+  href: WebSockets.Core.Test.TestMessages.html#WebSockets_Core_Test_TestMessages_TestVeryLongPayload
+  name: TestVeryLongPayload
+  nameWithType: TestMessages.TestVeryLongPayload
+  fullName: WebSockets.Core.Test.TestMessages.TestVeryLongPayload

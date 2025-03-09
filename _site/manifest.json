@@ -1,0 +1,668 @@
+{
+  "source_base_path": "/Users/rtb/dev/rob-blackbourn/dotnet-websockets",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.BinaryMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.BinaryMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.BinaryMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.ClientHandshake.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.ClientHandshake.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.ClientHandshake",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the client side of the WebSocket protocol.</p>\n<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"3\">The business layer logic is not provided. For example when a ping is\nreceived, the implementer is expected to return the pong. This is also\nthe case for a close.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.CloseMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.CloseMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.CloseMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.DataMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.DataMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.DataMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.DateTimeProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.DateTimeProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.DateTimeProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Handshake.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Handshake.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Handshake",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Handshake.yml\" sourcestartlinenumber=\"1\">The base protocol class providing functionality shared by both clients\nand servers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.HandshakeState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.HandshakeState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.HandshakeState",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.IDateTimeProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.IDateTimeProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.IDateTimeProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.INonceGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.INonceGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.INonceGenerator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Message.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Message",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Message.yml\" sourcestartlinenumber=\"1\">A WebSocket message.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.MessageProtocol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.MessageProtocol.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.MessageProtocol",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.MessageProtocol.yml\" sourcestartlinenumber=\"1\">The base protocol class providing functionality shared by both clients\nand servers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.MessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.MessageType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.MessageType",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.MessageType.yml\" sourcestartlinenumber=\"1\">The types of messages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.BinaryMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.BinaryMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.BinaryMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.CloseMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.CloseMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.CloseMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.DataMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.DataMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.DataMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.Message.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.Message",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.Message.yml\" sourcestartlinenumber=\"1\">A WebSocket message.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.MessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.MessageType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.MessageType",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.MessageType.yml\" sourcestartlinenumber=\"1\">The types of messages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.PingMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.PingMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.PingMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.PongMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.PongMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.PongMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.TextMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.TextMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages.TextMessage",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.TextMessage.yml\" sourcestartlinenumber=\"1\">A message with text data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Messages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Messages.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Messages",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.NonceGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.NonceGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.NonceGenerator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.PingMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.PingMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.PingMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.PongMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.PongMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.PongMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.ProtocolState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.ProtocolState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.ProtocolState",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.PublicExtensionMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.PublicExtensionMethods.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.PublicExtensionMethods",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Reserved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Reserved.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Reserved",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.ServerHandshake.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.ServerHandshake.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.ServerHandshake",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ServerHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the server side of the WebSocket protocol.</p>\n<p sourcefile=\"api/WebSockets.Core.ServerHandshake.yml\" sourcestartlinenumber=\"3\">The business layer logic is not provided. For example when a ping is\nreceived, the implementer is expected to return the pong. This is also\nthe case for a close.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestArrayBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestArrayBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestArrayBuffer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestFragmentBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestFragmentBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestFragmentBuffer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestFrames.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestFrames.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestFrames",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestHandshake.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestHandshake.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestHandshake",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestMessages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestMessages.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestMessages",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestWebRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestWebRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.TestWebResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.TestWebResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test.TestWebResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.Test.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.Test",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.TextMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.TextMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.TextMessage",
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.TextMessage.yml\" sourcestartlinenumber=\"1\">A message with text data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.WebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.WebRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.WebRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.WebResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.WebResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core.WebResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WebSockets.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WebSockets.Core.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WebSockets.Core",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/hello.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/hello.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

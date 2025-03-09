@@ -1,0 +1,65 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Test
+  commentId: N:WebSockets.Core.Test
+  id: WebSockets.Core.Test
+  children:
+  - WebSockets.Core.Test.TestArrayBuffer
+  - WebSockets.Core.Test.TestFragmentBuffer
+  - WebSockets.Core.Test.TestFrames
+  - WebSockets.Core.Test.TestHandshake
+  - WebSockets.Core.Test.TestMessages
+  - WebSockets.Core.Test.TestWebRequest
+  - WebSockets.Core.Test.TestWebResponse
+  langs:
+  - csharp
+  - vb
+  name: WebSockets.Core.Test
+  nameWithType: WebSockets.Core.Test
+  fullName: WebSockets.Core.Test
+  type: Namespace
+  assemblies:
+  - WebSockets.Core.Test
+references:
+- uid: WebSockets.Core.Test.TestArrayBuffer
+  commentId: T:WebSockets.Core.Test.TestArrayBuffer
+  href: WebSockets.Core.Test.TestArrayBuffer.html
+  name: TestArrayBuffer
+  nameWithType: TestArrayBuffer
+  fullName: WebSockets.Core.Test.TestArrayBuffer
+- uid: WebSockets.Core.Test.TestFragmentBuffer
+  commentId: T:WebSockets.Core.Test.TestFragmentBuffer
+  href: WebSockets.Core.Test.TestFragmentBuffer.html
+  name: TestFragmentBuffer
+  nameWithType: TestFragmentBuffer
+  fullName: WebSockets.Core.Test.TestFragmentBuffer
+- uid: WebSockets.Core.Test.TestFrames
+  commentId: T:WebSockets.Core.Test.TestFrames
+  href: WebSockets.Core.Test.TestFrames.html
+  name: TestFrames
+  nameWithType: TestFrames
+  fullName: WebSockets.Core.Test.TestFrames
+- uid: WebSockets.Core.Test.TestHandshake
+  commentId: T:WebSockets.Core.Test.TestHandshake
+  href: WebSockets.Core.Test.TestHandshake.html
+  name: TestHandshake
+  nameWithType: TestHandshake
+  fullName: WebSockets.Core.Test.TestHandshake
+- uid: WebSockets.Core.Test.TestMessages
+  commentId: T:WebSockets.Core.Test.TestMessages
+  href: WebSockets.Core.Test.TestMessages.html
+  name: TestMessages
+  nameWithType: TestMessages
+  fullName: WebSockets.Core.Test.TestMessages
+- uid: WebSockets.Core.Test.TestWebRequest
+  commentId: T:WebSockets.Core.Test.TestWebRequest
+  href: WebSockets.Core.Test.TestWebRequest.html
+  name: TestWebRequest
+  nameWithType: TestWebRequest
+  fullName: WebSockets.Core.Test.TestWebRequest
+- uid: WebSockets.Core.Test.TestWebResponse
+  commentId: T:WebSockets.Core.Test.TestWebResponse
+  href: WebSockets.Core.Test.TestWebResponse.html
+  name: TestWebResponse
+  nameWithType: TestWebResponse
+  fullName: WebSockets.Core.Test.TestWebResponse

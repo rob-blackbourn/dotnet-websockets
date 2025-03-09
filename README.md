@@ -104,3 +104,11 @@ The client protocol provides the extra methods:
 ## Examples
 
 There is an example echo server written for both the client and the server.
+
+## Development
+
+For documentation:
+
+```bash
+docfx ./docfx.json --serve
+```

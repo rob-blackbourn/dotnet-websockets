@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.ProtocolState
+  commentId: T:WebSockets.Core.ProtocolState
+  id: ProtocolState
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.ProtocolState.Closed
+  - WebSockets.Core.ProtocolState.Closing
+  - WebSockets.Core.ProtocolState.Connected
+  - WebSockets.Core.ProtocolState.Faulted
+  langs:
+  - csharp
+  - vb
+  name: ProtocolState
+  nameWithType: ProtocolState
+  fullName: WebSockets.Core.ProtocolState
+  type: Enum
+  source:
+    remote:
+      path: src/WebSockets.Core/ProtocolState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ProtocolState
+    path: src/WebSockets.Core/ProtocolState.cs
+    startLine: 9
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public enum ProtocolState
+    content.vb: Public Enum ProtocolState
+- uid: WebSockets.Core.ProtocolState.Connected
+  commentId: F:WebSockets.Core.ProtocolState.Connected
+  id: Connected
+  parent: WebSockets.Core.ProtocolState
+  langs:
+  - csharp
+  - vb
+  name: Connected
+  nameWithType: ProtocolState.Connected
+  fullName: WebSockets.Core.ProtocolState.Connected
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/ProtocolState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Connected
+    path: src/WebSockets.Core/ProtocolState.cs
+    startLine: 11
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Connected = 0
+    return:
+      type: WebSockets.Core.ProtocolState
+- uid: WebSockets.Core.ProtocolState.Closing
+  commentId: F:WebSockets.Core.ProtocolState.Closing
+  id: Closing
+  parent: WebSockets.Core.ProtocolState
+  langs:
+  - csharp
+  - vb
+  name: Closing
+  nameWithType: ProtocolState.Closing
+  fullName: WebSockets.Core.ProtocolState.Closing
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/ProtocolState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Closing
+    path: src/WebSockets.Core/ProtocolState.cs
+    startLine: 12
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Closing = 1
+    return:
+      type: WebSockets.Core.ProtocolState
+- uid: WebSockets.Core.ProtocolState.Closed
+  commentId: F:WebSockets.Core.ProtocolState.Closed
+  id: Closed
+  parent: WebSockets.Core.ProtocolState
+  langs:
+  - csharp
+  - vb
+  name: Closed
+  nameWithType: ProtocolState.Closed
+  fullName: WebSockets.Core.ProtocolState.Closed
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/ProtocolState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Closed
+    path: src/WebSockets.Core/ProtocolState.cs
+    startLine: 13
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Closed = 2
+    return:
+      type: WebSockets.Core.ProtocolState
+- uid: WebSockets.Core.ProtocolState.Faulted
+  commentId: F:WebSockets.Core.ProtocolState.Faulted
+  id: Faulted
+  parent: WebSockets.Core.ProtocolState
+  langs:
+  - csharp
+  - vb
+  name: Faulted
+  nameWithType: ProtocolState.Faulted
+  fullName: WebSockets.Core.ProtocolState.Faulted
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/ProtocolState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Faulted
+    path: src/WebSockets.Core/ProtocolState.cs
+    startLine: 14
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Faulted = 3
+    return:
+      type: WebSockets.Core.ProtocolState
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: WebSockets.Core.ProtocolState
+  commentId: T:WebSockets.Core.ProtocolState
+  parent: WebSockets.Core
+  href: WebSockets.Core.ProtocolState.html
+  name: ProtocolState
+  nameWithType: ProtocolState
+  fullName: WebSockets.Core.ProtocolState

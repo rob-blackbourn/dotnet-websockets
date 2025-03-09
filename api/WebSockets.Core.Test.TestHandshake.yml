@@ -1,0 +1,377 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Test.TestHandshake
+  commentId: T:WebSockets.Core.Test.TestHandshake
+  id: TestHandshake
+  parent: WebSockets.Core.Test
+  children:
+  - WebSockets.Core.Test.TestHandshake.TestOpenHandshake
+  - WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject
+  langs:
+  - csharp
+  - vb
+  name: TestHandshake
+  nameWithType: TestHandshake
+  fullName: WebSockets.Core.Test.TestHandshake
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestHandshake
+    path: src/WebSockets.Core.Test/TestHandshake.cs
+    startLine: 4
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestClass]
+
+      public sealed class TestHandshake
+    content.vb: >-
+      <TestClass>
+
+      Public NotInheritable Class TestHandshake
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestHandshake.TestOpenHandshake
+  commentId: M:WebSockets.Core.Test.TestHandshake.TestOpenHandshake
+  id: TestOpenHandshake
+  parent: WebSockets.Core.Test.TestHandshake
+  langs:
+  - csharp
+  - vb
+  name: TestOpenHandshake()
+  nameWithType: TestHandshake.TestOpenHandshake()
+  fullName: WebSockets.Core.Test.TestHandshake.TestOpenHandshake()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestOpenHandshake
+    path: src/WebSockets.Core.Test/TestHandshake.cs
+    startLine: 7
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestOpenHandshake()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestOpenHandshake()
+  overload: WebSockets.Core.Test.TestHandshake.TestOpenHandshake*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject
+  commentId: M:WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject
+  id: TestOpenHandshakeReject
+  parent: WebSockets.Core.Test.TestHandshake
+  langs:
+  - csharp
+  - vb
+  name: TestOpenHandshakeReject()
+  nameWithType: TestHandshake.TestOpenHandshakeReject()
+  fullName: WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestOpenHandshakeReject
+    path: src/WebSockets.Core.Test/TestHandshake.cs
+    startLine: 57
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestOpenHandshakeReject()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestOpenHandshakeReject()
+  overload: WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+references:
+- uid: WebSockets.Core.Test
+  commentId: N:WebSockets.Core.Test
+  href: WebSockets.html
+  name: WebSockets.Core.Test
+  nameWithType: WebSockets.Core.Test
+  fullName: WebSockets.Core.Test
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.Test.TestHandshake.TestOpenHandshake*
+  commentId: Overload:WebSockets.Core.Test.TestHandshake.TestOpenHandshake
+  href: WebSockets.Core.Test.TestHandshake.html#WebSockets_Core_Test_TestHandshake_TestOpenHandshake
+  name: TestOpenHandshake
+  nameWithType: TestHandshake.TestOpenHandshake
+  fullName: WebSockets.Core.Test.TestHandshake.TestOpenHandshake
+- uid: WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject*
+  commentId: Overload:WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject
+  href: WebSockets.Core.Test.TestHandshake.html#WebSockets_Core_Test_TestHandshake_TestOpenHandshakeReject
+  name: TestOpenHandshakeReject
+  nameWithType: TestHandshake.TestOpenHandshakeReject
+  fullName: WebSockets.Core.Test.TestHandshake.TestOpenHandshakeReject

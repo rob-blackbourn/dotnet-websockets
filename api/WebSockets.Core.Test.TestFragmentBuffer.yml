@@ -1,0 +1,678 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Test.TestFragmentBuffer
+  commentId: T:WebSockets.Core.Test.TestFragmentBuffer
+  id: TestFragmentBuffer
+  parent: WebSockets.Core.Test
+  children:
+  - WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith
+  - WebSockets.Core.Test.TestFragmentBuffer.TestIndex
+  - WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf
+  - WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten
+  - WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty
+  - WebSockets.Core.Test.TestFragmentBuffer.TestToArray
+  - WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce
+  - WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany
+  - WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead
+  langs:
+  - csharp
+  - vb
+  name: TestFragmentBuffer
+  nameWithType: TestFragmentBuffer
+  fullName: WebSockets.Core.Test.TestFragmentBuffer
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestFragmentBuffer
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 4
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestClass]
+
+      public sealed class TestFragmentBuffer
+    content.vb: >-
+      <TestClass>
+
+      Public NotInheritable Class TestFragmentBuffer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce
+  id: TestWriteManyReadOnce
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestWriteManyReadOnce()
+  nameWithType: TestFragmentBuffer.TestWriteManyReadOnce()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestWriteManyReadOnce
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 7
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestWriteManyReadOnce()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestWriteManyReadOnce()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead
+  id: TestWriteReadWriteRead
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestWriteReadWriteRead()
+  nameWithType: TestFragmentBuffer.TestWriteReadWriteRead()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestWriteReadWriteRead
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 20
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestWriteReadWriteRead()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestWriteReadWriteRead()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany
+  id: TestWriteOnceReadMany
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestWriteOnceReadMany()
+  nameWithType: TestFragmentBuffer.TestWriteOnceReadMany()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestWriteOnceReadMany
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 39
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestWriteOnceReadMany()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestWriteOnceReadMany()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten
+  id: TestReadMoreThanWritten
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestReadMoreThanWritten()
+  nameWithType: TestFragmentBuffer.TestReadMoreThanWritten()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestReadMoreThanWritten
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 58
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestReadMoreThanWritten()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestReadMoreThanWritten()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty
+  id: TestReadWhenEmpty
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestReadWhenEmpty()
+  nameWithType: TestFragmentBuffer.TestReadWhenEmpty()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestReadWhenEmpty
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 71
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestReadWhenEmpty()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestReadWhenEmpty()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestIndex
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestIndex
+  id: TestIndex
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestIndex()
+  nameWithType: TestFragmentBuffer.TestIndex()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestIndex()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestIndex
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 80
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestIndex()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestIndex()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestIndex*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf
+  id: TestIndexOf
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestIndexOf()
+  nameWithType: TestFragmentBuffer.TestIndexOf()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestIndexOf
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 92
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestIndexOf()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestIndexOf()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith
+  id: TestEndsWith
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestEndsWith()
+  nameWithType: TestFragmentBuffer.TestEndsWith()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestEndsWith
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 105
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestEndsWith()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestEndsWith()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestToArray
+  commentId: M:WebSockets.Core.Test.TestFragmentBuffer.TestToArray
+  id: TestToArray
+  parent: WebSockets.Core.Test.TestFragmentBuffer
+  langs:
+  - csharp
+  - vb
+  name: TestToArray()
+  nameWithType: TestFragmentBuffer.TestToArray()
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestToArray()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestToArray
+    path: src/WebSockets.Core.Test/TestFragmentBuffer.cs
+    startLine: 119
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestToArray()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestToArray()
+  overload: WebSockets.Core.Test.TestFragmentBuffer.TestToArray*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+references:
+- uid: WebSockets.Core.Test
+  commentId: N:WebSockets.Core.Test
+  href: WebSockets.html
+  name: WebSockets.Core.Test
+  nameWithType: WebSockets.Core.Test
+  fullName: WebSockets.Core.Test
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestWriteManyReadOnce
+  name: TestWriteManyReadOnce
+  nameWithType: TestFragmentBuffer.TestWriteManyReadOnce
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteManyReadOnce
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestWriteReadWriteRead
+  name: TestWriteReadWriteRead
+  nameWithType: TestFragmentBuffer.TestWriteReadWriteRead
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteReadWriteRead
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestWriteOnceReadMany
+  name: TestWriteOnceReadMany
+  nameWithType: TestFragmentBuffer.TestWriteOnceReadMany
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestWriteOnceReadMany
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestReadMoreThanWritten
+  name: TestReadMoreThanWritten
+  nameWithType: TestFragmentBuffer.TestReadMoreThanWritten
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestReadMoreThanWritten
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestReadWhenEmpty
+  name: TestReadWhenEmpty
+  nameWithType: TestFragmentBuffer.TestReadWhenEmpty
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestReadWhenEmpty
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestIndex*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestIndex
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestIndex
+  name: TestIndex
+  nameWithType: TestFragmentBuffer.TestIndex
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestIndex
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestIndexOf
+  name: TestIndexOf
+  nameWithType: TestFragmentBuffer.TestIndexOf
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestIndexOf
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestEndsWith
+  name: TestEndsWith
+  nameWithType: TestFragmentBuffer.TestEndsWith
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestEndsWith
+- uid: WebSockets.Core.Test.TestFragmentBuffer.TestToArray*
+  commentId: Overload:WebSockets.Core.Test.TestFragmentBuffer.TestToArray
+  href: WebSockets.Core.Test.TestFragmentBuffer.html#WebSockets_Core_Test_TestFragmentBuffer_TestToArray
+  name: TestToArray
+  nameWithType: TestFragmentBuffer.TestToArray
+  fullName: WebSockets.Core.Test.TestFragmentBuffer.TestToArray

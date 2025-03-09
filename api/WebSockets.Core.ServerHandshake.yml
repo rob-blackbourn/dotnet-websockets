@@ -1,0 +1,689 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.ServerHandshake
+  commentId: T:WebSockets.Core.ServerHandshake
+  id: ServerHandshake
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.ServerHandshake.#ctor(System.String[])
+  - WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
+  - WebSockets.Core.ServerHandshake.ReadRequest
+  - WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
+  - WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  langs:
+  - csharp
+  - vb
+  name: ServerHandshake
+  nameWithType: ServerHandshake
+  fullName: WebSockets.Core.ServerHandshake
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ServerHandshake
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 15
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: >-
+    A sans-io implementation of the server side of the WebSocket protocol.
+
+
+    The business layer logic is not provided. For example when a ping is
+
+    received, the implementer is expected to return the pong. This is also
+
+    the case for a close.
+  example: []
+  syntax:
+    content: 'public class ServerHandshake : Handshake'
+    content.vb: Public Class ServerHandshake Inherits Handshake
+  inheritance:
+  - System.Object
+  - WebSockets.Core.Handshake
+  inheritedMembers:
+  - WebSockets.Core.Handshake.State
+  - WebSockets.Core.Handshake.SelectedSubProtocol
+  - WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
+  - WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: WebSockets.Core.ServerHandshake.#ctor(System.String[])
+  commentId: M:WebSockets.Core.ServerHandshake.#ctor(System.String[])
+  id: '#ctor(System.String[])'
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: ServerHandshake(string[])
+  nameWithType: ServerHandshake.ServerHandshake(string[])
+  fullName: WebSockets.Core.ServerHandshake.ServerHandshake(string[])
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 17
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public ServerHandshake(string[] subProtocols)
+    parameters:
+    - id: subProtocols
+      type: System.String[]
+    content.vb: Public Sub New(subProtocols As String())
+  overload: WebSockets.Core.ServerHandshake.#ctor*
+  nameWithType.vb: ServerHandshake.New(String())
+  fullName.vb: WebSockets.Core.ServerHandshake.New(String())
+  name.vb: New(String())
+- uid: WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
+  commentId: M:WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
+  id: '#ctor(System.String[],WebSockets.Core.IDateTimeProvider)'
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: ServerHandshake(string[], IDateTimeProvider)
+  nameWithType: ServerHandshake.ServerHandshake(string[], IDateTimeProvider)
+  fullName: WebSockets.Core.ServerHandshake.ServerHandshake(string[], WebSockets.Core.IDateTimeProvider)
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 22
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public ServerHandshake(string[] subProtocols, IDateTimeProvider dateTimeProvider)
+    parameters:
+    - id: subProtocols
+      type: System.String[]
+    - id: dateTimeProvider
+      type: WebSockets.Core.IDateTimeProvider
+    content.vb: Public Sub New(subProtocols As String(), dateTimeProvider As IDateTimeProvider)
+  overload: WebSockets.Core.ServerHandshake.#ctor*
+  nameWithType.vb: ServerHandshake.New(String(), IDateTimeProvider)
+  fullName.vb: WebSockets.Core.ServerHandshake.New(String(), WebSockets.Core.IDateTimeProvider)
+  name.vb: New(String(), IDateTimeProvider)
+- uid: WebSockets.Core.ServerHandshake.ReadRequest
+  commentId: M:WebSockets.Core.ServerHandshake.ReadRequest
+  id: ReadRequest
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: ReadRequest()
+  nameWithType: ServerHandshake.ReadRequest()
+  fullName: WebSockets.Core.ServerHandshake.ReadRequest()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ReadRequest
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 29
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public WebRequest? ReadRequest()
+    return:
+      type: WebSockets.Core.WebRequest
+    content.vb: Public Function ReadRequest() As WebRequest
+  overload: WebSockets.Core.ServerHandshake.ReadRequest*
+- uid: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  commentId: M:WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  id: WriteResponse(WebSockets.Core.WebRequest)
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: WriteResponse(WebRequest)
+  nameWithType: ServerHandshake.WriteResponse(WebRequest)
+  fullName: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: WriteResponse
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 40
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public void WriteResponse(WebRequest webRequest)
+    parameters:
+    - id: webRequest
+      type: WebSockets.Core.WebRequest
+    content.vb: Public Sub WriteResponse(webRequest As WebRequest)
+  overload: WebSockets.Core.ServerHandshake.WriteResponse*
+- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
+  commentId: M:WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
+  id: WriteRejectResponse(System.String)
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: WriteRejectResponse(string)
+  nameWithType: ServerHandshake.WriteRejectResponse(string)
+  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse(string)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: WriteRejectResponse
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 59
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public void WriteRejectResponse(string reason)
+    parameters:
+    - id: reason
+      type: System.String
+    content.vb: Public Sub WriteRejectResponse(reason As String)
+  overload: WebSockets.Core.ServerHandshake.WriteRejectResponse*
+  nameWithType.vb: ServerHandshake.WriteRejectResponse(String)
+  fullName.vb: WebSockets.Core.ServerHandshake.WriteRejectResponse(String)
+  name.vb: WriteRejectResponse(String)
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: WebSockets.Core.Handshake
+  commentId: T:WebSockets.Core.Handshake
+  parent: WebSockets.Core
+  href: WebSockets.Core.Handshake.html
+  name: Handshake
+  nameWithType: Handshake
+  fullName: WebSockets.Core.Handshake
+- uid: WebSockets.Core.Handshake.State
+  commentId: P:WebSockets.Core.Handshake.State
+  parent: WebSockets.Core.Handshake
+  href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_State
+  name: State
+  nameWithType: Handshake.State
+  fullName: WebSockets.Core.Handshake.State
+- uid: WebSockets.Core.Handshake.SelectedSubProtocol
+  commentId: P:WebSockets.Core.Handshake.SelectedSubProtocol
+  parent: WebSockets.Core.Handshake
+  href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_SelectedSubProtocol
+  name: SelectedSubProtocol
+  nameWithType: Handshake.SelectedSubProtocol
+  fullName: WebSockets.Core.Handshake.SelectedSubProtocol
+- uid: WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
+  commentId: M:WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
+  parent: WebSockets.Core.Handshake
+  isExternal: true
+  href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_
+  name: ReadData(byte[], ref long, long)
+  nameWithType: Handshake.ReadData(byte[], ref long, long)
+  fullName: WebSockets.Core.Handshake.ReadData(byte[], ref long, long)
+  nameWithType.vb: Handshake.ReadData(Byte(), Long, Long)
+  fullName.vb: WebSockets.Core.Handshake.ReadData(Byte(), Long, Long)
+  name.vb: ReadData(Byte(), Long, Long)
+  spec.csharp:
+  - uid: WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
+    name: ReadData
+    href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+  spec.vb:
+  - uid: WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
+    name: ReadData
+    href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+- uid: WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)
+  commentId: M:WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)
+  parent: WebSockets.Core.Handshake
+  isExternal: true
+  href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_WriteData_System_Byte___System_Int64_System_Int64_
+  name: WriteData(byte[], long, long)
+  nameWithType: Handshake.WriteData(byte[], long, long)
+  fullName: WebSockets.Core.Handshake.WriteData(byte[], long, long)
+  nameWithType.vb: Handshake.WriteData(Byte(), Long, Long)
+  fullName.vb: WebSockets.Core.Handshake.WriteData(Byte(), Long, Long)
+  name.vb: WriteData(Byte(), Long, Long)
+  spec.csharp:
+  - uid: WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)
+    name: WriteData
+    href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_WriteData_System_Byte___System_Int64_System_Int64_
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+  spec.vb:
+  - uid: WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)
+    name: WriteData
+    href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_WriteData_System_Byte___System_Int64_System_Int64_
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.ServerHandshake.#ctor*
+  commentId: Overload:WebSockets.Core.ServerHandshake.#ctor
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake__ctor_System_String___
+  name: ServerHandshake
+  nameWithType: ServerHandshake.ServerHandshake
+  fullName: WebSockets.Core.ServerHandshake.ServerHandshake
+  nameWithType.vb: ServerHandshake.New
+  fullName.vb: WebSockets.Core.ServerHandshake.New
+  name.vb: New
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: WebSockets.Core.IDateTimeProvider
+  commentId: T:WebSockets.Core.IDateTimeProvider
+  parent: WebSockets.Core
+  href: WebSockets.Core.IDateTimeProvider.html
+  name: IDateTimeProvider
+  nameWithType: IDateTimeProvider
+  fullName: WebSockets.Core.IDateTimeProvider
+- uid: WebSockets.Core.ServerHandshake.ReadRequest*
+  commentId: Overload:WebSockets.Core.ServerHandshake.ReadRequest
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_ReadRequest
+  name: ReadRequest
+  nameWithType: ServerHandshake.ReadRequest
+  fullName: WebSockets.Core.ServerHandshake.ReadRequest
+- uid: WebSockets.Core.WebRequest
+  commentId: T:WebSockets.Core.WebRequest
+  parent: WebSockets.Core
+  href: WebSockets.Core.WebRequest.html
+  name: WebRequest
+  nameWithType: WebRequest
+  fullName: WebSockets.Core.WebRequest
+- uid: WebSockets.Core.ServerHandshake.WriteResponse*
+  commentId: Overload:WebSockets.Core.ServerHandshake.WriteResponse
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebRequest_
+  name: WriteResponse
+  nameWithType: ServerHandshake.WriteResponse
+  fullName: WebSockets.Core.ServerHandshake.WriteResponse
+- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse*
+  commentId: Overload:WebSockets.Core.ServerHandshake.WriteRejectResponse
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteRejectResponse_System_String_
+  name: WriteRejectResponse
+  nameWithType: ServerHandshake.WriteRejectResponse
+  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

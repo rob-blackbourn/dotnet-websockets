@@ -1,0 +1,77 @@
+### YamlMime:TableOfContent
+items:
+- uid: WebSockets.Core
+  name: WebSockets.Core
+  type: Namespace
+  items:
+  - uid: WebSockets.Core.ClientHandshake
+    name: ClientHandshake
+    type: Class
+  - uid: WebSockets.Core.DateTimeProvider
+    name: DateTimeProvider
+    type: Class
+  - uid: WebSockets.Core.Handshake
+    name: Handshake
+    type: Class
+  - uid: WebSockets.Core.HandshakeState
+    name: HandshakeState
+    type: Enum
+  - uid: WebSockets.Core.IDateTimeProvider
+    name: IDateTimeProvider
+    type: Interface
+  - uid: WebSockets.Core.INonceGenerator
+    name: INonceGenerator
+    type: Interface
+  - uid: WebSockets.Core.MessageProtocol
+    name: MessageProtocol
+    type: Class
+  - uid: WebSockets.Core.NonceGenerator
+    name: NonceGenerator
+    type: Class
+  - uid: WebSockets.Core.ProtocolState
+    name: ProtocolState
+    type: Enum
+  - uid: WebSockets.Core.PublicExtensionMethods
+    name: PublicExtensionMethods
+    type: Class
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    type: Struct
+  - uid: WebSockets.Core.ServerHandshake
+    name: ServerHandshake
+    type: Class
+  - uid: WebSockets.Core.WebRequest
+    name: WebRequest
+    type: Class
+  - uid: WebSockets.Core.WebResponse
+    name: WebResponse
+    type: Class
+- uid: WebSockets.Core.Messages
+  name: WebSockets.Core.Messages
+  type: Namespace
+  items:
+  - uid: WebSockets.Core.Messages.BinaryMessage
+    name: BinaryMessage
+    type: Class
+  - uid: WebSockets.Core.Messages.CloseMessage
+    name: CloseMessage
+    type: Class
+  - uid: WebSockets.Core.Messages.DataMessage
+    name: DataMessage
+    type: Class
+  - uid: WebSockets.Core.Messages.Message
+    name: Message
+    type: Class
+  - uid: WebSockets.Core.Messages.MessageType
+    name: MessageType
+    type: Enum
+  - uid: WebSockets.Core.Messages.PingMessage
+    name: PingMessage
+    type: Class
+  - uid: WebSockets.Core.Messages.PongMessage
+    name: PongMessage
+    type: Class
+  - uid: WebSockets.Core.Messages.TextMessage
+    name: TextMessage
+    type: Class
+memberLayout: SamePage

@@ -1,0 +1,162 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.INonceGenerator
+  commentId: T:WebSockets.Core.INonceGenerator
+  id: INonceGenerator
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.INonceGenerator.CreateClientKey
+  - WebSockets.Core.INonceGenerator.CreateMask
+  langs:
+  - csharp
+  - vb
+  name: INonceGenerator
+  nameWithType: INonceGenerator
+  fullName: WebSockets.Core.INonceGenerator
+  type: Interface
+  source:
+    remote:
+      path: src/WebSockets.Core/NonceGenerator.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: INonceGenerator
+    path: src/WebSockets.Core/NonceGenerator.cs
+    startLine: 4
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public interface INonceGenerator
+    content.vb: Public Interface INonceGenerator
+- uid: WebSockets.Core.INonceGenerator.CreateMask
+  commentId: M:WebSockets.Core.INonceGenerator.CreateMask
+  id: CreateMask
+  parent: WebSockets.Core.INonceGenerator
+  langs:
+  - csharp
+  - vb
+  name: CreateMask()
+  nameWithType: INonceGenerator.CreateMask()
+  fullName: WebSockets.Core.INonceGenerator.CreateMask()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/NonceGenerator.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateMask
+    path: src/WebSockets.Core/NonceGenerator.cs
+    startLine: 6
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: byte[] CreateMask()
+    return:
+      type: System.Byte[]
+    content.vb: Function CreateMask() As Byte()
+  overload: WebSockets.Core.INonceGenerator.CreateMask*
+- uid: WebSockets.Core.INonceGenerator.CreateClientKey
+  commentId: M:WebSockets.Core.INonceGenerator.CreateClientKey
+  id: CreateClientKey
+  parent: WebSockets.Core.INonceGenerator
+  langs:
+  - csharp
+  - vb
+  name: CreateClientKey()
+  nameWithType: INonceGenerator.CreateClientKey()
+  fullName: WebSockets.Core.INonceGenerator.CreateClientKey()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/NonceGenerator.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateClientKey
+    path: src/WebSockets.Core/NonceGenerator.cs
+    startLine: 7
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: string CreateClientKey()
+    return:
+      type: System.String
+    content.vb: Function CreateClientKey() As String
+  overload: WebSockets.Core.INonceGenerator.CreateClientKey*
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: WebSockets.Core.INonceGenerator.CreateMask*
+  commentId: Overload:WebSockets.Core.INonceGenerator.CreateMask
+  href: WebSockets.Core.INonceGenerator.html#WebSockets_Core_INonceGenerator_CreateMask
+  name: CreateMask
+  nameWithType: INonceGenerator.CreateMask
+  fullName: WebSockets.Core.INonceGenerator.CreateMask
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: WebSockets.Core.INonceGenerator.CreateClientKey*
+  commentId: Overload:WebSockets.Core.INonceGenerator.CreateClientKey
+  href: WebSockets.Core.INonceGenerator.html#WebSockets_Core_INonceGenerator_CreateClientKey
+  name: CreateClientKey
+  nameWithType: INonceGenerator.CreateClientKey
+  fullName: WebSockets.Core.INonceGenerator.CreateClientKey
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

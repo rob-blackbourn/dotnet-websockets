@@ -1,0 +1,645 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Reserved
+  commentId: T:WebSockets.Core.Reserved
+  id: Reserved
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.Reserved.#ctor(System.Boolean,System.Boolean,System.Boolean)
+  - WebSockets.Core.Reserved.AllFalse
+  - WebSockets.Core.Reserved.Equals(WebSockets.Core.Reserved)
+  - WebSockets.Core.Reserved.IsRsv1
+  - WebSockets.Core.Reserved.IsRsv2
+  - WebSockets.Core.Reserved.IsRsv3
+  langs:
+  - csharp
+  - vb
+  name: Reserved
+  nameWithType: Reserved
+  fullName: WebSockets.Core.Reserved
+  type: Struct
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Reserved
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 4
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: 'public struct Reserved : IEquatable<Reserved>'
+    content.vb: Public Structure Reserved Implements IEquatable(Of Reserved)
+  implements:
+  - System.IEquatable{WebSockets.Core.Reserved}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: WebSockets.Core.Reserved.AllFalse
+  commentId: P:WebSockets.Core.Reserved.AllFalse
+  id: AllFalse
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: AllFalse
+  nameWithType: Reserved.AllFalse
+  fullName: WebSockets.Core.Reserved.AllFalse
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: AllFalse
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 6
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static Reserved AllFalse { get; }
+    parameters: []
+    return:
+      type: WebSockets.Core.Reserved
+    content.vb: Public Shared ReadOnly Property AllFalse As Reserved
+  overload: WebSockets.Core.Reserved.AllFalse*
+- uid: WebSockets.Core.Reserved.#ctor(System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:WebSockets.Core.Reserved.#ctor(System.Boolean,System.Boolean,System.Boolean)
+  id: '#ctor(System.Boolean,System.Boolean,System.Boolean)'
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: Reserved(bool, bool, bool)
+  nameWithType: Reserved.Reserved(bool, bool, bool)
+  fullName: WebSockets.Core.Reserved.Reserved(bool, bool, bool)
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 8
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public Reserved(bool isRsv1, bool isRsv2, bool isRsv3)
+    parameters:
+    - id: isRsv1
+      type: System.Boolean
+    - id: isRsv2
+      type: System.Boolean
+    - id: isRsv3
+      type: System.Boolean
+    content.vb: Public Sub New(isRsv1 As Boolean, isRsv2 As Boolean, isRsv3 As Boolean)
+  overload: WebSockets.Core.Reserved.#ctor*
+  nameWithType.vb: Reserved.New(Boolean, Boolean, Boolean)
+  fullName.vb: WebSockets.Core.Reserved.New(Boolean, Boolean, Boolean)
+  name.vb: New(Boolean, Boolean, Boolean)
+- uid: WebSockets.Core.Reserved.IsRsv1
+  commentId: P:WebSockets.Core.Reserved.IsRsv1
+  id: IsRsv1
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: IsRsv1
+  nameWithType: Reserved.IsRsv1
+  fullName: WebSockets.Core.Reserved.IsRsv1
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: IsRsv1
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 15
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public readonly bool IsRsv1 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsRsv1 As Boolean
+  overload: WebSockets.Core.Reserved.IsRsv1*
+- uid: WebSockets.Core.Reserved.IsRsv2
+  commentId: P:WebSockets.Core.Reserved.IsRsv2
+  id: IsRsv2
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: IsRsv2
+  nameWithType: Reserved.IsRsv2
+  fullName: WebSockets.Core.Reserved.IsRsv2
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: IsRsv2
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 16
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public readonly bool IsRsv2 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsRsv2 As Boolean
+  overload: WebSockets.Core.Reserved.IsRsv2*
+- uid: WebSockets.Core.Reserved.IsRsv3
+  commentId: P:WebSockets.Core.Reserved.IsRsv3
+  id: IsRsv3
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: IsRsv3
+  nameWithType: Reserved.IsRsv3
+  fullName: WebSockets.Core.Reserved.IsRsv3
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: IsRsv3
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 17
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public readonly bool IsRsv3 { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsRsv3 As Boolean
+  overload: WebSockets.Core.Reserved.IsRsv3*
+- uid: WebSockets.Core.Reserved.Equals(WebSockets.Core.Reserved)
+  commentId: M:WebSockets.Core.Reserved.Equals(WebSockets.Core.Reserved)
+  id: Equals(WebSockets.Core.Reserved)
+  parent: WebSockets.Core.Reserved
+  langs:
+  - csharp
+  - vb
+  name: Equals(Reserved)
+  nameWithType: Reserved.Equals(Reserved)
+  fullName: WebSockets.Core.Reserved.Equals(WebSockets.Core.Reserved)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/Reserved.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Equals
+    path: src/WebSockets.Core/Reserved.cs
+    startLine: 19
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(Reserved other)
+    parameters:
+    - id: other
+      type: WebSockets.Core.Reserved
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As Reserved) As Boolean
+  overload: WebSockets.Core.Reserved.Equals*
+  implements:
+  - System.IEquatable{WebSockets.Core.Reserved}.Equals(WebSockets.Core.Reserved)
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: System.IEquatable{WebSockets.Core.Reserved}
+  commentId: T:System.IEquatable{WebSockets.Core.Reserved}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Reserved>
+  nameWithType: IEquatable<Reserved>
+  fullName: System.IEquatable<WebSockets.Core.Reserved>
+  nameWithType.vb: IEquatable(Of Reserved)
+  fullName.vb: System.IEquatable(Of WebSockets.Core.Reserved)
+  name.vb: IEquatable(Of Reserved)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: WebSockets.Core.Reserved.AllFalse*
+  commentId: Overload:WebSockets.Core.Reserved.AllFalse
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved_AllFalse
+  name: AllFalse
+  nameWithType: Reserved.AllFalse
+  fullName: WebSockets.Core.Reserved.AllFalse
+- uid: WebSockets.Core.Reserved
+  commentId: T:WebSockets.Core.Reserved
+  parent: WebSockets.Core
+  href: WebSockets.Core.Reserved.html
+  name: Reserved
+  nameWithType: Reserved
+  fullName: WebSockets.Core.Reserved
+- uid: WebSockets.Core.Reserved.#ctor*
+  commentId: Overload:WebSockets.Core.Reserved.#ctor
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved__ctor_System_Boolean_System_Boolean_System_Boolean_
+  name: Reserved
+  nameWithType: Reserved.Reserved
+  fullName: WebSockets.Core.Reserved.Reserved
+  nameWithType.vb: Reserved.New
+  fullName.vb: WebSockets.Core.Reserved.New
+  name.vb: New
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: WebSockets.Core.Reserved.IsRsv1*
+  commentId: Overload:WebSockets.Core.Reserved.IsRsv1
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved_IsRsv1
+  name: IsRsv1
+  nameWithType: Reserved.IsRsv1
+  fullName: WebSockets.Core.Reserved.IsRsv1
+- uid: WebSockets.Core.Reserved.IsRsv2*
+  commentId: Overload:WebSockets.Core.Reserved.IsRsv2
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved_IsRsv2
+  name: IsRsv2
+  nameWithType: Reserved.IsRsv2
+  fullName: WebSockets.Core.Reserved.IsRsv2
+- uid: WebSockets.Core.Reserved.IsRsv3*
+  commentId: Overload:WebSockets.Core.Reserved.IsRsv3
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved_IsRsv3
+  name: IsRsv3
+  nameWithType: Reserved.IsRsv3
+  fullName: WebSockets.Core.Reserved.IsRsv3
+- uid: WebSockets.Core.Reserved.Equals*
+  commentId: Overload:WebSockets.Core.Reserved.Equals
+  href: WebSockets.Core.Reserved.html#WebSockets_Core_Reserved_Equals_WebSockets_Core_Reserved_
+  name: Equals
+  nameWithType: Reserved.Equals
+  fullName: WebSockets.Core.Reserved.Equals
+- uid: System.IEquatable{WebSockets.Core.Reserved}.Equals(WebSockets.Core.Reserved)
+  commentId: M:System.IEquatable{WebSockets.Core.Reserved}.Equals(WebSockets.Core.Reserved)
+  parent: System.IEquatable{WebSockets.Core.Reserved}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Reserved)
+  nameWithType: IEquatable<Reserved>.Equals(Reserved)
+  fullName: System.IEquatable<WebSockets.Core.Reserved>.Equals(WebSockets.Core.Reserved)
+  nameWithType.vb: IEquatable(Of Reserved).Equals(Reserved)
+  fullName.vb: System.IEquatable(Of WebSockets.Core.Reserved).Equals(WebSockets.Core.Reserved)
+  spec.csharp:
+  - uid: System.IEquatable{WebSockets.Core.Reserved}.Equals(WebSockets.Core.Reserved)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{WebSockets.Core.Reserved}.Equals(WebSockets.Core.Reserved)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
