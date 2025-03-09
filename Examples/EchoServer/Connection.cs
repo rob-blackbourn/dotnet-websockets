@@ -9,13 +9,13 @@ namespace EchoServer
     class Connection
     {
         private readonly NetworkStream _stream;
-        private readonly ServerHandshakeProtocol _handshakeProtocol;
+        private readonly ServerHandshake _handshakeProtocol;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshakeProtocol = new ServerHandshakeProtocol(subProtocols);
+            _handshakeProtocol = new ServerHandshake(subProtocols);
             _messageProtocol = new MessageProtocol(false, new NonceGenerator());
         }
 
@@ -30,7 +30,7 @@ namespace EchoServer
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
             var buffer = new byte[1024];
-            while (_messageProtocol.State == ConnectionState.Connected)
+            while (_messageProtocol.State == ProtocolState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
 
@@ -78,12 +78,12 @@ namespace EchoServer
                 else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close.");
-                    if (_messageProtocol.State == ConnectionState.Closing)
+                    if (_messageProtocol.State == ProtocolState.Closing)
                     {
                         Console.WriteLine("Sending close (completing close handshake).");
                         SendMessage(message);
                     }
-                    else if (_messageProtocol.State == ConnectionState.Closed)
+                    else if (_messageProtocol.State == ProtocolState.Closed)
                     {
                         Console.WriteLine("Close handshake complete");
                     }

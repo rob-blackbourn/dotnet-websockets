@@ -11,17 +11,17 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ClientHandshakeProtocol : HandshakeProtocol
+    public class ClientHandshake : Handshake
     {
         private readonly string _origin;
         private readonly string _key;
 
-        public ClientHandshakeProtocol(string origin, string[] subProtocols)
+        public ClientHandshake(string origin, string[] subProtocols)
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
-        public ClientHandshakeProtocol(
+        public ClientHandshake(
             string origin,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,

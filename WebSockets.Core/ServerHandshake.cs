@@ -13,14 +13,14 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ServerHandshakeProtocol : HandshakeProtocol
+    public class ServerHandshake : Handshake
     {
-        public ServerHandshakeProtocol(string[] subProtocols)
+        public ServerHandshake(string[] subProtocols)
             : this(subProtocols, new DateTimeProvider())
         {
         }
 
-        public ServerHandshakeProtocol(
+        public ServerHandshake(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
             : base(false, subProtocols, dateTimeProvider)

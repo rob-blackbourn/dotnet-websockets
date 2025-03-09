@@ -7,13 +7,13 @@ namespace EchoClient
     class Connection
     {
         private readonly NetworkStream _stream;
-        private readonly ClientHandshakeProtocol _handshakeProtocol;
+        private readonly ClientHandshake _handshakeProtocol;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string origin, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshakeProtocol = new ClientHandshakeProtocol(origin, subProtocols);
+            _handshakeProtocol = new ClientHandshake(origin, subProtocols);
             _messageProtocol = new MessageProtocol(true, new NonceGenerator());
         }
 
@@ -28,7 +28,7 @@ namespace EchoClient
             Console.WriteLine("Processing messages.");
             Console.WriteLine("Sending 'close' will cause the server to initiate a close handshake.");
             Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
-            while (_messageProtocol.State == ConnectionState.Connected)
+            while (_messageProtocol.State == ProtocolState.Connected)
             {
                 Console.Write("Message (<ENTER> to quit): ");
                 var text = Console.ReadLine();
@@ -61,13 +61,13 @@ namespace EchoClient
                 else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close.");
-                    if (_messageProtocol.State == ConnectionState.Closing)
+                    if (_messageProtocol.State == ProtocolState.Closing)
                     {
                         // Send the close back.
                         Console.WriteLine("Responding with close (completing close handshake).");
                         SendMessage(message);
                     }
-                    else if (_messageProtocol.State == ConnectionState.Closed)
+                    else if (_messageProtocol.State == ProtocolState.Closed)
                     {
                         Console.WriteLine("Close handshake complete");
                     }
