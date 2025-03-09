@@ -149,7 +149,7 @@ namespace EchoClient
                 _protocol.WriteHandshakeData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
-                isDone = _protocol.ReadHandshakeResponse();
+                isDone = _protocol.ReadHandshakeResponse() is not null;
             }
         }
     }

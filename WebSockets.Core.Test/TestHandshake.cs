@@ -48,8 +48,8 @@ namespace WebSockets.Core.Test
                     clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
             }
 
-            var isComplete = clientProtocol.ReadHandshakeResponse();
-            Assert.IsTrue(isComplete);
+            var webResponse = clientProtocol.ReadHandshakeResponse();
+            Assert.IsNotNull(webResponse);
             Assert.AreEqual(ConnectionState.Connected, clientProtocol.State);
             Assert.AreEqual(ConnectionState.Connected, serverProtocol.State);
             Assert.AreEqual("bar", clientProtocol.SelectedSubProtocol);
@@ -99,8 +99,8 @@ namespace WebSockets.Core.Test
                     clientProtocol.WriteHandshakeData(buffer, 0, (int)bytesRead);
             }
 
-            var isComplete = clientProtocol.ReadHandshakeResponse();
-            Assert.IsTrue(isComplete);
+            var webResponse = clientProtocol.ReadHandshakeResponse();
+            Assert.IsNotNull(webResponse);
             Assert.AreEqual(ConnectionState.Faulted, clientProtocol.State);
             Assert.AreEqual(ConnectionState.Faulted, serverProtocol.State);
         }

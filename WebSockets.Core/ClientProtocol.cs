@@ -40,22 +40,22 @@ namespace WebSockets.Core
             WriteHandshakeData(data, 0, data.LongLength);
         }
 
-        public bool ReadHandshakeResponse()
+        public WebResponse? ReadHandshakeResponse()
         {
             var index = _handshakeBuffer.IndexOf(HTTP_EOM, 0);
             if (index == -1)
-                return false;
+                return null;
 
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
             if (webResponse.Code != 101)
             {
                 State = ConnectionState.Faulted;
-                return true;
+                return webResponse;
             }
             
             SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
             State = ConnectionState.Connected;
-            return true;
+            return webResponse;
         }
 
         private WebRequest BuildHandshakeRequest(string path, string host)
