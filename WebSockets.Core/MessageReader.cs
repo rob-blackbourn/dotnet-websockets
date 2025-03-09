@@ -9,7 +9,7 @@ namespace WebSockets.Core
     /// <summary>
     /// A class to read WebSocket messages.
     /// 
-    /// Data is submitted (<see cref="WriteMessageData"/>) to the reader, then
+    /// Data is submitted (<see cref="WriteData"/>) to the reader, then
     /// messages are produced when processed (<see cref="ReadMessage"/>).
     /// A message may consist of multiple frames.
     /// </summary>
@@ -27,9 +27,9 @@ namespace WebSockets.Core
         /// <param name="data">The data to create the messages with.</param>
         /// <param name="offset"><The point to start reading the buffer./param>
         /// <param name="length">The length of the buffer to read.</param>
-        public void WriteMessageData(byte[] data, long offset, long length)
+        public void WriteData(byte[] data, long offset, long length)
         {
-            _frameReader.WriteFrameData(data, offset, length);
+            _frameReader.WriteData(data, offset, length);
         }
 
         /// <summary>

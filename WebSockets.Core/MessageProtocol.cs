@@ -39,7 +39,7 @@ namespace WebSockets.Core
 
         public bool ReadData(byte[] buffer, ref long offset, long length)
         {
-            return _messageWriter.ReadMessageData(buffer, ref offset, length);
+            return _messageWriter.ReadData(buffer, ref offset, length);
         }
 
         public void WriteData(byte[] buffer, long offset, long length)
@@ -51,7 +51,7 @@ namespace WebSockets.Core
             {
                 case ProtocolState.Connected:
                 case ProtocolState.Closing:
-                    _messageReader.WriteMessageData(buffer, offset, length);
+                    _messageReader.WriteData(buffer, offset, length);
                     break;
                 case ProtocolState.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");

@@ -48,7 +48,7 @@ namespace WebSockets.Core
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                writer.ReadMessageData(buf, ref offset, buf.LongLength);
+                writer.ReadData(buf, ref offset, buf.LongLength);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
@@ -62,7 +62,7 @@ namespace WebSockets.Core
         public static Message Deserialize(byte[] data)
         {
             var reader = new MessageReader();
-            reader.WriteMessageData(data, 0, data.Length);
+            reader.WriteData(data, 0, data.Length);
             var message = reader.ReadMessage();
             if (message == null)
                 throw new InvalidOperationException("failed to deserialize message");
