@@ -13,18 +13,17 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ServerProtocol : Protocol
+    public class ServerHandshakeProtocol : HandshakeProtocol
     {
-        public ServerProtocol(string[] subProtocols)
-            : this(subProtocols, new DateTimeProvider(), new NonceGenerator())
+        public ServerHandshakeProtocol(string[] subProtocols)
+            : this(subProtocols, new DateTimeProvider())
         {
         }
 
-        public ServerProtocol(
+        public ServerHandshakeProtocol(
             string[] subProtocols,
-            IDateTimeProvider dateTimeProvider,
-            INonceGenerator nonceGenerator)
-            : base(false, subProtocols, dateTimeProvider, nonceGenerator)
+            IDateTimeProvider dateTimeProvider)
+            : base(false, subProtocols, dateTimeProvider)
         {
         }
 
@@ -50,7 +49,7 @@ namespace WebSockets.Core
                 WriteHandshakeData(data, 0, data.Length);
 
                 SelectedSubProtocol = subProtocol;
-                HandshakeState = HandshakeState.Succeeded;
+                State = HandshakeState.Succeeded;
             }
             catch (InvalidDataException error)
             {
@@ -65,7 +64,7 @@ namespace WebSockets.Core
             var data = webResponse.ToBytes();
             WriteHandshakeData(data, 0, data.Length);
 
-            HandshakeState = HandshakeState.Failed;
+            State = HandshakeState.Failed;
         }
 
         private (string responseKey, string? subProtocol) ProcessHandshakeRequest(WebRequest webRequest)

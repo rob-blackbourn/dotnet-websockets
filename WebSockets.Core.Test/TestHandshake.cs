@@ -8,15 +8,14 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshake()
         {
-            var clientProtocol = new ClientProtocol(
+            var clientProtocol = new ClientHandshakeProtocol(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
                 new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
-            var serverProtocol = new ServerProtocol(
+            var serverProtocol = new ServerHandshakeProtocol(
                 ["bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1)),
-                new MockNonceGenerator([91, 251,255, 168], "x3JJHMbDL1EzLkh9GBhXDw==")
+                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
             clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
@@ -50,8 +49,8 @@ namespace WebSockets.Core.Test
 
             var webResponse = clientProtocol.ReadHandshakeResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(ConnectionState.Connected, clientProtocol.State);
-            Assert.AreEqual(ConnectionState.Connected, serverProtocol.State);
+            Assert.AreEqual(HandshakeState.Succeeded, clientProtocol.State);
+            Assert.AreEqual(HandshakeState.Succeeded, serverProtocol.State);
             Assert.AreEqual("bar", clientProtocol.SelectedSubProtocol);
             Assert.AreEqual("bar", serverProtocol.SelectedSubProtocol);
         }
@@ -59,15 +58,14 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshakeReject()
         {
-            var clientProtocol = new ClientProtocol(
+            var clientProtocol = new ClientHandshakeProtocol(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
                 new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
-            var serverProtocol = new ServerProtocol(
+            var serverProtocol = new ServerHandshakeProtocol(
                 ["bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1)),
-                new MockNonceGenerator([91, 251,255, 168], "x3JJHMbDL1EzLkh9GBhXDw==")
+                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
 
             clientProtocol.WriteHandshakeRequest("/chat", "www.mordor.com");
@@ -101,8 +99,8 @@ namespace WebSockets.Core.Test
 
             var webResponse = clientProtocol.ReadHandshakeResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(ConnectionState.Faulted, clientProtocol.State);
-            Assert.AreEqual(ConnectionState.Faulted, serverProtocol.State);
+            Assert.AreEqual(HandshakeState.Failed, clientProtocol.State);
+            Assert.AreEqual(HandshakeState.Failed, serverProtocol.State);
         }
     }
 }

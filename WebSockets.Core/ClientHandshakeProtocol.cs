@@ -11,22 +11,22 @@ namespace WebSockets.Core
     /// received, the implementer is expected to return the pong. This is also
     /// the case for a close.
     /// </summary>
-    public class ClientProtocol : Protocol
+    public class ClientHandshakeProtocol : HandshakeProtocol
     {
         private readonly string _origin;
         private readonly string _key;
 
-        public ClientProtocol(string origin, string[] subProtocols)
+        public ClientHandshakeProtocol(string origin, string[] subProtocols)
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
-        public ClientProtocol(
+        public ClientHandshakeProtocol(
             string origin,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
-            : base(true, subProtocols, dateTimeProvider, nonceGenerator)
+            : base(true, subProtocols, dateTimeProvider)
         {
             _origin = origin;
             _key = nonceGenerator.CreateClientKey();
@@ -48,12 +48,12 @@ namespace WebSockets.Core
             var webResponse = WebResponse.Parse(_handshakeBuffer.ToArray());
             if (webResponse.Code != 101)
             {
-                HandshakeState = HandshakeState.Failed;
+                State = HandshakeState.Failed;
                 return webResponse;
             }
             
             SelectedSubProtocol = ProcessHandshakeResponse(webResponse);
-            HandshakeState = HandshakeState.Succeeded;
+            State = HandshakeState.Succeeded;
             return webResponse;
         }
 

@@ -9,12 +9,14 @@ namespace EchoServer
     class Connection
     {
         private readonly NetworkStream _stream;
-        private readonly ServerProtocol _protocol;
+        private readonly ServerHandshakeProtocol _handshakeProtocol;
+        private readonly MessageProtocol _messageProtocol;
 
-        public Connection(TcpClient client)
+        public Connection(TcpClient client, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _protocol = new ServerProtocol([]);
+            _handshakeProtocol = new ServerHandshakeProtocol(subProtocols);
+            _messageProtocol = new MessageProtocol(false, new NonceGenerator());
         }
 
         public void Start()
@@ -28,20 +30,20 @@ namespace EchoServer
             // Listen to messages coming in, and echo them back out.
             // If the message is the word "close", start the close handshake.
             var buffer = new byte[1024];
-            while (_protocol.State == ConnectionState.Connected)
+            while (_messageProtocol.State == ConnectionState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
 
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead > 0)
-                    _protocol.WriteMessageData(buffer, 0, bytesRead);
+                    _messageProtocol.WriteMessageData(buffer, 0, bytesRead);
                 else
                 {
                     Console.WriteLine("The client closed the connection.");
                     break;
                 }
 
-                var message = _protocol.ReadMessage();
+                var message = _messageProtocol.ReadMessage();
                 if (message is null)
                 {
                     Console.WriteLine("Not enough data for message");
@@ -76,12 +78,12 @@ namespace EchoServer
                 else if (message.Type == MessageType.Close)
                 {
                     Console.WriteLine("Received close.");
-                    if (_protocol.State == ConnectionState.Closing)
+                    if (_messageProtocol.State == ConnectionState.Closing)
                     {
                         Console.WriteLine("Sending close (completing close handshake).");
                         SendMessage(message);
                     }
-                    else if (_protocol.State == ConnectionState.Closed)
+                    else if (_messageProtocol.State == ConnectionState.Closed)
                     {
                         Console.WriteLine("Close handshake complete");
                     }
@@ -116,12 +118,12 @@ namespace EchoServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _protocol.WriteHandshakeData(buffer, 0, bytesRead);
+                _handshakeProtocol.WriteHandshakeData(buffer, 0, bytesRead);
 
-                webRequest = _protocol.ReadHandshakeRequest();
+                webRequest = _handshakeProtocol.ReadHandshakeRequest();
             }
 
-            _protocol.WriteHandshakeResponse(webRequest);
+            _handshakeProtocol.WriteHandshakeResponse(webRequest);
         }
 
         private void SendHandshakeResponse()
@@ -131,7 +133,7 @@ namespace EchoServer
             {
                 var buffer = new byte[1024];
                 var bytesRead = 0L;
-                _protocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
+                _handshakeProtocol.ReadHandshakeData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -144,14 +146,14 @@ namespace EchoServer
 
         private void SendMessage(Message message)
         {
-            _protocol.WriteMessage(message);
+            _messageProtocol.WriteMessage(message);
 
             var isDone = false;
             var buffer = new byte[1024];
             while (!isDone)
             {
                 var offset = 0L;
-                isDone = _protocol.ReadMessageData(buffer, ref offset, buffer.Length);
+                isDone = _messageProtocol.ReadMessageData(buffer, ref offset, buffer.Length);
                 _stream.Write(buffer, 0, (int)offset);
                 Console.WriteLine("Sent client data");
             }

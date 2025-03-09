@@ -8,15 +8,11 @@ namespace WebSockets.Core
     /// The base protocol class providing functionality shared by both clients
     /// and servers.
     /// </summary>
-    public abstract class Protocol
+    public class MessageProtocol
     {
-        private protected static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-        private protected readonly FragmentBuffer<byte> _handshakeBuffer = new FragmentBuffer<byte>();
         private protected readonly MessageReader _messageReader = new MessageReader();
         private protected readonly MessageWriter _messageWriter;
-        private protected readonly string[] _subProtocols;
-        private protected readonly IDateTimeProvider _dateTimeProvider;
         private protected bool _isClient;
 
         /// <summary>
@@ -26,15 +22,11 @@ namespace WebSockets.Core
         /// <param name="subProtocols">The supported sub-protocols.</param>
         /// <param name="dateTimeProvider">A date/time provider.</param>
         /// <param name="nonceGenerator">A generator for secrets.</param>
-        protected Protocol(
+        public MessageProtocol(
             bool isClient,
-            string[] subProtocols,
-            IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
         {
             _isClient = isClient;
-            _subProtocols = subProtocols;
-            _dateTimeProvider = dateTimeProvider;
 
             _messageWriter = new MessageWriter(nonceGenerator);
         }
@@ -44,27 +36,6 @@ namespace WebSockets.Core
         /// </summary>
         /// <value>The connection state.</value>
         public ConnectionState State { get; protected set; } = ConnectionState.Connected;
-        public HandshakeState HandshakeState { get; protected set; } = HandshakeState.Pending;
-        public string? SelectedSubProtocol { get; protected set; } = null;
-
-        /// <summary>
-        /// Read handshake data from the network into the protocol buffer.
-        /// </summary>
-        /// <param name="buffer">The buffer containing the data.</param>
-        /// <param name="offset">The offset into the buffer.</param>
-        /// <param name="length">The length of the data.</param>
-        public void ReadHandshakeData(byte[] buffer, ref long offset, long length)
-        {
-            // TODO: Doesn't support offset and length.
-            offset = _handshakeBuffer.Read(buffer);
-            // TODO: Doesn't return bool.
-        }
-
-        public void WriteHandshakeData(byte[] buffer, long offset, long length)
-        {
-            _handshakeBuffer.Write(buffer, offset, length);
-            return;
-        }
 
         public bool ReadMessageData(byte[] buffer, ref long offset, long length)
         {
@@ -73,8 +44,8 @@ namespace WebSockets.Core
 
         public void WriteMessageData(byte[] buffer, long offset, long length)
         {
-            if (HandshakeState != HandshakeState.Succeeded)
-                throw new InvalidOperationException("cannot receive data before handshake completed");
+            // if (HandshakeState != HandshakeState.Succeeded)
+            //     throw new InvalidOperationException("cannot receive data before handshake completed");
 
             switch (State)
             {
@@ -118,8 +89,8 @@ namespace WebSockets.Core
 
         public void WriteMessage(Message message)
         {
-            if (HandshakeState != HandshakeState.Succeeded)
-                throw new InvalidOperationException("cannot receive data before handshake completed");
+            // if (HandshakeState != HandshakeState.Succeeded)
+            //     throw new InvalidOperationException("cannot receive data before handshake completed");
 
             switch (State)
             {
