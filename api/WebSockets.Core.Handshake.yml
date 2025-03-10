@@ -220,9 +220,9 @@ items:
   summary: Write data from the handshake buffer into the provided array.
   example: []
   syntax:
-    content: public void WriteData(byte[] dest, long offset, long length)
+    content: public void WriteData(byte[] destination, long offset, long length)
     parameters:
-    - id: dest
+    - id: destination
       type: System.Byte[]
       description: The array to receive the data.
     - id: offset
@@ -231,7 +231,7 @@ items:
     - id: length
       type: System.Int64
       description: The length of the buffer.
-    content.vb: Public Sub WriteData(dest As Byte(), offset As Long, length As Long)
+    content.vb: Public Sub WriteData(destination As Byte(), offset As Long, length As Long)
   overload: WebSockets.Core.Handshake.WriteData*
   nameWithType.vb: Handshake.WriteData(Byte(), Long, Long)
   fullName.vb: WebSockets.Core.Handshake.WriteData(Byte(), Long, Long)

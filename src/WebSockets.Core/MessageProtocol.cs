@@ -39,12 +39,12 @@ namespace WebSockets.Core
         /// <value>The connection state.</value>
         public ProtocolState State { get; protected set; } = ProtocolState.Connected;
 
-        public bool ReadData(byte[] buffer, ref long offset, long length)
+        public bool ReadData(byte[] destination, ref long offset, long length)
         {
-            return _messageWriter.ReadData(buffer, ref offset, length);
+            return _messageWriter.ReadData(destination, ref offset, length);
         }
 
-        public void WriteData(byte[] buffer, long offset, long length)
+        public void WriteData(byte[] source, long offset, long length)
         {
             // if (HandshakeState != HandshakeState.Succeeded)
             //     throw new InvalidOperationException("cannot receive data before handshake completed");
@@ -53,7 +53,7 @@ namespace WebSockets.Core
             {
                 case ProtocolState.Connected:
                 case ProtocolState.Closing:
-                    _messageReader.WriteData(buffer, offset, length);
+                    _messageReader.WriteData(source, offset, length);
                     break;
                 case ProtocolState.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");
