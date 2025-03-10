@@ -26,12 +26,12 @@ namespace WebSockets.Core
         /// After submitting the data <see cref="ReadMessage"/> must be called to
         /// generate the messages.
         /// </summary>
-        /// <param name="data">The data to create the messages with.</param>
+        /// <param name="source">The data to create the messages with.</param>
         /// <param name="offset"><The point to start reading the buffer./param>
         /// <param name="length">The length of the buffer to read.</param>
-        public void WriteData(byte[] data, long offset, long length)
+        public void WriteData(byte[] source, long offset, long length)
         {
-            _frameReader.WriteData(data, offset, length);
+            _frameReader.WriteData(source, offset, length);
         }
 
         /// <summary>

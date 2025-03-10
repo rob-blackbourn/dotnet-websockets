@@ -48,13 +48,13 @@ namespace WebSockets.Core
         /// 
         /// This will throw an exception if there are no frames to write.
         /// </summary>
-        /// <param name="buffer">The buffer to receive the serialized frame.</param>
+        /// <param name="destination">The buffer to receive the serialized frame.</param>
         /// <param name="offset">The offset at which to write. This gets updated as the buffer is written.</param>
         /// <returns>True if the operation sent an entire frame, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">If there are no frames to write.</exception> <summary>
-        public bool ReadData(byte[] buffer, ref long offset, long length)
+        public bool ReadData(byte[] destination, ref long offset, long length)
         {
-            if (length > buffer.LongLength)
+            if (length > destination.LongLength)
                 throw new ArgumentOutOfRangeException(nameof(length));
             if (_frameQueue.Count == 0)
                 throw new InvalidOperationException("No frames to read");
@@ -72,7 +72,7 @@ namespace WebSockets.Core
                 value |= (byte)(frame.Reserved.IsRsv3 ? 0b00010000 : 0);
                 value |= (byte)frame.OpCode;
 
-                buffer[offset] = value;
+                destination[offset] = value;
                 offset += 1;
 
                 _state = State.BYTE2;
@@ -101,7 +101,7 @@ namespace WebSockets.Core
                     _state = State.SHORT_LENGTH;
                 }
 
-                buffer[offset] = value;
+                destination[offset] = value;
                 offset += 1;
             }
 
@@ -114,7 +114,7 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyInto(buffer, offset, length);
+                offset += _sendBuffer.CopyInto(destination, offset, length);
 
                 if (_sendBuffer.Count != 0)
                     return false;
@@ -132,7 +132,7 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyInto(buffer, offset, length);
+                offset += _sendBuffer.CopyInto(destination, offset, length);
 
                 if (_sendBuffer.Count != 0)
                     return false;
@@ -152,7 +152,7 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(frame.Mask);
                 }
 
-                offset += _sendBuffer.CopyInto(buffer, offset, length);
+                offset += _sendBuffer.CopyInto(destination, offset, length);
 
                 if (_sendBuffer.Count != 0)
                     return false;
@@ -177,7 +177,7 @@ namespace WebSockets.Core
                     }
                 }
 
-                offset += _sendBuffer.CopyInto(buffer, offset, length);
+                offset += _sendBuffer.CopyInto(destination, offset, length);
 
                 if (_sendBuffer.Count != 0)
                     return false;

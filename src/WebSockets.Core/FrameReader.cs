@@ -37,12 +37,12 @@ namespace WebSockets.Core
         /// After submitting the data <see cref="ReadFrame"/> must be called to
         /// generate the frames.
         /// </summary>
-        /// <param name="data">The data to create the frames with.</param>
+        /// <param name="source">The data to create the frames with.</param>
         /// <param name="offset"><The point to start reading the buffer./param>
         /// <param name="length">The length of the buffer to read.</param>
-        public void WriteData(byte[] data, long offset, long length)
+        public void WriteData(byte[] source, long offset, long length)
         {
-            _buffer.Write(data, offset, length);
+            _buffer.Write(source, offset, length);
         }
 
         /// <summary>

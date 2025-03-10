@@ -74,13 +74,13 @@ namespace WebSockets.Core
         /// typically not useful, as a message may consist of many frames. Also
         /// many messages may be submitted before a write is called.
         /// </summary>
-        /// <param name="buffer">The buffer to write messages to.</param>
+        /// <param name="destination">The buffer to write messages to.</param>
         /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
         /// <param name="offset">The length of the buffer.</param>
         /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool ReadData(byte[] buffer, ref long offset, long length)
+        public bool ReadData(byte[] destination, ref long offset, long length)
         {
-            return _frameWriter.ReadData(buffer, ref offset, length);
+            return _frameWriter.ReadData(destination, ref offset, length);
         }
 
         private ArrayBuffer<byte> GetPayload(Message message)
