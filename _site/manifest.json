@@ -46,7 +46,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.ClientHandshake",
-      "Summary": "<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the client side of the WebSocket protocol.</p>\n<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"3\">The business layer logic is not provided. For example when a ping is\nreceived, the implementer is expected to return the pong. This is also\nthe case for a close.</p>\n"
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the client side of the WebSocket protocol.</p>\n"
     },
     {
       "type": "ManagedReference",

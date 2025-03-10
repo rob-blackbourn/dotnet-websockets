@@ -140,15 +140,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: SelectedSubProtocol
     path: src/WebSockets.Core/Handshake.cs
-    startLine: 39
+    startLine: 44
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The sub-protocol negotiated during the handshake.
+  example: []
   syntax:
     content: public string? SelectedSubProtocol { get; protected set; }
     parameters: []
     return:
       type: System.String
+      description: The (possibly null) selected sub-protocol.
     content.vb: Public Property SelectedSubProtocol As String
   overload: WebSockets.Core.Handshake.SelectedSubProtocol*
 - uid: WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
@@ -169,16 +172,16 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadData
     path: src/WebSockets.Core/Handshake.cs
-    startLine: 47
+    startLine: 52
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: Read handshake data from the network into the protocol buffer.
+  summary: Read handshake data from the provided array into the handshake buffer.
   example: []
   syntax:
-    content: public void ReadData(byte[] buffer, ref long offset, long length)
+    content: public void ReadData(byte[] source, ref long offset, long length)
     parameters:
-    - id: buffer
+    - id: source
       type: System.Byte[]
       description: The buffer containing the data.
     - id: offset
@@ -187,7 +190,7 @@ items:
     - id: length
       type: System.Int64
       description: The length of the data.
-    content.vb: Public Sub ReadData(buffer As Byte(), offset As Long, length As Long)
+    content.vb: Public Sub ReadData(source As Byte(), offset As Long, length As Long)
   overload: WebSockets.Core.Handshake.ReadData*
   nameWithType.vb: Handshake.ReadData(Byte(), Long, Long)
   fullName.vb: WebSockets.Core.Handshake.ReadData(Byte(), Long, Long)
@@ -210,20 +213,25 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteData
     path: src/WebSockets.Core/Handshake.cs
-    startLine: 54
+    startLine: 65
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Write data from the handshake buffer into the provided array.
+  example: []
   syntax:
-    content: public void WriteData(byte[] buffer, long offset, long length)
+    content: public void WriteData(byte[] dest, long offset, long length)
     parameters:
-    - id: buffer
+    - id: dest
       type: System.Byte[]
+      description: The array to receive the data.
     - id: offset
       type: System.Int64
+      description: The point in the buffer to start writing the data.
     - id: length
       type: System.Int64
-    content.vb: Public Sub WriteData(buffer As Byte(), offset As Long, length As Long)
+      description: The length of the buffer.
+    content.vb: Public Sub WriteData(dest As Byte(), offset As Long, length As Long)
   overload: WebSockets.Core.Handshake.WriteData*
   nameWithType.vb: Handshake.WriteData(Byte(), Long, Long)
   fullName.vb: WebSockets.Core.Handshake.WriteData(Byte(), Long, Long)

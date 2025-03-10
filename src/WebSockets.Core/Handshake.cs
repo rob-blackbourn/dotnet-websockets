@@ -37,24 +37,35 @@ namespace WebSockets.Core
         /// </summary>
         /// <value>The connection state.</value>
         public HandshakeState State { get; protected set; } = HandshakeState.Pending;
+
+        /// <summary>
+        /// The sub-protocol negotiated during the handshake.
+        /// </summary>
+        /// <value>The (possibly null) selected sub-protocol.</value>
         public string? SelectedSubProtocol { get; protected set; } = null;
 
         /// <summary>
-        /// Read handshake data from the network into the protocol buffer.
+        /// Read handshake data from the provided array into the handshake buffer.
         /// </summary>
-        /// <param name="buffer">The buffer containing the data.</param>
+        /// <param name="source">The buffer containing the data.</param>
         /// <param name="offset">The offset into the buffer.</param>
         /// <param name="length">The length of the data.</param>
-        public void ReadData(byte[] buffer, ref long offset, long length)
+        public void ReadData(byte[] source, ref long offset, long length)
         {
             // TODO: Doesn't support offset and length.
-            offset = _buffer.Read(buffer);
+            offset = _buffer.Read(source);
             // TODO: Doesn't return bool.
         }
 
-        public void WriteData(byte[] buffer, long offset, long length)
+        /// <summary>
+        /// Write data from the handshake buffer into the provided array.
+        /// </summary>
+        /// <param name="destination">The array to receive the data.</param>
+        /// <param name="offset">The point in the buffer to start writing the data.</param>
+        /// <param name="length">The length of the buffer.</param>
+        public void WriteData(byte[] destination, long offset, long length)
         {
-            _buffer.Write(buffer, offset, length);
+            _buffer.Write(destination, offset, length);
             return;
         }
 

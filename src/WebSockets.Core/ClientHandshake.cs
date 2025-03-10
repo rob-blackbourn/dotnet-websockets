@@ -6,21 +6,29 @@ namespace WebSockets.Core
 {
     /// <summary>
     /// A sans-io implementation of the client side of the WebSocket protocol.
-    /// 
-    /// The business layer logic is not provided. For example when a ping is
-    /// received, the implementer is expected to return the pong. This is also
-    /// the case for a close.
     /// </summary>
     public class ClientHandshake : Handshake
     {
         private readonly string _origin;
         private readonly string _key;
 
+        /// <summary>
+        /// Construct a client handshake.
+        /// </summary>
+        /// <param name="origin">The origin is the url of the initiator of the request.</param>
+        /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
         public ClientHandshake(string origin, string[] subProtocols)
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
 
+        /// <summary>
+        /// Construct a client handshake.
+        /// </summary>
+        /// <param name="origin">The origin is the url of the initiator of the request.</param>
+        /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
+        /// <param name="dateTimeProvider">An object which provides the current time.</param>
+        /// <param name="nonceGenerator">An object providing secrets.</param>
         public ClientHandshake(
             string origin,
             string[] subProtocols,
@@ -32,6 +40,11 @@ namespace WebSockets.Core
             _key = nonceGenerator.CreateClientKey();
         }
 
+        /// <summary>
+        /// Write a handshake request.
+        /// </summary>
+        /// <param name="path">The path on the server.</param>
+        /// <param name="host">The server name.</param>
         public void WriteRequest(string path, string host)
         {
             var webRequest = BuildRequest(path, host);
@@ -39,6 +52,10 @@ namespace WebSockets.Core
             WriteData(data, 0, data.LongLength);
         }
 
+        /// <summary>
+        /// Read a handshake response.
+        /// </summary>
+        /// <returns>The response from the server, or null if a complete response has yet to be received.</returns>
         public WebResponse? ReadResponse()
         {
             var index = _buffer.IndexOf(HTTP_EOM, 0);

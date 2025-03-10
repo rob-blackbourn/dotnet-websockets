@@ -208,10 +208,11 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_Handshake_SelectedSubProtocol" data-uid="WebSockets.Core.Handshake.SelectedSubProtocol">
   SelectedSubProtocol
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The sub-protocol negotiated during the handshake.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -225,7 +226,8 @@ and servers.</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The (possibly null) selected sub-protocol.</p>
+</dd>
   </dl>
 
 
@@ -276,20 +278,20 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_" data-uid="WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)">
   ReadData(byte[], ref long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Read handshake data from the network into the protocol buffer.</p>
+  <div class="markdown level1 summary"><p>Read handshake data from the provided array into the handshake buffer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ReadData(byte[] buffer, ref long offset, long length)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ReadData(byte[] source, ref long offset, long length)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd><p>The buffer containing the data.</p>
 </dd>
     <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
@@ -315,24 +317,28 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_Handshake_WriteData_System_Byte___System_Int64_System_Int64_" data-uid="WebSockets.Core.Handshake.WriteData(System.Byte[],System.Int64,System.Int64)">
   WriteData(byte[], long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Handshake.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write data from the handshake buffer into the provided array.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void WriteData(byte[] buffer, long offset, long length)</code></pre>
+    <pre><code class="lang-csharp hljs">public void WriteData(byte[] dest, long offset, long length)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dt><code>dest</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>The array to receive the data.</p>
+</dd>
     <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd></dd>
+    <dd><p>The point in the buffer to start writing the data.</p>
+</dd>
     <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd></dd>
+    <dd><p>The length of the buffer.</p>
+</dd>
   </dl>
 
 

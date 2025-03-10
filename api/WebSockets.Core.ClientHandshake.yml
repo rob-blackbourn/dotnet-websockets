@@ -23,19 +23,11 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ClientHandshake
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 13
+    startLine: 9
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: >-
-    A sans-io implementation of the client side of the WebSocket protocol.
-
-
-    The business layer logic is not provided. For example when a ping is
-
-    received, the implementer is expected to return the pong. This is also
-
-    the case for a close.
+  summary: A sans-io implementation of the client side of the WebSocket protocol.
   example: []
   syntax:
     content: 'public class ClientHandshake : Handshake'
@@ -73,17 +65,21 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Construct a client handshake.
+  example: []
   syntax:
     content: public ClientHandshake(string origin, string[] subProtocols)
     parameters:
     - id: origin
       type: System.String
+      description: The origin is the url of the initiator of the request.
     - id: subProtocols
       type: System.String[]
+      description: A (possibly empty) array of requested sub-protocols.
     content.vb: Public Sub New(origin As String, subProtocols As String())
   overload: WebSockets.Core.ClientHandshake.#ctor*
   nameWithType.vb: ClientHandshake.New(String, String())
@@ -107,21 +103,27 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 23
+    startLine: 31
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Construct a client handshake.
+  example: []
   syntax:
     content: public ClientHandshake(string origin, string[] subProtocols, IDateTimeProvider dateTimeProvider, INonceGenerator nonceGenerator)
     parameters:
     - id: origin
       type: System.String
+      description: The origin is the url of the initiator of the request.
     - id: subProtocols
       type: System.String[]
+      description: A (possibly empty) array of requested sub-protocols.
     - id: dateTimeProvider
       type: WebSockets.Core.IDateTimeProvider
+      description: An object which provides the current time.
     - id: nonceGenerator
       type: WebSockets.Core.INonceGenerator
+      description: An object providing secrets.
     content.vb: Public Sub New(origin As String, subProtocols As String(), dateTimeProvider As IDateTimeProvider, nonceGenerator As INonceGenerator)
   overload: WebSockets.Core.ClientHandshake.#ctor*
   nameWithType.vb: ClientHandshake.New(String, String(), IDateTimeProvider, INonceGenerator)
@@ -145,17 +147,21 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteRequest
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 34
+    startLine: 47
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Write a handshake request.
+  example: []
   syntax:
     content: public void WriteRequest(string path, string host)
     parameters:
     - id: path
       type: System.String
+      description: The path on the server.
     - id: host
       type: System.String
+      description: The server name.
     content.vb: Public Sub WriteRequest(path As String, host As String)
   overload: WebSockets.Core.ClientHandshake.WriteRequest*
   nameWithType.vb: ClientHandshake.WriteRequest(String, String)
@@ -179,14 +185,17 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadResponse
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 41
+    startLine: 58
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Read a handshake response.
+  example: []
   syntax:
     content: public WebResponse? ReadResponse()
     return:
       type: WebSockets.Core.WebResponse
+      description: The response from the server, or null if a complete response has yet to be received.
     content.vb: Public Function ReadResponse() As WebResponse
   overload: WebSockets.Core.ClientHandshake.ReadResponse*
 references:

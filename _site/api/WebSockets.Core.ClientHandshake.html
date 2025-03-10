@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ClientHandshake | websockets-sansio ">
       
-      <meta name="description" content="A sans-io implementation of the client side of the WebSocket protocol. The business layer logic is not provided. For example when a ping is received, the implementer is expected to return the pong. This is also the case for a close.">
+      <meta name="description" content="A sans-io implementation of the client side of the WebSocket protocol.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="WebSockets_Core_ClientHandshake" data-uid="WebSockets.Core.ClientHandshake" class="text-break">
-Class ClientHandshake  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L14"><i class="bi bi-code-slash"></i></a>
+Class ClientHandshake  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,9 +98,6 @@ Class ClientHandshake  <a class="header-action link-secondary" title="View sourc
   </div>
 
   <div class="markdown summary"><p>A sans-io implementation of the client side of the WebSocket protocol.</p>
-<p>The business layer logic is not provided. For example when a ping is
-received, the implementer is expected to return the pong. This is also
-the case for a close.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -173,10 +170,11 @@ the case for a close.</p>
 
   <h3 id="WebSockets_Core_ClientHandshake__ctor_System_String_System_String___" data-uid="WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[])">
   ClientHandshake(string, string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Construct a client handshake.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -186,9 +184,11 @@ the case for a close.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>origin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The origin is the url of the initiator of the request.</p>
+</dd>
     <dt><code>subProtocols</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd></dd>
+    <dd><p>A (possibly empty) array of requested sub-protocols.</p>
+</dd>
   </dl>
 
 
@@ -206,10 +206,11 @@ the case for a close.</p>
 
   <h3 id="WebSockets_Core_ClientHandshake__ctor_System_String_System_String___WebSockets_Core_IDateTimeProvider_WebSockets_Core_INonceGenerator_" data-uid="WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)">
   ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Construct a client handshake.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -219,13 +220,17 @@ the case for a close.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>origin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The origin is the url of the initiator of the request.</p>
+</dd>
     <dt><code>subProtocols</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd></dd>
+    <dd><p>A (possibly empty) array of requested sub-protocols.</p>
+</dd>
     <dt><code>dateTimeProvider</code> <a class="xref" href="WebSockets.Core.IDateTimeProvider.html">IDateTimeProvider</a></dt>
-    <dd></dd>
+    <dd><p>An object which provides the current time.</p>
+</dd>
     <dt><code>nonceGenerator</code> <a class="xref" href="WebSockets.Core.INonceGenerator.html">INonceGenerator</a></dt>
-    <dd></dd>
+    <dd><p>An object providing secrets.</p>
+</dd>
   </dl>
 
 
@@ -247,10 +252,11 @@ the case for a close.</p>
 
   <h3 id="WebSockets_Core_ClientHandshake_ReadResponse" data-uid="WebSockets.Core.ClientHandshake.ReadResponse">
   ReadResponse()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read a handshake response.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -261,7 +267,8 @@ the case for a close.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="WebSockets.Core.WebResponse.html">WebResponse</a></dt>
-    <dd></dd>
+    <dd><p>The response from the server, or null if a complete response has yet to be received.</p>
+</dd>
   </dl>
 
 
@@ -278,10 +285,11 @@ the case for a close.</p>
 
   <h3 id="WebSockets_Core_ClientHandshake_WriteRequest_System_String_System_String_" data-uid="WebSockets.Core.ClientHandshake.WriteRequest(System.String,System.String)">
   WriteRequest(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write a handshake request.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -291,9 +299,11 @@ the case for a close.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The path on the server.</p>
+</dd>
     <dt><code>host</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The server name.</p>
+</dd>
   </dl>
 
 
@@ -311,7 +321,7 @@ the case for a close.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L14" class="edit-link">Edit this page</a>
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 
