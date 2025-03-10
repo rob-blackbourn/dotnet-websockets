@@ -15,15 +15,17 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/PingMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: PingMessage
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 124
+    path: src/WebSockets.Core/Messages/PingMessage.cs
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: A ping message.
+  example: []
   syntax:
     content: 'public class PingMessage : DataMessage, IEquatable<Message>, IEquatable<DataMessage>'
     content.vb: Public Class PingMessage Inherits DataMessage Implements IEquatable(Of Message), IEquatable(Of DataMessage)
@@ -61,20 +63,23 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/PingMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 126
+    path: src/WebSockets.Core/Messages/PingMessage.cs
+    startLine: 14
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: Construct a ping message.
+  example: []
   syntax:
     content: public PingMessage(byte[] data)
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data that the pong message should return.
     content.vb: Public Sub New(data As Byte())
   overload: WebSockets.Core.Messages.PingMessage.#ctor*
   nameWithType.vb: PingMessage.New(Byte())

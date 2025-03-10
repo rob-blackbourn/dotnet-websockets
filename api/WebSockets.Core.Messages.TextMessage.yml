@@ -17,12 +17,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/TextMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: TextMessage
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 85
+    path: src/WebSockets.Core/Messages/TextMessage.cs
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -62,20 +62,23 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/TextMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 87
+    path: src/WebSockets.Core/Messages/TextMessage.cs
+    startLine: 14
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: Construct the text message.
+  example: []
   syntax:
     content: public TextMessage(string text)
     parameters:
     - id: text
       type: System.String
+      description: The message text.
     content.vb: Public Sub New(text As String)
   overload: WebSockets.Core.Messages.TextMessage.#ctor*
   nameWithType.vb: TextMessage.New(String)
@@ -94,20 +97,23 @@ items:
   type: Property
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/TextMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Text
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 92
+    path: src/WebSockets.Core/Messages/TextMessage.cs
+    startLine: 24
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: The message text.
+  example: []
   syntax:
     content: public string Text { get; }
     parameters: []
     return:
       type: System.String
+      description: The text.
     content.vb: Public Property Text As String
   overload: WebSockets.Core.Messages.TextMessage.Text*
 - uid: WebSockets.Core.Messages.TextMessage.Equals(WebSockets.Core.Messages.TextMessage)
@@ -123,12 +129,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/TextMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 94
+    path: src/WebSockets.Core/Messages/TextMessage.cs
+    startLine: 27
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

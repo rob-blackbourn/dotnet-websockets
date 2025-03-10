@@ -82,7 +82,7 @@ namespace WebSockets.Core
             var offset = 0L;
             foreach (var frame in frames)
             {
-                Array.Copy(frame.Payload.Array, frame.Payload.Offset, buf, offset, frame.Payload.Count);
+                Array.Copy(frame.Payload.Buffer, frame.Payload.Offset, buf, offset, frame.Payload.Count);
                 offset += frame.Payload.Count;
             }
             return CreateMessage(frames[0].OpCode, buf);

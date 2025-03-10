@@ -17,15 +17,17 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/DataMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: DataMessage
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 100
+    path: src/WebSockets.Core/Messages/DataMessage.cs
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: The base class for all messages which hold raw data.
+  example: []
   syntax:
     content: 'public abstract class DataMessage : Message, IEquatable<Message>, IEquatable<DataMessage>'
     content.vb: Public MustInherit Class DataMessage Inherits Message Implements IEquatable(Of Message), IEquatable(Of DataMessage)
@@ -64,22 +66,26 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/DataMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 102
+    path: src/WebSockets.Core/Messages/DataMessage.cs
+    startLine: 15
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: Construct a data message.
+  example: []
   syntax:
     content: public DataMessage(MessageType type, byte[] data)
     parameters:
     - id: type
       type: WebSockets.Core.Messages.MessageType
+      description: The type of the message.
     - id: data
       type: System.Byte[]
+      description: The message data.
     content.vb: Public Sub New(type As MessageType, data As Byte())
   overload: WebSockets.Core.Messages.DataMessage.#ctor*
   nameWithType.vb: DataMessage.New(MessageType, Byte())
@@ -98,20 +104,23 @@ items:
   type: Property
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/DataMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Data
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 108
+    path: src/WebSockets.Core/Messages/DataMessage.cs
+    startLine: 25
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: The data associated with the message.
+  example: []
   syntax:
     content: public byte[] Data { get; }
     parameters: []
     return:
       type: System.Byte[]
+      description: The message data.
     content.vb: Public Property Data As Byte()
   overload: WebSockets.Core.Messages.DataMessage.Data*
 - uid: WebSockets.Core.Messages.DataMessage.Equals(WebSockets.Core.Messages.DataMessage)
@@ -127,12 +136,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/DataMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 110
+    path: src/WebSockets.Core/Messages/DataMessage.cs
+    startLine: 28
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

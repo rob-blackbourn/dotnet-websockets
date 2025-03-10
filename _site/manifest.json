@@ -214,7 +214,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.CloseMessage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.CloseMessage.yml\" sourcestartlinenumber=\"1\">A message indicating the connection should be closed.</p>\n<p sourcefile=\"api/WebSockets.Core.Messages.CloseMessage.yml\" sourcestartlinenumber=\"3\">If this is an initiating message the other side will\nrespond with a close with the same code and reason.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -228,7 +228,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.DataMessage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.DataMessage.yml\" sourcestartlinenumber=\"1\">The base class for all messages which hold raw data.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -242,7 +242,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.Message",
-      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.Message.yml\" sourcestartlinenumber=\"1\">A WebSocket message.</p>\n"
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.Message.yml\" sourcestartlinenumber=\"1\">The base class for all WebSocket messages.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -270,7 +270,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.PingMessage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.PingMessage.yml\" sourcestartlinenumber=\"1\">A ping message.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -284,7 +284,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.PongMessage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.PongMessage.yml\" sourcestartlinenumber=\"1\">The message used to respond to a ping message.</p>\n"
     },
     {
       "type": "ManagedReference",

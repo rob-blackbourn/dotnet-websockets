@@ -19,16 +19,16 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Message
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 20
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
-  summary: A WebSocket message.
+  summary: The base class for all WebSocket messages.
   example: []
   syntax:
     content: 'public abstract class Message : IEquatable<Message>'
@@ -62,20 +62,23 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 22
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 14
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: Construct a message.
+  example: []
   syntax:
     content: protected Message(MessageType type)
     parameters:
     - id: type
       type: WebSockets.Core.Messages.MessageType
+      description: The message type.
     content.vb: Protected Sub New(type As MessageType)
   overload: WebSockets.Core.Messages.Message.#ctor*
   nameWithType.vb: Message.New(MessageType)
@@ -94,12 +97,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Type
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 31
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 23
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -126,12 +129,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Serialize
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 41
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 33
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -173,12 +176,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Deserialize
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 61
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 53
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -211,26 +214,26 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/Message.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 76
+    path: src/WebSockets.Core/Messages/Message.cs
+    startLine: 64
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
-  summary: Check for equality.
+  summary: Indicates whether the current object is equal to another object of the same type.
   example: []
   syntax:
     content: public bool Equals(Message? other)
     parameters:
     - id: other
       type: WebSockets.Core.Messages.Message
-      description: The other message.
+      description: An object to compare with this object.
     return:
       type: System.Boolean
-      description: True if the messages are the same.
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
     content.vb: Public Function Equals(other As Message) As Boolean
   overload: WebSockets.Core.Messages.Message.Equals*
   implements:

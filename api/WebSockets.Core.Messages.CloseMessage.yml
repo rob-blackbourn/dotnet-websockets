@@ -18,15 +18,23 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/CloseMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: CloseMessage
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 140
+    path: src/WebSockets.Core/Messages/CloseMessage.cs
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: >-
+    A message indicating the connection should be closed.
+
+
+    If this is an initiating message the other side will
+
+    respond with a close with the same code and reason.
+  example: []
   syntax:
     content: 'public class CloseMessage : Message, IEquatable<Message>, IEquatable<CloseMessage>'
     content.vb: Public Class CloseMessage Inherits Message Implements IEquatable(Of Message), IEquatable(Of CloseMessage)
@@ -61,22 +69,30 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/CloseMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 142
+    path: src/WebSockets.Core/Messages/CloseMessage.cs
+    startLine: 20
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: >-
+    Construct a close message.
+
+
+    If a reason is given a code must be specified.
+  example: []
   syntax:
     content: public CloseMessage(ushort? code, string? reason)
     parameters:
     - id: code
       type: System.Nullable{System.UInt16}
+      description: An optional code.
     - id: reason
       type: System.String
+      description: An optional reason.
     content.vb: Public Sub New(code As UShort?, reason As String)
   overload: WebSockets.Core.Messages.CloseMessage.#ctor*
   nameWithType.vb: CloseMessage.New(UShort?, String)
@@ -95,20 +111,23 @@ items:
   type: Property
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/CloseMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Code
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 149
+    path: src/WebSockets.Core/Messages/CloseMessage.cs
+    startLine: 34
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: A code indicating the reason for the close.
+  example: []
   syntax:
     content: public ushort? Code { get; }
     parameters: []
     return:
       type: System.Nullable{System.UInt16}
+      description: The code.
     content.vb: Public Property Code As UShort?
   overload: WebSockets.Core.Messages.CloseMessage.Code*
 - uid: WebSockets.Core.Messages.CloseMessage.Reason
@@ -124,20 +143,23 @@ items:
   type: Property
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/CloseMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Reason
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 150
+    path: src/WebSockets.Core/Messages/CloseMessage.cs
+    startLine: 39
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: A reason for the close.
+  example: []
   syntax:
     content: public string? Reason { get; }
     parameters: []
     return:
       type: System.String
+      description: The reason.
     content.vb: Public Property Reason As String
   overload: WebSockets.Core.Messages.CloseMessage.Reason*
 - uid: WebSockets.Core.Messages.CloseMessage.Equals(WebSockets.Core.Messages.CloseMessage)
@@ -153,12 +175,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/CloseMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 152
+    path: src/WebSockets.Core/Messages/CloseMessage.cs
+    startLine: 42
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

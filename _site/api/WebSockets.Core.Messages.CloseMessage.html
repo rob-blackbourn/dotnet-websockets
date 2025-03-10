@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class CloseMessage | websockets-sansio ">
       
-      
+      <meta name="description" content="A message indicating the connection should be closed. If this is an initiating message the other side will respond with a close with the same code and reason.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="WebSockets_Core_Messages_CloseMessage" data-uid="WebSockets.Core.Messages.CloseMessage" class="text-break">
-Class CloseMessage  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L141"><i class="bi bi-code-slash"></i></a>
+Class CloseMessage  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,10 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
   <dl><dt>Assembly</dt><dd>WebSockets.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A message indicating the connection should be closed.</p>
+<p>If this is an initiating message the other side will
+respond with a close with the same code and reason.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -176,10 +179,12 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="WebSockets_Core_Messages_CloseMessage__ctor_System_Nullable_System_UInt16__System_String_" data-uid="WebSockets.Core.Messages.CloseMessage.#ctor(System.Nullable{System.UInt16},System.String)">
   CloseMessage(ushort?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Construct a close message.</p>
+<p>If a reason is given a code must be specified.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -189,9 +194,11 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>code</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a>?</dt>
-    <dd></dd>
+    <dd><p>An optional code.</p>
+</dd>
     <dt><code>reason</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>An optional reason.</p>
+</dd>
   </dl>
 
 
@@ -213,10 +220,11 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="WebSockets_Core_Messages_CloseMessage_Code" data-uid="WebSockets.Core.Messages.CloseMessage.Code">
   Code
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A code indicating the reason for the close.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -230,7 +238,8 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a>?</dt>
-    <dd></dd>
+    <dd><p>The code.</p>
+</dd>
   </dl>
 
 
@@ -244,10 +253,11 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="WebSockets_Core_Messages_CloseMessage_Reason" data-uid="WebSockets.Core.Messages.CloseMessage.Reason">
   Reason
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A reason for the close.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -261,7 +271,8 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The reason.</p>
+</dd>
   </dl>
 
 
@@ -279,7 +290,7 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="WebSockets_Core_Messages_CloseMessage_Equals_WebSockets_Core_Messages_CloseMessage_" data-uid="WebSockets.Core.Messages.CloseMessage.Equals(WebSockets.Core.Messages.CloseMessage)">
   Equals(CloseMessage?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
@@ -318,7 +329,7 @@ Class CloseMessage  <a class="header-action link-secondary" title="View source" 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Messages.cs/#L141" class="edit-link">Edit this page</a>
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/CloseMessage.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

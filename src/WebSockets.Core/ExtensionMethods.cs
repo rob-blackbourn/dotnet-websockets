@@ -44,7 +44,7 @@ namespace WebSockets.Core
             var offset = 0L;
             foreach (var item in buffers)
             {
-                Array.Copy(item.Array, item.Offset, buf, offset, item.Count);
+                Array.Copy(item.Buffer, item.Offset, buf, offset, item.Count);
                 offset += item.Count;
             }
 

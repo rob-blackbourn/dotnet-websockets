@@ -22,27 +22,19 @@ items:
   assemblies:
   - WebSockets.Core
 references:
-- uid: WebSockets.Core.Messages.MessageType
-  commentId: T:WebSockets.Core.Messages.MessageType
+- uid: WebSockets.Core.Messages.BinaryMessage
+  commentId: T:WebSockets.Core.Messages.BinaryMessage
+  href: WebSockets.Core.Messages.BinaryMessage.html
+  name: BinaryMessage
+  nameWithType: BinaryMessage
+  fullName: WebSockets.Core.Messages.BinaryMessage
+- uid: WebSockets.Core.Messages.CloseMessage
+  commentId: T:WebSockets.Core.Messages.CloseMessage
   parent: WebSockets.Core.Messages
-  href: WebSockets.Core.Messages.MessageType.html
-  name: MessageType
-  nameWithType: MessageType
-  fullName: WebSockets.Core.Messages.MessageType
-- uid: WebSockets.Core.Messages.Message
-  commentId: T:WebSockets.Core.Messages.Message
-  parent: WebSockets.Core.Messages
-  href: WebSockets.Core.Messages.Message.html
-  name: Message
-  nameWithType: Message
-  fullName: WebSockets.Core.Messages.Message
-- uid: WebSockets.Core.Messages.TextMessage
-  commentId: T:WebSockets.Core.Messages.TextMessage
-  parent: WebSockets.Core.Messages
-  href: WebSockets.Core.Messages.TextMessage.html
-  name: TextMessage
-  nameWithType: TextMessage
-  fullName: WebSockets.Core.Messages.TextMessage
+  href: WebSockets.Core.Messages.CloseMessage.html
+  name: CloseMessage
+  nameWithType: CloseMessage
+  fullName: WebSockets.Core.Messages.CloseMessage
 - uid: WebSockets.Core.Messages.DataMessage
   commentId: T:WebSockets.Core.Messages.DataMessage
   parent: WebSockets.Core.Messages
@@ -50,12 +42,20 @@ references:
   name: DataMessage
   nameWithType: DataMessage
   fullName: WebSockets.Core.Messages.DataMessage
-- uid: WebSockets.Core.Messages.BinaryMessage
-  commentId: T:WebSockets.Core.Messages.BinaryMessage
-  href: WebSockets.Core.Messages.BinaryMessage.html
-  name: BinaryMessage
-  nameWithType: BinaryMessage
-  fullName: WebSockets.Core.Messages.BinaryMessage
+- uid: WebSockets.Core.Messages.Message
+  commentId: T:WebSockets.Core.Messages.Message
+  parent: WebSockets.Core.Messages
+  href: WebSockets.Core.Messages.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: WebSockets.Core.Messages.Message
+- uid: WebSockets.Core.Messages.MessageType
+  commentId: T:WebSockets.Core.Messages.MessageType
+  parent: WebSockets.Core.Messages
+  href: WebSockets.Core.Messages.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: WebSockets.Core.Messages.MessageType
 - uid: WebSockets.Core.Messages.PingMessage
   commentId: T:WebSockets.Core.Messages.PingMessage
   href: WebSockets.Core.Messages.PingMessage.html
@@ -68,13 +68,13 @@ references:
   name: PongMessage
   nameWithType: PongMessage
   fullName: WebSockets.Core.Messages.PongMessage
-- uid: WebSockets.Core.Messages.CloseMessage
-  commentId: T:WebSockets.Core.Messages.CloseMessage
+- uid: WebSockets.Core.Messages.TextMessage
+  commentId: T:WebSockets.Core.Messages.TextMessage
   parent: WebSockets.Core.Messages
-  href: WebSockets.Core.Messages.CloseMessage.html
-  name: CloseMessage
-  nameWithType: CloseMessage
-  fullName: WebSockets.Core.Messages.CloseMessage
+  href: WebSockets.Core.Messages.TextMessage.html
+  name: TextMessage
+  nameWithType: TextMessage
+  fullName: WebSockets.Core.Messages.TextMessage
 - uid: WebSockets.Core.Messages
   commentId: N:WebSockets.Core.Messages
   href: WebSockets.html

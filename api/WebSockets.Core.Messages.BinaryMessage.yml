@@ -15,12 +15,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/BinaryMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: BinaryMessage
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 116
+    path: src/WebSockets.Core/Messages/BinaryMessage.cs
+    startLine: 5
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -61,12 +61,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/WebSockets.Core/Messages/Messages.cs
+      path: src/WebSockets.Core/Messages/BinaryMessage.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
-    path: src/WebSockets.Core/Messages/Messages.cs
-    startLine: 118
+    path: src/WebSockets.Core/Messages/BinaryMessage.cs
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

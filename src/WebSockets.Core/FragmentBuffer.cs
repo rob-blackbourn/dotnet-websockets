@@ -38,7 +38,7 @@ namespace WebSockets.Core
 
                 var bytesRequired = buffer.Length - offset;
 
-                if (last.Value.Array == null)
+                if (last.Value.Buffer == null)
                 {
                     _buffer.RemoveLast();
                     continue;
@@ -46,7 +46,7 @@ namespace WebSockets.Core
 
                 if (last.Value.Count <= bytesRequired)
                 {
-                    Array.Copy(last.Value.Array, last.Value.Offset, buffer, offset, last.Value.Count);
+                    Array.Copy(last.Value.Buffer, last.Value.Offset, buffer, offset, last.Value.Count);
                     offset += last.Value.Count;
                     if (last.Value.Count <= bytesRequired)
                         _buffer.RemoveLast();
@@ -54,7 +54,7 @@ namespace WebSockets.Core
                 else
                 {
 
-                    Array.Copy(last.Value.Array, last.Value.Offset, buffer, offset, bytesRequired);
+                    Array.Copy(last.Value.Buffer, last.Value.Offset, buffer, offset, bytesRequired);
                     offset += bytesRequired;
                     last.Value = last.Value.Slice(bytesRequired);
                 }
@@ -135,7 +135,7 @@ namespace WebSockets.Core
             var offset = 0L;
             foreach (var item in _buffer.Reverse())
             {
-                Array.Copy(item.Array, item.Offset, buf, offset, item.Count);
+                Array.Copy(item.Buffer, item.Offset, buf, offset, item.Count);
                 offset += item.Count;
             }
 
