@@ -15,7 +15,7 @@ namespace EchoClient
             var tcpClient = new TcpClient();
             tcpClient.Connect(endpoint);
 
-            var connection = new Connection(tcpClient, "brick.jetblack.net", []);
+            var connection = new Connection(tcpClient, "http://brick.jetblack.net:8081", []);
             connection.Start();
         }
     }
