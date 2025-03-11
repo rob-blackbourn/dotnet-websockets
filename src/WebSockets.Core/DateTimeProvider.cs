@@ -2,12 +2,12 @@ using System;
 
 namespace WebSockets.Core
 {
-    public interface IDateTimeProvider
+    internal interface IDateTimeProvider
     {
         DateTime Now { get; }
     }
 
-    public class DateTimeProvider : IDateTimeProvider
+    internal class DateTimeProvider : IDateTimeProvider
     {
         public DateTime Now => DateTime.Now;
     }

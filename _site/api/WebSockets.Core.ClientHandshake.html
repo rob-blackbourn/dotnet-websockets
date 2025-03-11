@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ClientHandshake | websockets-sansio ">
       
-      <meta name="description" content="A sans-io implementation of the client side of the WebSocket protocol.">
+      <meta name="description" content="The client side of the WebSocket handshake.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class ClientHandshake  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>WebSockets.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>A sans-io implementation of the client side of the WebSocket protocol.</p>
+  <div class="markdown summary"><p>The client side of the WebSocket handshake.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -202,48 +202,6 @@ Class ClientHandshake  <a class="header-action link-secondary" title="View sourc
 
 
 
-  <a id="WebSockets_Core_ClientHandshake__ctor_" data-uid="WebSockets.Core.ClientHandshake.#ctor*"></a>
-
-  <h3 id="WebSockets_Core_ClientHandshake__ctor_System_String_System_String___WebSockets_Core_IDateTimeProvider_WebSockets_Core_INonceGenerator_" data-uid="WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)">
-  ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Construct a client handshake.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ClientHandshake(string origin, string[] subProtocols, IDateTimeProvider dateTimeProvider, INonceGenerator nonceGenerator)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>origin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The origin is the url of the initiator of the request.</p>
-</dd>
-    <dt><code>subProtocols</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>A (possibly empty) array of requested sub-protocols.</p>
-</dd>
-    <dt><code>dateTimeProvider</code> <a class="xref" href="WebSockets.Core.IDateTimeProvider.html">IDateTimeProvider</a></dt>
-    <dd><p>An object which provides the current time.</p>
-</dd>
-    <dt><code>nonceGenerator</code> <a class="xref" href="WebSockets.Core.INonceGenerator.html">INonceGenerator</a></dt>
-    <dd><p>An object providing secrets.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -252,7 +210,7 @@ Class ClientHandshake  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="WebSockets_Core_ClientHandshake_ReadResponse" data-uid="WebSockets.Core.ClientHandshake.ReadResponse">
   ReadResponse()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Read a handshake response.</p>
@@ -285,7 +243,7 @@ Class ClientHandshake  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="WebSockets_Core_ClientHandshake_WriteRequest_System_String_System_String_" data-uid="WebSockets.Core.ClientHandshake.WriteRequest(System.String,System.String)">
   WriteRequest(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ClientHandshake.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write a handshake request.</p>

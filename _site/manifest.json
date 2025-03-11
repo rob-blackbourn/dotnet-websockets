@@ -46,7 +46,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.ClientHandshake",
-      "Summary": "<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the client side of the WebSocket protocol.</p>\n"
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ClientHandshake.yml\" sourcestartlinenumber=\"1\">The client side of the WebSocket handshake.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -116,7 +116,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.HandshakeState",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.HandshakeState.yml\" sourcestartlinenumber=\"1\">The state of the handshake.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -144,7 +144,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.INonceGenerator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.INonceGenerator.yml\" sourcestartlinenumber=\"1\">The interface for a nonce generator.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -326,7 +326,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.NonceGenerator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.NonceGenerator.yml\" sourcestartlinenumber=\"1\">A nonce generator.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -368,7 +368,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.ProtocolState",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ProtocolState.yml\" sourcestartlinenumber=\"1\">The state of the protocol.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -410,7 +410,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.ServerHandshake",
-      "Summary": "<p sourcefile=\"api/WebSockets.Core.ServerHandshake.yml\" sourcestartlinenumber=\"1\">A sans-io implementation of the server side of the WebSocket protocol.</p>\n<p sourcefile=\"api/WebSockets.Core.ServerHandshake.yml\" sourcestartlinenumber=\"3\">The business layer logic is not provided. For example when a ping is\nreceived, the implementer is expected to return the pong. This is also\nthe case for a close.</p>\n"
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.ServerHandshake.yml\" sourcestartlinenumber=\"1\">The server side of the WebSocket handshake.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -550,7 +550,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.WebRequest",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.WebRequest.yml\" sourcestartlinenumber=\"1\">A class modelling the required values of a WebSocket HTTP request.</p>\n"
     },
     {
       "type": "ManagedReference",

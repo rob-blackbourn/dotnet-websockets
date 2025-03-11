@@ -241,45 +241,6 @@ Class Message  <a class="header-action link-secondary" title="View source" href=
 </h2>
 
 
-  <a id="WebSockets_Core_Messages_Message_Deserialize_" data-uid="WebSockets.Core.Messages.Message.Deserialize*"></a>
-
-  <h3 id="WebSockets_Core_Messages_Message_Deserialize_System_Byte___" data-uid="WebSockets.Core.Messages.Message.Deserialize(System.Byte[])">
-  Deserialize(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Message.cs/#L54"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Deserialize data into a message.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Message Deserialize(byte[] data)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>The data to deserialize.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="WebSockets.Core.Messages.Message.html">Message</a></dt>
-    <dd><p>The deserialized message.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="WebSockets_Core_Messages_Message_Equals_" data-uid="WebSockets.Core.Messages.Message.Equals*"></a>
 
   <h3 id="WebSockets_Core_Messages_Message_Equals_WebSockets_Core_Messages_Message_" data-uid="WebSockets.Core.Messages.Message.Equals(WebSockets.Core.Messages.Message)">
@@ -306,54 +267,6 @@ Class Message  <a class="header-action link-secondary" title="View source" href=
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="WebSockets_Core_Messages_Message_Serialize_" data-uid="WebSockets.Core.Messages.Message.Serialize*"></a>
-
-  <h3 id="WebSockets_Core_Messages_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_" data-uid="WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)">
-  Serialize(bool, Reserved?, long, INonceGenerator?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/Messages/Message.cs/#L34"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Serialize the message to bytes.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = 9223372036854775807, INonceGenerator? nonceGenerator = null)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>isClient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>If true this is a client message, otherwise it is a server message.</p>
-</dd>
-    <dt><code>reserved</code> <a class="xref" href="WebSockets.Core.Reserved.html">Reserved</a>?</dt>
-    <dd><p>The reserved bits.</p>
-</dd>
-    <dt><code>maxFrameSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>The maximum size of a frame.</p>
-</dd>
-    <dt><code>nonceGenerator</code> <a class="xref" href="WebSockets.Core.INonceGenerator.html">INonceGenerator</a></dt>
-    <dd><p>A generator for client masks.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>The message, serialized to bytes.</p>
 </dd>
   </dl>
 

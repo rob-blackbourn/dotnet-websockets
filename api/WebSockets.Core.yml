@@ -14,7 +14,6 @@ items:
   - WebSockets.Core.NonceGenerator
   - WebSockets.Core.ProtocolState
   - WebSockets.Core.PublicExtensionMethods
-  - WebSockets.Core.Reserved
   - WebSockets.Core.ServerHandshake
   - WebSockets.Core.WebRequest
   - WebSockets.Core.WebResponse
@@ -60,6 +59,13 @@ references:
   name: Handshake
   nameWithType: Handshake
   fullName: WebSockets.Core.Handshake
+- uid: WebSockets.Core.HandshakeState
+  commentId: T:WebSockets.Core.HandshakeState
+  parent: WebSockets.Core
+  href: WebSockets.Core.HandshakeState.html
+  name: HandshakeState
+  nameWithType: HandshakeState
+  fullName: WebSockets.Core.HandshakeState
 - uid: WebSockets.Core.MessageProtocol
   commentId: T:WebSockets.Core.MessageProtocol
   href: WebSockets.Core.MessageProtocol.html
@@ -79,13 +85,6 @@ references:
   name: NonceGenerator
   nameWithType: NonceGenerator
   fullName: WebSockets.Core.NonceGenerator
-- uid: WebSockets.Core.HandshakeState
-  commentId: T:WebSockets.Core.HandshakeState
-  parent: WebSockets.Core
-  href: WebSockets.Core.HandshakeState.html
-  name: HandshakeState
-  nameWithType: HandshakeState
-  fullName: WebSockets.Core.HandshakeState
 - uid: WebSockets.Core.ProtocolState
   commentId: T:WebSockets.Core.ProtocolState
   parent: WebSockets.Core
@@ -93,13 +92,6 @@ references:
   name: ProtocolState
   nameWithType: ProtocolState
   fullName: WebSockets.Core.ProtocolState
-- uid: WebSockets.Core.Reserved
-  commentId: T:WebSockets.Core.Reserved
-  parent: WebSockets.Core
-  href: WebSockets.Core.Reserved.html
-  name: Reserved
-  nameWithType: Reserved
-  fullName: WebSockets.Core.Reserved
 - uid: WebSockets.Core.ServerHandshake
   commentId: T:WebSockets.Core.ServerHandshake
   href: WebSockets.Core.ServerHandshake.html

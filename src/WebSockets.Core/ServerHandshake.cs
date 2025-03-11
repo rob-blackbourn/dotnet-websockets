@@ -7,7 +7,7 @@ using System.Text;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// The server side of the WebSocket server handshake.
+    /// The server side of the WebSocket handshake.
     /// </summary>
     public class ServerHandshake : Handshake
     {
@@ -23,12 +23,11 @@ namespace WebSockets.Core
         /// <summary>
         /// Construct a server handshake object.
         /// 
-        /// This method is provided to allow mock generators for testing.
+        /// This method is provided to allow mock implementation for testing.
         /// </summary>
         /// <param name="subProtocols">The supported sub-protocols.</param>
-        /// <param name="acceptPredicate">The supported sub-protocols.</param>
         /// <param name="dateTimeProvider">An implementation of a <see cref="IDateTimeProvider"/>.</param>
-        public ServerHandshake(
+        internal ServerHandshake(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
             : base(false, subProtocols, dateTimeProvider)
@@ -38,7 +37,7 @@ namespace WebSockets.Core
         /// <summary>
         /// Read a <see cref="WebRequest"/> from the protocol.
         /// 
-        /// The request will be available when all the bytes of the request bytes have been received.
+        /// The request will be available when all of the request bytes have been received.
         /// </summary>
         /// <returns>A <see cref="WebRequest"/> if the complete message has been received; otherwise null.</returns>
         public WebRequest? ReadRequest()
@@ -51,6 +50,15 @@ namespace WebSockets.Core
             return webRequest;
         }
 
+        /// <summary>
+        /// Create the WebSocket response.
+        /// 
+        /// If the response is valid an accept/upgrade response is generated.
+        /// An invalid response will generated a 400 response containing the
+        /// reason for the rejection.
+        /// </summary>
+        /// <param name="webRequest">The request from the client.</param>
+        /// <returns>The response to be sent to the client.</returns>
         public WebResponse CreateWebResponse(WebRequest webRequest)
         {
             try
@@ -61,10 +69,14 @@ namespace WebSockets.Core
             }
             catch (InvalidDataException error)
             {
-                return WebResponse.CreateErrorResponse(error.Message, _dateTimeProvider);
+                return WebResponse.CreateErrorResponse(error.Message, _dateTimeProvider.Now);
             }
         }
 
+        /// <summary>
+        /// Write a web response to the handshake buffer.
+        /// </summary>
+        /// <param name="webResponse">The response to send to the client.</param>
         public void WriteResponse(WebResponse webResponse)
         {
             var data = webResponse.ToBytes();

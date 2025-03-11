@@ -8,6 +8,8 @@ items:
   - WebSockets.Core.WebResponse.#ctor(System.String,System.Int32,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
   - WebSockets.Core.WebResponse.Body
   - WebSockets.Core.WebResponse.Code
+  - WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
+  - WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
   - WebSockets.Core.WebResponse.Headers
   - WebSockets.Core.WebResponse.Parse(System.Byte[])
   - WebSockets.Core.WebResponse.Reason
@@ -291,6 +293,78 @@ items:
       type: System.Byte[]
     content.vb: Public Function ToBytes() As Byte()
   overload: WebSockets.Core.WebResponse.ToBytes*
+- uid: WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
+  commentId: M:WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
+  id: CreateAcceptResponse(System.String,System.String)
+  parent: WebSockets.Core.WebResponse
+  langs:
+  - csharp
+  - vb
+  name: CreateAcceptResponse(string, string?)
+  nameWithType: WebResponse.CreateAcceptResponse(string, string?)
+  fullName: WebSockets.Core.WebResponse.CreateAcceptResponse(string, string?)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateAcceptResponse
+    path: src/WebSockets.Core/WebResponse.cs
+    startLine: 112
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static WebResponse CreateAcceptResponse(string responseKey, string? subProtocol)
+    parameters:
+    - id: responseKey
+      type: System.String
+    - id: subProtocol
+      type: System.String
+    return:
+      type: WebSockets.Core.WebResponse
+    content.vb: Public Shared Function CreateAcceptResponse(responseKey As String, subProtocol As String) As WebResponse
+  overload: WebSockets.Core.WebResponse.CreateAcceptResponse*
+  nameWithType.vb: WebResponse.CreateAcceptResponse(String, String)
+  fullName.vb: WebSockets.Core.WebResponse.CreateAcceptResponse(String, String)
+  name.vb: CreateAcceptResponse(String, String)
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  id: CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  parent: WebSockets.Core.WebResponse
+  langs:
+  - csharp
+  - vb
+  name: CreateErrorResponse(string, IDateTimeProvider)
+  nameWithType: WebResponse.CreateErrorResponse(string, IDateTimeProvider)
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, WebSockets.Core.IDateTimeProvider)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateErrorResponse
+    path: src/WebSockets.Core/WebResponse.cs
+    startLine: 132
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static WebResponse CreateErrorResponse(string reason, IDateTimeProvider dateTimeProvider)
+    parameters:
+    - id: reason
+      type: System.String
+    - id: dateTimeProvider
+      type: WebSockets.Core.IDateTimeProvider
+    return:
+      type: WebSockets.Core.WebResponse
+    content.vb: Public Shared Function CreateErrorResponse(reason As String, dateTimeProvider As IDateTimeProvider) As WebResponse
+  overload: WebSockets.Core.WebResponse.CreateErrorResponse*
+  nameWithType.vb: WebResponse.CreateErrorResponse(String, IDateTimeProvider)
+  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, WebSockets.Core.IDateTimeProvider)
+  name.vb: CreateErrorResponse(String, IDateTimeProvider)
 references:
 - uid: WebSockets.Core
   commentId: N:WebSockets.Core
@@ -786,3 +860,22 @@ references:
   name: ToBytes
   nameWithType: WebResponse.ToBytes
   fullName: WebSockets.Core.WebResponse.ToBytes
+- uid: WebSockets.Core.WebResponse.CreateAcceptResponse*
+  commentId: Overload:WebSockets.Core.WebResponse.CreateAcceptResponse
+  href: WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateAcceptResponse_System_String_System_String_
+  name: CreateAcceptResponse
+  nameWithType: WebResponse.CreateAcceptResponse
+  fullName: WebSockets.Core.WebResponse.CreateAcceptResponse
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse*
+  commentId: Overload:WebSockets.Core.WebResponse.CreateErrorResponse
+  href: WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_WebSockets_Core_IDateTimeProvider_
+  name: CreateErrorResponse
+  nameWithType: WebResponse.CreateErrorResponse
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse
+- uid: WebSockets.Core.IDateTimeProvider
+  commentId: T:WebSockets.Core.IDateTimeProvider
+  parent: WebSockets.Core
+  href: WebSockets.Core.IDateTimeProvider.html
+  name: IDateTimeProvider
+  nameWithType: IDateTimeProvider
+  fullName: WebSockets.Core.IDateTimeProvider

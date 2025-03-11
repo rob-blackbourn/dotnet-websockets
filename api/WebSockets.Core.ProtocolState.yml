@@ -23,10 +23,12 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ProtocolState
     path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 9
+    startLine: 5
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The state of the protocol.
+  example: []
   syntax:
     content: public enum ProtocolState
     content.vb: Public Enum ProtocolState
@@ -48,7 +50,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Connected
     path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 11
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -74,7 +76,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Closing
     path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 12
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -100,7 +102,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Closed
     path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 13
+    startLine: 9
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -126,7 +128,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Faulted
     path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 14
+    startLine: 10
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core

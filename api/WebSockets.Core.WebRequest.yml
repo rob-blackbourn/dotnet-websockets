@@ -5,9 +5,11 @@ items:
   id: WebRequest
   parent: WebSockets.Core
   children:
-  - WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})
+  - WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  - WebSockets.Core.WebRequest.Body
+  - WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
   - WebSockets.Core.WebRequest.Headers
-  - WebSockets.Core.WebRequest.Parse(System.String)
+  - WebSockets.Core.WebRequest.Parse(System.Byte[])
   - WebSockets.Core.WebRequest.Path
   - WebSockets.Core.WebRequest.ToString
   - WebSockets.Core.WebRequest.Verb
@@ -26,10 +28,12 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WebRequest
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 8
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: A class modelling the required values of a WebSocket HTTP request.
+  example: []
   syntax:
     content: public class WebRequest
     content.vb: Public Class WebRequest
@@ -42,16 +46,16 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
-- uid: WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})
-  commentId: M:WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})
-  id: '#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})'
+- uid: WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  commentId: M:WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  id: '#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])'
   parent: WebSockets.Core.WebRequest
   langs:
   - csharp
   - vb
-  name: WebRequest(string, string, string, IDictionary<string, IList<string>>)
-  nameWithType: WebRequest.WebRequest(string, string, string, IDictionary<string, IList<string>>)
-  fullName: WebSockets.Core.WebRequest.WebRequest(string, string, string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>)
+  name: WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  nameWithType: WebRequest.WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  fullName: WebSockets.Core.WebRequest.WebRequest(string, string, string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>, byte[]?)
   type: Constructor
   source:
     remote:
@@ -60,12 +64,12 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 10
+    startLine: 23
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
   syntax:
-    content: public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers)
+    content: public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers, byte[]? body)
     parameters:
     - id: verb
       type: System.String
@@ -75,11 +79,13 @@ items:
       type: System.String
     - id: headers
       type: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
-    content.vb: Public Sub New(verb As String, path As String, version As String, headers As IDictionary(Of String, IList(Of String)))
+    - id: body
+      type: System.Byte[]
+    content.vb: Public Sub New(verb As String, path As String, version As String, headers As IDictionary(Of String, IList(Of String)), body As Byte())
   overload: WebSockets.Core.WebRequest.#ctor*
-  nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)))
-  fullName.vb: WebSockets.Core.WebRequest.New(String, String, String, System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String)))
-  name.vb: New(String, String, String, IDictionary(Of String, IList(Of String)))
+  nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
+  fullName.vb: WebSockets.Core.WebRequest.New(String, String, String, System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String)), Byte())
+  name.vb: New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
 - uid: WebSockets.Core.WebRequest.Verb
   commentId: P:WebSockets.Core.WebRequest.Verb
   id: Verb
@@ -98,15 +104,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Verb
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 18
+    startLine: 41
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The HTTP verb.
+  example: []
   syntax:
     content: public string Verb { get; }
     parameters: []
     return:
       type: System.String
+      description: The verb.
     content.vb: Public Property Verb As String
   overload: WebSockets.Core.WebRequest.Verb*
 - uid: WebSockets.Core.WebRequest.Path
@@ -127,15 +136,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Path
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 19
+    startLine: 46
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The server path.
+  example: []
   syntax:
     content: public string Path { get; }
     parameters: []
     return:
       type: System.String
+      description: The path for the server.
     content.vb: Public Property Path As String
   overload: WebSockets.Core.WebRequest.Path*
 - uid: WebSockets.Core.WebRequest.Version
@@ -156,15 +168,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Version
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 20
+    startLine: 51
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The HTTP version.
+  example: []
   syntax:
     content: public string Version { get; }
     parameters: []
     return:
       type: System.String
+      description: The version.
     content.vb: Public Property Version As String
   overload: WebSockets.Core.WebRequest.Version*
 - uid: WebSockets.Core.WebRequest.Headers
@@ -185,27 +200,63 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Headers
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 21
+    startLine: 58
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: >-
+    The HTTP Headers.
+
+
+    Note: header keys are case insensitive.
+  example: []
   syntax:
     content: public IDictionary<string, IList<string>> Headers { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+      description: The headers.
     content.vb: Public Property Headers As IDictionary(Of String, IList(Of String))
   overload: WebSockets.Core.WebRequest.Headers*
-- uid: WebSockets.Core.WebRequest.Parse(System.String)
-  commentId: M:WebSockets.Core.WebRequest.Parse(System.String)
-  id: Parse(System.String)
+- uid: WebSockets.Core.WebRequest.Body
+  commentId: P:WebSockets.Core.WebRequest.Body
+  id: Body
   parent: WebSockets.Core.WebRequest
   langs:
   - csharp
   - vb
-  name: Parse(string)
-  nameWithType: WebRequest.Parse(string)
-  fullName: WebSockets.Core.WebRequest.Parse(string)
+  name: Body
+  nameWithType: WebRequest.Body
+  fullName: WebSockets.Core.WebRequest.Body
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Body
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 59
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public byte[]? Body { get; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: Public ReadOnly Property Body As Byte()
+  overload: WebSockets.Core.WebRequest.Body*
+- uid: WebSockets.Core.WebRequest.Parse(System.Byte[])
+  commentId: M:WebSockets.Core.WebRequest.Parse(System.Byte[])
+  id: Parse(System.Byte[])
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Parse(byte[])
+  nameWithType: WebRequest.Parse(byte[])
+  fullName: WebSockets.Core.WebRequest.Parse(byte[])
   type: Method
   source:
     remote:
@@ -214,22 +265,22 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Parse
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 23
+    startLine: 61
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
   syntax:
-    content: public static WebRequest Parse(string data)
+    content: public static WebRequest Parse(byte[] data)
     parameters:
     - id: data
-      type: System.String
+      type: System.Byte[]
     return:
       type: WebSockets.Core.WebRequest
-    content.vb: Public Shared Function Parse(data As String) As WebRequest
+    content.vb: Public Shared Function Parse(data As Byte()) As WebRequest
   overload: WebSockets.Core.WebRequest.Parse*
-  nameWithType.vb: WebRequest.Parse(String)
-  fullName.vb: WebSockets.Core.WebRequest.Parse(String)
-  name.vb: Parse(String)
+  nameWithType.vb: WebRequest.Parse(Byte())
+  fullName.vb: WebSockets.Core.WebRequest.Parse(Byte())
+  name.vb: Parse(Byte())
 - uid: WebSockets.Core.WebRequest.ToString
   commentId: M:WebSockets.Core.WebRequest.ToString
   id: ToString
@@ -248,7 +299,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ToString
     path: src/WebSockets.Core/WebRequest.cs
-    startLine: 62
+    startLine: 109
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -262,6 +313,48 @@ items:
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: WebSockets.Core.WebRequest.ToString*
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  commentId: M:WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  id: CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: CreateUpgradeRequest(string, string, string, string, string[]?)
+  nameWithType: WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateUpgradeRequest
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 126
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static WebRequest CreateUpgradeRequest(string path, string host, string origin, string key, string[]? subProtocols)
+    parameters:
+    - id: path
+      type: System.String
+    - id: host
+      type: System.String
+    - id: origin
+      type: System.String
+    - id: key
+      type: System.String
+    - id: subProtocols
+      type: System.String[]
+    return:
+      type: WebSockets.Core.WebRequest
+    content.vb: Public Shared Function CreateUpgradeRequest(path As String, host As String, origin As String, key As String, subProtocols As String()) As WebRequest
+  overload: WebSockets.Core.WebRequest.CreateUpgradeRequest*
+  nameWithType.vb: WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+  fullName.vb: WebSockets.Core.WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+  name.vb: CreateUpgradeRequest(String, String, String, String, String())
 references:
 - uid: WebSockets.Core
   commentId: N:WebSockets.Core
@@ -500,7 +593,7 @@ references:
   fullName: System
 - uid: WebSockets.Core.WebRequest.#ctor*
   commentId: Overload:WebSockets.Core.WebRequest.#ctor
-  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___System_Byte___
   name: WebRequest
   nameWithType: WebRequest.WebRequest
   fullName: WebSockets.Core.WebRequest.WebRequest
@@ -578,6 +671,29 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
+  - name: )
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
   - name: )
 - uid: System.Collections.Generic.IDictionary`2
   commentId: T:System.Collections.Generic.IDictionary`2
@@ -674,9 +790,15 @@ references:
   name: Headers
   nameWithType: WebRequest.Headers
   fullName: WebSockets.Core.WebRequest.Headers
+- uid: WebSockets.Core.WebRequest.Body*
+  commentId: Overload:WebSockets.Core.WebRequest.Body
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Body
+  name: Body
+  nameWithType: WebRequest.Body
+  fullName: WebSockets.Core.WebRequest.Body
 - uid: WebSockets.Core.WebRequest.Parse*
   commentId: Overload:WebSockets.Core.WebRequest.Parse
-  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_System_String_
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_System_Byte___
   name: Parse
   nameWithType: WebRequest.Parse
   fullName: WebSockets.Core.WebRequest.Parse
@@ -717,3 +839,32 @@ references:
   name: ToString
   nameWithType: WebRequest.ToString
   fullName: WebSockets.Core.WebRequest.ToString
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest*
+  commentId: Overload:WebSockets.Core.WebRequest.CreateUpgradeRequest
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_CreateUpgradeRequest_System_String_System_String_System_String_System_String_System_String___
+  name: CreateUpgradeRequest
+  nameWithType: WebRequest.CreateUpgradeRequest
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )

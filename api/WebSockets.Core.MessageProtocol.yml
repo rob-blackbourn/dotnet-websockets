@@ -107,14 +107,14 @@ items:
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: The state of the connection.
+  summary: The state of the protocol.
   example: []
   syntax:
     content: public ProtocolState State { get; protected set; }
     parameters: []
     return:
       type: WebSockets.Core.ProtocolState
-      description: The connection state.
+      description: The protocol state.
     content.vb: Public Property State As ProtocolState
   overload: WebSockets.Core.MessageProtocol.State*
 - uid: WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)
@@ -135,21 +135,27 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadData
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 41
+    startLine: 48
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Read data from the protocol.
+  example: []
   syntax:
     content: public bool ReadData(byte[] destination, ref long offset, long length)
     parameters:
     - id: destination
       type: System.Byte[]
+      description: The array to which the data should be written.
     - id: offset
       type: System.Int64
+      description: The offset in the array to start writing the data.
     - id: length
       type: System.Int64
+      description: The length of the array.
     return:
       type: System.Boolean
+      description: ''
     content.vb: Public Function ReadData(destination As Byte(), offset As Long, length As Long) As Boolean
   overload: WebSockets.Core.MessageProtocol.ReadData*
   nameWithType.vb: MessageProtocol.ReadData(Byte(), Long, Long)
@@ -173,19 +179,24 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteData
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 46
+    startLine: 59
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Write data to the protocol.
+  example: []
   syntax:
     content: public void WriteData(byte[] source, long offset, long length)
     parameters:
     - id: source
       type: System.Byte[]
+      description: The data to write.
     - id: offset
       type: System.Int64
+      description: The offset from which the data should be written.
     - id: length
       type: System.Int64
+      description: The available length of the data.
     content.vb: Public Sub WriteData(source As Byte(), offset As Long, length As Long)
   overload: WebSockets.Core.MessageProtocol.WriteData*
   nameWithType.vb: MessageProtocol.WriteData(Byte(), Long, Long)
@@ -209,14 +220,17 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadMessage
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 66
+    startLine: 80
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Read a message from the protocol.
+  example: []
   syntax:
     content: public Message? ReadMessage()
     return:
       type: WebSockets.Core.Messages.Message
+      description: If there is a complete message the message is returned, otherwise null.
     content.vb: Public Function ReadMessage() As Message
   overload: WebSockets.Core.MessageProtocol.ReadMessage*
 - uid: WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)
@@ -237,15 +251,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteMessage
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 91
+    startLine: 109
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Write a message to the protocol.
+  example: []
   syntax:
     content: public void WriteMessage(Message message)
     parameters:
     - id: message
       type: WebSockets.Core.Messages.Message
+      description: The message to write.
     content.vb: Public Sub WriteMessage(message As Message)
   overload: WebSockets.Core.MessageProtocol.WriteMessage*
 references:

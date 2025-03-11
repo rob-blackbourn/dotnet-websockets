@@ -6,7 +6,6 @@ items:
   parent: WebSockets.Core
   children:
   - WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[])
-  - WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)
   - WebSockets.Core.ClientHandshake.ReadResponse
   - WebSockets.Core.ClientHandshake.WriteRequest(System.String,System.String)
   langs:
@@ -27,7 +26,7 @@ items:
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: A sans-io implementation of the client side of the WebSocket protocol.
+  summary: The client side of the WebSocket handshake.
   example: []
   syntax:
     content: 'public class ClientHandshake : Handshake'
@@ -85,50 +84,6 @@ items:
   nameWithType.vb: ClientHandshake.New(String, String())
   fullName.vb: WebSockets.Core.ClientHandshake.New(String, String())
   name.vb: New(String, String())
-- uid: WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)
-  commentId: M:WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)
-  id: '#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)'
-  parent: WebSockets.Core.ClientHandshake
-  langs:
-  - csharp
-  - vb
-  name: ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  nameWithType: ClientHandshake.ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  fullName: WebSockets.Core.ClientHandshake.ClientHandshake(string, string[], WebSockets.Core.IDateTimeProvider, WebSockets.Core.INonceGenerator)
-  type: Constructor
-  source:
-    remote:
-      path: src/WebSockets.Core/ClientHandshake.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: .ctor
-    path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 31
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core
-  summary: Construct a client handshake.
-  example: []
-  syntax:
-    content: public ClientHandshake(string origin, string[] subProtocols, IDateTimeProvider dateTimeProvider, INonceGenerator nonceGenerator)
-    parameters:
-    - id: origin
-      type: System.String
-      description: The origin is the url of the initiator of the request.
-    - id: subProtocols
-      type: System.String[]
-      description: A (possibly empty) array of requested sub-protocols.
-    - id: dateTimeProvider
-      type: WebSockets.Core.IDateTimeProvider
-      description: An object which provides the current time.
-    - id: nonceGenerator
-      type: WebSockets.Core.INonceGenerator
-      description: An object providing secrets.
-    content.vb: Public Sub New(origin As String, subProtocols As String(), dateTimeProvider As IDateTimeProvider, nonceGenerator As INonceGenerator)
-  overload: WebSockets.Core.ClientHandshake.#ctor*
-  nameWithType.vb: ClientHandshake.New(String, String(), IDateTimeProvider, INonceGenerator)
-  fullName.vb: WebSockets.Core.ClientHandshake.New(String, String(), WebSockets.Core.IDateTimeProvider, WebSockets.Core.INonceGenerator)
-  name.vb: New(String, String(), IDateTimeProvider, INonceGenerator)
 - uid: WebSockets.Core.ClientHandshake.WriteRequest(System.String,System.String)
   commentId: M:WebSockets.Core.ClientHandshake.WriteRequest(System.String,System.String)
   id: WriteRequest(System.String,System.String)
@@ -147,7 +102,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteRequest
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 47
+    startLine: 49
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -185,7 +140,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadResponse
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 58
+    startLine: 60
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -642,20 +597,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: (
   - name: )
-- uid: WebSockets.Core.IDateTimeProvider
-  commentId: T:WebSockets.Core.IDateTimeProvider
-  parent: WebSockets.Core
-  href: WebSockets.Core.IDateTimeProvider.html
-  name: IDateTimeProvider
-  nameWithType: IDateTimeProvider
-  fullName: WebSockets.Core.IDateTimeProvider
-- uid: WebSockets.Core.INonceGenerator
-  commentId: T:WebSockets.Core.INonceGenerator
-  parent: WebSockets.Core
-  href: WebSockets.Core.INonceGenerator.html
-  name: INonceGenerator
-  nameWithType: INonceGenerator
-  fullName: WebSockets.Core.INonceGenerator
 - uid: WebSockets.Core.ClientHandshake.WriteRequest*
   commentId: Overload:WebSockets.Core.ClientHandshake.WriteRequest
   href: WebSockets.Core.ClientHandshake.html#WebSockets_Core_ClientHandshake_WriteRequest_System_String_System_String_

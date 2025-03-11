@@ -17,15 +17,17 @@ items:
   type: Enum
   source:
     remote:
-      path: src/WebSockets.Core/ProtocolState.cs
+      path: src/WebSockets.Core/HandshakeState.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: HandshakeState
-    path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 2
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 5
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: The state of the handshake.
+  example: []
   syntax:
     content: public enum HandshakeState
     content.vb: Public Enum HandshakeState
@@ -42,12 +44,12 @@ items:
   type: Field
   source:
     remote:
-      path: src/WebSockets.Core/ProtocolState.cs
+      path: src/WebSockets.Core/HandshakeState.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Pending
-    path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 4
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -68,12 +70,12 @@ items:
   type: Field
   source:
     remote:
-      path: src/WebSockets.Core/ProtocolState.cs
+      path: src/WebSockets.Core/HandshakeState.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Succeeded
-    path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 5
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -94,12 +96,12 @@ items:
   type: Field
   source:
     remote:
-      path: src/WebSockets.Core/ProtocolState.cs
+      path: src/WebSockets.Core/HandshakeState.cs
       branch: docs
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Failed
-    path: src/WebSockets.Core/ProtocolState.cs
-    startLine: 6
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 9
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core

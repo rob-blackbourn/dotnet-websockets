@@ -47,15 +47,6 @@ references:
   fullName.vb: WebSockets.Core.ClientHandshake.New(String, String())
   nameWithType: ClientHandshake.ClientHandshake(string, string[])
   nameWithType.vb: ClientHandshake.New(String, String())
-- uid: WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)
-  name: ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  href: api/WebSockets.Core.ClientHandshake.html#WebSockets_Core_ClientHandshake__ctor_System_String_System_String___WebSockets_Core_IDateTimeProvider_WebSockets_Core_INonceGenerator_
-  commentId: M:WebSockets.Core.ClientHandshake.#ctor(System.String,System.String[],WebSockets.Core.IDateTimeProvider,WebSockets.Core.INonceGenerator)
-  name.vb: New(String, String(), IDateTimeProvider, INonceGenerator)
-  fullName: WebSockets.Core.ClientHandshake.ClientHandshake(string, string[], WebSockets.Core.IDateTimeProvider, WebSockets.Core.INonceGenerator)
-  fullName.vb: WebSockets.Core.ClientHandshake.New(String, String(), WebSockets.Core.IDateTimeProvider, WebSockets.Core.INonceGenerator)
-  nameWithType: ClientHandshake.ClientHandshake(string, string[], IDateTimeProvider, INonceGenerator)
-  nameWithType.vb: ClientHandshake.New(String, String(), IDateTimeProvider, INonceGenerator)
 - uid: WebSockets.Core.ClientHandshake.#ctor*
   name: ClientHandshake
   href: api/WebSockets.Core.ClientHandshake.html#WebSockets_Core_ClientHandshake__ctor_
@@ -788,22 +779,6 @@ references:
   fullName.vb: WebSockets.Core.Messages.Message.New
   nameWithType: Message.Message
   nameWithType.vb: Message.New
-- uid: WebSockets.Core.Messages.Message.Deserialize(System.Byte[])
-  name: Deserialize(byte[])
-  href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Deserialize_System_Byte___
-  commentId: M:WebSockets.Core.Messages.Message.Deserialize(System.Byte[])
-  name.vb: Deserialize(Byte())
-  fullName: WebSockets.Core.Messages.Message.Deserialize(byte[])
-  fullName.vb: WebSockets.Core.Messages.Message.Deserialize(Byte())
-  nameWithType: Message.Deserialize(byte[])
-  nameWithType.vb: Message.Deserialize(Byte())
-- uid: WebSockets.Core.Messages.Message.Deserialize*
-  name: Deserialize
-  href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Deserialize_
-  commentId: Overload:WebSockets.Core.Messages.Message.Deserialize
-  isSpec: "True"
-  fullName: WebSockets.Core.Messages.Message.Deserialize
-  nameWithType: Message.Deserialize
 - uid: WebSockets.Core.Messages.Message.Equals(WebSockets.Core.Messages.Message)
   name: Equals(Message?)
   href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Equals_WebSockets_Core_Messages_Message_
@@ -820,22 +795,6 @@ references:
   isSpec: "True"
   fullName: WebSockets.Core.Messages.Message.Equals
   nameWithType: Message.Equals
-- uid: WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
-  name: Serialize(bool, Reserved?, long, INonceGenerator?)
-  href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_
-  commentId: M:WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
-  name.vb: Serialize(Boolean, Reserved?, Long, INonceGenerator)
-  fullName: WebSockets.Core.Messages.Message.Serialize(bool, WebSockets.Core.Reserved?, long, WebSockets.Core.INonceGenerator?)
-  fullName.vb: WebSockets.Core.Messages.Message.Serialize(Boolean, WebSockets.Core.Reserved?, Long, WebSockets.Core.INonceGenerator)
-  nameWithType: Message.Serialize(bool, Reserved?, long, INonceGenerator?)
-  nameWithType.vb: Message.Serialize(Boolean, Reserved?, Long, INonceGenerator)
-- uid: WebSockets.Core.Messages.Message.Serialize*
-  name: Serialize
-  href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Serialize_
-  commentId: Overload:WebSockets.Core.Messages.Message.Serialize
-  isSpec: "True"
-  fullName: WebSockets.Core.Messages.Message.Serialize
-  nameWithType: Message.Serialize
 - uid: WebSockets.Core.Messages.Message.Type
   name: Type
   href: api/WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Type
@@ -1250,15 +1209,6 @@ references:
   fullName.vb: WebSockets.Core.ServerHandshake.New(String())
   nameWithType: ServerHandshake.ServerHandshake(string[])
   nameWithType.vb: ServerHandshake.New(String())
-- uid: WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
-  name: ServerHandshake(string[], IDateTimeProvider)
-  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake__ctor_System_String___WebSockets_Core_IDateTimeProvider_
-  commentId: M:WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
-  name.vb: New(String(), IDateTimeProvider)
-  fullName: WebSockets.Core.ServerHandshake.ServerHandshake(string[], WebSockets.Core.IDateTimeProvider)
-  fullName.vb: WebSockets.Core.ServerHandshake.New(String(), WebSockets.Core.IDateTimeProvider)
-  nameWithType: ServerHandshake.ServerHandshake(string[], IDateTimeProvider)
-  nameWithType.vb: ServerHandshake.New(String(), IDateTimeProvider)
 - uid: WebSockets.Core.ServerHandshake.#ctor*
   name: ServerHandshake
   href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake__ctor_
@@ -1269,6 +1219,19 @@ references:
   fullName.vb: WebSockets.Core.ServerHandshake.New
   nameWithType: ServerHandshake.ServerHandshake
   nameWithType.vb: ServerHandshake.New
+- uid: WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  name: CreateWebResponse(WebRequest)
+  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_CreateWebResponse_WebSockets_Core_WebRequest_
+  commentId: M:WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  fullName: WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  nameWithType: ServerHandshake.CreateWebResponse(WebRequest)
+- uid: WebSockets.Core.ServerHandshake.CreateWebResponse*
+  name: CreateWebResponse
+  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_CreateWebResponse_
+  commentId: Overload:WebSockets.Core.ServerHandshake.CreateWebResponse
+  isSpec: "True"
+  fullName: WebSockets.Core.ServerHandshake.CreateWebResponse
+  nameWithType: ServerHandshake.CreateWebResponse
 - uid: WebSockets.Core.ServerHandshake.ReadRequest
   name: ReadRequest()
   href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_ReadRequest
@@ -1282,28 +1245,12 @@ references:
   isSpec: "True"
   fullName: WebSockets.Core.ServerHandshake.ReadRequest
   nameWithType: ServerHandshake.ReadRequest
-- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
-  name: WriteRejectResponse(string)
-  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteRejectResponse_System_String_
-  commentId: M:WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
-  name.vb: WriteRejectResponse(String)
-  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse(string)
-  fullName.vb: WebSockets.Core.ServerHandshake.WriteRejectResponse(String)
-  nameWithType: ServerHandshake.WriteRejectResponse(string)
-  nameWithType.vb: ServerHandshake.WriteRejectResponse(String)
-- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse*
-  name: WriteRejectResponse
-  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteRejectResponse_
-  commentId: Overload:WebSockets.Core.ServerHandshake.WriteRejectResponse
-  isSpec: "True"
-  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse
-  nameWithType: ServerHandshake.WriteRejectResponse
-- uid: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
-  name: WriteResponse(WebRequest)
-  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebRequest_
-  commentId: M:WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
-  fullName: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
-  nameWithType: ServerHandshake.WriteResponse(WebRequest)
+- uid: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
+  name: WriteResponse(WebResponse)
+  href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebResponse_
+  commentId: M:WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
+  fullName: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
+  nameWithType: ServerHandshake.WriteResponse(WebResponse)
 - uid: WebSockets.Core.ServerHandshake.WriteResponse*
   name: WriteResponse
   href: api/WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_
@@ -1939,15 +1886,15 @@ references:
   commentId: T:WebSockets.Core.WebRequest
   fullName: WebSockets.Core.WebRequest
   nameWithType: WebRequest
-- uid: WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})
-  name: WebRequest(string, string, string, IDictionary<string, IList<string>>)
-  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___
-  commentId: M:WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})
-  name.vb: New(String, String, String, IDictionary(Of String, IList(Of String)))
-  fullName: WebSockets.Core.WebRequest.WebRequest(string, string, string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>)
-  fullName.vb: WebSockets.Core.WebRequest.New(String, String, String, System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String)))
-  nameWithType: WebRequest.WebRequest(string, string, string, IDictionary<string, IList<string>>)
-  nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)))
+- uid: WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  name: WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___System_Byte___
+  commentId: M:WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  name.vb: New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
+  fullName: WebSockets.Core.WebRequest.WebRequest(string, string, string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>, byte[]?)
+  fullName.vb: WebSockets.Core.WebRequest.New(String, String, String, System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String)), Byte())
+  nameWithType: WebRequest.WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
 - uid: WebSockets.Core.WebRequest.#ctor*
   name: WebRequest
   href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_
@@ -1958,6 +1905,35 @@ references:
   fullName.vb: WebSockets.Core.WebRequest.New
   nameWithType: WebRequest.WebRequest
   nameWithType.vb: WebRequest.New
+- uid: WebSockets.Core.WebRequest.Body
+  name: Body
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Body
+  commentId: P:WebSockets.Core.WebRequest.Body
+  fullName: WebSockets.Core.WebRequest.Body
+  nameWithType: WebRequest.Body
+- uid: WebSockets.Core.WebRequest.Body*
+  name: Body
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Body_
+  commentId: Overload:WebSockets.Core.WebRequest.Body
+  isSpec: "True"
+  fullName: WebSockets.Core.WebRequest.Body
+  nameWithType: WebRequest.Body
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  name: CreateUpgradeRequest(string, string, string, string, string[]?)
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_CreateUpgradeRequest_System_String_System_String_System_String_System_String_System_String___
+  commentId: M:WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  name.vb: CreateUpgradeRequest(String, String, String, String, String())
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  fullName.vb: WebSockets.Core.WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+  nameWithType: WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  nameWithType.vb: WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest*
+  name: CreateUpgradeRequest
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_CreateUpgradeRequest_
+  commentId: Overload:WebSockets.Core.WebRequest.CreateUpgradeRequest
+  isSpec: "True"
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest
+  nameWithType: WebRequest.CreateUpgradeRequest
 - uid: WebSockets.Core.WebRequest.Headers
   name: Headers
   href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Headers
@@ -1971,15 +1947,15 @@ references:
   isSpec: "True"
   fullName: WebSockets.Core.WebRequest.Headers
   nameWithType: WebRequest.Headers
-- uid: WebSockets.Core.WebRequest.Parse(System.String)
-  name: Parse(string)
-  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_System_String_
-  commentId: M:WebSockets.Core.WebRequest.Parse(System.String)
-  name.vb: Parse(String)
-  fullName: WebSockets.Core.WebRequest.Parse(string)
-  fullName.vb: WebSockets.Core.WebRequest.Parse(String)
-  nameWithType: WebRequest.Parse(string)
-  nameWithType.vb: WebRequest.Parse(String)
+- uid: WebSockets.Core.WebRequest.Parse(System.Byte[])
+  name: Parse(byte[])
+  href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_System_Byte___
+  commentId: M:WebSockets.Core.WebRequest.Parse(System.Byte[])
+  name.vb: Parse(Byte())
+  fullName: WebSockets.Core.WebRequest.Parse(byte[])
+  fullName.vb: WebSockets.Core.WebRequest.Parse(Byte())
+  nameWithType: WebRequest.Parse(byte[])
+  nameWithType.vb: WebRequest.Parse(Byte())
 - uid: WebSockets.Core.WebRequest.Parse*
   name: Parse
   href: api/WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_
@@ -2090,6 +2066,38 @@ references:
   isSpec: "True"
   fullName: WebSockets.Core.WebResponse.Code
   nameWithType: WebResponse.Code
+- uid: WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
+  name: CreateAcceptResponse(string, string?)
+  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateAcceptResponse_System_String_System_String_
+  commentId: M:WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
+  name.vb: CreateAcceptResponse(String, String)
+  fullName: WebSockets.Core.WebResponse.CreateAcceptResponse(string, string?)
+  fullName.vb: WebSockets.Core.WebResponse.CreateAcceptResponse(String, String)
+  nameWithType: WebResponse.CreateAcceptResponse(string, string?)
+  nameWithType.vb: WebResponse.CreateAcceptResponse(String, String)
+- uid: WebSockets.Core.WebResponse.CreateAcceptResponse*
+  name: CreateAcceptResponse
+  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateAcceptResponse_
+  commentId: Overload:WebSockets.Core.WebResponse.CreateAcceptResponse
+  isSpec: "True"
+  fullName: WebSockets.Core.WebResponse.CreateAcceptResponse
+  nameWithType: WebResponse.CreateAcceptResponse
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  name: CreateErrorResponse(string, IDateTimeProvider)
+  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_WebSockets_Core_IDateTimeProvider_
+  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  name.vb: CreateErrorResponse(String, IDateTimeProvider)
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, WebSockets.Core.IDateTimeProvider)
+  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, WebSockets.Core.IDateTimeProvider)
+  nameWithType: WebResponse.CreateErrorResponse(string, IDateTimeProvider)
+  nameWithType.vb: WebResponse.CreateErrorResponse(String, IDateTimeProvider)
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse*
+  name: CreateErrorResponse
+  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_
+  commentId: Overload:WebSockets.Core.WebResponse.CreateErrorResponse
+  isSpec: "True"
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse
+  nameWithType: WebResponse.CreateErrorResponse
 - uid: WebSockets.Core.WebResponse.Headers
   name: Headers
   href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_Headers

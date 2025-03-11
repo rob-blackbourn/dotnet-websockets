@@ -6,10 +6,9 @@ items:
   parent: WebSockets.Core
   children:
   - WebSockets.Core.ServerHandshake.#ctor(System.String[])
-  - WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
+  - WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
   - WebSockets.Core.ServerHandshake.ReadRequest
-  - WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
-  - WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  - WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
   langs:
   - csharp
   - vb
@@ -24,19 +23,11 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ServerHandshake
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 15
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: >-
-    A sans-io implementation of the server side of the WebSocket protocol.
-
-
-    The business layer logic is not provided. For example when a ping is
-
-    received, the implementer is expected to return the pong. This is also
-
-    the case for a close.
+  summary: The server side of the WebSocket handshake.
   example: []
   syntax:
     content: 'public class ServerHandshake : Handshake'
@@ -78,50 +69,19 @@ items:
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Construct a server handshake object.
+  example: []
   syntax:
     content: public ServerHandshake(string[] subProtocols)
     parameters:
     - id: subProtocols
       type: System.String[]
+      description: The supported sub-protocols.
     content.vb: Public Sub New(subProtocols As String())
   overload: WebSockets.Core.ServerHandshake.#ctor*
   nameWithType.vb: ServerHandshake.New(String())
   fullName.vb: WebSockets.Core.ServerHandshake.New(String())
   name.vb: New(String())
-- uid: WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
-  commentId: M:WebSockets.Core.ServerHandshake.#ctor(System.String[],WebSockets.Core.IDateTimeProvider)
-  id: '#ctor(System.String[],WebSockets.Core.IDateTimeProvider)'
-  parent: WebSockets.Core.ServerHandshake
-  langs:
-  - csharp
-  - vb
-  name: ServerHandshake(string[], IDateTimeProvider)
-  nameWithType: ServerHandshake.ServerHandshake(string[], IDateTimeProvider)
-  fullName: WebSockets.Core.ServerHandshake.ServerHandshake(string[], WebSockets.Core.IDateTimeProvider)
-  type: Constructor
-  source:
-    remote:
-      path: src/WebSockets.Core/ServerHandshake.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: .ctor
-    path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 22
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core
-  syntax:
-    content: public ServerHandshake(string[] subProtocols, IDateTimeProvider dateTimeProvider)
-    parameters:
-    - id: subProtocols
-      type: System.String[]
-    - id: dateTimeProvider
-      type: WebSockets.Core.IDateTimeProvider
-    content.vb: Public Sub New(subProtocols As String(), dateTimeProvider As IDateTimeProvider)
-  overload: WebSockets.Core.ServerHandshake.#ctor*
-  nameWithType.vb: ServerHandshake.New(String(), IDateTimeProvider)
-  fullName.vb: WebSockets.Core.ServerHandshake.New(String(), WebSockets.Core.IDateTimeProvider)
-  name.vb: New(String(), IDateTimeProvider)
 - uid: WebSockets.Core.ServerHandshake.ReadRequest
   commentId: M:WebSockets.Core.ServerHandshake.ReadRequest
   id: ReadRequest
@@ -140,26 +100,76 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadRequest
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 29
+    startLine: 42
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: >-
+    Read a <xref href="WebSockets.Core.WebRequest" data-throw-if-not-resolved="false"></xref> from the protocol.
+
+
+    The request will be available when all of the request bytes have been received.
+  example: []
   syntax:
     content: public WebRequest? ReadRequest()
     return:
       type: WebSockets.Core.WebRequest
+      description: A <xref href="WebSockets.Core.WebRequest" data-throw-if-not-resolved="false"></xref> if the complete message has been received; otherwise null.
     content.vb: Public Function ReadRequest() As WebRequest
   overload: WebSockets.Core.ServerHandshake.ReadRequest*
-- uid: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
-  commentId: M:WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
-  id: WriteResponse(WebSockets.Core.WebRequest)
+- uid: WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  commentId: M:WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  id: CreateWebResponse(WebSockets.Core.WebRequest)
   parent: WebSockets.Core.ServerHandshake
   langs:
   - csharp
   - vb
-  name: WriteResponse(WebRequest)
-  nameWithType: ServerHandshake.WriteResponse(WebRequest)
-  fullName: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebRequest)
+  name: CreateWebResponse(WebRequest)
+  nameWithType: ServerHandshake.CreateWebResponse(WebRequest)
+  fullName: WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/ServerHandshake.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateWebResponse
+    path: src/WebSockets.Core/ServerHandshake.cs
+    startLine: 61
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: >-
+    Create the WebSocket response.
+
+
+    If the response is valid an accept/upgrade response is generated.
+
+    An invalid response will generated a 400 response containing the
+
+    reason for the rejection.
+  example: []
+  syntax:
+    content: public WebResponse CreateWebResponse(WebRequest webRequest)
+    parameters:
+    - id: webRequest
+      type: WebSockets.Core.WebRequest
+      description: The request from the client.
+    return:
+      type: WebSockets.Core.WebResponse
+      description: The response to be sent to the client.
+    content.vb: Public Function CreateWebResponse(webRequest As WebRequest) As WebResponse
+  overload: WebSockets.Core.ServerHandshake.CreateWebResponse*
+- uid: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
+  commentId: M:WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
+  id: WriteResponse(WebSockets.Core.WebResponse)
+  parent: WebSockets.Core.ServerHandshake
+  langs:
+  - csharp
+  - vb
+  name: WriteResponse(WebResponse)
+  nameWithType: ServerHandshake.WriteResponse(WebResponse)
+  fullName: WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)
   type: Method
   source:
     remote:
@@ -168,49 +178,20 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteResponse
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 40
+    startLine: 79
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Write a web response to the handshake buffer.
+  example: []
   syntax:
-    content: public void WriteResponse(WebRequest webRequest)
+    content: public void WriteResponse(WebResponse webResponse)
     parameters:
-    - id: webRequest
-      type: WebSockets.Core.WebRequest
-    content.vb: Public Sub WriteResponse(webRequest As WebRequest)
+    - id: webResponse
+      type: WebSockets.Core.WebResponse
+      description: The response to send to the client.
+    content.vb: Public Sub WriteResponse(webResponse As WebResponse)
   overload: WebSockets.Core.ServerHandshake.WriteResponse*
-- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
-  commentId: M:WebSockets.Core.ServerHandshake.WriteRejectResponse(System.String)
-  id: WriteRejectResponse(System.String)
-  parent: WebSockets.Core.ServerHandshake
-  langs:
-  - csharp
-  - vb
-  name: WriteRejectResponse(string)
-  nameWithType: ServerHandshake.WriteRejectResponse(string)
-  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse(string)
-  type: Method
-  source:
-    remote:
-      path: src/WebSockets.Core/ServerHandshake.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: WriteRejectResponse
-    path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 59
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core
-  syntax:
-    content: public void WriteRejectResponse(string reason)
-    parameters:
-    - id: reason
-      type: System.String
-    content.vb: Public Sub WriteRejectResponse(reason As String)
-  overload: WebSockets.Core.ServerHandshake.WriteRejectResponse*
-  nameWithType.vb: ServerHandshake.WriteRejectResponse(String)
-  fullName.vb: WebSockets.Core.ServerHandshake.WriteRejectResponse(String)
-  name.vb: WriteRejectResponse(String)
 references:
 - uid: WebSockets.Core
   commentId: N:WebSockets.Core
@@ -644,19 +625,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: (
   - name: )
-- uid: WebSockets.Core.IDateTimeProvider
-  commentId: T:WebSockets.Core.IDateTimeProvider
-  parent: WebSockets.Core
-  href: WebSockets.Core.IDateTimeProvider.html
-  name: IDateTimeProvider
-  nameWithType: IDateTimeProvider
-  fullName: WebSockets.Core.IDateTimeProvider
-- uid: WebSockets.Core.ServerHandshake.ReadRequest*
-  commentId: Overload:WebSockets.Core.ServerHandshake.ReadRequest
-  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_ReadRequest
-  name: ReadRequest
-  nameWithType: ServerHandshake.ReadRequest
-  fullName: WebSockets.Core.ServerHandshake.ReadRequest
 - uid: WebSockets.Core.WebRequest
   commentId: T:WebSockets.Core.WebRequest
   parent: WebSockets.Core
@@ -664,26 +632,28 @@ references:
   name: WebRequest
   nameWithType: WebRequest
   fullName: WebSockets.Core.WebRequest
+- uid: WebSockets.Core.ServerHandshake.ReadRequest*
+  commentId: Overload:WebSockets.Core.ServerHandshake.ReadRequest
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_ReadRequest
+  name: ReadRequest
+  nameWithType: ServerHandshake.ReadRequest
+  fullName: WebSockets.Core.ServerHandshake.ReadRequest
+- uid: WebSockets.Core.ServerHandshake.CreateWebResponse*
+  commentId: Overload:WebSockets.Core.ServerHandshake.CreateWebResponse
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_CreateWebResponse_WebSockets_Core_WebRequest_
+  name: CreateWebResponse
+  nameWithType: ServerHandshake.CreateWebResponse
+  fullName: WebSockets.Core.ServerHandshake.CreateWebResponse
+- uid: WebSockets.Core.WebResponse
+  commentId: T:WebSockets.Core.WebResponse
+  parent: WebSockets.Core
+  href: WebSockets.Core.WebResponse.html
+  name: WebResponse
+  nameWithType: WebResponse
+  fullName: WebSockets.Core.WebResponse
 - uid: WebSockets.Core.ServerHandshake.WriteResponse*
   commentId: Overload:WebSockets.Core.ServerHandshake.WriteResponse
-  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebRequest_
+  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebResponse_
   name: WriteResponse
   nameWithType: ServerHandshake.WriteResponse
   fullName: WebSockets.Core.ServerHandshake.WriteResponse
-- uid: WebSockets.Core.ServerHandshake.WriteRejectResponse*
-  commentId: Overload:WebSockets.Core.ServerHandshake.WriteRejectResponse
-  href: WebSockets.Core.ServerHandshake.html#WebSockets_Core_ServerHandshake_WriteRejectResponse_System_String_
-  name: WriteRejectResponse
-  nameWithType: ServerHandshake.WriteRejectResponse
-  fullName: WebSockets.Core.ServerHandshake.WriteRejectResponse
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String

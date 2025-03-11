@@ -23,7 +23,7 @@ namespace WebSockets.Core
         /// <param name="subProtocols">The supported sub-protocols.</param>
         /// <param name="dateTimeProvider">A date/time provider.</param>
         /// <param name="nonceGenerator">A generator for secrets.</param>
-        protected Handshake(
+        protected private Handshake(
             bool isClient,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)

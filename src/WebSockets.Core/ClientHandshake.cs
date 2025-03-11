@@ -5,7 +5,7 @@ using System.Text;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// A sans-io implementation of the client side of the WebSocket protocol.
+    /// The client side of the WebSocket handshake.
     /// </summary>
     public class ClientHandshake : Handshake
     {
@@ -24,12 +24,14 @@ namespace WebSockets.Core
 
         /// <summary>
         /// Construct a client handshake.
+        /// 
+        /// This method is provided to allow mock implementations for testing.
         /// </summary>
         /// <param name="origin">The origin is the url of the initiator of the request.</param>
         /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
         /// <param name="dateTimeProvider">An object which provides the current time.</param>
         /// <param name="nonceGenerator">An object providing secrets.</param>
-        public ClientHandshake(
+        internal ClientHandshake(
             string origin,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,

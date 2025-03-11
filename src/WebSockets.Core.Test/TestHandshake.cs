@@ -87,7 +87,7 @@ namespace WebSockets.Core.Test
 
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteResponse(WebResponse.CreateErrorResponse("invalid path", dateTimeProvider));
+            serverProtocol.WriteResponse(WebResponse.CreateErrorResponse("invalid path", dateTimeProvider.Now));
 
             isDone = false;
             while (!isDone)

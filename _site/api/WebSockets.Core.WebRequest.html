@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class WebRequest | websockets-sansio ">
       
-      
+      <meta name="description" content="A class modelling the required values of a WebSocket HTTP request.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="WebSockets_Core_WebRequest" data-uid="WebSockets.Core.WebRequest" class="text-break">
-Class WebRequest  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class WebRequest  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
   <dl><dt>Assembly</dt><dd>WebSockets.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A class modelling the required values of a WebSocket HTTP request.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -151,16 +152,16 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 
   <a id="WebSockets_Core_WebRequest__ctor_" data-uid="WebSockets.Core.WebRequest.#ctor*"></a>
 
-  <h3 id="WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___" data-uid="WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}})">
-  WebRequest(string, string, string, IDictionary&lt;string, IList&lt;string&gt;&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <h3 id="WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___System_Byte___" data-uid="WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])">
+  WebRequest(string, string, string, IDictionary&lt;string, IList&lt;string&gt;&gt;, byte[]?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WebRequest(string verb, string path, string version, IDictionary&lt;string, IList&lt;string&gt;&gt; headers)</code></pre>
+    <pre><code class="lang-csharp hljs">public WebRequest(string verb, string path, string version, IDictionary&lt;string, IList&lt;string&gt;&gt; headers, byte[]? body)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -172,6 +173,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
     <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>headers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>body</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd></dd>
   </dl>
 
@@ -190,14 +193,47 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 </h2>
 
 
+  <a id="WebSockets_Core_WebRequest_Body_" data-uid="WebSockets.Core.WebRequest.Body*"></a>
+
+  <h3 id="WebSockets_Core_WebRequest_Body" data-uid="WebSockets.Core.WebRequest.Body">
+  Body
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[]? Body { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="WebSockets_Core_WebRequest_Headers_" data-uid="WebSockets.Core.WebRequest.Headers*"></a>
 
   <h3 id="WebSockets_Core_WebRequest_Headers" data-uid="WebSockets.Core.WebRequest.Headers">
   Headers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The HTTP Headers.</p>
+<p>Note: header keys are case insensitive.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -211,7 +247,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
-    <dd></dd>
+    <dd><p>The headers.</p>
+</dd>
   </dl>
 
 
@@ -225,10 +262,11 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="WebSockets_Core_WebRequest_Path" data-uid="WebSockets.Core.WebRequest.Path">
   Path
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The server path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -242,7 +280,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The path for the server.</p>
+</dd>
   </dl>
 
 
@@ -256,10 +295,11 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="WebSockets_Core_WebRequest_Verb" data-uid="WebSockets.Core.WebRequest.Verb">
   Verb
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The HTTP verb.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -273,7 +313,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The verb.</p>
+</dd>
   </dl>
 
 
@@ -287,10 +328,11 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="WebSockets_Core_WebRequest_Version" data-uid="WebSockets.Core.WebRequest.Version">
   Version
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The HTTP version.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -304,7 +346,8 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The version.</p>
+</dd>
   </dl>
 
 
@@ -318,23 +361,67 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 </h2>
 
 
-  <a id="WebSockets_Core_WebRequest_Parse_" data-uid="WebSockets.Core.WebRequest.Parse*"></a>
+  <a id="WebSockets_Core_WebRequest_CreateUpgradeRequest_" data-uid="WebSockets.Core.WebRequest.CreateUpgradeRequest*"></a>
 
-  <h3 id="WebSockets_Core_WebRequest_Parse_System_String_" data-uid="WebSockets.Core.WebRequest.Parse(System.String)">
-  Parse(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <h3 id="WebSockets_Core_WebRequest_CreateUpgradeRequest_System_String_System_String_System_String_System_String_System_String___" data-uid="WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])">
+  CreateUpgradeRequest(string, string, string, string, string[]?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static WebRequest Parse(string data)</code></pre>
+    <pre><code class="lang-csharp hljs">public static WebRequest CreateUpgradeRequest(string path, string host, string origin, string key, string[]? subProtocols)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>host</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>origin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>subProtocols</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WebSockets_Core_WebRequest_Parse_" data-uid="WebSockets.Core.WebRequest.Parse*"></a>
+
+  <h3 id="WebSockets_Core_WebRequest_Parse_System_Byte___" data-uid="WebSockets.Core.WebRequest.Parse(System.Byte[])">
+  Parse(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WebRequest Parse(byte[] data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd></dd>
   </dl>
 
@@ -358,7 +445,7 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="WebSockets_Core_WebRequest_ToString" data-uid="WebSockets.Core.WebRequest.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
@@ -391,7 +478,7 @@ Class WebRequest  <a class="header-action link-secondary" title="View source" hr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/WebRequest.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -130,7 +130,7 @@ namespace WebSockets.Core
             return webResponse;
         }
 
-        public static WebResponse CreateErrorResponse(string reason, IDateTimeProvider dateTimeProvider)
+        public static WebResponse CreateErrorResponse(string reason, DateTime date)
         {
             var webResponse = new WebResponse(
                 "HTTP/1.1",
@@ -138,7 +138,7 @@ namespace WebSockets.Core
                 "Bad Request",
                 new Dictionary<string, IList<string>>
                 {
-                    { "Date", new List<string> { dateTimeProvider.Now.ToUniversalTime().ToString("r") }},
+                    { "Date", new List<string> { date.ToUniversalTime().ToString("r") }},
                     { "Connection", new List<string> { "close" }},
                     { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
                 },

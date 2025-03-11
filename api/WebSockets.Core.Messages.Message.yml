@@ -6,9 +6,7 @@ items:
   parent: WebSockets.Core.Messages
   children:
   - WebSockets.Core.Messages.Message.#ctor(WebSockets.Core.Messages.MessageType)
-  - WebSockets.Core.Messages.Message.Deserialize(System.Byte[])
   - WebSockets.Core.Messages.Message.Equals(WebSockets.Core.Messages.Message)
-  - WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
   - WebSockets.Core.Messages.Message.Type
   langs:
   - csharp
@@ -116,91 +114,6 @@ items:
       description: The type of the message.
     content.vb: Public Property Type As MessageType
   overload: WebSockets.Core.Messages.Message.Type*
-- uid: WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
-  commentId: M:WebSockets.Core.Messages.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
-  id: Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
-  parent: WebSockets.Core.Messages.Message
-  langs:
-  - csharp
-  - vb
-  name: Serialize(bool, Reserved?, long, INonceGenerator?)
-  nameWithType: Message.Serialize(bool, Reserved?, long, INonceGenerator?)
-  fullName: WebSockets.Core.Messages.Message.Serialize(bool, WebSockets.Core.Reserved?, long, WebSockets.Core.INonceGenerator?)
-  type: Method
-  source:
-    remote:
-      path: src/WebSockets.Core/Messages/Message.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: Serialize
-    path: src/WebSockets.Core/Messages/Message.cs
-    startLine: 33
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core.Messages
-  summary: Serialize the message to bytes.
-  example: []
-  syntax:
-    content: public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = 9223372036854775807, INonceGenerator? nonceGenerator = null)
-    parameters:
-    - id: isClient
-      type: System.Boolean
-      description: If true this is a client message, otherwise it is a server message.
-    - id: reserved
-      type: System.Nullable{WebSockets.Core.Reserved}
-      description: The reserved bits.
-    - id: maxFrameSize
-      type: System.Int64
-      description: The maximum size of a frame.
-    - id: nonceGenerator
-      type: WebSockets.Core.INonceGenerator
-      description: A generator for client masks.
-    return:
-      type: System.Byte[]
-      description: The message, serialized to bytes.
-    content.vb: Public Function Serialize(isClient As Boolean, reserved As Reserved? = Nothing, maxFrameSize As Long = 9223372036854775807, nonceGenerator As INonceGenerator = Nothing) As Byte()
-  overload: WebSockets.Core.Messages.Message.Serialize*
-  nameWithType.vb: Message.Serialize(Boolean, Reserved?, Long, INonceGenerator)
-  fullName.vb: WebSockets.Core.Messages.Message.Serialize(Boolean, WebSockets.Core.Reserved?, Long, WebSockets.Core.INonceGenerator)
-  name.vb: Serialize(Boolean, Reserved?, Long, INonceGenerator)
-- uid: WebSockets.Core.Messages.Message.Deserialize(System.Byte[])
-  commentId: M:WebSockets.Core.Messages.Message.Deserialize(System.Byte[])
-  id: Deserialize(System.Byte[])
-  parent: WebSockets.Core.Messages.Message
-  langs:
-  - csharp
-  - vb
-  name: Deserialize(byte[])
-  nameWithType: Message.Deserialize(byte[])
-  fullName: WebSockets.Core.Messages.Message.Deserialize(byte[])
-  type: Method
-  source:
-    remote:
-      path: src/WebSockets.Core/Messages/Message.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: Deserialize
-    path: src/WebSockets.Core/Messages/Message.cs
-    startLine: 53
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core.Messages
-  summary: Deserialize data into a message.
-  example: []
-  syntax:
-    content: public static Message Deserialize(byte[] data)
-    parameters:
-    - id: data
-      type: System.Byte[]
-      description: The data to deserialize.
-    return:
-      type: WebSockets.Core.Messages.Message
-      description: The deserialized message.
-    content.vb: Public Shared Function Deserialize(data As Byte()) As Message
-  overload: WebSockets.Core.Messages.Message.Deserialize*
-  nameWithType.vb: Message.Deserialize(Byte())
-  fullName.vb: WebSockets.Core.Messages.Message.Deserialize(Byte())
-  name.vb: Deserialize(Byte())
 - uid: WebSockets.Core.Messages.Message.Equals(WebSockets.Core.Messages.Message)
   commentId: M:WebSockets.Core.Messages.Message.Equals(WebSockets.Core.Messages.Message)
   id: Equals(WebSockets.Core.Messages.Message)
@@ -592,145 +505,6 @@ references:
   name: Type
   nameWithType: Message.Type
   fullName: WebSockets.Core.Messages.Message.Type
-- uid: WebSockets.Core.Messages.Message.Serialize*
-  commentId: Overload:WebSockets.Core.Messages.Message.Serialize
-  href: WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_
-  name: Serialize
-  nameWithType: Message.Serialize
-  fullName: WebSockets.Core.Messages.Message.Serialize
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.Nullable{WebSockets.Core.Reserved}
-  commentId: T:System.Nullable{WebSockets.Core.Reserved}
-  parent: System
-  definition: System.Nullable`1
-  href: WebSockets.Core.Reserved.html
-  name: Reserved?
-  nameWithType: Reserved?
-  fullName: WebSockets.Core.Reserved?
-  spec.csharp:
-  - uid: WebSockets.Core.Reserved
-    name: Reserved
-    href: WebSockets.Core.Reserved.html
-  - name: '?'
-  spec.vb:
-  - uid: WebSockets.Core.Reserved
-    name: Reserved
-    href: WebSockets.Core.Reserved.html
-  - name: '?'
-- uid: System.Int64
-  commentId: T:System.Int64
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int64
-  name: long
-  nameWithType: long
-  fullName: long
-  nameWithType.vb: Long
-  fullName.vb: Long
-  name.vb: Long
-- uid: WebSockets.Core.INonceGenerator
-  commentId: T:WebSockets.Core.INonceGenerator
-  parent: WebSockets.Core
-  href: WebSockets.Core.INonceGenerator.html
-  name: INonceGenerator
-  nameWithType: INonceGenerator
-  fullName: WebSockets.Core.INonceGenerator
-- uid: System.Byte[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.byte
-  name: byte[]
-  nameWithType: byte[]
-  fullName: byte[]
-  nameWithType.vb: Byte()
-  fullName.vb: Byte()
-  name.vb: Byte()
-  spec.csharp:
-  - uid: System.Byte
-    name: byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: '['
-  - name: ']'
-  spec.vb:
-  - uid: System.Byte
-    name: Byte
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.byte
-  - name: (
-  - name: )
-- uid: System.Nullable`1
-  commentId: T:System.Nullable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  name: Nullable<T>
-  nameWithType: Nullable<T>
-  fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
-  fullName.vb: System.Nullable(Of T)
-  name.vb: Nullable(Of T)
-  spec.csharp:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Nullable`1
-    name: Nullable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: WebSockets.Core
-  commentId: N:WebSockets.Core
-  href: WebSockets.html
-  name: WebSockets.Core
-  nameWithType: WebSockets.Core
-  fullName: WebSockets.Core
-  spec.csharp:
-  - uid: WebSockets
-    name: WebSockets
-    href: WebSockets.html
-  - name: .
-  - uid: WebSockets.Core
-    name: Core
-    href: WebSockets.Core.html
-  spec.vb:
-  - uid: WebSockets
-    name: WebSockets
-    href: WebSockets.html
-  - name: .
-  - uid: WebSockets.Core
-    name: Core
-    href: WebSockets.Core.html
-- uid: WebSockets.Core.Messages.Message.Deserialize*
-  commentId: Overload:WebSockets.Core.Messages.Message.Deserialize
-  href: WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Deserialize_System_Byte___
-  name: Deserialize
-  nameWithType: Message.Deserialize
-  fullName: WebSockets.Core.Messages.Message.Deserialize
-- uid: WebSockets.Core.Messages.Message
-  commentId: T:WebSockets.Core.Messages.Message
-  parent: WebSockets.Core.Messages
-  href: WebSockets.Core.Messages.Message.html
-  name: Message
-  nameWithType: Message
-  fullName: WebSockets.Core.Messages.Message
 - uid: WebSockets.Core.Messages.Message.Equals*
   commentId: Overload:WebSockets.Core.Messages.Message.Equals
   href: WebSockets.Core.Messages.Message.html#WebSockets_Core_Messages_Message_Equals_WebSockets_Core_Messages_Message_
@@ -767,6 +541,24 @@ references:
     name: Message
     href: WebSockets.Core.Messages.Message.html
   - name: )
+- uid: WebSockets.Core.Messages.Message
+  commentId: T:WebSockets.Core.Messages.Message
+  parent: WebSockets.Core.Messages
+  href: WebSockets.Core.Messages.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: WebSockets.Core.Messages.Message
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System.IEquatable`1.Equals(`0)
   commentId: M:System.IEquatable`1.Equals(`0)
   isExternal: true
