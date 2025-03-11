@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
-    public static class PublicExtensionMethods
+    internal static class PublicExtensionMethods
     {
         public static string? SingleValue(this IDictionary<string, IList<string>> headers, string key)
         {

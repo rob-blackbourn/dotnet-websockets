@@ -1,14 +1,68 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace WebSockets.Core
 {
     /// <summary>
     /// The server side of the WebSocket handshake.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// using System;
+    /// using System.IO;
+    /// using System.Net;
+    /// using System.Net.Sockets;
+    /// 
+    /// using WebSockets.Core;
+    /// using WebSockets.Core.Messages;
+    ///
+    /// namespace ServerExample
+    /// {
+    ///     class Program
+    ///     {
+    ///         static void Main()
+    ///         {
+    ///             var listener = new TcpListener(IPAddress.Any, 8081);
+    ///             listener.Start();
+    ///             var tcpClient = listener.AcceptTcpClient();
+    ///             
+    ///             var stream = client.GetStream();
+    ///             var handshake = new ServerHandshake(subProtocols);
+    /// 
+    ///             // Read the client request.
+    ///             WebRequest? webRequest = null;
+    ///             var buffer = new byte[1024];
+    ///             while (webRequest is null)
+    ///             {
+    ///                 var bytesRead = stream.Read(buffer);
+    ///                 if (bytesRead == 0)
+    ///                     throw new EndOfStreamException();
+    ///                 handshake.WriteData(buffer, 0, bytesRead);
+    ///             
+    ///                 webRequest = handshake.ReadRequest();
+    ///             }
+    ///             
+    ///             // Send the response.
+    ///             var webResponse = handshake.CreateWebResponse(webRequest);
+    ///             handshake.WriteResponse(webResponse);
+    ///             bool isDone = false;
+    ///             while (!isDone)
+    ///             {
+    ///                 var bytesRead = 0L;
+    ///                 _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+    ///                 if (bytesRead == 0)
+    ///                     isDone = true;
+    ///                 else
+    ///                 {
+    ///                     _stream.Write(buffer, 0, (int)bytesRead);
+    ///                     Console.WriteLine("Sent client data");
+    ///                 }
+    ///             }
+    ///         }
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     public class ServerHandshake : Handshake
     {
         /// <summary>
@@ -51,11 +105,14 @@ namespace WebSockets.Core
         }
 
         /// <summary>
-        /// Create the WebSocket response.
+        /// Create the WebSocket response using the web request.
         /// 
         /// If the response is valid an accept/upgrade response is generated.
-        /// An invalid response will generated a 400 response containing the
+        /// An invalid response will generate a 400 response containing the
         /// reason for the rejection.
+        /// 
+        /// An application may inspect the request and create it's own bad
+        /// response, for example if the path is not valid.
         /// </summary>
         /// <param name="webRequest">The request from the client.</param>
         /// <returns>The response to be sent to the client.</returns>

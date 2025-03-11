@@ -89,7 +89,7 @@
 
 
   <h1 id="WebSockets_Core_ServerHandshake" data-uid="WebSockets.Core.ServerHandshake" class="text-break">
-Class ServerHandshake  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L12"><i class="bi bi-code-slash"></i></a>
+Class ServerHandshake  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -159,6 +159,61 @@ Class ServerHandshake  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h2 id="WebSockets_Core_ServerHandshake_examples">Examples</h2>
+  <pre><code class="lang-csharp">using System;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+
+using WebSockets.Core;
+using WebSockets.Core.Messages;
+
+namespace ServerExample
+{
+    class Program
+    {
+        static void Main()
+        {
+            var listener = new TcpListener(IPAddress.Any, 8081);
+            listener.Start();
+            var tcpClient = listener.AcceptTcpClient();
+
+            var stream = client.GetStream();
+            var handshake = new ServerHandshake(subProtocols);
+
+            // Read the client request.
+            WebRequest? webRequest = null;
+            var buffer = new byte[1024];
+            while (webRequest is null)
+            {
+                var bytesRead = stream.Read(buffer);
+                if (bytesRead == 0)
+                    throw new EndOfStreamException();
+                handshake.WriteData(buffer, 0, bytesRead);
+
+                webRequest = handshake.ReadRequest();
+            }
+
+            // Send the response.
+            var webResponse = handshake.CreateWebResponse(webRequest);
+            handshake.WriteResponse(webResponse);
+            bool isDone = false;
+            while (!isDone)
+            {
+                var bytesRead = 0L;
+                _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                if (bytesRead == 0)
+                    isDone = true;
+                else
+                {
+                    _stream.Write(buffer, 0, (int)bytesRead);
+                    Console.WriteLine("Sent client data");
+                }
+            }
+        }
+    }
+}</code></pre>
+
 
 
 
@@ -170,7 +225,7 @@ Class ServerHandshake  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="WebSockets_Core_ServerHandshake__ctor_System_String___" data-uid="WebSockets.Core.ServerHandshake.#ctor(System.String[])">
   ServerHandshake(string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Construct a server handshake object.</p>
@@ -207,7 +262,7 @@ Class ServerHandshake  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="WebSockets_Core_ServerHandshake_CreateWebResponse_WebSockets_Core_WebRequest_" data-uid="WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)">
   CreateWebResponse(WebRequest)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Create the WebSocket response.</p>
@@ -249,7 +304,7 @@ reason for the rejection.</p>
 
   <h3 id="WebSockets_Core_ServerHandshake_ReadRequest" data-uid="WebSockets.Core.ServerHandshake.ReadRequest">
   ReadRequest()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Read a <a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a> from the protocol.</p>
@@ -283,7 +338,7 @@ reason for the rejection.</p>
 
   <h3 id="WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebResponse_" data-uid="WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)">
   WriteResponse(WebResponse)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write a web response to the handshake buffer.</p>
@@ -316,7 +371,7 @@ reason for the rejection.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L12" class="edit-link">Edit this page</a>
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L66" class="edit-link">Edit this page</a>
         </div>
 
 

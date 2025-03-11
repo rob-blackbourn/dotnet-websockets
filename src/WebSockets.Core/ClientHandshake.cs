@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -9,40 +8,56 @@ namespace WebSockets.Core
     /// </summary>
     /// <example>
     /// <code>
-    /// var endpoint = IPEndPoint.Parse("localhost:8081");
-    /// var tcpClient = new TcpClient();
-    /// tcpClient.Connect(endpoint);
+    /// using System;
+    /// using System.Net;
+    /// using System.Net.Sockets;
+    /// 
+    /// using WebSockets.Core;
+    /// using WebSockets.Core.Messages;
     ///
-    /// stream = tcpClient.GetStream();
-    /// handshake = new ClientHandshake("http://client.com", []);
-    /// handshake.WriteRequest("/chat", "www.example.com");
-    /// 
-    /// // Send the request.
-    /// var buffer = new byte[1024];
-    /// var isDone = false;
-    /// while (!isDone)
+    /// namespace ClientExample
     /// {
-    ///     var bytesRead = 0L;
-    ///     handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
-    ///     if (bytesRead == 0)
-    ///         isDone = true;
-    ///     else
-    ///         stream.Write(buffer, 0, (int)bytesRead);
+    ///     class Program
+    ///     {
+    ///         static void main()
+    ///         {
+    ///             var endpoint = IPEndPoint.Parse("localhost:8081");
+    ///             var tcpClient = new TcpClient();
+    ///             tcpClient.Connect(endpoint);
+    ///            
+    ///             stream = tcpClient.GetStream();
+    ///             handshake = new ClientHandshake("http://client.com", []);
+    ///             handshake.WriteRequest("/chat", "www.example.com");
+    ///             
+    ///             // Send the request.
+    ///             var buffer = new byte[1024];
+    ///             var isDone = false;
+    ///             while (!isDone)
+    ///             {
+    ///                 var bytesRead = 0L;
+    ///                 handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+    ///                 if (bytesRead == 0)
+    ///                     isDone = true;
+    ///                 else
+    ///                     stream.Write(buffer, 0, (int)bytesRead);
+    ///             }
+    ///             
+    ///             // Read the response.
+    ///             var offset = 0L;
+    ///             isDone = false;
+    ///             while (!isDone)
+    ///             {
+    ///                 var bytesRead = stream.Read(buffer);
+    ///                 handshake.WriteData(buffer, offset, bytesRead);
+    ///                 if (offset == bytesRead)
+    ///                     offset = 0;
+    ///                 isDone = handshake.ReadResponse() is not null;
+    ///             }
+    ///             
+    ///             var webResponse = handshake.ReadResponse();
+    ///         }
+    ///     }
     /// }
-    /// 
-    /// // Read the response.
-    /// var offset = 0L;
-    /// isDone = false;
-    /// while (!isDone)
-    /// {
-    ///     var bytesRead = stream.Read(buffer);
-    ///     handshake.WriteData(buffer, offset, bytesRead);
-    ///     if (offset == bytesRead)
-    ///         offset = 0;
-    ///     isDone = handshake.ReadResponse() is not null;
-    /// }
-    /// 
-    /// var webResponse = handshake.ReadResponse();
     /// </code>
     /// </example>
     public class ClientHandshake : Handshake

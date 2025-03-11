@@ -23,12 +23,73 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ServerHandshake
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 11
+    startLine: 65
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
   summary: The server side of the WebSocket handshake.
-  example: []
+  example:
+  - >-
+    <pre><code class="lang-csharp">using System;
+
+    using System.IO;
+
+    using System.Net;
+
+    using System.Net.Sockets;
+
+
+    using WebSockets.Core;
+
+    using WebSockets.Core.Messages;
+
+
+    namespace ServerExample
+
+    {
+        class Program
+        {
+            static void Main()
+            {
+                var listener = new TcpListener(IPAddress.Any, 8081);
+                listener.Start();
+                var tcpClient = listener.AcceptTcpClient();
+
+                var stream = client.GetStream();
+                var handshake = new ServerHandshake(subProtocols);
+
+                // Read the client request.
+                WebRequest? webRequest = null;
+                var buffer = new byte[1024];
+                while (webRequest is null)
+                {
+                    var bytesRead = stream.Read(buffer);
+                    if (bytesRead == 0)
+                        throw new EndOfStreamException();
+                    handshake.WriteData(buffer, 0, bytesRead);
+
+                    webRequest = handshake.ReadRequest();
+                }
+
+                // Send the response.
+                var webResponse = handshake.CreateWebResponse(webRequest);
+                handshake.WriteResponse(webResponse);
+                bool isDone = false;
+                while (!isDone)
+                {
+                    var bytesRead = 0L;
+                    _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                    if (bytesRead == 0)
+                        isDone = true;
+                    else
+                    {
+                        _stream.Write(buffer, 0, (int)bytesRead);
+                        Console.WriteLine("Sent client data");
+                    }
+                }
+            }
+        }
+    }</code></pre>
   syntax:
     content: 'public class ServerHandshake : Handshake'
     content.vb: Public Class ServerHandshake Inherits Handshake
@@ -65,7 +126,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 17
+    startLine: 71
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -100,7 +161,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadRequest
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 42
+    startLine: 96
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -135,7 +196,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: CreateWebResponse
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 61
+    startLine: 115
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -178,7 +239,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteResponse
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 79
+    startLine: 133
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
