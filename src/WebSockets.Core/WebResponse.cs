@@ -108,7 +108,43 @@ namespace WebSockets.Core
             Array.Copy(Body, 0, data, header.Length, Body.Length);
 
             return data;
+        }
 
+        public static WebResponse CreateAcceptResponse(string responseKey, string? subProtocol)
+        {
+            var webResponse = new WebResponse(
+                "HTTP/1.1",
+                101,
+                "Switching Protocols",
+                new Dictionary<string, IList<string>>
+                {
+                    {"Upgrade", new List<string> { "websocket" }},
+                    {"Connection", new List<string> { "upgrade" }},
+                    {"Sec-WebSocket-Accept", new List<string> { responseKey }},
+                },
+                null
+            );
+            if (subProtocol is not null)
+                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string> { subProtocol });
+
+            return webResponse;
+        }
+
+        public static WebResponse CreateErrorResponse(string reason, IDateTimeProvider dateTimeProvider)
+        {
+            var webResponse = new WebResponse(
+                "HTTP/1.1",
+                400,
+                "Bad Request",
+                new Dictionary<string, IList<string>>
+                {
+                    { "Date", new List<string> { dateTimeProvider.Now.ToUniversalTime().ToString("r") }},
+                    { "Connection", new List<string> { "close" }},
+                    { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
+                },
+                Encoding.UTF8.GetBytes(reason)
+            );
+            return webResponse;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace WebSockets.Core
         /// This method is provided to allow mock generators for testing.
         /// </summary>
         /// <param name="subProtocols">The supported sub-protocols.</param>
+        /// <param name="acceptPredicate">The supported sub-protocols.</param>
         /// <param name="dateTimeProvider">An implementation of a <see cref="IDateTimeProvider"/>.</param>
         public ServerHandshake(
             string[] subProtocols,
@@ -51,33 +52,25 @@ namespace WebSockets.Core
             return webRequest;
         }
 
-        public void WriteResponse(WebRequest webRequest)
+        public WebResponse CreateWebResponse(WebRequest webRequest)
         {
             try
             {
                 var (responseKey, subProtocol) = ProcessRequest(webRequest);
-                var webResponse = BuildResponse(responseKey, subProtocol);
-
-                var data = webResponse.ToBytes();
-                WriteData(data, 0, data.Length);
-
                 SelectedSubProtocol = subProtocol;
-                State = HandshakeState.Succeeded;
+                return WebResponse.CreateAcceptResponse(responseKey, subProtocol);
             }
             catch (InvalidDataException error)
             {
-                WriteRejectResponse(error.Message);
+                return WebResponse.CreateErrorResponse(error.Message, _dateTimeProvider);
             }
         }
 
-        public void WriteRejectResponse(string reason)
+        public void WriteResponse(WebResponse webResponse)
         {
-            var webResponse = BuildErrorResponse(reason);
-
             var data = webResponse.ToBytes();
             WriteData(data, 0, data.Length);
-
-            State = HandshakeState.Failed;
+            State = webResponse.Code == 101 ? HandshakeState.Succeeded : HandshakeState.Failed;
         }
 
         private (string responseKey, string? subProtocol) ProcessRequest(WebRequest webRequest)
@@ -111,26 +104,6 @@ namespace WebSockets.Core
             return (responseKey, subProtocol);
         }
 
-        private WebResponse BuildResponse(string responseKey, string? subProtocol)
-        {
-            var webResponse = new WebResponse(
-                "HTTP/1.1",
-                101,
-                "Switching Protocols",
-                new Dictionary<string, IList<string>>
-                {
-                    {"Upgrade", new List<string> { "websocket" }},
-                    {"Connection", new List<string> { "upgrade" }},
-                    {"Sec-WebSocket-Accept", new List<string> { responseKey }},
-                },
-                null
-            );
-            if (subProtocol is not null)
-                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string> { subProtocol });
-
-            return webResponse;
-        }
-
         private string? NegotiateSubProtocols(string[]? candidateSubProtocols)
         {
             if (_subProtocols.Length == 0 || candidateSubProtocols is null || candidateSubProtocols.Length == 0)
@@ -141,23 +114,6 @@ namespace WebSockets.Core
                 throw new InvalidDataException("No requested protocols supported");
 
             return matches[0];
-        }
-
-        private WebResponse BuildErrorResponse(string reason)
-        {
-            var webResponse = new WebResponse(
-                "HTTP/1.1",
-                400,
-                "Bad Request",
-                new Dictionary<string, IList<string>>
-                {
-                    { "Date", new List<string> { _dateTimeProvider.Now.ToUniversalTime().ToString("r") }},
-                    { "Connection", new List<string> { "close" }},
-                    { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
-                },
-                Encoding.UTF8.GetBytes(reason)
-            );
-            return webResponse;
         }
     }
 }

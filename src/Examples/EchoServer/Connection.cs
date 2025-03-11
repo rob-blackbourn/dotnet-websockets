@@ -124,7 +124,9 @@ namespace EchoServer
                 webRequest = _handshakeProtocol.ReadRequest();
             }
 
-            _handshakeProtocol.WriteResponse(webRequest);
+            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
+
+            _handshakeProtocol.WriteResponse(webResponse);
         }
 
         private void SendHandshakeResponse()

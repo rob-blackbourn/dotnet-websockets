@@ -34,7 +34,7 @@ namespace WebSockets.Core.Test
 
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteResponse(webRequest);
+            serverProtocol.WriteResponse(serverProtocol.CreateWebResponse(webRequest));
 
             isDone = false;
             while (!isDone)
@@ -58,14 +58,17 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshakeReject()
         {
+            var dateTimeProvider = new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0));
+            var nonceGenerator = new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw==");
+
             var clientProtocol = new ClientHandshake(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
-                new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
+                dateTimeProvider,
+                nonceGenerator);
             var serverProtocol = new ServerHandshake(
                 ["bar"],
-                new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
+                dateTimeProvider
             );
 
             clientProtocol.WriteRequest("/chat", "www.mordor.com");
@@ -84,7 +87,7 @@ namespace WebSockets.Core.Test
 
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
-            serverProtocol.WriteRejectResponse("invalid path");
+            serverProtocol.WriteResponse(WebResponse.CreateErrorResponse("invalid path", dateTimeProvider));
 
             isDone = false;
             while (!isDone)
