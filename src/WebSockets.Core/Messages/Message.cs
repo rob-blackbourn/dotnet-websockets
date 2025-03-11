@@ -31,7 +31,7 @@ namespace WebSockets.Core.Messages
         /// <param name="maxFrameSize">The maximum size of a frame.</param>
         /// <param name="nonceGenerator">A generator for client masks.</param>
         /// <returns>The message, serialized to bytes.</returns>
-        public byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = long.MaxValue, INonceGenerator? nonceGenerator = null)
+        internal byte[] Serialize(bool isClient, Reserved? reserved = null, long maxFrameSize = long.MaxValue, INonceGenerator? nonceGenerator = null)
         {
             var writer = new MessageWriter(nonceGenerator ?? new NonceGenerator());
             writer.WriteMessage(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
@@ -51,7 +51,7 @@ namespace WebSockets.Core.Messages
         /// </summary>
         /// <param name="data">The data to deserialize.</param>
         /// <returns>The deserialized message.</returns>
-        public static Message Deserialize(byte[] data)
+        internal static Message Deserialize(byte[] data)
         {
             var reader = new MessageReader();
             reader.WriteData(data, 0, data.Length);
