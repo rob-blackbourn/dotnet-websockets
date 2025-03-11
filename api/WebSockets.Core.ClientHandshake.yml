@@ -22,12 +22,60 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ClientHandshake
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 9
+    startLine: 45
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
   summary: The client side of the WebSocket handshake.
-  example: []
+  example:
+  - >-
+    <pre><code class="lang-csharp">var endpoint = IPEndPoint.Parse("localhost:8081");
+
+    var tcpClient = new TcpClient();
+
+    tcpClient.Connect(endpoint);
+
+
+    stream = tcpClient.GetStream();
+
+    handshake = new ClientHandshake("http://client.com", []);
+
+    handshake.WriteRequest("/chat", "www.example.com");
+
+
+    // Send the request.
+
+    var buffer = new byte[1024];
+
+    var isDone = false;
+
+    while (!isDone)
+
+    {
+        var bytesRead = 0L;
+        handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+        if (bytesRead == 0)
+            isDone = true;
+        else
+            stream.Write(buffer, 0, (int)bytesRead);
+    }
+
+
+    // Read the response.
+
+    var offset = 0L;
+
+    isDone = false;
+
+    while (!isDone)
+
+    {
+        var bytesRead = stream.Read(buffer);
+        handshake.WriteData(buffer, offset, bytesRead);
+        if (offset == bytesRead)
+            offset = 0;
+        isDone = handshake.ReadResponse() is not null;
+    }</code></pre>
   syntax:
     content: 'public class ClientHandshake : Handshake'
     content.vb: Public Class ClientHandshake Inherits Handshake
@@ -64,7 +112,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 19
+    startLine: 55
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -102,7 +150,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteRequest
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 49
+    startLine: 85
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -140,7 +188,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadResponse
     path: src/WebSockets.Core/ClientHandshake.cs
-    startLine: 60
+    startLine: 96
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core

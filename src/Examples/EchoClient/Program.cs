@@ -8,7 +8,7 @@ namespace EchoClient
     {
         static void Main(string[] args)
         {
-            var endpoint = new IPEndPoint(IPAddress.Loopback, 8081);
+            var endpoint = IPEndPoint.Parse("localhost:8081");
 
             Console.WriteLine($"Connecting to {endpoint}");
 

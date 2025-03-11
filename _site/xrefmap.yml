@@ -457,15 +457,15 @@ references:
   commentId: T:WebSockets.Core.MessageProtocol
   fullName: WebSockets.Core.MessageProtocol
   nameWithType: MessageProtocol
-- uid: WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)
-  name: MessageProtocol(bool, INonceGenerator)
-  href: api/WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_System_Boolean_WebSockets_Core_INonceGenerator_
-  commentId: M:WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)
-  name.vb: New(Boolean, INonceGenerator)
-  fullName: WebSockets.Core.MessageProtocol.MessageProtocol(bool, WebSockets.Core.INonceGenerator)
-  fullName.vb: WebSockets.Core.MessageProtocol.New(Boolean, WebSockets.Core.INonceGenerator)
-  nameWithType: MessageProtocol.MessageProtocol(bool, INonceGenerator)
-  nameWithType.vb: MessageProtocol.New(Boolean, INonceGenerator)
+- uid: WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  name: MessageProtocol(bool)
+  href: api/WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_System_Boolean_
+  commentId: M:WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  name.vb: New(Boolean)
+  fullName: WebSockets.Core.MessageProtocol.MessageProtocol(bool)
+  fullName.vb: WebSockets.Core.MessageProtocol.New(Boolean)
+  nameWithType: MessageProtocol.MessageProtocol(bool)
+  nameWithType.vb: MessageProtocol.New(Boolean)
 - uid: WebSockets.Core.MessageProtocol.#ctor*
   name: MessageProtocol
   href: api/WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_

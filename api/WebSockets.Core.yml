@@ -7,9 +7,7 @@ items:
   - WebSockets.Core.ClientHandshake
   - WebSockets.Core.Handshake
   - WebSockets.Core.HandshakeState
-  - WebSockets.Core.INonceGenerator
   - WebSockets.Core.MessageProtocol
-  - WebSockets.Core.NonceGenerator
   - WebSockets.Core.ProtocolState
   - WebSockets.Core.PublicExtensionMethods
   - WebSockets.Core.ServerHandshake
@@ -57,19 +55,6 @@ references:
   name: MessageProtocol
   nameWithType: MessageProtocol
   fullName: WebSockets.Core.MessageProtocol
-- uid: WebSockets.Core.INonceGenerator
-  commentId: T:WebSockets.Core.INonceGenerator
-  parent: WebSockets.Core
-  href: WebSockets.Core.INonceGenerator.html
-  name: INonceGenerator
-  nameWithType: INonceGenerator
-  fullName: WebSockets.Core.INonceGenerator
-- uid: WebSockets.Core.NonceGenerator
-  commentId: T:WebSockets.Core.NonceGenerator
-  href: WebSockets.Core.NonceGenerator.html
-  name: NonceGenerator
-  nameWithType: NonceGenerator
-  fullName: WebSockets.Core.NonceGenerator
 - uid: WebSockets.Core.ProtocolState
   commentId: T:WebSockets.Core.ProtocolState
   parent: WebSockets.Core

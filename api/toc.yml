@@ -13,14 +13,8 @@ items:
   - uid: WebSockets.Core.HandshakeState
     name: HandshakeState
     type: Enum
-  - uid: WebSockets.Core.INonceGenerator
-    name: INonceGenerator
-    type: Interface
   - uid: WebSockets.Core.MessageProtocol
     name: MessageProtocol
-    type: Class
-  - uid: WebSockets.Core.NonceGenerator
-    name: NonceGenerator
     type: Class
   - uid: WebSockets.Core.ProtocolState
     name: ProtocolState

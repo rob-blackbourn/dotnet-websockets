@@ -156,27 +156,22 @@ and servers.</p>
 
   <a id="WebSockets_Core_MessageProtocol__ctor_" data-uid="WebSockets.Core.MessageProtocol.#ctor*"></a>
 
-  <h3 id="WebSockets_Core_MessageProtocol__ctor_System_Boolean_WebSockets_Core_INonceGenerator_" data-uid="WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)">
-  MessageProtocol(bool, INonceGenerator)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="WebSockets_Core_MessageProtocol__ctor_System_Boolean_" data-uid="WebSockets.Core.MessageProtocol.#ctor(System.Boolean)">
+  MessageProtocol(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Construct the protocol.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MessageProtocol(bool isClient, INonceGenerator nonceGenerator)</code></pre>
+    <pre><code class="lang-csharp hljs">public MessageProtocol(bool isClient)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>isClient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>If true the protocol is for a client; otherwise it is for a server.</p>
-</dd>
-    <dt><code>nonceGenerator</code> <a class="xref" href="WebSockets.Core.INonceGenerator.html">INonceGenerator</a></dt>
-    <dd><p>A generator for secrets.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -198,7 +193,7 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_MessageProtocol_State" data-uid="WebSockets.Core.MessageProtocol.State">
   State
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The state of the protocol.</p>
@@ -235,7 +230,7 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_MessageProtocol_ReadData_System_Byte___System_Int64__System_Int64_" data-uid="WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)">
   ReadData(byte[], ref long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Read data from the protocol.</p>
@@ -279,7 +274,7 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_MessageProtocol_ReadMessage" data-uid="WebSockets.Core.MessageProtocol.ReadMessage">
   ReadMessage()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Read a message from the protocol.</p>
@@ -312,7 +307,7 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_MessageProtocol_WriteData_System_Byte___System_Int64_System_Int64_" data-uid="WebSockets.Core.MessageProtocol.WriteData(System.Byte[],System.Int64,System.Int64)">
   WriteData(byte[], long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write data to the protocol.</p>
@@ -351,7 +346,7 @@ and servers.</p>
 
   <h3 id="WebSockets_Core_MessageProtocol_WriteMessage_WebSockets_Core_Messages_Message_" data-uid="WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)">
   WriteMessage(Message)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/MessageProtocol.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write a message to the protocol.</p>

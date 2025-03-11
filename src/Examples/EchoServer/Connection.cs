@@ -10,13 +10,13 @@ namespace EchoServer
     class Connection
     {
         private readonly NetworkStream _stream;
-        private readonly ServerHandshake _handshakeProtocol;
+        private readonly ServerHandshake _handshake;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshakeProtocol = new ServerHandshake(subProtocols);
+            _handshake = new ServerHandshake(subProtocols);
             _messageProtocol = new MessageProtocol(false);
         }
 
@@ -119,14 +119,14 @@ namespace EchoServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _handshakeProtocol.WriteData(buffer, 0, bytesRead);
+                _handshake.WriteData(buffer, 0, bytesRead);
 
-                webRequest = _handshakeProtocol.ReadRequest();
+                webRequest = _handshake.ReadRequest();
             }
 
-            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
+            var webResponse = _handshake.CreateWebResponse(webRequest);
 
-            _handshakeProtocol.WriteResponse(webResponse);
+            _handshake.WriteResponse(webResponse);
         }
 
         private void SendHandshakeResponse()
@@ -136,7 +136,7 @@ namespace EchoServer
             {
                 var buffer = new byte[1024];
                 var bytesRead = 0L;
-                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else

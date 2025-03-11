@@ -5,7 +5,7 @@ items:
   id: MessageProtocol
   parent: WebSockets.Core
   children:
-  - WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)
+  - WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
   - WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)
   - WebSockets.Core.MessageProtocol.ReadMessage
   - WebSockets.Core.MessageProtocol.State
@@ -47,16 +47,16 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)
-  commentId: M:WebSockets.Core.MessageProtocol.#ctor(System.Boolean,WebSockets.Core.INonceGenerator)
-  id: '#ctor(System.Boolean,WebSockets.Core.INonceGenerator)'
+- uid: WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  commentId: M:WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
   parent: WebSockets.Core.MessageProtocol
   langs:
   - csharp
   - vb
-  name: MessageProtocol(bool, INonceGenerator)
-  nameWithType: MessageProtocol.MessageProtocol(bool, INonceGenerator)
-  fullName: WebSockets.Core.MessageProtocol.MessageProtocol(bool, WebSockets.Core.INonceGenerator)
+  name: MessageProtocol(bool)
+  nameWithType: MessageProtocol.MessageProtocol(bool)
+  fullName: WebSockets.Core.MessageProtocol.MessageProtocol(bool)
   type: Constructor
   source:
     remote:
@@ -65,26 +65,20 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 26
+    startLine: 19
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
-  summary: Construct the protocol.
-  example: []
   syntax:
-    content: public MessageProtocol(bool isClient, INonceGenerator nonceGenerator)
+    content: public MessageProtocol(bool isClient)
     parameters:
     - id: isClient
       type: System.Boolean
-      description: If true the protocol is for a client; otherwise it is for a server.
-    - id: nonceGenerator
-      type: WebSockets.Core.INonceGenerator
-      description: A generator for secrets.
-    content.vb: Public Sub New(isClient As Boolean, nonceGenerator As INonceGenerator)
+    content.vb: Public Sub New(isClient As Boolean)
   overload: WebSockets.Core.MessageProtocol.#ctor*
-  nameWithType.vb: MessageProtocol.New(Boolean, INonceGenerator)
-  fullName.vb: WebSockets.Core.MessageProtocol.New(Boolean, WebSockets.Core.INonceGenerator)
-  name.vb: New(Boolean, INonceGenerator)
+  nameWithType.vb: MessageProtocol.New(Boolean)
+  fullName.vb: WebSockets.Core.MessageProtocol.New(Boolean)
+  name.vb: New(Boolean)
 - uid: WebSockets.Core.MessageProtocol.State
   commentId: P:WebSockets.Core.MessageProtocol.State
   id: State
@@ -103,7 +97,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: State
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 39
+    startLine: 42
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -135,7 +129,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadData
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 48
+    startLine: 51
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -179,7 +173,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteData
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 59
+    startLine: 62
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -220,7 +214,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: ReadMessage
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 80
+    startLine: 83
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -251,7 +245,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteMessage
     path: src/WebSockets.Core/MessageProtocol.cs
-    startLine: 109
+    startLine: 112
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
@@ -527,7 +521,7 @@ references:
   fullName: System
 - uid: WebSockets.Core.MessageProtocol.#ctor*
   commentId: Overload:WebSockets.Core.MessageProtocol.#ctor
-  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_System_Boolean_WebSockets_Core_INonceGenerator_
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_System_Boolean_
   name: MessageProtocol
   nameWithType: MessageProtocol.MessageProtocol
   fullName: WebSockets.Core.MessageProtocol.MessageProtocol
@@ -545,13 +539,6 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: WebSockets.Core.INonceGenerator
-  commentId: T:WebSockets.Core.INonceGenerator
-  parent: WebSockets.Core
-  href: WebSockets.Core.INonceGenerator.html
-  name: INonceGenerator
-  nameWithType: INonceGenerator
-  fullName: WebSockets.Core.INonceGenerator
 - uid: WebSockets.Core.MessageProtocol.State*
   commentId: Overload:WebSockets.Core.MessageProtocol.State
   href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_State
