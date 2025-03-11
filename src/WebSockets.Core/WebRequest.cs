@@ -6,9 +6,23 @@ using System.Text;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// A class modelling the required values of a WebSocket HTTP request.
+    /// </summary>
     public class WebRequest
     {
-        public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers)
+        /// <summary>
+        /// Construct a web request.
+        /// </summary>
+        /// <param name="verb">The HTTP verb.</param>
+        /// <param name="path">The server path.</param>
+        /// <param name="version"The HTTP version.></param>
+        /// <param name="headers">The HTTP headers.</param>
+        public WebRequest(
+            string verb,
+            string path,
+            string version,
+            IDictionary<string, IList<string>> headers)
         {
             Verb = verb;
             Path = path;
@@ -16,9 +30,27 @@ namespace WebSockets.Core
             Headers = headers;
         }
 
+        /// <summary>
+        /// The HTTP verb.
+        /// </summary>
+        /// <value>The verb.</value>
         public string Verb { get; private set; }
+        /// <summary>
+        /// The server path.
+        /// </summary>
+        /// <value>The path for the server.</value>
         public string Path { get; private set; }
+        /// <summary>
+        /// The HTTP version.
+        /// </summary>
+        /// <value>The version.</value>
         public string Version { get; private set; }
+        /// <summary>
+        /// The HTTP Headers.
+        /// 
+        /// Note: header keys are case insensitive.
+        /// </summary>
+        /// <value>The headers.</value>
         public IDictionary<string, IList<string>> Headers { get; private set; }
 
         public static WebRequest Parse(string data)
