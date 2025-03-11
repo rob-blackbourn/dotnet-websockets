@@ -17,14 +17,17 @@ namespace WebSockets.Core
         private protected readonly MessageWriter _messageWriter;
         private protected bool _isClient;
 
+        public MessageProtocol(bool isClient)
+            : this(isClient, new NonceGenerator())
+        {
+        }
+
         /// <summary>
         /// Construct the protocol.
         /// </summary>
         /// <param name="isClient">If true the protocol is for a client; otherwise it is for a server.</param>
-        /// <param name="subProtocols">The supported sub-protocols.</param>
-        /// <param name="dateTimeProvider">A date/time provider.</param>
         /// <param name="nonceGenerator">A generator for secrets.</param>
-        public MessageProtocol(
+        internal MessageProtocol(
             bool isClient,
             INonceGenerator nonceGenerator)
         {

@@ -5,7 +5,6 @@ items:
   id: Handshake
   parent: WebSockets.Core
   children:
-  - WebSockets.Core.Handshake.#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)
   - WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
   - WebSockets.Core.Handshake.SelectedSubProtocol
   - WebSockets.Core.Handshake.State
@@ -49,47 +48,6 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
-- uid: WebSockets.Core.Handshake.#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)
-  commentId: M:WebSockets.Core.Handshake.#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)
-  id: '#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)'
-  parent: WebSockets.Core.Handshake
-  langs:
-  - csharp
-  - vb
-  name: Handshake(bool, string[], IDateTimeProvider)
-  nameWithType: Handshake.Handshake(bool, string[], IDateTimeProvider)
-  fullName: WebSockets.Core.Handshake.Handshake(bool, string[], WebSockets.Core.IDateTimeProvider)
-  type: Constructor
-  source:
-    remote:
-      path: src/WebSockets.Core/Handshake.cs
-      branch: docs
-      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
-    id: .ctor
-    path: src/WebSockets.Core/Handshake.cs
-    startLine: 25
-  assemblies:
-  - WebSockets.Core
-  namespace: WebSockets.Core
-  summary: Construct the protocol.
-  example: []
-  syntax:
-    content: protected Handshake(bool isClient, string[] subProtocols, IDateTimeProvider dateTimeProvider)
-    parameters:
-    - id: isClient
-      type: System.Boolean
-      description: If true the protocol is for a client; otherwise it is for a server.
-    - id: subProtocols
-      type: System.String[]
-      description: The supported sub-protocols.
-    - id: dateTimeProvider
-      type: WebSockets.Core.IDateTimeProvider
-      description: A date/time provider.
-    content.vb: Protected Sub New(isClient As Boolean, subProtocols As String(), dateTimeProvider As IDateTimeProvider)
-  overload: WebSockets.Core.Handshake.#ctor*
-  nameWithType.vb: Handshake.New(Boolean, String(), IDateTimeProvider)
-  fullName.vb: WebSockets.Core.Handshake.New(Boolean, String(), WebSockets.Core.IDateTimeProvider)
-  name.vb: New(Boolean, String(), IDateTimeProvider)
 - uid: WebSockets.Core.Handshake.State
   commentId: P:WebSockets.Core.Handshake.State
   id: State
@@ -496,56 +454,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: WebSockets.Core.Handshake.#ctor*
-  commentId: Overload:WebSockets.Core.Handshake.#ctor
-  href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake__ctor_System_Boolean_System_String___WebSockets_Core_IDateTimeProvider_
-  name: Handshake
-  nameWithType: Handshake.Handshake
-  fullName: WebSockets.Core.Handshake.Handshake
-  nameWithType.vb: Handshake.New
-  fullName.vb: WebSockets.Core.Handshake.New
-  name.vb: New
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.String[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string[]
-  nameWithType: string[]
-  fullName: string[]
-  nameWithType.vb: String()
-  fullName.vb: String()
-  name.vb: String()
-  spec.csharp:
-  - uid: System.String
-    name: string
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '['
-  - name: ']'
-  spec.vb:
-  - uid: System.String
-    name: String
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: (
-  - name: )
-- uid: WebSockets.Core.IDateTimeProvider
-  commentId: T:WebSockets.Core.IDateTimeProvider
-  parent: WebSockets.Core
-  href: WebSockets.Core.IDateTimeProvider.html
-  name: IDateTimeProvider
-  nameWithType: IDateTimeProvider
-  fullName: WebSockets.Core.IDateTimeProvider
 - uid: WebSockets.Core.Handshake.State*
   commentId: Overload:WebSockets.Core.Handshake.State
   href: WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_State

@@ -5,10 +5,8 @@ items:
   id: WebSockets.Core
   children:
   - WebSockets.Core.ClientHandshake
-  - WebSockets.Core.DateTimeProvider
   - WebSockets.Core.Handshake
   - WebSockets.Core.HandshakeState
-  - WebSockets.Core.IDateTimeProvider
   - WebSockets.Core.INonceGenerator
   - WebSockets.Core.MessageProtocol
   - WebSockets.Core.NonceGenerator
@@ -33,19 +31,6 @@ references:
   name: ClientHandshake
   nameWithType: ClientHandshake
   fullName: WebSockets.Core.ClientHandshake
-- uid: WebSockets.Core.IDateTimeProvider
-  commentId: T:WebSockets.Core.IDateTimeProvider
-  parent: WebSockets.Core
-  href: WebSockets.Core.IDateTimeProvider.html
-  name: IDateTimeProvider
-  nameWithType: IDateTimeProvider
-  fullName: WebSockets.Core.IDateTimeProvider
-- uid: WebSockets.Core.DateTimeProvider
-  commentId: T:WebSockets.Core.DateTimeProvider
-  href: WebSockets.Core.DateTimeProvider.html
-  name: DateTimeProvider
-  nameWithType: DateTimeProvider
-  fullName: WebSockets.Core.DateTimeProvider
 - uid: WebSockets.Core.PublicExtensionMethods
   commentId: T:WebSockets.Core.PublicExtensionMethods
   href: WebSockets.Core.PublicExtensionMethods.html

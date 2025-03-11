@@ -16,7 +16,7 @@ namespace EchoClient
         {
             _stream = client.GetStream();
             _handshakeProtocol = new ClientHandshake(origin, subProtocols);
-            _messageProtocol = new MessageProtocol(true, new NonceGenerator());
+            _messageProtocol = new MessageProtocol(true);
         }
 
         public void Start()

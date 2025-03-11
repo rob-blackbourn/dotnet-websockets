@@ -5,7 +5,7 @@ namespace WebSockets.Core
     /// <summary>
     /// The interface for a nonce generator.
     /// </summary>
-    public interface INonceGenerator
+    internal interface INonceGenerator
     {
         /// <summary>
         /// Create a mask for a websocket message.
@@ -31,7 +31,7 @@ namespace WebSockets.Core
     /// <summary>
     /// A nonce generator.
     /// </summary>
-    public class NonceGenerator : INonceGenerator
+    internal class NonceGenerator : INonceGenerator
     {
         public static readonly Random _random;
 

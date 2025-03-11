@@ -68,19 +68,26 @@ items:
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
+  summary: Construct a web request.
+  example: []
   syntax:
     content: public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers, byte[]? body)
     parameters:
     - id: verb
       type: System.String
+      description: The verb (GET, POST, etc).
     - id: path
       type: System.String
+      description: The server path.
     - id: version
       type: System.String
+      description: The HTTP version.
     - id: headers
       type: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+      description: The headers.
     - id: body
       type: System.Byte[]
+      description: An optional body.
     content.vb: Public Sub New(verb As String, path As String, version As String, headers As IDictionary(Of String, IList(Of String)), body As Byte())
   overload: WebSockets.Core.WebRequest.#ctor*
   nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())

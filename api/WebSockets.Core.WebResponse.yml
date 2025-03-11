@@ -9,7 +9,7 @@ items:
   - WebSockets.Core.WebResponse.Body
   - WebSockets.Core.WebResponse.Code
   - WebSockets.Core.WebResponse.CreateAcceptResponse(System.String,System.String)
-  - WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+  - WebSockets.Core.WebResponse.CreateErrorResponse(System.String,System.DateTime)
   - WebSockets.Core.WebResponse.Headers
   - WebSockets.Core.WebResponse.Parse(System.Byte[])
   - WebSockets.Core.WebResponse.Reason
@@ -329,16 +329,16 @@ items:
   nameWithType.vb: WebResponse.CreateAcceptResponse(String, String)
   fullName.vb: WebSockets.Core.WebResponse.CreateAcceptResponse(String, String)
   name.vb: CreateAcceptResponse(String, String)
-- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
-  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
-  id: CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,System.DateTime)
+  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,System.DateTime)
+  id: CreateErrorResponse(System.String,System.DateTime)
   parent: WebSockets.Core.WebResponse
   langs:
   - csharp
   - vb
-  name: CreateErrorResponse(string, IDateTimeProvider)
-  nameWithType: WebResponse.CreateErrorResponse(string, IDateTimeProvider)
-  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, WebSockets.Core.IDateTimeProvider)
+  name: CreateErrorResponse(string, DateTime)
+  nameWithType: WebResponse.CreateErrorResponse(string, DateTime)
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, System.DateTime)
   type: Method
   source:
     remote:
@@ -352,19 +352,19 @@ items:
   - WebSockets.Core
   namespace: WebSockets.Core
   syntax:
-    content: public static WebResponse CreateErrorResponse(string reason, IDateTimeProvider dateTimeProvider)
+    content: public static WebResponse CreateErrorResponse(string reason, DateTime date)
     parameters:
     - id: reason
       type: System.String
-    - id: dateTimeProvider
-      type: WebSockets.Core.IDateTimeProvider
+    - id: date
+      type: System.DateTime
     return:
       type: WebSockets.Core.WebResponse
-    content.vb: Public Shared Function CreateErrorResponse(reason As String, dateTimeProvider As IDateTimeProvider) As WebResponse
+    content.vb: Public Shared Function CreateErrorResponse(reason As String, [date] As Date) As WebResponse
   overload: WebSockets.Core.WebResponse.CreateErrorResponse*
-  nameWithType.vb: WebResponse.CreateErrorResponse(String, IDateTimeProvider)
-  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, WebSockets.Core.IDateTimeProvider)
-  name.vb: CreateErrorResponse(String, IDateTimeProvider)
+  nameWithType.vb: WebResponse.CreateErrorResponse(String, Date)
+  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, Date)
+  name.vb: CreateErrorResponse(String, Date)
 references:
 - uid: WebSockets.Core
   commentId: N:WebSockets.Core
@@ -868,14 +868,18 @@ references:
   fullName: WebSockets.Core.WebResponse.CreateAcceptResponse
 - uid: WebSockets.Core.WebResponse.CreateErrorResponse*
   commentId: Overload:WebSockets.Core.WebResponse.CreateErrorResponse
-  href: WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_WebSockets_Core_IDateTimeProvider_
+  href: WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_System_DateTime_
   name: CreateErrorResponse
   nameWithType: WebResponse.CreateErrorResponse
   fullName: WebSockets.Core.WebResponse.CreateErrorResponse
-- uid: WebSockets.Core.IDateTimeProvider
-  commentId: T:WebSockets.Core.IDateTimeProvider
-  parent: WebSockets.Core
-  href: WebSockets.Core.IDateTimeProvider.html
-  name: IDateTimeProvider
-  nameWithType: IDateTimeProvider
-  fullName: WebSockets.Core.IDateTimeProvider
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date

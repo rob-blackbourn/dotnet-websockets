@@ -232,25 +232,6 @@ references:
   commentId: T:WebSockets.Core.Handshake
   fullName: WebSockets.Core.Handshake
   nameWithType: Handshake
-- uid: WebSockets.Core.Handshake.#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)
-  name: Handshake(bool, string[], IDateTimeProvider)
-  href: api/WebSockets.Core.Handshake.html#WebSockets_Core_Handshake__ctor_System_Boolean_System_String___WebSockets_Core_IDateTimeProvider_
-  commentId: M:WebSockets.Core.Handshake.#ctor(System.Boolean,System.String[],WebSockets.Core.IDateTimeProvider)
-  name.vb: New(Boolean, String(), IDateTimeProvider)
-  fullName: WebSockets.Core.Handshake.Handshake(bool, string[], WebSockets.Core.IDateTimeProvider)
-  fullName.vb: WebSockets.Core.Handshake.New(Boolean, String(), WebSockets.Core.IDateTimeProvider)
-  nameWithType: Handshake.Handshake(bool, string[], IDateTimeProvider)
-  nameWithType.vb: Handshake.New(Boolean, String(), IDateTimeProvider)
-- uid: WebSockets.Core.Handshake.#ctor*
-  name: Handshake
-  href: api/WebSockets.Core.Handshake.html#WebSockets_Core_Handshake__ctor_
-  commentId: Overload:WebSockets.Core.Handshake.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: WebSockets.Core.Handshake.Handshake
-  fullName.vb: WebSockets.Core.Handshake.New
-  nameWithType: Handshake.Handshake
-  nameWithType.vb: Handshake.New
 - uid: WebSockets.Core.Handshake.ReadData(System.Byte[],System.Int64@,System.Int64)
   name: ReadData(byte[], ref long, long)
   href: api/WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_
@@ -2082,15 +2063,15 @@ references:
   isSpec: "True"
   fullName: WebSockets.Core.WebResponse.CreateAcceptResponse
   nameWithType: WebResponse.CreateAcceptResponse
-- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
-  name: CreateErrorResponse(string, IDateTimeProvider)
-  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_WebSockets_Core_IDateTimeProvider_
-  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,WebSockets.Core.IDateTimeProvider)
-  name.vb: CreateErrorResponse(String, IDateTimeProvider)
-  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, WebSockets.Core.IDateTimeProvider)
-  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, WebSockets.Core.IDateTimeProvider)
-  nameWithType: WebResponse.CreateErrorResponse(string, IDateTimeProvider)
-  nameWithType.vb: WebResponse.CreateErrorResponse(String, IDateTimeProvider)
+- uid: WebSockets.Core.WebResponse.CreateErrorResponse(System.String,System.DateTime)
+  name: CreateErrorResponse(string, DateTime)
+  href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_System_String_System_DateTime_
+  commentId: M:WebSockets.Core.WebResponse.CreateErrorResponse(System.String,System.DateTime)
+  name.vb: CreateErrorResponse(String, Date)
+  fullName: WebSockets.Core.WebResponse.CreateErrorResponse(string, System.DateTime)
+  fullName.vb: WebSockets.Core.WebResponse.CreateErrorResponse(String, Date)
+  nameWithType: WebResponse.CreateErrorResponse(string, DateTime)
+  nameWithType.vb: WebResponse.CreateErrorResponse(String, Date)
 - uid: WebSockets.Core.WebResponse.CreateErrorResponse*
   name: CreateErrorResponse
   href: api/WebSockets.Core.WebResponse.html#WebSockets_Core_WebResponse_CreateErrorResponse_

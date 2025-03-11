@@ -16,11 +16,11 @@ namespace WebSockets.Core
         /// <summary>
         /// Construct a web request.
         /// </summary>
-        /// <param name="verb">The HTTP verb.</param>
+        /// <param name="verb">The verb (GET, POST, etc).</param>
         /// <param name="path">The server path.</param>
-        /// <param name="version"The HTTP version.></param>
-        /// <param name="headers">The HTTP headers.</param>
-        /// <param name="body">The HTTP body.</param>
+        /// <param name="version">The HTTP version.</param>
+        /// <param name="headers">The headers.</param>
+        /// <param name="body">An optional body.</param>
         public WebRequest(
             string verb,
             string path,

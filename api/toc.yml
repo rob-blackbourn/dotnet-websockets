@@ -7,18 +7,12 @@ items:
   - uid: WebSockets.Core.ClientHandshake
     name: ClientHandshake
     type: Class
-  - uid: WebSockets.Core.DateTimeProvider
-    name: DateTimeProvider
-    type: Class
   - uid: WebSockets.Core.Handshake
     name: Handshake
     type: Class
   - uid: WebSockets.Core.HandshakeState
     name: HandshakeState
     type: Enum
-  - uid: WebSockets.Core.IDateTimeProvider
-    name: IDateTimeProvider
-    type: Interface
   - uid: WebSockets.Core.INonceGenerator
     name: INonceGenerator
     type: Interface
