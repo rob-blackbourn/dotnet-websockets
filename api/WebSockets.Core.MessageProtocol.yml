@@ -140,9 +140,9 @@ items:
   - WebSockets.Core
   namespace: WebSockets.Core
   syntax:
-    content: public bool ReadData(byte[] buffer, ref long offset, long length)
+    content: public bool ReadData(byte[] destination, ref long offset, long length)
     parameters:
-    - id: buffer
+    - id: destination
       type: System.Byte[]
     - id: offset
       type: System.Int64
@@ -150,7 +150,7 @@ items:
       type: System.Int64
     return:
       type: System.Boolean
-    content.vb: Public Function ReadData(buffer As Byte(), offset As Long, length As Long) As Boolean
+    content.vb: Public Function ReadData(destination As Byte(), offset As Long, length As Long) As Boolean
   overload: WebSockets.Core.MessageProtocol.ReadData*
   nameWithType.vb: MessageProtocol.ReadData(Byte(), Long, Long)
   fullName.vb: WebSockets.Core.MessageProtocol.ReadData(Byte(), Long, Long)
@@ -178,15 +178,15 @@ items:
   - WebSockets.Core
   namespace: WebSockets.Core
   syntax:
-    content: public void WriteData(byte[] buffer, long offset, long length)
+    content: public void WriteData(byte[] source, long offset, long length)
     parameters:
-    - id: buffer
+    - id: source
       type: System.Byte[]
     - id: offset
       type: System.Int64
     - id: length
       type: System.Int64
-    content.vb: Public Sub WriteData(buffer As Byte(), offset As Long, length As Long)
+    content.vb: Public Sub WriteData(source As Byte(), offset As Long, length As Long)
   overload: WebSockets.Core.MessageProtocol.WriteData*
   nameWithType.vb: MessageProtocol.WriteData(Byte(), Long, Long)
   fullName.vb: WebSockets.Core.MessageProtocol.WriteData(Byte(), Long, Long)

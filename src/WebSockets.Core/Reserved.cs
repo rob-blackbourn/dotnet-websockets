@@ -2,6 +2,9 @@
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// This represents the state of the reserver bytes in a message frame.
+    /// </summary>
     public struct Reserved : IEquatable<Reserved>
     {
         public static Reserved AllFalse { get; } = new Reserved(false, false, false);

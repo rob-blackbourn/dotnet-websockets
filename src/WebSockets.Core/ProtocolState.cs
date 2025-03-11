@@ -1,12 +1,8 @@
 namespace WebSockets.Core
 {
-    public enum HandshakeState
-    {
-        Pending,
-        Succeeded,
-        Failed
-    }
-
+    /// <summary>
+    /// The state of the protocol.
+    /// </summary>
     public enum ProtocolState
     {
         Connected,

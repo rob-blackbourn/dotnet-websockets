@@ -34,21 +34,31 @@ namespace WebSockets.Core
         }
 
         /// <summary>
-        /// The state of the connection.
+        /// The state of the protocol.
         /// </summary>
-        /// <value>The connection state.</value>
+        /// <value>The protocol state.</value>
         public ProtocolState State { get; protected set; } = ProtocolState.Connected;
 
+        /// <summary>
+        /// Read data from the protocol.
+        /// </summary>
+        /// <param name="destination">The array to which the data should be written.</param>
+        /// <param name="offset">The offset in the array to start writing the data.</param>
+        /// <param name="length">The length of the array.</param>
+        /// <returns></returns>
         public bool ReadData(byte[] destination, ref long offset, long length)
         {
             return _messageWriter.ReadData(destination, ref offset, length);
         }
 
+        /// <summary>
+        /// Write data to the protocol.
+        /// </summary>
+        /// <param name="source">The data to write.</param>
+        /// <param name="offset">The offset from which the data should be written.</param>
+        /// <param name="length">The available length of the data.</param>
         public void WriteData(byte[] source, long offset, long length)
         {
-            // if (HandshakeState != HandshakeState.Succeeded)
-            //     throw new InvalidOperationException("cannot receive data before handshake completed");
-
             switch (State)
             {
                 case ProtocolState.Connected:
@@ -64,6 +74,10 @@ namespace WebSockets.Core
             }
         }
 
+        /// <summary>
+        /// Read a message from the protocol.
+        /// </summary>
+        /// <returns>If there is a complete message the message is returned, otherwise null.</returns>
         public Message? ReadMessage()
         {
             var message = _messageReader.ReadMessage();
@@ -89,11 +103,12 @@ namespace WebSockets.Core
             return message;
         }
 
+        /// <summary>
+        /// Write a message to the protocol.
+        /// </summary>
+        /// <param name="message">The message to write.</param>
         public void WriteMessage(Message message)
         {
-            // if (HandshakeState != HandshakeState.Succeeded)
-            //     throw new InvalidOperationException("cannot receive data before handshake completed");
-
             switch (State)
             {
                 case ProtocolState.Connected:

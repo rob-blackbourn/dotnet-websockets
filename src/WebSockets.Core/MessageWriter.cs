@@ -68,7 +68,7 @@ namespace WebSockets.Core
         }
 
         /// <summary>
-        /// Write the message to the provided buffer.
+        /// Write the message from the protocol to the provided buffer.
         /// 
         /// The return value indicates whether a complete frame was sent. This is
         /// typically not useful, as a message may consist of many frames. Also
@@ -83,6 +83,11 @@ namespace WebSockets.Core
             return _frameWriter.ReadData(destination, ref offset, length);
         }
 
+        /// <summary>
+        /// Convert the message payload to an array of bytes.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>The message payload as an array of bytes.</returns>
         private ArrayBuffer<byte> GetPayload(Message message)
         {
             switch (message.Type)
@@ -123,6 +128,11 @@ namespace WebSockets.Core
             }
         }
 
+        /// <summary>
+        /// Converts the message type to an opcode.
+        /// </summary>
+        /// <param name="messageType">The message type.</param>
+        /// <returns>The frame opcode.</returns>
         private OpCode GetOpCode(MessageType messageType)
         {
             switch (messageType)

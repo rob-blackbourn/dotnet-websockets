@@ -57,6 +57,14 @@ namespace WebSockets.Core
             }
         }
 
+        /// <summary>
+        /// Create a message from an array of frames.
+        /// </summary>
+        /// <param name="frames">The frames from which a message should be  read.</param>
+        /// <returns>The message that was created.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the message cannot be created.
+        /// </exception>
         private Message CreateMessage(Frame[] frames)
         {
             if (frames.Length == 0)
@@ -88,11 +96,22 @@ namespace WebSockets.Core
             return CreateMessage(frames[0].OpCode, buf);
         }
 
+        /// <summary>
+        /// Create a message from a frame.
+        /// </summary>
+        /// <param name="frame">The frame to use.</param>
+        /// <returns>The created message.</returns>
         private Message CreateMessage(Frame frame)
         {
             return CreateMessage(frame.OpCode, frame.Payload);
         }
 
+        /// <summary>
+        /// Create a message from an opcode and an array of bytes.
+        /// </summary>
+        /// <param name="opCode">The opcode.</param>
+        /// <param name="payload">The array of bytes.</param>
+        /// <returns>The created message.</returns>
         private Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
         {
             switch (opCode)
