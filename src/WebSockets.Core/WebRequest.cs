@@ -11,6 +11,8 @@ namespace WebSockets.Core
     /// </summary>
     public class WebRequest
     {
+        private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
+
         /// <summary>
         /// Construct a web request.
         /// </summary>
@@ -18,16 +20,19 @@ namespace WebSockets.Core
         /// <param name="path">The server path.</param>
         /// <param name="version"The HTTP version.></param>
         /// <param name="headers">The HTTP headers.</param>
+        /// <param name="body">The HTTP body.</param>
         public WebRequest(
             string verb,
             string path,
             string version,
-            IDictionary<string, IList<string>> headers)
+            IDictionary<string, IList<string>> headers,
+            byte[]? body)
         {
             Verb = verb;
             Path = path;
             Version = version;
             Headers = headers;
+            Body = body;
         }
 
         /// <summary>
@@ -52,14 +57,23 @@ namespace WebSockets.Core
         /// </summary>
         /// <value>The headers.</value>
         public IDictionary<string, IList<string>> Headers { get; private set; }
+        public byte[]? Body { get; }
 
         public static WebRequest Parse(byte[] data)
         {
-            var text = Encoding.UTF8.GetString(data.ToArray());
-            var lines = text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+            var index = data.IndexOf(HTTP_EOM);
+            if (index == -1)
+                throw new ArgumentOutOfRangeException("Expected header terminator");
+
+            var header = Encoding.UTF8.GetString(data.SubArray(0, index + 2));
+            var body = data.Length == index + 4
+                ? null
+                : data.SubArray(index + 4);
+
+            var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (verb, path, version) = ParseRequestLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
-            return new WebRequest(verb, path, version, headers);
+            return new WebRequest(verb, path, version, headers, body);
         }
 
         private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
@@ -124,7 +138,8 @@ namespace WebSockets.Core
                     {"Origin", new List<string> { origin }},
                     {"Sec-WebSocket-Version", new List<string> { "13" }},
                     {"Sec-WebSocket-Key", new List<string> { key }},
-                }
+                },
+                null
             );
             if (subProtocols is not null && subProtocols.Length > 0)
                 webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', subProtocols) });

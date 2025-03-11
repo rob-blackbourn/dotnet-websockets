@@ -43,7 +43,7 @@ namespace WebSockets.Core
         /// <returns>A <see cref="WebRequest"/> if the complete message has been received; otherwise null.</returns>
         public WebRequest? ReadRequest()
         {
-            if (!_buffer.EndsWith(HTTP_EOM))
+            if (_buffer.IndexOf(HTTP_EOM, 0) == -1)
                 return null;
 
             var webRequest = WebRequest.Parse(_buffer.ToArray());

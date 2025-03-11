@@ -17,7 +17,8 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==\r\n" +
                 "Sec-WebSocket-Protocol: chat, superchat\r\n" +
                 "Sec-WebSocket-Version: 13\r\n" +
-                "Origin: http://example.com\r\n";
+                "Origin: http://example.com\r\n" +
+                "\r\n";
             var webRequest = WebRequest.Parse(Encoding.UTF8.GetBytes(text));
             Assert.AreEqual("GET", webRequest.Verb);
             Assert.AreEqual("/chat", webRequest.Path);
