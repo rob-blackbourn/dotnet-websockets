@@ -53,9 +53,10 @@ namespace WebSockets.Core
         /// <value>The headers.</value>
         public IDictionary<string, IList<string>> Headers { get; private set; }
 
-        public static WebRequest Parse(string data)
+        public static WebRequest Parse(byte[] data)
         {
-            var lines = data.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+            var text = Encoding.UTF8.GetString(data.ToArray());
+            var lines = text.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (verb, path, version) = ParseRequestLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
             return new WebRequest(verb, path, version, headers);

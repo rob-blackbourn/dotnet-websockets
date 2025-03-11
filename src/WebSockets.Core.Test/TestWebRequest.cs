@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 
 namespace WebSockets.Core.Test
 {
@@ -17,7 +18,7 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Protocol: chat, superchat\r\n" +
                 "Sec-WebSocket-Version: 13\r\n" +
                 "Origin: http://example.com\r\n";
-            var webRequest = WebRequest.Parse(text);
+            var webRequest = WebRequest.Parse(Encoding.UTF8.GetBytes(text));
             Assert.AreEqual("GET", webRequest.Verb);
             Assert.AreEqual("/chat", webRequest.Path);
             Assert.AreEqual("HTTP/1.1", webRequest.Version);

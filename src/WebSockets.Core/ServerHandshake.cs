@@ -46,8 +46,7 @@ namespace WebSockets.Core
             if (!_buffer.EndsWith(HTTP_EOM))
                 return null;
 
-            var text = Encoding.UTF8.GetString(_buffer.ToArray());
-            var webRequest = WebRequest.Parse(text);
+            var webRequest = WebRequest.Parse(_buffer.ToArray());
 
             return webRequest;
         }
