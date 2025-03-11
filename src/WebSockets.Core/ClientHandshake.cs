@@ -47,7 +47,7 @@ namespace WebSockets.Core
         /// <param name="host">The server name.</param>
         public void WriteRequest(string path, string host)
         {
-            var webRequest = BuildRequest(path, host);
+            var webRequest = WebRequest.CreateUpgradeRequest(path, host, _origin, _key, _subProtocols);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
             WriteData(data, 0, data.LongLength);
         }
@@ -72,28 +72,6 @@ namespace WebSockets.Core
             SelectedSubProtocol = ProcessResponse(webResponse);
             State = HandshakeState.Succeeded;
             return webResponse;
-        }
-
-        private WebRequest BuildRequest(string path, string host)
-        {
-            var webRequest = new WebRequest(
-                "GET",
-                path,
-                "HTTP/1.1",
-                new Dictionary<string, IList<string>>
-                {
-                    {"Host", new List<string> { host }},
-                    {"Upgrade", new List<string> { "websocket" }},
-                    {"Connection", new List<string> { "Upgrade" }},
-                    {"Origin", new List<string> { _origin }},
-                    {"Sec-WebSocket-Version", new List<string> { "13" }},
-                    {"Sec-WebSocket-Key", new List<string> { _key }},
-                }
-            );
-            if (_subProtocols is not null && _subProtocols.Length > 0)
-                webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', _subProtocols) });
-
-            return webRequest;
         }
 
         private string? ProcessResponse(WebResponse webResponse)

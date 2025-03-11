@@ -76,5 +76,27 @@ namespace WebSockets.Core
 
             return builder.ToString();
         }
+
+        public static WebRequest CreateUpgradeRequest(string path, string host, string origin, string key, string[]? subProtocols)
+        {
+            var webRequest = new WebRequest(
+                "GET",
+                path,
+                "HTTP/1.1",
+                new Dictionary<string, IList<string>>
+                {
+                    {"Host", new List<string> { host }},
+                    {"Upgrade", new List<string> { "websocket" }},
+                    {"Connection", new List<string> { "Upgrade" }},
+                    {"Origin", new List<string> { origin }},
+                    {"Sec-WebSocket-Version", new List<string> { "13" }},
+                    {"Sec-WebSocket-Key", new List<string> { key }},
+                }
+            );
+            if (subProtocols is not null && subProtocols.Length > 0)
+                webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', subProtocols) });
+
+            return webRequest;
+        }
     }
 }
