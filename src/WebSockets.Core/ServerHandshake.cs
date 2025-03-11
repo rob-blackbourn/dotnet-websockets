@@ -7,19 +7,26 @@ using System.Text;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// A sans-io implementation of the server side of the WebSocket protocol.
-    /// 
-    /// The business layer logic is not provided. For example when a ping is
-    /// received, the implementer is expected to return the pong. This is also
-    /// the case for a close.
+    /// The server side of the WebSocket server handshake.
     /// </summary>
     public class ServerHandshake : Handshake
     {
+        /// <summary>
+        /// Construct a server handshake object.
+        /// </summary>
+        /// <param name="subProtocols">The supported sub-protocols.</param>
         public ServerHandshake(string[] subProtocols)
             : this(subProtocols, new DateTimeProvider())
         {
         }
 
+        /// <summary>
+        /// Construct a server handshake object.
+        /// 
+        /// This method is provided to allow mock generators for testing.
+        /// </summary>
+        /// <param name="subProtocols">The supported sub-protocols.</param>
+        /// <param name="dateTimeProvider">An implementation of a <see cref="IDateTimeProvider"/>.</param>
         public ServerHandshake(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
@@ -27,6 +34,12 @@ namespace WebSockets.Core
         {
         }
 
+        /// <summary>
+        /// Read a <see cref="WebRequest"/> from the protocol.
+        /// 
+        /// The request will be available when all the bytes of the request bytes have been received.
+        /// </summary>
+        /// <returns>A <see cref="WebRequest"/> if the complete message has been received; otherwise null.</returns>
         public WebRequest? ReadRequest()
         {
             if (!_buffer.EndsWith(HTTP_EOM))
