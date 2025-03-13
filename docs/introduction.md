@@ -41,5 +41,5 @@ with the same code (if any). After the handshake all data will discarded.
 
 ## The implementation
 
-The public implementation provides a protocol which can be written to, and read
-from.
+Both the handshake and message protocol follow the same pattern for getting
+data from the network into and out of the protocol.
