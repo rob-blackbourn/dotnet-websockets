@@ -196,19 +196,24 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: CreateWebResponse
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 115
+    startLine: 118
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core
   summary: >-
-    Create the WebSocket response.
+    Create the WebSocket response using the web request.
 
 
     If the response is valid an accept/upgrade response is generated.
 
-    An invalid response will generated a 400 response containing the
+    An invalid response will generate a 400 response containing the
 
     reason for the rejection.
+
+
+    An application may inspect the request and create it's own bad
+
+    response, for example if the path is not valid.
   example: []
   syntax:
     content: public WebResponse CreateWebResponse(WebRequest webRequest)
@@ -239,7 +244,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: WriteResponse
     path: src/WebSockets.Core/ServerHandshake.cs
-    startLine: 133
+    startLine: 136
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core

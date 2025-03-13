@@ -66,7 +66,6 @@ namespace WebSockets.Core
         public void WriteData(byte[] destination, long offset, long length)
         {
             _buffer.Write(destination, offset, length);
-            return;
         }
 
         private protected static string CreateResponseKey(string requestKey)

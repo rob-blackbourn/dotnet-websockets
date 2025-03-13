@@ -20,7 +20,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: PongMessage
     path: src/WebSockets.Core/Messages/PongMessage.cs
-    startLine: 8
+    startLine: 5
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -66,7 +66,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/Messages/PongMessage.cs
-    startLine: 14
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

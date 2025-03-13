@@ -262,13 +262,15 @@ namespace ServerExample
 
   <h3 id="WebSockets_Core_ServerHandshake_CreateWebResponse_WebSockets_Core_WebRequest_" data-uid="WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)">
   CreateWebResponse(WebRequest)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Create the WebSocket response.</p>
+  <div class="markdown level1 summary"><p>Create the WebSocket response using the web request.</p>
 <p>If the response is valid an accept/upgrade response is generated.
-An invalid response will generated a 400 response containing the
+An invalid response will generate a 400 response containing the
 reason for the rejection.</p>
+<p>An application may inspect the request and create it's own bad
+response, for example if the path is not valid.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -338,7 +340,7 @@ reason for the rejection.</p>
 
   <h3 id="WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebResponse_" data-uid="WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)">
   WriteResponse(WebResponse)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L137"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write a web response to the handshake buffer.</p>

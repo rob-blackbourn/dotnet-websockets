@@ -200,7 +200,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "WebSockets.Core.Messages.BinaryMessage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/WebSockets.Core.Messages.BinaryMessage.yml\" sourcestartlinenumber=\"1\">A WebSocket message with a payload of binary data.</p>\n"
     },
     {
       "type": "ManagedReference",

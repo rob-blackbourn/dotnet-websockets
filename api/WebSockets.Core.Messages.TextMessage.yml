@@ -22,7 +22,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: TextMessage
     path: src/WebSockets.Core/Messages/TextMessage.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -65,7 +65,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/Messages/TextMessage.cs
-    startLine: 14
+    startLine: 13
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -100,7 +100,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Text
     path: src/WebSockets.Core/Messages/TextMessage.cs
-    startLine: 24
+    startLine: 23
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -132,7 +132,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
     path: src/WebSockets.Core/Messages/TextMessage.cs
-    startLine: 27
+    startLine: 26
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

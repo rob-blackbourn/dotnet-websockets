@@ -24,7 +24,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: MessageType
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 8
+    startLine: 5
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -51,7 +51,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Text
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 10
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -77,7 +77,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Binary
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 11
+    startLine: 8
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -103,7 +103,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Ping
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 12
+    startLine: 9
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -129,7 +129,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Pong
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 13
+    startLine: 10
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -155,7 +155,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Close
     path: src/WebSockets.Core/Messages/MessageType.cs
-    startLine: 14
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

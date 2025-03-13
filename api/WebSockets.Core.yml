@@ -9,7 +9,6 @@ items:
   - WebSockets.Core.HandshakeState
   - WebSockets.Core.MessageProtocol
   - WebSockets.Core.ProtocolState
-  - WebSockets.Core.PublicExtensionMethods
   - WebSockets.Core.ServerHandshake
   - WebSockets.Core.WebRequest
   - WebSockets.Core.WebResponse
@@ -29,12 +28,6 @@ references:
   name: ClientHandshake
   nameWithType: ClientHandshake
   fullName: WebSockets.Core.ClientHandshake
-- uid: WebSockets.Core.PublicExtensionMethods
-  commentId: T:WebSockets.Core.PublicExtensionMethods
-  href: WebSockets.Core.PublicExtensionMethods.html
-  name: PublicExtensionMethods
-  nameWithType: PublicExtensionMethods
-  fullName: WebSockets.Core.PublicExtensionMethods
 - uid: WebSockets.Core.Handshake
   commentId: T:WebSockets.Core.Handshake
   parent: WebSockets.Core

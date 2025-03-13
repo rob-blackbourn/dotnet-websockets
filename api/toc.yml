@@ -19,9 +19,6 @@ items:
   - uid: WebSockets.Core.ProtocolState
     name: ProtocolState
     type: Enum
-  - uid: WebSockets.Core.PublicExtensionMethods
-    name: PublicExtensionMethods
-    type: Class
   - uid: WebSockets.Core.ServerHandshake
     name: ServerHandshake
     type: Class

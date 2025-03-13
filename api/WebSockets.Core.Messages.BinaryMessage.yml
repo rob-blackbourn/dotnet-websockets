@@ -24,6 +24,8 @@ items:
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: A WebSocket message with a payload of binary data.
+  example: []
   syntax:
     content: 'public class BinaryMessage : DataMessage, IEquatable<Message>, IEquatable<DataMessage>'
     content.vb: Public Class BinaryMessage Inherits DataMessage Implements IEquatable(Of Message), IEquatable(Of DataMessage)
@@ -64,15 +66,18 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/Messages/BinaryMessage.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
+  summary: Construct a binary message.
+  example: []
   syntax:
     content: public BinaryMessage(byte[] data)
     parameters:
     - id: data
       type: System.Byte[]
+      description: The message data.
     content.vb: Public Sub New(data As Byte())
   overload: WebSockets.Core.Messages.BinaryMessage.#ctor*
   nameWithType.vb: BinaryMessage.New(Byte())

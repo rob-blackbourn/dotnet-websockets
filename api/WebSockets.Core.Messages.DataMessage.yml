@@ -22,7 +22,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: DataMessage
     path: src/WebSockets.Core/Messages/DataMessage.cs
-    startLine: 8
+    startLine: 7
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -69,7 +69,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/Messages/DataMessage.cs
-    startLine: 15
+    startLine: 14
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -107,7 +107,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Data
     path: src/WebSockets.Core/Messages/DataMessage.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -139,7 +139,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
     path: src/WebSockets.Core/Messages/DataMessage.cs
-    startLine: 28
+    startLine: 27
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages

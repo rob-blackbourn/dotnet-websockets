@@ -23,7 +23,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: CloseMessage
     path: src/WebSockets.Core/Messages/CloseMessage.cs
-    startLine: 11
+    startLine: 10
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -72,7 +72,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: .ctor
     path: src/WebSockets.Core/Messages/CloseMessage.cs
-    startLine: 20
+    startLine: 19
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -114,7 +114,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Code
     path: src/WebSockets.Core/Messages/CloseMessage.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -146,7 +146,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Reason
     path: src/WebSockets.Core/Messages/CloseMessage.cs
-    startLine: 39
+    startLine: 38
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
@@ -178,7 +178,7 @@ items:
       repo: git@github.com:rob-blackbourn/dotnet-websockets.git
     id: Equals
     path: src/WebSockets.Core/Messages/CloseMessage.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - WebSockets.Core
   namespace: WebSockets.Core.Messages
