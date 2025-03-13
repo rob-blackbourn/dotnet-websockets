@@ -27,16 +27,16 @@ namespace WebSockets.Core
             _buffer.AddFirst(new ArrayBuffer<T>(array, offset, length));
         }
 
-        public long Read(T[] buffer)
+        public long Read(T[] destination)
         {
             var offset = 0L;
-            while (offset < buffer.LongLength && _buffer.Count > 0)
+            while (offset < destination.LongLength && _buffer.Count > 0)
             {
                 var last = _buffer.Last;
                 if (last == null)
                     break;
 
-                var bytesRequired = buffer.Length - offset;
+                var bytesRequired = destination.Length - offset;
 
                 if (last.Value.Buffer == null)
                 {
@@ -46,7 +46,7 @@ namespace WebSockets.Core
 
                 if (last.Value.Count <= bytesRequired)
                 {
-                    Array.Copy(last.Value.Buffer, last.Value.Offset, buffer, offset, last.Value.Count);
+                    Array.Copy(last.Value.Buffer, last.Value.Offset, destination, offset, last.Value.Count);
                     offset += last.Value.Count;
                     if (last.Value.Count <= bytesRequired)
                         _buffer.RemoveLast();
@@ -54,7 +54,7 @@ namespace WebSockets.Core
                 else
                 {
 
-                    Array.Copy(last.Value.Buffer, last.Value.Offset, buffer, offset, bytesRequired);
+                    Array.Copy(last.Value.Buffer, last.Value.Offset, destination, offset, bytesRequired);
                     offset += bytesRequired;
                     last.Value = last.Value.Slice(bytesRequired);
                 }

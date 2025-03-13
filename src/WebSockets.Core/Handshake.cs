@@ -45,27 +45,27 @@ namespace WebSockets.Core
         public string? SelectedSubProtocol { get; protected set; } = null;
 
         /// <summary>
-        /// Read handshake data from the provided array into the handshake buffer.
+        /// Read handshake data from the handshake buffer into the array.
         /// </summary>
-        /// <param name="source">The buffer containing the data.</param>
+        /// <param name="destination">The buffer containing the data.</param>
         /// <param name="offset">The offset into the buffer.</param>
         /// <param name="length">The length of the data.</param>
-        public void ReadData(byte[] source, ref long offset, long length)
+        public void ReadData(byte[] destination, ref long offset, long length)
         {
             // TODO: Doesn't support offset and length.
-            offset = _buffer.Read(source);
+            offset = _buffer.Read(destination);
             // TODO: Doesn't return bool.
         }
 
         /// <summary>
-        /// Write data from the handshake buffer into the provided array.
+        /// Write data from the array into the handshake buffer.
         /// </summary>
-        /// <param name="destination">The array to receive the data.</param>
+        /// <param name="source">The array to receive the data.</param>
         /// <param name="offset">The point in the buffer to start writing the data.</param>
         /// <param name="length">The length of the buffer.</param>
-        public void WriteData(byte[] destination, long offset, long length)
+        public void WriteData(byte[] source, long offset, long length)
         {
-            _buffer.Write(destination, offset, length);
+            _buffer.Write(source, offset, length);
         }
 
         private protected static string CreateResponseKey(string requestKey)
