@@ -42,6 +42,21 @@ namespace WebSockets.Core
                 ) &&
                 Payload == other.Payload;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as Frame);
+        }
+
+        public override int GetHashCode()
+        {
+            return
+                OpCode.GetHashCode() ^
+                IsFinal.GetHashCode() ^
+                Reserved.GetHashCode() ^
+                (Mask ?? []).GetHashCode() ^
+                Payload.GetHashCode();
+        }
     }
 }
 
