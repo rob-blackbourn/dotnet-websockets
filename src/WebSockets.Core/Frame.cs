@@ -3,9 +3,17 @@ using System.Linq;
 
 namespace WebSockets.Core
 {
+    /// <summary>
+    /// This class represents a frame, from which a WebSocket message is built.
+    /// </summary>
     internal class Frame : IEquatable<Frame>
     {
-        public Frame(OpCode opCode, bool isFinal, Reserved reserved, byte[]? mask, ArrayBuffer<byte> payload)
+        public Frame(
+            OpCode opCode,
+            bool isFinal,
+            Reserved reserved,
+            byte[]? mask,
+            ArrayBuffer<byte> payload)
         {
             if (!(mask == null || mask.Length == 4))
                 throw new ArgumentOutOfRangeException(nameof(mask));
@@ -26,6 +34,7 @@ namespace WebSockets.Core
         public byte[]? Mask { get; private set; }
         public ArrayBuffer<byte> Payload { get; private set; }
 
+        /// <inheritdoc />
         public bool Equals(Frame? other)
         {
             return other != null &&
@@ -43,11 +52,13 @@ namespace WebSockets.Core
                 Payload == other.Payload;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return Equals(obj as Frame);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return
