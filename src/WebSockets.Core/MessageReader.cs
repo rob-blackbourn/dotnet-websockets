@@ -21,6 +21,13 @@ namespace WebSockets.Core
         private readonly Queue<Frame> _frameBuffer = new Queue<Frame>();
 
         /// <summary>
+        /// A property to indicate if the reader requires more data to
+        /// produce the current message.
+        /// </summary>
+        /// <returns>True if there is more data is required; otherwise false.</returns>
+        public bool NeedsData => _frameReader.NeedsData || _frameBuffer.Count > 0;
+
+        /// <summary>
         /// Submit data to be deserialized to messages.
         /// 
         /// After submitting the data <see cref="ReadMessage"/> must be called to

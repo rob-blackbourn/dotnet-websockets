@@ -56,7 +56,7 @@ namespace WebSockets.Core.Messages
             var reader = new MessageReader();
             reader.WriteData(data, 0, data.Length);
             var message = reader.ReadMessage();
-            if (message == null)
+            if (message == null || reader.NeedsData)
                 throw new InvalidOperationException("failed to deserialize message");
             return message;
         }
