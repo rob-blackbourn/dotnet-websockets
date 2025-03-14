@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace WebSockets.Core
@@ -26,31 +25,6 @@ namespace WebSockets.Core
         public Reserved Reserved { get; private set; }
         public byte[]? Mask { get; private set; }
         public ArrayBuffer<byte> Payload { get; private set; }
-
-        public byte[] Serialize()
-        {
-            var writer = new FrameWriter();
-            writer.WriteFrame(this);
-            var buffers = new List<ArrayBuffer<byte>>();
-            while (writer.HasData)
-            {
-                var buf = new byte[1024];
-                var offset = 0L;
-                writer.ReadData(buf, ref offset, buf.LongLength);
-                buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
-            }
-            return buffers.ToFlatArray();
-        }
-
-        public static Frame Deserialize(byte[] data)
-        {
-            var reader = new FrameReader();
-            reader.WriteData(data, 0, data.Length);
-            var frame = reader.ReadFrame();
-            if (frame == null || reader.NeedsData)
-                throw new InvalidOperationException("failed to deserialize");
-            return frame;
-        }
 
         public bool Equals(Frame? other)
         {

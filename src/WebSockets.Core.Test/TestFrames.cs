@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -121,10 +122,29 @@ namespace WebSockets.Core.Test
         {
             var mask = isMasked ? expected.Skip(2).Take(4).ToArray() : null;
             var frame = new Frame(opCode, true, Reserved.AllFalse, mask, payload);
-            var actual = frame.Serialize();
+
+            // Serialize.
+            var writer = new FrameWriter();
+            writer.WriteFrame(frame);
+            var buffers = new List<ArrayBuffer<byte>>();
+            while (writer.HasData)
+            {
+                var buf = new byte[1024];
+                var offset = 0L;
+                writer.ReadData(buf, ref offset, buf.LongLength);
+                buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
+            }
+            var actual = buffers.ToFlatArray();
+
             Assert.IsTrue(actual.SequenceEqual(expected));
 
-            var roundTrip = Frame.Deserialize(actual);
+            // Deserialize.
+            var reader = new FrameReader();
+            reader.WriteData(actual, 0, actual.Length);
+            var roundTrip = reader.ReadFrame();
+            if (roundTrip == null || reader.NeedsData)
+                throw new InvalidOperationException("failed to deserialize");
+
             Assert.AreEqual(frame, roundTrip);
         }
     }
