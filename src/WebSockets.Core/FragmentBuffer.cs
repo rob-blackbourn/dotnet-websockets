@@ -6,7 +6,7 @@ using System.Linq;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// A double ended queue where fragments of data are fed in, and
+    /// A double ended queue where fragments of data are written, and
     /// consolidated data is read out. This reduces the amount of buffer
     /// reallocation.
     /// </summary>
