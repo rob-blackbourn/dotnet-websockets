@@ -33,7 +33,8 @@ namespace WebSockets.Core
         /// A property indicating if there is anything to write.
         /// </summary>
         /// <returns>True if there is not data to be sent; otherwise false.</returns>
-        public bool IsEmpty => _frameWriter.IsEmpty;
+        //public bool IsEmpty => _frameWriter.IsEmpty;
+        public bool HasData => _frameWriter.HasData;
 
         /// <summary>
         /// Submits a message to the writer.

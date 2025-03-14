@@ -36,7 +36,7 @@ namespace WebSockets.Core.Messages
             var writer = new MessageWriter(nonceGenerator ?? new NonceGenerator());
             writer.WriteMessage(this, isClient, reserved ?? Reserved.AllFalse, maxFrameSize);
             var buffers = new List<ArrayBuffer<byte>>();
-            while (!writer.IsEmpty)
+            while (writer.HasData)
             {
                 var buf = new byte[1024];
                 var offset = 0L;
