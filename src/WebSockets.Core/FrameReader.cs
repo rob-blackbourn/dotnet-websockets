@@ -32,6 +32,13 @@ namespace WebSockets.Core
         private byte[] _payload = [];
 
         /// <summary>
+        /// A property to indicate if the frame reader requires more data to
+        /// produce the current frame.
+        /// </summary>
+        /// <returns>True if there is more data is required; otherwise false.</returns>
+        public bool NeedsData => _state != State.BYTE1;
+
+        /// <summary>
         /// Submit data to be processed to frames.
         /// 
         /// After submitting the data <see cref="ReadFrame"/> must be called to

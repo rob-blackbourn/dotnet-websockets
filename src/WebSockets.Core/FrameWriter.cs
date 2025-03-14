@@ -29,8 +29,7 @@ namespace WebSockets.Core
         /// <summary>
         /// A property to indicate if the frame writer has any data to be sent.
         /// </summary>
-        /// <returns>True if there is not data to be sent; otherwise false.</returns>
-        // public bool IsEmpty => _frameQueue.Count == 0 && _state == State.BYTE1;
+        /// <returns>True if there is data to be sent; otherwise false.</returns>
         public bool HasData => _frameQueue.Count > 0 || _state != State.BYTE1;
 
         /// <summary>

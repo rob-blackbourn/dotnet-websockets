@@ -32,12 +32,11 @@ namespace WebSockets.Core
             var writer = new FrameWriter();
             writer.WriteFrame(this);
             var buffers = new List<ArrayBuffer<byte>>();
-            var isDone = false;
-            while (!isDone)
+            while (writer.HasData)
             {
                 var buf = new byte[1024];
                 var offset = 0L;
-                isDone = writer.ReadData(buf, ref offset, buf.LongLength);
+                writer.ReadData(buf, ref offset, buf.LongLength);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
             return buffers.ToFlatArray();
@@ -48,7 +47,7 @@ namespace WebSockets.Core
             var reader = new FrameReader();
             reader.WriteData(data, 0, data.Length);
             var frame = reader.ReadFrame();
-            if (frame == null)
+            if (frame == null || reader.NeedsData)
                 throw new InvalidOperationException("failed to deserialize");
             return frame;
         }
