@@ -67,12 +67,12 @@ namespace WebSockets.Core
             var webResponse = WebResponse.Parse(_buffer.ToArray());
             if (webResponse.Code != 101)
             {
-                State = HandshakeState.Failed;
+                State = HandshakeProtocolState.Failed;
                 return webResponse;
             }
 
             SelectedSubProtocol = ProcessResponse(webResponse);
-            State = HandshakeState.Succeeded;
+            State = HandshakeProtocolState.Succeeded;
             return webResponse;
         }
 

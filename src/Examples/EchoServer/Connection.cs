@@ -31,7 +31,7 @@ namespace EchoServer
             // Listen to messages coming in, and echo them back out.
             // Respond to a ping with a pong.
             // If the message is the word "close", start the close handshake.
-            while (_messageProtocol.State == ProtocolState.Connected)
+            while (_messageProtocol.State == MessageProtocolState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
                 try
@@ -66,12 +66,12 @@ namespace EchoServer
                     else if (message.Type == MessageType.Close)
                     {
                         Console.WriteLine("Received close.");
-                        if (_messageProtocol.State == ProtocolState.Closing)
+                        if (_messageProtocol.State == MessageProtocolState.Closing)
                         {
                             Console.WriteLine("Sending close (completing close handshake).");
                             SendMessage(message);
                         }
-                        else if (_messageProtocol.State == ProtocolState.Closed)
+                        else if (_messageProtocol.State == MessageProtocolState.Closed)
                         {
                             Console.WriteLine("Close handshake complete");
                         }

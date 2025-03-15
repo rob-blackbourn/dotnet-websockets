@@ -13,9 +13,8 @@ namespace WebSockets.Core
     public class MessageProtocol
     {
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-        private protected readonly MessageReader _messageReader = new MessageReader();
-        private protected readonly MessageWriter _messageWriter;
-        private protected bool _isClient;
+        private protected readonly MessageReader _reader = new();
+        private protected readonly MessageWriter _writer;
 
         public MessageProtocol(bool isClient)
             : this(isClient, new NonceGenerator())
@@ -31,23 +30,25 @@ namespace WebSockets.Core
             bool isClient,
             INonceGenerator nonceGenerator)
         {
-            _isClient = isClient;
+            IsClient = isClient;
 
-            _messageWriter = new MessageWriter(nonceGenerator);
+            _writer = new MessageWriter(nonceGenerator);
         }
+
+        public bool IsClient { get; }
 
         /// <summary>
         /// The state of the protocol.
         /// </summary>
         /// <value>The protocol state.</value>
-        public ProtocolState State { get; protected set; } = ProtocolState.Connected;
+        public MessageProtocolState State { get; protected set; } = MessageProtocolState.Connected;
 
-        public bool HasMessage => _messageReader.HasMessage;
-        public bool HasData => _messageWriter.HasData;
+        public bool HasMessage => _reader.HasMessage;
+        public bool HasData => _writer.HasData;
 
         public long ReadData(byte[] destination, long offset, long length)
         {
-            return _messageWriter.ReadData(destination, offset, length);
+            return _writer.ReadData(destination, offset, length);
         }
 
         /// <summary>
@@ -60,13 +61,13 @@ namespace WebSockets.Core
         {
             switch (State)
             {
-                case ProtocolState.Connected:
-                case ProtocolState.Closing:
-                    _messageReader.WriteData(source, offset, length);
+                case MessageProtocolState.Connected:
+                case MessageProtocolState.Closing:
+                    _reader.WriteData(source, offset, length);
                     break;
-                case ProtocolState.Closed:
+                case MessageProtocolState.Closed:
                     throw new InvalidOperationException("cannot receive data when closed");
-                case ProtocolState.Faulted:
+                case MessageProtocolState.Faulted:
                     throw new InvalidOperationException("cannot receive data when faulted");
                 default:
                     throw new InvalidOperationException("invalid internal state");
@@ -79,17 +80,17 @@ namespace WebSockets.Core
         /// <returns>If there is a complete message the message is returned, otherwise null.</returns>
         public Message ReadMessage()
         {
-            var message = _messageReader.ReadMessage();
+            var message = _reader.ReadMessage();
 
             if (message.Type == MessageType.Close)
             {
-                if (State == ProtocolState.Connected)
+                if (State == MessageProtocolState.Connected)
                 {
-                    State = ProtocolState.Closing;
+                    State = MessageProtocolState.Closing;
                 }
-                else if (State == ProtocolState.Closing)
+                else if (State == MessageProtocolState.Closing)
                 {
-                    State = ProtocolState.Closed;
+                    State = MessageProtocolState.Closed;
                 }
                 else
                 {
@@ -108,28 +109,28 @@ namespace WebSockets.Core
         {
             switch (State)
             {
-                case ProtocolState.Connected:
+                case MessageProtocolState.Connected:
 
-                    _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
+                    _writer.WriteMessage(message, IsClient, Reserved.AllFalse);
 
                     if (message.Type == MessageType.Close)
-                        State = ProtocolState.Closing;
+                        State = MessageProtocolState.Closing;
 
                     break;
 
-                case ProtocolState.Closing:
+                case MessageProtocolState.Closing:
 
                     if (message.Type != MessageType.Close)
                         throw new InvalidOperationException("can only send a close message when closing.");
 
-                    _messageWriter.WriteMessage(message, _isClient, Reserved.AllFalse);
+                    _writer.WriteMessage(message, IsClient, Reserved.AllFalse);
 
-                    State = ProtocolState.Closed;
+                    State = MessageProtocolState.Closed;
 
                     break;
 
-                case ProtocolState.Closed:
-                case ProtocolState.Faulted:
+                case MessageProtocolState.Closed:
+                case MessageProtocolState.Faulted:
 
                     throw new InvalidOperationException($"cannot send a message in state {State}.");
             }

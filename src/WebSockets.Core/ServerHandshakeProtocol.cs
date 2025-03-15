@@ -81,7 +81,7 @@ namespace WebSockets.Core
         {
             var data = webResponse.ToBytes();
             WriteData(data, 0, data.Length);
-            State = webResponse.Code == 101 ? HandshakeState.Succeeded : HandshakeState.Failed;
+            State = webResponse.Code == 101 ? HandshakeProtocolState.Succeeded : HandshakeProtocolState.Failed;
         }
 
         private (string responseKey, string? subProtocol) ProcessRequest(WebRequest webRequest)

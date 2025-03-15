@@ -49,8 +49,8 @@ namespace WebSockets.Core.Test
 
             var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(HandshakeState.Succeeded, clientProtocol.State);
-            Assert.AreEqual(HandshakeState.Succeeded, serverProtocol.State);
+            Assert.AreEqual(HandshakeProtocolState.Succeeded, clientProtocol.State);
+            Assert.AreEqual(HandshakeProtocolState.Succeeded, serverProtocol.State);
             Assert.AreEqual("bar", clientProtocol.SelectedSubProtocol);
             Assert.AreEqual("bar", serverProtocol.SelectedSubProtocol);
         }
@@ -102,8 +102,8 @@ namespace WebSockets.Core.Test
 
             var webResponse = clientProtocol.ReadResponse();
             Assert.IsNotNull(webResponse);
-            Assert.AreEqual(HandshakeState.Failed, clientProtocol.State);
-            Assert.AreEqual(HandshakeState.Failed, serverProtocol.State);
+            Assert.AreEqual(HandshakeProtocolState.Failed, clientProtocol.State);
+            Assert.AreEqual(HandshakeProtocolState.Failed, serverProtocol.State);
         }
     }
 }

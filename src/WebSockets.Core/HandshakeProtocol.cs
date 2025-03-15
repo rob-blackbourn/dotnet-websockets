@@ -36,7 +36,7 @@ namespace WebSockets.Core
         /// The state of the connection.
         /// </summary>
         /// <value>The connection state.</value>
-        public HandshakeState State { get; protected set; } = HandshakeState.Pending;
+        public HandshakeProtocolState State { get; protected set; } = HandshakeProtocolState.Pending;
 
         /// <summary>
         /// The sub-protocol negotiated during the handshake.

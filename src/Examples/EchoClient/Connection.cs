@@ -31,7 +31,7 @@ namespace EchoClient
             Console.WriteLine("Processing messages.");
             Console.WriteLine("Sending 'close' will cause the server to initiate a close handshake.");
             Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
-            while (_messageProtocol.State == ProtocolState.Connected)
+            while (_messageProtocol.State == MessageProtocolState.Connected)
             {
                 try
                 {
@@ -66,13 +66,13 @@ namespace EchoClient
                     else if (message.Type == MessageType.Close)
                     {
                         Console.WriteLine("Received close.");
-                        if (_messageProtocol.State == ProtocolState.Closing)
+                        if (_messageProtocol.State == MessageProtocolState.Closing)
                         {
                             // Send the close back.
                             Console.WriteLine("Responding with close (completing close handshake).");
                             SendMessage(message);
                         }
-                        else if (_messageProtocol.State == ProtocolState.Closed)
+                        else if (_messageProtocol.State == MessageProtocolState.Closed)
                         {
                             Console.WriteLine("Close handshake complete");
                         }
