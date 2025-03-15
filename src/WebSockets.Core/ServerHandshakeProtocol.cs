@@ -17,13 +17,6 @@ namespace WebSockets.Core
         {
         }
 
-        /// <summary>
-        /// Construct a server handshake object.
-        /// 
-        /// This method is provided to allow mock implementation for testing.
-        /// </summary>
-        /// <param name="subProtocols">The supported sub-protocols.</param>
-        /// <param name="dateTimeProvider">An implementation of a <see cref="IDateTimeProvider"/>.</param>
         internal ServerHandshakeProtocol(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)

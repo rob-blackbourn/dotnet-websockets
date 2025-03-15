@@ -22,15 +22,6 @@ namespace WebSockets.Core
 
         public string Origin { get; }
 
-        /// <summary>
-        /// Construct a client handshake.
-        /// 
-        /// This method is provided to allow mock implementations for testing.
-        /// </summary>
-        /// <param name="origin">The origin is the url of the initiator of the request.</param>
-        /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
-        /// <param name="dateTimeProvider">An object which provides the current time.</param>
-        /// <param name="nonceGenerator">An object providing secrets.</param>
         internal ClientHandshakeProtocol(
             string origin,
             string[] subProtocols,
