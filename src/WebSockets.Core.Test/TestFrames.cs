@@ -141,9 +141,9 @@ namespace WebSockets.Core.Test
             // Deserialize.
             var reader = new FrameReader();
             reader.WriteData(actual, 0, actual.Length);
-            var roundTrip = reader.ReadFrame();
-            if (roundTrip == null || reader.NeedsData)
+            if (!reader.HasFrame)
                 throw new InvalidOperationException("failed to deserialize");
+            var roundTrip = reader.ReadFrame();
 
             Assert.AreEqual(frame, roundTrip);
         }

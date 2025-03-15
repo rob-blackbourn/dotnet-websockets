@@ -49,9 +49,9 @@ namespace WebSockets.Core
         {
             while (true)
             {
-                var frame = _frameReader.ReadFrame();
-                if (frame == null)
+                if (!_frameReader.HasFrame)
                     return null;
+                var frame = _frameReader.ReadFrame();
 
                 _frameBuffer.Enqueue(frame);
 

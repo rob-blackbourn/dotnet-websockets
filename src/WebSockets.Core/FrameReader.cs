@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers.Binary;
+using System.Collections.Generic;
 
 namespace WebSockets.Core
 {
@@ -21,7 +22,8 @@ namespace WebSockets.Core
             PAYLOAD
         }
 
-        private readonly FragmentBuffer<byte> _buffer = new();
+        private readonly FragmentBuffer<byte> _data = new();
+        private readonly Queue<Frame> _frames = new();
         private State _state = State.BYTE1;
         private bool _fin;
         private Reserved _reserved;
@@ -38,6 +40,8 @@ namespace WebSockets.Core
         /// <returns>True if there is more data is required; otherwise false.</returns>
         public bool NeedsData => _state != State.BYTE1;
 
+        public bool HasFrame => _frames.Count > 0;
+
         /// <summary>
         /// Submit data to be processed to frames.
         /// 
@@ -49,22 +53,41 @@ namespace WebSockets.Core
         /// <param name="length">The length of the buffer to read.</param>
         public void WriteData(byte[] source, long offset, long length)
         {
-            _buffer.Write(source, offset, length);
+            _data.Write(source, offset, length);
+            ProcessDataUntilStalled();
+        }
+
+        public Frame ReadFrame()
+        {
+            return _frames.Dequeue();
+        }
+
+        public void ProcessDataUntilStalled()
+        {
+            var done = false;
+            while (!done)
+            {
+                var frame = ProcessData();
+                if (frame is null)
+                    done = true;
+                else
+                    _frames.Enqueue(frame);
+            }
         }
 
         /// <summary>
         /// Process submitted data to produce frames.
         /// </summary>
         /// <returns>A frame, if there is sufficient data available.</returns>
-        public Frame? ReadFrame()
+        public Frame? ProcessData()
         {
             if (_state == State.BYTE1)
             {
-                if (_buffer.Count < 1)
+                if (_data.Count < 1)
                     return null;
 
                 var buf = new byte[1];
-                _buffer.ReadExactly(buf);
+                _data.ReadExactly(buf);
 
                 _fin = (buf[0] & 0b10000000) != 0;
                 _reserved = new Reserved(
@@ -77,11 +100,11 @@ namespace WebSockets.Core
 
             if (_state == State.BYTE2)
             {
-                if (_buffer.Count < 1)
+                if (_data.Count < 1)
                     return null;
 
                 var buf = new byte[1];
-                _buffer.ReadExactly(buf);
+                _data.ReadExactly(buf);
 
                 _isMasked = (buf[0] & 0b10000000) != 0;
 
@@ -103,41 +126,41 @@ namespace WebSockets.Core
 
             if (_state == State.SHORT_LENGTH)
             {
-                if (_buffer.Count < 2)
+                if (_data.Count < 2)
                     return null;
                 var buf = new byte[2];
-                _buffer.ReadExactly(buf);
+                _data.ReadExactly(buf);
                 _payloadLength = (ushort)BinaryPrimitives.ReadUInt16BigEndian(buf);
                 _state = _isMasked ? State.MASK : State.PAYLOAD;
             }
             else if (_state == State.LONG_LENGTH)
             {
-                if (_buffer.Count < 8)
+                if (_data.Count < 8)
                     return null;
                 var buf = new byte[8];
-                _buffer.ReadExactly(buf);
+                _data.ReadExactly(buf);
                 _payloadLength = (ushort)BinaryPrimitives.ReadUInt64BigEndian(buf);
                 _state = _isMasked ? State.MASK : State.PAYLOAD;
             }
 
             if (_state == State.MASK)
             {
-                if (_buffer.Count < 4)
+                if (_data.Count < 4)
                     return null;
 
                 _mask = new byte[4];
-                _buffer.ReadExactly(_mask);
+                _data.ReadExactly(_mask);
 
                 _state = State.PAYLOAD;
             }
 
             if (_state == State.PAYLOAD)
             {
-                if (_buffer.Count < _payloadLength)
+                if (_data.Count < _payloadLength)
                     return null;
 
                 _payload = new byte[_payloadLength];
-                _buffer.ReadExactly(_payload);
+                _data.ReadExactly(_payload);
 
                 if (_isMasked)
                     for (int i = 0; i < _payload.Length; ++i)
