@@ -8,7 +8,6 @@ namespace WebSockets.Core
     /// </summary>
     public class ClientHandshakeProtocol : HandshakeProtocol
     {
-        private readonly string _origin;
         private readonly string _key;
 
         /// <summary>
@@ -20,6 +19,8 @@ namespace WebSockets.Core
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
+
+        public string Origin { get; }
 
         /// <summary>
         /// Construct a client handshake.
@@ -37,7 +38,7 @@ namespace WebSockets.Core
             INonceGenerator nonceGenerator)
             : base(true, subProtocols, dateTimeProvider)
         {
-            _origin = origin;
+            Origin = origin;
             _key = nonceGenerator.CreateClientKey();
         }
 
@@ -48,7 +49,7 @@ namespace WebSockets.Core
         /// <param name="host">The server name.</param>
         public void WriteRequest(string path, string host)
         {
-            var webRequest = WebRequest.CreateUpgradeRequest(path, host, _origin, _key, _subProtocols);
+            var webRequest = WebRequest.CreateUpgradeRequest(path, host, Origin, _key, _subProtocols);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
             WriteData(data, 0, data.LongLength);
         }
