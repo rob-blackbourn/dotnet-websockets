@@ -42,16 +42,12 @@ namespace WebSockets.Core
         /// <value>The protocol state.</value>
         public ProtocolState State { get; protected set; } = ProtocolState.Connected;
 
-        /// <summary>
-        /// Read data from the protocol.
-        /// </summary>
-        /// <param name="destination">The array to which the data should be written.</param>
-        /// <param name="offset">The offset in the array to start writing the data.</param>
-        /// <param name="length">The length of the array.</param>
-        /// <returns></returns>
-        public bool ReadData(byte[] destination, ref long offset, long length)
+        public bool HasMessage => _messageReader.HasMessage;
+        public bool HasData => _messageWriter.HasData;
+
+        public long ReadData(byte[] destination, long offset, long length)
         {
-            return _messageWriter.ReadData(destination, ref offset, length);
+            return _messageWriter.ReadData(destination, offset, length);
         }
 
         /// <summary>
@@ -81,11 +77,9 @@ namespace WebSockets.Core
         /// Read a message from the protocol.
         /// </summary>
         /// <returns>If there is a complete message the message is returned, otherwise null.</returns>
-        public Message? ReadMessage()
+        public Message ReadMessage()
         {
             var message = _messageReader.ReadMessage();
-            if (message is null)
-                return null;
 
             if (message.Type == MessageType.Close)
             {

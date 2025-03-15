@@ -151,13 +151,11 @@ namespace EchoServer
         {
             _messageProtocol.WriteMessage(message);
 
-            var isDone = false;
             var buffer = new byte[1024];
-            while (!isDone)
+            while (_messageProtocol.HasData)
             {
-                var offset = 0L;
-                isDone = _messageProtocol.ReadData(buffer, ref offset, buffer.Length);
-                _stream.Write(buffer, 0, (int)offset);
+                var bytesRead = _messageProtocol.ReadData(buffer, 0, buffer.Length);
+                _stream.Write(buffer, 0, (int)bytesRead);
                 Console.WriteLine("Sent client data");
             }
         }

@@ -43,16 +43,7 @@ namespace WebSockets.Core
             _frameQueue.Enqueue(frame);
         }
 
-        /// <summary>
-        /// Read frame data queued by the <see cref="WriteFrame"/> method to the provided buffer.
-        /// 
-        /// This will throw an exception if there are no frames to write.
-        /// </summary>
-        /// <param name="destination">The buffer to receive the serialized frame.</param>
-        /// <param name="offset">The offset at which to write. This gets updated as the buffer is written.</param>
-        /// <returns>True if the operation sent an entire frame, otherwise false.</returns>
-        /// <exception cref="InvalidOperationException">If there are no frames to write.</exception> <summary>
-        public bool ReadData(byte[] destination, ref long offset, long length)
+        public long ReadData(byte[] destination, long offset, long length)
         {
             if (length > destination.LongLength)
                 throw new ArgumentOutOfRangeException(nameof(length));
@@ -60,11 +51,12 @@ namespace WebSockets.Core
                 throw new InvalidOperationException("No frames to read");
 
             var frame = _frameQueue.Peek();
+            var index = offset;
 
             if (_state == State.BYTE1)
             {
-                if (length - offset < 1)
-                    return false;
+                if (length - index < 1)
+                    return index - offset;
 
                 byte value = (byte)(frame.IsFinal ? 0b10000000 : 0);
                 value |= (byte)(frame.Reserved.IsRsv1 ? 0b01000000 : 0);
@@ -72,16 +64,16 @@ namespace WebSockets.Core
                 value |= (byte)(frame.Reserved.IsRsv3 ? 0b00010000 : 0);
                 value |= (byte)frame.OpCode;
 
-                destination[offset] = value;
-                offset += 1;
+                destination[index] = value;
+                index += 1;
 
                 _state = State.BYTE2;
             }
 
             if (_state == State.BYTE2)
             {
-                if (length - offset < 1)
-                    return false;
+                if (length - index < 1)
+                    return index - offset;
 
                 byte value = (byte)(frame.Mask == null ? 0 : 0b10000000);
 
@@ -101,8 +93,8 @@ namespace WebSockets.Core
                     _state = State.SHORT_LENGTH;
                 }
 
-                destination[offset] = value;
-                offset += 1;
+                destination[index] = value;
+                index += 1;
             }
 
             if (_state == State.SHORT_LENGTH)
@@ -114,10 +106,10 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyInto(destination, offset, length);
+                index += _sendBuffer.CopyInto(destination, index, length);
 
                 if (_sendBuffer.Count != 0)
-                    return false;
+                    return index - offset;
 
                 _sendBuffer = null;
 
@@ -132,10 +124,10 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(buf);
                 }
 
-                offset += _sendBuffer.CopyInto(destination, offset, length);
+                index += _sendBuffer.CopyInto(destination, index, length);
 
                 if (_sendBuffer.Count != 0)
-                    return false;
+                    return index - offset;
 
                 _sendBuffer = null;
 
@@ -152,10 +144,10 @@ namespace WebSockets.Core
                     _sendBuffer = new ArrayBuffer<byte>(frame.Mask);
                 }
 
-                offset += _sendBuffer.CopyInto(destination, offset, length);
+                index += _sendBuffer.CopyInto(destination, index, length);
 
                 if (_sendBuffer.Count != 0)
-                    return false;
+                    return index - offset;
 
                 _sendBuffer = null;
 
@@ -177,17 +169,17 @@ namespace WebSockets.Core
                     }
                 }
 
-                offset += _sendBuffer.CopyInto(destination, offset, length);
+                index += _sendBuffer.CopyInto(destination, index, length);
 
                 if (_sendBuffer.Count != 0)
-                    return false;
+                    return index - offset;
 
                 _sendBuffer = null;
                 _frameQueue.Dequeue();
 
                 _state = State.BYTE1;
 
-                return true;
+                return index - offset;
             }
 
             throw new InvalidOperationException("Invalid state");

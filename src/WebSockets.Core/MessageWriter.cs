@@ -69,20 +69,9 @@ namespace WebSockets.Core
             return frameCount;
         }
 
-        /// <summary>
-        /// Write the message from the protocol to the provided buffer.
-        /// 
-        /// The return value indicates whether a complete frame was sent. This is
-        /// typically not useful, as a message may consist of many frames. Also
-        /// many messages may be submitted before a write is called.
-        /// </summary>
-        /// <param name="destination">The buffer to write messages to.</param>
-        /// <param name="offset">The start of the buffer. This is updated as the message is written.</param>
-        /// <param name="offset">The length of the buffer.</param>
-        /// <returns>True if an entire frame was sent; otherwise false.</returns>
-        public bool ReadData(byte[] destination, ref long offset, long length)
+        public long ReadData(byte[] destination, long offset, long length)
         {
-            return _frameWriter.ReadData(destination, ref offset, length);
+            return _frameWriter.ReadData(destination, offset, length);
         }
 
         /// <summary>

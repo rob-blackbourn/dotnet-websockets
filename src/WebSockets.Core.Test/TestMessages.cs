@@ -131,9 +131,8 @@ namespace WebSockets.Core.Test
             while (writer.HasData)
             {
                 var buf = new byte[1024];
-                var offset = 0L;
-                writer.ReadData(buf, ref offset, buf.LongLength);
-                buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
+                var bytesRead = writer.ReadData(buf, 0, buf.LongLength);
+                buffers.Add(new ArrayBuffer<byte>(buf, 0, bytesRead));
             }
             var actual = buffers.SelectMany(x => x.ToArray()).ToArray();
             Assert.IsTrue(actual.SequenceEqual(expected));
