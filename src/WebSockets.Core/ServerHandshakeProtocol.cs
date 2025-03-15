@@ -27,7 +27,7 @@ namespace WebSockets.Core
         internal ServerHandshakeProtocol(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
-            : base(false, subProtocols, dateTimeProvider)
+            : base(subProtocols, dateTimeProvider)
         {
         }
 

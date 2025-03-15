@@ -36,7 +36,7 @@ namespace WebSockets.Core
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,
             INonceGenerator nonceGenerator)
-            : base(true, subProtocols, dateTimeProvider)
+            : base(subProtocols, dateTimeProvider)
         {
             Origin = origin;
             _key = nonceGenerator.CreateClientKey();

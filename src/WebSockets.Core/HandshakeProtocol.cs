@@ -12,7 +12,7 @@ namespace WebSockets.Core
     {
         internal static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
         private protected const string WebSocketResponseGuid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-        private protected readonly FragmentBuffer<byte> _buffer = new FragmentBuffer<byte>();
+        private protected readonly FragmentBuffer<byte> _buffer = new();
         private protected readonly string[] _subProtocols;
         private protected readonly IDateTimeProvider _dateTimeProvider;
 
@@ -24,7 +24,6 @@ namespace WebSockets.Core
         /// <param name="dateTimeProvider">A date/time provider.</param>
         /// <param name="nonceGenerator">A generator for secrets.</param>
         protected private HandshakeProtocol(
-            bool isClient,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
         {
