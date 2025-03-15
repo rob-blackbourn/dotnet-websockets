@@ -17,18 +17,18 @@ namespace WebSockets.Core
     /// </summary>
     internal class MessageReader
     {
-        private readonly FrameReader _frameReader = new();
+        private readonly FrameReader _reader = new();
         private readonly List<Frame> _frameBuffer = new();
-        private readonly Queue<Message> _messages = new();
+        private readonly Queue<Message> _messageQueue = new();
 
         /// <summary>
         /// A property to indicate if the reader requires more data to
         /// produce the current message.
         /// </summary>
         /// <returns>True if there is more data is required; otherwise false.</returns>
-        public bool NeedsData => _frameReader.NeedsData || _frameBuffer.Count > 0;
+        public bool NeedsData => _reader.NeedsData || _frameBuffer.Count > 0;
 
-        public bool HasMessage => _messages.Count > 0;
+        public bool HasMessage => _messageQueue.Count > 0;
 
         /// <summary>
         /// Submit data to be deserialized to messages.
@@ -41,7 +41,7 @@ namespace WebSockets.Core
         /// <param name="length">The length of the buffer to read.</param>
         public void WriteData(byte[] source, long offset, long length)
         {
-            _frameReader.WriteData(source, offset, length);
+            _reader.WriteData(source, offset, length);
             ProcessDataUntilStalled();
         }
 
@@ -51,7 +51,7 @@ namespace WebSockets.Core
         /// <returns>A message, if there is sufficient data available.</returns>
         public Message ReadMessage()
         {
-            return _messages.Dequeue();
+            return _messageQueue.Dequeue();
         }
 
         private void ProcessDataUntilStalled()
@@ -59,18 +59,18 @@ namespace WebSockets.Core
             var done = false;
             while (!done)
             {
-                if (!_frameReader.HasFrame)
+                if (!_reader.HasFrame)
                 {
                     done = true;
                     continue;
                 }
 
-                var frame = _frameReader.ReadFrame();
+                var frame = _reader.ReadFrame();
                 _frameBuffer.Add(frame);
                 if (frame.IsFinal)
                 {
                     var message = CreateMessage(_frameBuffer);
-                    _messages.Enqueue(message);
+                    _messageQueue.Enqueue(message);
                     _frameBuffer.Clear();
                 }
             }

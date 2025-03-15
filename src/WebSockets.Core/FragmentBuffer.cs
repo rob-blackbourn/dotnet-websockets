@@ -13,9 +13,9 @@ namespace WebSockets.Core
     /// <typeparam name="T">The type of items in the buffer</typeparam>
     internal class FragmentBuffer<T>
     {
-        private readonly LinkedList<ArrayBuffer<T>> _buffer = new LinkedList<ArrayBuffer<T>>();
+        private readonly LinkedList<ArrayBuffer<T>> _buffer = new();
 
-        public long Count { get { return _buffer.Aggregate(0L, (sum, x) => sum + (long)x.Count); } }
+        public long Count => _buffer.Aggregate(0L, (sum, x) => sum + x.Count);
 
         public void Write(T[] array)
         {
@@ -46,7 +46,12 @@ namespace WebSockets.Core
 
                 if (last.Value.Count <= bytesRequired)
                 {
-                    Array.Copy(last.Value.Buffer, last.Value.Offset, destination, offset, last.Value.Count);
+                    Array.Copy(
+                        last.Value.Buffer,
+                        last.Value.Offset,
+                        destination,
+                        offset,
+                        last.Value.Count);
                     offset += last.Value.Count;
                     if (last.Value.Count <= bytesRequired)
                         _buffer.RemoveLast();
@@ -54,7 +59,12 @@ namespace WebSockets.Core
                 else
                 {
 
-                    Array.Copy(last.Value.Buffer, last.Value.Offset, destination, offset, bytesRequired);
+                    Array.Copy(
+                        last.Value.Buffer,
+                        last.Value.Offset,
+                        destination,
+                        offset,
+                        bytesRequired);
                     offset += bytesRequired;
                     last.Value = last.Value.Slice(bytesRequired);
                 }

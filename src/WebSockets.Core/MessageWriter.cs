@@ -17,7 +17,7 @@ namespace WebSockets.Core
     internal class MessageWriter
     {
         private readonly INonceGenerator _nonceGenerator;
-        private readonly FrameWriter _frameWriter = new FrameWriter();
+        private readonly FrameWriter _writer = new();
 
         /// <summary>
         /// Construct a message writer.
@@ -35,7 +35,7 @@ namespace WebSockets.Core
         /// </summary>
         /// <returns>True if there is not data to be sent; otherwise false.</returns>
         //public bool IsEmpty => _frameWriter.IsEmpty;
-        public bool HasData => _frameWriter.HasData;
+        public bool HasData => _writer.HasData;
 
         /// <summary>
         /// Submits a message to the writer.
@@ -61,7 +61,7 @@ namespace WebSockets.Core
                 var isFinal = payload.Count == 0;
                 var mask = isClient ? _nonceGenerator.CreateMask() : null;
                 var frame = new Frame(opCode, isFinal, reserved, mask, framePayload);
-                _frameWriter.WriteFrame(frame);
+                _writer.WriteFrame(frame);
                 frameCount += 1;
                 opCode = OpCode.Continuation;
             }
@@ -71,7 +71,7 @@ namespace WebSockets.Core
 
         public long ReadData(byte[] destination, long offset, long length)
         {
-            return _frameWriter.ReadData(destination, offset, length);
+            return _writer.ReadData(destination, offset, length);
         }
 
         /// <summary>
