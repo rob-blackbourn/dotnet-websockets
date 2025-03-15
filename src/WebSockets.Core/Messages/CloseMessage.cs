@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace WebSockets.Core.Messages
 {
@@ -10,6 +11,23 @@ namespace WebSockets.Core.Messages
     /// </summary>
     public class CloseMessage : Message, IEquatable<CloseMessage>
     {
+        public static Dictionary<int, string> CloseCodes = new()
+        {
+            {1000, "Normal closure"},
+            {1001,  "Going away (e.g. browser tab closed)."},
+            {1002,  "Protocol error."},
+            {1003,  "Unsupported data (e.g. endpoint only understands text but received binary)."},
+            {1004,  "Reserved for future usage"},
+            {1005,  "No code received."},
+            {1006,  "Connection closed abnormally (closing handshake did not occur)."},
+            {1007,  "Invalid payload data (e.g. non UTF-8 data in a text message)."},
+            {1008,  "Policy violated."},
+            {1009,  "Message too big."},
+            {1010,  "Unsupported extension. The client should write the extensions it expected the server to support in the payload."},
+            {1011,  "Internal server error."},
+            {1015,  "TLS handshake failure."},
+        };
+
         /// <summary>
         /// Construct a close message.
         /// 
