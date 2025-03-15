@@ -11,8 +11,6 @@ namespace WebSockets.Core
     /// </summary>
     public class WebRequest
     {
-        private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
-
         /// <summary>
         /// Construct a web request.
         /// </summary>
@@ -61,7 +59,7 @@ namespace WebSockets.Core
 
         public static WebRequest Parse(byte[] data)
         {
-            var index = data.IndexOf(HTTP_EOM);
+            var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
             if (index == -1)
                 throw new ArgumentOutOfRangeException("Expected header terminator");
 

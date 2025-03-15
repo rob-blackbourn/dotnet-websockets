@@ -8,9 +8,6 @@ namespace WebSockets.Core
 {
     public class WebResponse
     {
-        // TODO: This is shared by WedRequest
-        private static byte[] HTTP_EOM = "\r\n\r\n"u8.ToArray();
-
         public WebResponse(
             string version,
             int code,
@@ -33,7 +30,7 @@ namespace WebSockets.Core
 
         public static WebResponse Parse(byte[] data)
         {
-            var index = data.IndexOf(HTTP_EOM);
+            var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
             if (index == -1)
                 throw new ArgumentOutOfRangeException("Expected header terminator");
 
