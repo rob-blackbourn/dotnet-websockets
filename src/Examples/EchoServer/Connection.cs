@@ -10,13 +10,13 @@ namespace EchoServer
     class Connection
     {
         private readonly Stream _stream;
-        private readonly ServerHandshake _handshakeProtocol;
+        private readonly ServerHandshakeProtocol _handshakeProtocol;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshakeProtocol = new ServerHandshake(subProtocols);
+            _handshakeProtocol = new ServerHandshakeProtocol(subProtocols);
             _messageProtocol = new MessageProtocol(false);
         }
 

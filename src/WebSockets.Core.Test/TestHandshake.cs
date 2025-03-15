@@ -8,12 +8,12 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestOpenHandshake()
         {
-            var clientProtocol = new ClientHandshake(
+            var clientProtocol = new ClientHandshakeProtocol(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0)),
                 new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw=="));
-            var serverProtocol = new ServerHandshake(
+            var serverProtocol = new ServerHandshakeProtocol(
                 ["bar"],
                 new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 1))
             );
@@ -61,12 +61,12 @@ namespace WebSockets.Core.Test
             var dateTimeProvider = new MockDateTimeProvider(new DateTime(2000, 1, 1, 15, 30, 0));
             var nonceGenerator = new MockNonceGenerator([91, 251, 225, 168], "x3JJHMbDL1EzLkh9GBhXDw==");
 
-            var clientProtocol = new ClientHandshake(
+            var clientProtocol = new ClientHandshakeProtocol(
                 "gandalf.rivendell.com",
                 ["foo", "bar"],
                 dateTimeProvider,
                 nonceGenerator);
-            var serverProtocol = new ServerHandshake(
+            var serverProtocol = new ServerHandshakeProtocol(
                 ["bar"],
                 dateTimeProvider
             );

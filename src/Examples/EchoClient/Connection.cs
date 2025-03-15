@@ -9,14 +9,14 @@ namespace EchoClient
 {
     class Connection
     {
-        private readonly NetworkStream _stream;
-        private readonly ClientHandshake _handshake;
+        private readonly Stream _stream;
+        private readonly ClientHandshakeProtocol _handshakeProtocol;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string origin, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshake = new ClientHandshake(origin, subProtocols);
+            _handshakeProtocol = new ClientHandshakeProtocol(origin, subProtocols);
             _messageProtocol = new MessageProtocol(true);
         }
 
@@ -78,7 +78,7 @@ namespace EchoClient
                         }
                         else
                         {
-                            throw new InvalidOperationException($"Closed received from invalid state {_handshake.State}");
+                            throw new InvalidOperationException($"Closed received from invalid state {_handshakeProtocol.State}");
                         }
                     }
 
@@ -147,14 +147,14 @@ namespace EchoClient
         private void SendHandshakeRequest()
         {
             Console.WriteLine("Sending handshake request");
-            _handshake.WriteRequest("/chat", "www.example.com");
+            _handshakeProtocol.WriteRequest("/chat", "www.example.com");
 
             var buffer = new byte[1024];
             var isDone = false;
             while (!isDone)
             {
                 var bytesRead = 0L;
-                _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -171,13 +171,13 @@ namespace EchoClient
             while (!isDone)
             {
                 var bytesRead = _stream.Read(buffer);
-                _handshake.WriteData(buffer, offset, bytesRead);
+                _handshakeProtocol.WriteData(buffer, offset, bytesRead);
                 if (offset == bytesRead)
                     offset = 0;
-                isDone = _handshake.ReadResponse() is not null;
+                isDone = _handshakeProtocol.ReadResponse() is not null;
             }
 
-            return _handshake.ReadResponse();
+            return _handshakeProtocol.ReadResponse();
         }
     }
 }

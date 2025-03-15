@@ -6,61 +6,7 @@ namespace WebSockets.Core
     /// <summary>
     /// The client side of the WebSocket handshake.
     /// </summary>
-    /// <example>
-    /// <code>
-    /// using System;
-    /// using System.Net;
-    /// using System.Net.Sockets;
-    /// 
-    /// using WebSockets.Core;
-    /// using WebSockets.Core.Messages;
-    ///
-    /// namespace ClientExample
-    /// {
-    ///     class Program
-    ///     {
-    ///         static void main()
-    ///         {
-    ///             var endpoint = IPEndPoint.Parse("localhost:8081");
-    ///             var tcpClient = new TcpClient();
-    ///             tcpClient.Connect(endpoint);
-    ///            
-    ///             stream = tcpClient.GetStream();
-    ///             handshake = new ClientHandshake("http://client.com", []);
-    ///             handshake.WriteRequest("/chat", "www.example.com");
-    ///             
-    ///             // Send the request.
-    ///             var buffer = new byte[1024];
-    ///             var isDone = false;
-    ///             while (!isDone)
-    ///             {
-    ///                 var bytesRead = 0L;
-    ///                 handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
-    ///                 if (bytesRead == 0)
-    ///                     isDone = true;
-    ///                 else
-    ///                     stream.Write(buffer, 0, (int)bytesRead);
-    ///             }
-    ///             
-    ///             // Read the response.
-    ///             var offset = 0L;
-    ///             isDone = false;
-    ///             while (!isDone)
-    ///             {
-    ///                 var bytesRead = stream.Read(buffer);
-    ///                 handshake.WriteData(buffer, offset, bytesRead);
-    ///                 if (offset == bytesRead)
-    ///                     offset = 0;
-    ///                 isDone = handshake.ReadResponse() is not null;
-    ///             }
-    ///             
-    ///             var webResponse = handshake.ReadResponse();
-    ///         }
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
-    public class ClientHandshake : Handshake
+    public class ClientHandshakeProtocol : HandshakeProtocol
     {
         private readonly string _origin;
         private readonly string _key;
@@ -70,7 +16,7 @@ namespace WebSockets.Core
         /// </summary>
         /// <param name="origin">The origin is the url of the initiator of the request.</param>
         /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
-        public ClientHandshake(string origin, string[] subProtocols)
+        public ClientHandshakeProtocol(string origin, string[] subProtocols)
             : this(origin, subProtocols, new DateTimeProvider(), new NonceGenerator())
         {
         }
@@ -84,7 +30,7 @@ namespace WebSockets.Core
         /// <param name="subProtocols">A (possibly empty) array of requested sub-protocols.</param>
         /// <param name="dateTimeProvider">An object which provides the current time.</param>
         /// <param name="nonceGenerator">An object providing secrets.</param>
-        internal ClientHandshake(
+        internal ClientHandshakeProtocol(
             string origin,
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider,

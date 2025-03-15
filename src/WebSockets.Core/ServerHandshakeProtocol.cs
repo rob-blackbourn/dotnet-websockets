@@ -6,70 +6,13 @@ namespace WebSockets.Core
     /// <summary>
     /// The server side of the WebSocket handshake.
     /// </summary>
-    /// <example>
-    /// <code>
-    /// using System;
-    /// using System.IO;
-    /// using System.Net;
-    /// using System.Net.Sockets;
-    /// 
-    /// using WebSockets.Core;
-    /// using WebSockets.Core.Messages;
-    ///
-    /// namespace ServerExample
-    /// {
-    ///     class Program
-    ///     {
-    ///         static void Main()
-    ///         {
-    ///             var listener = new TcpListener(IPAddress.Any, 8081);
-    ///             listener.Start();
-    ///             var tcpClient = listener.AcceptTcpClient();
-    ///             
-    ///             var stream = client.GetStream();
-    ///             var handshake = new ServerHandshake(subProtocols);
-    /// 
-    ///             // Read the client request.
-    ///             WebRequest? webRequest = null;
-    ///             var buffer = new byte[1024];
-    ///             while (webRequest is null)
-    ///             {
-    ///                 var bytesRead = stream.Read(buffer);
-    ///                 if (bytesRead == 0)
-    ///                     throw new EndOfStreamException();
-    ///                 handshake.WriteData(buffer, 0, bytesRead);
-    ///             
-    ///                 webRequest = handshake.ReadRequest();
-    ///             }
-    ///             
-    ///             // Send the response.
-    ///             var webResponse = handshake.CreateWebResponse(webRequest);
-    ///             handshake.WriteResponse(webResponse);
-    ///             bool isDone = false;
-    ///             while (!isDone)
-    ///             {
-    ///                 var bytesRead = 0L;
-    ///                 _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
-    ///                 if (bytesRead == 0)
-    ///                     isDone = true;
-    ///                 else
-    ///                 {
-    ///                     _stream.Write(buffer, 0, (int)bytesRead);
-    ///                     Console.WriteLine("Sent client data");
-    ///                 }
-    ///             }
-    ///         }
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
-    public class ServerHandshake : Handshake
+    public class ServerHandshakeProtocol : HandshakeProtocol
     {
         /// <summary>
         /// Construct a server handshake object.
         /// </summary>
         /// <param name="subProtocols">The supported sub-protocols.</param>
-        public ServerHandshake(string[] subProtocols)
+        public ServerHandshakeProtocol(string[] subProtocols)
             : this(subProtocols, new DateTimeProvider())
         {
         }
@@ -81,7 +24,7 @@ namespace WebSockets.Core
         /// </summary>
         /// <param name="subProtocols">The supported sub-protocols.</param>
         /// <param name="dateTimeProvider">An implementation of a <see cref="IDateTimeProvider"/>.</param>
-        internal ServerHandshake(
+        internal ServerHandshakeProtocol(
             string[] subProtocols,
             IDateTimeProvider dateTimeProvider)
             : base(false, subProtocols, dateTimeProvider)
