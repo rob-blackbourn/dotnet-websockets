@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net.Sockets;
 
 using WebSockets.Core;
@@ -32,66 +33,82 @@ namespace EchoClient
             Console.WriteLine("Sending 'CLOSE' will force the client to initiate a close handshake.");
             while (_messageProtocol.State == ProtocolState.Connected)
             {
-                Console.Write("Message (<ENTER> to quit): ");
-                var text = Console.ReadLine();
-                if (text is null || text == "")
+                try
                 {
-                    // Exit without closing.
-                    break;
-                }
-
-                if (text == "CLOSE")
-                {
-                    // Send a message.
-                    Console.WriteLine("Initiating close handshake");
-                    SendMessage(new CloseMessage(1000, "Client initiated close"));
-                }
-                else
-                {
-                    // Send a message.
-                    Console.WriteLine("Sending message");
-                    SendMessage(new TextMessage(text));
-                }
-
-                // Receive the echoed response.
-                var message = ReceiveMessage();
-                if (message.Type == MessageType.Text)
-                {
-                    var textMessage = (TextMessage)message;
-                    Console.WriteLine($"Received text message {textMessage.Text}");
-                }
-                else if (message.Type == MessageType.Close)
-                {
-                    Console.WriteLine("Received close.");
-                    if (_messageProtocol.State == ProtocolState.Closing)
+                    Console.Write("Message (<ENTER> to quit): ");
+                    var text = Console.ReadLine();
+                    if (text is null || text == "")
                     {
-                        // Send the close back.
-                        Console.WriteLine("Responding with close (completing close handshake).");
-                        SendMessage(message);
+                        // Exit without closing.
+                        break;
                     }
-                    else if (_messageProtocol.State == ProtocolState.Closed)
+
+                    if (text == "CLOSE")
                     {
-                        Console.WriteLine("Close handshake complete");
+                        // Send a message.
+                        Console.WriteLine("Initiating close handshake");
+                        SendMessage(new CloseMessage(1000, "Client initiated close"));
                     }
                     else
                     {
-                        throw new InvalidOperationException($"Closed received from invalid state {_handshake.State}");
+                        // Send a message.
+                        Console.WriteLine("Sending message");
+                        SendMessage(new TextMessage(text));
                     }
+
+                    // Receive the echoed response.
+                    var message = ReadMessage();
+                    if (message.Type == MessageType.Text)
+                    {
+                        var textMessage = (TextMessage)message;
+                        Console.WriteLine($"Received text message {textMessage.Text}");
+                    }
+                    else if (message.Type == MessageType.Close)
+                    {
+                        Console.WriteLine("Received close.");
+                        if (_messageProtocol.State == ProtocolState.Closing)
+                        {
+                            // Send the close back.
+                            Console.WriteLine("Responding with close (completing close handshake).");
+                            SendMessage(message);
+                        }
+                        else if (_messageProtocol.State == ProtocolState.Closed)
+                        {
+                            Console.WriteLine("Close handshake complete");
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException($"Closed received from invalid state {_handshake.State}");
+                        }
+                    }
+
+                }
+                catch (EndOfStreamException)
+                {
+                    Console.WriteLine("The server has dropped the connection");
+                    break;
+                }
+                catch (InvalidOperationException error)
+                {
+                    Console.WriteLine($"Protocol error: {error.Message}");
+                    break;
                 }
             }
             Console.WriteLine("bye");
         }
-
-        private Message ReceiveMessage()
+        private Message ReadMessage()
         {
+            var buffer = new byte[1024];
             while (true)
             {
                 if (_messageProtocol.HasMessage)
                     return _messageProtocol.ReadMessage();
 
-                var buffer = new byte[1024];
                 var bytesRead = _stream.Read(buffer);
-                _messageProtocol.WriteData(buffer, 0, bytesRead);
+                if (bytesRead > 0)
+                    _messageProtocol.WriteData(buffer, 0, bytesRead);
+                else
+                    throw new EndOfStreamException("The client closed the connection.");
             }
         }
 

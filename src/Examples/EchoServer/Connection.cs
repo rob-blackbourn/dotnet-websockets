@@ -9,14 +9,14 @@ namespace EchoServer
 {
     class Connection
     {
-        private readonly NetworkStream _stream;
-        private readonly ServerHandshake _handshake;
+        private readonly Stream _stream;
+        private readonly ServerHandshake _handshakeProtocol;
         private readonly MessageProtocol _messageProtocol;
 
         public Connection(TcpClient client, string[] subProtocols)
         {
             _stream = client.GetStream();
-            _handshake = new ServerHandshake(subProtocols);
+            _handshakeProtocol = new ServerHandshake(subProtocols);
             _messageProtocol = new MessageProtocol(false);
         }
 
@@ -29,69 +29,68 @@ namespace EchoServer
         private void ProcessMessages()
         {
             // Listen to messages coming in, and echo them back out.
+            // Respond to a ping with a pong.
             // If the message is the word "close", start the close handshake.
-            var buffer = new byte[1024];
             while (_messageProtocol.State == ProtocolState.Connected)
             {
                 Console.WriteLine("Waiting for a message");
-
-                var bytesRead = _stream.Read(buffer);
-                if (bytesRead > 0)
-                    _messageProtocol.WriteData(buffer, 0, bytesRead);
-                else
+                try
                 {
-                    Console.WriteLine("The client closed the connection.");
+                    var message = ReadMessage();
+
+                    if (message.Type == MessageType.Text)
+                    {
+                        var textMessage = (TextMessage)message;
+
+                        Console.WriteLine($"Received text message \"{textMessage.Text}\"");
+
+                        if (textMessage.Text == "close")
+                        {
+                            Console.WriteLine("Initiating close handshake");
+                            SendMessage(new CloseMessage(1000, "Server closed as requested"));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Echoing message back to client");
+                            SendMessage(message);
+                        }
+                    }
+                    else if (message.Type == MessageType.Ping)
+                    {
+                        Console.WriteLine("Received ping, sending pong");
+
+                        var pingMessage = (PingMessage)message;
+                        var pongMessage = new PongMessage(pingMessage.Data);
+                        SendMessage(pongMessage);
+                    }
+                    else if (message.Type == MessageType.Close)
+                    {
+                        Console.WriteLine("Received close.");
+                        if (_messageProtocol.State == ProtocolState.Closing)
+                        {
+                            Console.WriteLine("Sending close (completing close handshake).");
+                            SendMessage(message);
+                        }
+                        else if (_messageProtocol.State == ProtocolState.Closed)
+                        {
+                            Console.WriteLine("Close handshake complete");
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("Invalid state");
+                        }
+                    }
+                }
+                catch (EndOfStreamException)
+                {
+                    Console.WriteLine("Client disconnected");
                     break;
                 }
-
-                var message = _messageProtocol.ReadMessage();
-                if (message is null)
+                catch (InvalidOperationException error)
                 {
-                    Console.WriteLine("Not enough data for message");
-                    continue;
-                }
-
-                if (message.Type == MessageType.Text)
-                {
-                    var textMessage = (TextMessage)message;
-
-                    Console.WriteLine($"Received text message \"{textMessage.Text}\"");
-
-                    if (textMessage.Text == "close")
-                    {
-                        Console.WriteLine("Initiating close handshake");
-                        SendMessage(new CloseMessage(1000, "Server closed as requested"));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Echoing message back to client");
-                        SendMessage(message);
-                    }
-                }
-                else if (message.Type == MessageType.Ping)
-                {
-                    Console.WriteLine("Received ping, sending pong");
-
-                    var pingMessage = (PingMessage)message;
-                    var pongMessage = new PongMessage(pingMessage.Data);
-                    SendMessage(pongMessage);
-                }
-                else if (message.Type == MessageType.Close)
-                {
-                    Console.WriteLine("Received close.");
-                    if (_messageProtocol.State == ProtocolState.Closing)
-                    {
-                        Console.WriteLine("Sending close (completing close handshake).");
-                        SendMessage(message);
-                    }
-                    else if (_messageProtocol.State == ProtocolState.Closed)
-                    {
-                        Console.WriteLine("Close handshake complete");
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Invalid state");
-                    }
+                    Console.WriteLine($"Protocol error: {error.Message}");
+                    Console.WriteLine("Disconnecting");
+                    break;
                 }
             }
 
@@ -110,7 +109,7 @@ namespace EchoServer
 
         private void ReceiveHandshakeRequest()
         {
-            Console.WriteLine("Receiving request");
+            Console.WriteLine("Receiving handshake request");
 
             WebRequest? webRequest = null;
             var buffer = new byte[1024];
@@ -119,24 +118,26 @@ namespace EchoServer
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
-                _handshake.WriteData(buffer, 0, bytesRead);
+                _handshakeProtocol.WriteData(buffer, 0, bytesRead);
 
-                webRequest = _handshake.ReadRequest();
+                webRequest = _handshakeProtocol.ReadRequest();
             }
 
-            var webResponse = _handshake.CreateWebResponse(webRequest);
+            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
 
-            _handshake.WriteResponse(webResponse);
+            _handshakeProtocol.WriteResponse(webResponse);
         }
 
         private void SendHandshakeResponse()
         {
+            Console.WriteLine("Sending handshake response");
+
             bool isDone = false;
             while (!isDone)
             {
                 var buffer = new byte[1024];
                 var bytesRead = 0L;
-                _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -144,6 +145,22 @@ namespace EchoServer
                     _stream.Write(buffer, 0, (int)bytesRead);
                     Console.WriteLine("Sent client data");
                 }
+            }
+        }
+
+        private Message ReadMessage()
+        {
+            var buffer = new byte[1024];
+            while (true)
+            {
+                if (_messageProtocol.HasMessage)
+                    return _messageProtocol.ReadMessage();
+
+                var bytesRead = _stream.Read(buffer);
+                if (bytesRead > 0)
+                    _messageProtocol.WriteData(buffer, 0, bytesRead);
+                else
+                    throw new EndOfStreamException("The client closed the connection.");
             }
         }
 
