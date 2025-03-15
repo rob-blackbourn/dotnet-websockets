@@ -3,7 +3,7 @@
 namespace WebSockets.Core.Test
 {
     [TestClass]
-    public sealed class TestHandshake
+    public sealed class TestHandshakeProtocol
     {
         [TestMethod]
         public void TestOpenHandshake()
