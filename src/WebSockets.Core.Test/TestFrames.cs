@@ -134,7 +134,7 @@ namespace WebSockets.Core.Test
                 writer.ReadData(buf, ref offset, buf.LongLength);
                 buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
             }
-            var actual = buffers.ToFlatArray();
+            var actual = buffers.SelectMany(x => x.ToArray()).ToArray();
 
             Assert.IsTrue(actual.SequenceEqual(expected));
 

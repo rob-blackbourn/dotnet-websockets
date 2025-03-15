@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -120,11 +121,28 @@ namespace WebSockets.Core.Test
 
         private void AssertMessage(Message message, byte[] expected, bool isClient, long maxFrameSize = long.MaxValue)
         {
-            var nonceGenerator = isClient ? new MockNonceGenerator(expected.Skip(2).Take(4).ToArray(), "x3JJHMbDL1EzLkh9GBhXDw==") : null;
-            var actual = message.Serialize(isClient, Reserved.AllFalse, maxFrameSize, nonceGenerator);
+            INonceGenerator? nonceGenerator = isClient
+                ? new MockNonceGenerator(expected.Skip(2).Take(4).ToArray(), "x3JJHMbDL1EzLkh9GBhXDw==")
+                : new NonceGenerator(); // unused for server.
+
+            var writer = new MessageWriter(nonceGenerator);
+            writer.WriteMessage(message, isClient, Reserved.AllFalse, maxFrameSize);
+            var buffers = new List<ArrayBuffer<byte>>();
+            while (writer.HasData)
+            {
+                var buf = new byte[1024];
+                var offset = 0L;
+                writer.ReadData(buf, ref offset, buf.LongLength);
+                buffers.Add(new ArrayBuffer<byte>(buf, 0, offset));
+            }
+            var actual = buffers.SelectMany(x => x.ToArray()).ToArray();
             Assert.IsTrue(actual.SequenceEqual(expected));
 
-            var roundTrip = Message.Deserialize(actual);
+            var reader = new MessageReader();
+            reader.WriteData(actual, 0, actual.Length);
+            if (!reader.HasMessage)
+                throw new InvalidOperationException("failed to deserialize message");
+            var roundTrip = reader.ReadMessage();
             Assert.AreEqual(message, roundTrip);
         }
     }

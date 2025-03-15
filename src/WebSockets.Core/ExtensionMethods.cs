@@ -23,34 +23,6 @@ namespace WebSockets.Core
 
     static class InternalExtensionMethods
     {
-        public static T[] ToFlatArray<T>(this IList<T[]> buffers)
-        {
-            var length = buffers.Sum(x => x.LongLength);
-            var buf = new T[length];
-            var offset = 0L;
-            foreach (var item in buffers)
-            {
-                Array.Copy(item, 0, buf, offset, item.Length);
-                offset += item.Length;
-            }
-
-            return buf;
-        }
-
-        public static T[] ToFlatArray<T>(this IList<ArrayBuffer<T>> buffers)
-        {
-            var length = buffers.Sum(x => x.Count);
-            var buf = new T[length];
-            var offset = 0L;
-            foreach (var item in buffers)
-            {
-                Array.Copy(item.Buffer, item.Offset, buf, offset, item.Count);
-                offset += item.Count;
-            }
-
-            return buf;
-        }
-
         public static int IndexOf<T>(this T[] data, T[] pattern)
         where T : struct
         {
@@ -76,12 +48,10 @@ namespace WebSockets.Core
         public static T[] SubArray<T>(this T[] data, int start)
         where T : struct
         {
-            if (start < 0)
-                throw new ArgumentOutOfRangeException("start must be zero or positive");
-            if (start > data.Length)
-                throw new ArgumentOutOfRangeException("start is past the end of the array");
+            ArgumentOutOfRangeException.ThrowIfNegative(start);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(start, data.Length);
             if (start == data.Length)
-                return new T[0];
+                return [];
             var length = data.Length - start;
             var copy = new T[length];
             Array.Copy(data, start, copy, 0, length);
@@ -91,18 +61,15 @@ namespace WebSockets.Core
         public static T[] SubArray<T>(this T[] data, int start, int count)
         where T : struct
         {
-            if (start < 0)
-                throw new ArgumentOutOfRangeException("start must be zero or positive");
-            if (count < 0)
-                throw new ArgumentOutOfRangeException("count must be zero or positive");
+            ArgumentOutOfRangeException.ThrowIfNegative(start);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (start + count > data.Length)
-                throw new ArgumentOutOfRangeException("insufficient data");
+                throw new ArgumentOutOfRangeException(nameof(data), "insufficient data");
             if (count == 0 || start == data.Length)
-                return new T[0];
+                return [];
             var copy = new T[count];
             Array.Copy(data, start, copy, 0, count);
             return copy;
         }
-
     }
 }

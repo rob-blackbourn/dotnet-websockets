@@ -1,6 +1,7 @@
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using WebSockets.Core.Messages;
@@ -122,7 +123,7 @@ namespace WebSockets.Core
                             data.Add(reasonBuf);
                         }
 
-                        return data.ToFlatArray();
+                        return data.SelectMany(x => x).ToArray();
                     }
                 default:
                     throw new InvalidOperationException("unhandled message type");

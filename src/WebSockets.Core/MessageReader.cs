@@ -17,8 +17,9 @@ namespace WebSockets.Core
     /// </summary>
     internal class MessageReader
     {
-        private readonly FrameReader _frameReader = new FrameReader();
-        private readonly Queue<Frame> _frameBuffer = new Queue<Frame>();
+        private readonly FrameReader _frameReader = new();
+        private readonly List<Frame> _frameBuffer = new();
+        private readonly Queue<Message> _messages = new();
 
         /// <summary>
         /// A property to indicate if the reader requires more data to
@@ -26,6 +27,8 @@ namespace WebSockets.Core
         /// </summary>
         /// <returns>True if there is more data is required; otherwise false.</returns>
         public bool NeedsData => _frameReader.NeedsData || _frameBuffer.Count > 0;
+
+        public bool HasMessage => _messages.Count > 0;
 
         /// <summary>
         /// Submit data to be deserialized to messages.
@@ -39,27 +42,36 @@ namespace WebSockets.Core
         public void WriteData(byte[] source, long offset, long length)
         {
             _frameReader.WriteData(source, offset, length);
+            ProcessDataUntilStalled();
         }
 
         /// <summary>
         /// Process submitted data to produce messages.
         /// </summary>
         /// <returns>A message, if there is sufficient data available.</returns>
-        public Message? ReadMessage()
+        public Message ReadMessage()
         {
-            while (true)
+            return _messages.Dequeue();
+        }
+
+        private void ProcessDataUntilStalled()
+        {
+            var done = false;
+            while (!done)
             {
                 if (!_frameReader.HasFrame)
-                    return null;
+                {
+                    done = true;
+                    continue;
+                }
+
                 var frame = _frameReader.ReadFrame();
-
-                _frameBuffer.Enqueue(frame);
-
+                _frameBuffer.Add(frame);
                 if (frame.IsFinal)
                 {
-                    var message = CreateMessage(_frameBuffer.ToArray());
+                    var message = CreateMessage(_frameBuffer);
+                    _messages.Enqueue(message);
                     _frameBuffer.Clear();
-                    return message;
                 }
             }
         }
@@ -72,23 +84,23 @@ namespace WebSockets.Core
         /// <exception cref="InvalidOperationException">
         /// Thrown when the message cannot be created.
         /// </exception>
-        private Message CreateMessage(Frame[] frames)
+        private static Message CreateMessage(List<Frame> frames)
         {
-            if (frames.Length == 0)
+            if (frames.Count == 0)
                 throw new ArgumentOutOfRangeException(nameof(frames));
 
-            if (frames.Length == 1)
+            if (frames.Count == 1)
                 return CreateMessage(frames[0]);
 
             if (frames[0].OpCode == OpCode.Continuation)
                 throw new InvalidOperationException("first op code cannot be continuation");
             if (!frames.Last().IsFinal)
                 throw new InvalidOperationException("the last frame must be final");
-            if (frames.Length > 1)
+            if (frames.Count > 1)
             {
                 if (frames.Skip(1).Any(x => x.OpCode != OpCode.Continuation))
                     throw new InvalidOperationException("following frames must be continuations");
-                if (frames.Take(frames.Length - 1).Any(x => x.IsFinal))
+                if (frames.Take(frames.Count - 1).Any(x => x.IsFinal))
                     throw new InvalidOperationException("only the last frame can be final");
             }
 
@@ -108,7 +120,7 @@ namespace WebSockets.Core
         /// </summary>
         /// <param name="frame">The frame to use.</param>
         /// <returns>The created message.</returns>
-        private Message CreateMessage(Frame frame)
+        private static Message CreateMessage(Frame frame)
         {
             return CreateMessage(frame.OpCode, frame.Payload);
         }
@@ -119,7 +131,7 @@ namespace WebSockets.Core
         /// <param name="opCode">The opcode.</param>
         /// <param name="payload">The array of bytes.</param>
         /// <returns>The created message.</returns>
-        private Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
+        private static Message CreateMessage(OpCode opCode, ArrayBuffer<byte> payload)
         {
             switch (opCode)
             {
