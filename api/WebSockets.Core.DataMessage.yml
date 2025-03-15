@@ -1,0 +1,773 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.DataMessage
+  commentId: T:WebSockets.Core.DataMessage
+  id: DataMessage
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.DataMessage.#ctor(WebSockets.Core.MessageType,System.Byte[])
+  - WebSockets.Core.DataMessage.Data
+  - WebSockets.Core.DataMessage.Equals(WebSockets.Core.DataMessage)
+  langs:
+  - csharp
+  - vb
+  name: DataMessage
+  nameWithType: DataMessage
+  fullName: WebSockets.Core.DataMessage
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: DataMessage
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 100
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: 'public abstract class DataMessage : Message, IEquatable<Message>, IEquatable<DataMessage>'
+    content.vb: Public MustInherit Class DataMessage Inherits Message Implements IEquatable(Of Message), IEquatable(Of DataMessage)
+  inheritance:
+  - System.Object
+  - WebSockets.Core.Message
+  derivedClasses:
+  - WebSockets.Core.BinaryMessage
+  - WebSockets.Core.PingMessage
+  - WebSockets.Core.PongMessage
+  implements:
+  - System.IEquatable{WebSockets.Core.Message}
+  - System.IEquatable{WebSockets.Core.DataMessage}
+  inheritedMembers:
+  - WebSockets.Core.Message.Type
+  - WebSockets.Core.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
+  - WebSockets.Core.Message.Deserialize(System.Byte[])
+  - WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: WebSockets.Core.DataMessage.#ctor(WebSockets.Core.MessageType,System.Byte[])
+  commentId: M:WebSockets.Core.DataMessage.#ctor(WebSockets.Core.MessageType,System.Byte[])
+  id: '#ctor(WebSockets.Core.MessageType,System.Byte[])'
+  parent: WebSockets.Core.DataMessage
+  langs:
+  - csharp
+  - vb
+  name: DataMessage(MessageType, byte[])
+  nameWithType: DataMessage.DataMessage(MessageType, byte[])
+  fullName: WebSockets.Core.DataMessage.DataMessage(WebSockets.Core.MessageType, byte[])
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 102
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public DataMessage(MessageType type, byte[] data)
+    parameters:
+    - id: type
+      type: WebSockets.Core.MessageType
+    - id: data
+      type: System.Byte[]
+    content.vb: Public Sub New(type As MessageType, data As Byte())
+  overload: WebSockets.Core.DataMessage.#ctor*
+  nameWithType.vb: DataMessage.New(MessageType, Byte())
+  fullName.vb: WebSockets.Core.DataMessage.New(WebSockets.Core.MessageType, Byte())
+  name.vb: New(MessageType, Byte())
+- uid: WebSockets.Core.DataMessage.Data
+  commentId: P:WebSockets.Core.DataMessage.Data
+  id: Data
+  parent: WebSockets.Core.DataMessage
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: DataMessage.Data
+  fullName: WebSockets.Core.DataMessage.Data
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Data
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 108
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public byte[] Data { get; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: Public Property Data As Byte()
+  overload: WebSockets.Core.DataMessage.Data*
+- uid: WebSockets.Core.DataMessage.Equals(WebSockets.Core.DataMessage)
+  commentId: M:WebSockets.Core.DataMessage.Equals(WebSockets.Core.DataMessage)
+  id: Equals(WebSockets.Core.DataMessage)
+  parent: WebSockets.Core.DataMessage
+  langs:
+  - csharp
+  - vb
+  name: Equals(DataMessage?)
+  nameWithType: DataMessage.Equals(DataMessage?)
+  fullName: WebSockets.Core.DataMessage.Equals(WebSockets.Core.DataMessage?)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Equals
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 110
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(DataMessage? other)
+    parameters:
+    - id: other
+      type: WebSockets.Core.DataMessage
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As DataMessage) As Boolean
+  overload: WebSockets.Core.DataMessage.Equals*
+  implements:
+  - System.IEquatable{WebSockets.Core.DataMessage}.Equals(WebSockets.Core.DataMessage)
+  nameWithType.vb: DataMessage.Equals(DataMessage)
+  fullName.vb: WebSockets.Core.DataMessage.Equals(WebSockets.Core.DataMessage)
+  name.vb: Equals(DataMessage)
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: WebSockets.Core.Message
+  commentId: T:WebSockets.Core.Message
+  parent: WebSockets.Core
+  href: WebSockets.Core.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: WebSockets.Core.Message
+- uid: System.IEquatable{WebSockets.Core.Message}
+  commentId: T:System.IEquatable{WebSockets.Core.Message}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Message>
+  nameWithType: IEquatable<Message>
+  fullName: System.IEquatable<WebSockets.Core.Message>
+  nameWithType.vb: IEquatable(Of Message)
+  fullName.vb: System.IEquatable(Of WebSockets.Core.Message)
+  name.vb: IEquatable(Of Message)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: WebSockets.Core.Message
+    name: Message
+    href: WebSockets.Core.Message.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: WebSockets.Core.Message
+    name: Message
+    href: WebSockets.Core.Message.html
+  - name: )
+- uid: System.IEquatable{WebSockets.Core.DataMessage}
+  commentId: T:System.IEquatable{WebSockets.Core.DataMessage}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<DataMessage>
+  nameWithType: IEquatable<DataMessage>
+  fullName: System.IEquatable<WebSockets.Core.DataMessage>
+  nameWithType.vb: IEquatable(Of DataMessage)
+  fullName.vb: System.IEquatable(Of WebSockets.Core.DataMessage)
+  name.vb: IEquatable(Of DataMessage)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: WebSockets.Core.DataMessage
+    name: DataMessage
+    href: WebSockets.Core.DataMessage.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: WebSockets.Core.DataMessage
+    name: DataMessage
+    href: WebSockets.Core.DataMessage.html
+  - name: )
+- uid: WebSockets.Core.Message.Type
+  commentId: P:WebSockets.Core.Message.Type
+  parent: WebSockets.Core.Message
+  href: WebSockets.Core.Message.html#WebSockets_Core_Message_Type
+  name: Type
+  nameWithType: Message.Type
+  fullName: WebSockets.Core.Message.Type
+- uid: WebSockets.Core.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
+  commentId: M:WebSockets.Core.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
+  parent: WebSockets.Core.Message
+  isExternal: true
+  href: WebSockets.Core.Message.html#WebSockets_Core_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_
+  name: Serialize(bool, Reserved?, long, INonceGenerator)
+  nameWithType: Message.Serialize(bool, Reserved?, long, INonceGenerator)
+  fullName: WebSockets.Core.Message.Serialize(bool, WebSockets.Core.Reserved?, long, WebSockets.Core.INonceGenerator)
+  nameWithType.vb: Message.Serialize(Boolean, Reserved?, Long, INonceGenerator)
+  fullName.vb: WebSockets.Core.Message.Serialize(Boolean, WebSockets.Core.Reserved?, Long, WebSockets.Core.INonceGenerator)
+  name.vb: Serialize(Boolean, Reserved?, Long, INonceGenerator)
+  spec.csharp:
+  - uid: WebSockets.Core.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
+    name: Serialize
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: WebSockets.Core.INonceGenerator
+    name: INonceGenerator
+    href: WebSockets.Core.INonceGenerator.html
+  - name: )
+  spec.vb:
+  - uid: WebSockets.Core.Message.Serialize(System.Boolean,System.Nullable{WebSockets.Core.Reserved},System.Int64,WebSockets.Core.INonceGenerator)
+    name: Serialize
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Serialize_System_Boolean_System_Nullable_WebSockets_Core_Reserved__System_Int64_WebSockets_Core_INonceGenerator_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: WebSockets.Core.Reserved
+    name: Reserved
+    href: WebSockets.Core.Reserved.html
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: WebSockets.Core.INonceGenerator
+    name: INonceGenerator
+    href: WebSockets.Core.INonceGenerator.html
+  - name: )
+- uid: WebSockets.Core.Message.Deserialize(System.Byte[])
+  commentId: M:WebSockets.Core.Message.Deserialize(System.Byte[])
+  parent: WebSockets.Core.Message
+  isExternal: true
+  href: WebSockets.Core.Message.html#WebSockets_Core_Message_Deserialize_System_Byte___
+  name: Deserialize(byte[])
+  nameWithType: Message.Deserialize(byte[])
+  fullName: WebSockets.Core.Message.Deserialize(byte[])
+  nameWithType.vb: Message.Deserialize(Byte())
+  fullName.vb: WebSockets.Core.Message.Deserialize(Byte())
+  name.vb: Deserialize(Byte())
+  spec.csharp:
+  - uid: WebSockets.Core.Message.Deserialize(System.Byte[])
+    name: Deserialize
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Deserialize_System_Byte___
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: WebSockets.Core.Message.Deserialize(System.Byte[])
+    name: Deserialize
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Deserialize_System_Byte___
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: )
+- uid: WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+  commentId: M:WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+  parent: WebSockets.Core.Message
+  href: WebSockets.Core.Message.html#WebSockets_Core_Message_Equals_WebSockets_Core_Message_
+  name: Equals(Message)
+  nameWithType: Message.Equals(Message)
+  fullName: WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+  spec.csharp:
+  - uid: WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+    name: Equals
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Equals_WebSockets_Core_Message_
+  - name: (
+  - uid: WebSockets.Core.Message
+    name: Message
+    href: WebSockets.Core.Message.html
+  - name: )
+  spec.vb:
+  - uid: WebSockets.Core.Message.Equals(WebSockets.Core.Message)
+    name: Equals
+    href: WebSockets.Core.Message.html#WebSockets_Core_Message_Equals_WebSockets_Core_Message_
+  - name: (
+  - uid: WebSockets.Core.Message
+    name: Message
+    href: WebSockets.Core.Message.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: WebSockets.Core.DataMessage.#ctor*
+  commentId: Overload:WebSockets.Core.DataMessage.#ctor
+  href: WebSockets.Core.DataMessage.html#WebSockets_Core_DataMessage__ctor_WebSockets_Core_MessageType_System_Byte___
+  name: DataMessage
+  nameWithType: DataMessage.DataMessage
+  fullName: WebSockets.Core.DataMessage.DataMessage
+  nameWithType.vb: DataMessage.New
+  fullName.vb: WebSockets.Core.DataMessage.New
+  name.vb: New
+- uid: WebSockets.Core.MessageType
+  commentId: T:WebSockets.Core.MessageType
+  parent: WebSockets.Core
+  href: WebSockets.Core.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: WebSockets.Core.MessageType
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: WebSockets.Core.DataMessage.Data*
+  commentId: Overload:WebSockets.Core.DataMessage.Data
+  href: WebSockets.Core.DataMessage.html#WebSockets_Core_DataMessage_Data
+  name: Data
+  nameWithType: DataMessage.Data
+  fullName: WebSockets.Core.DataMessage.Data
+- uid: WebSockets.Core.DataMessage.Equals*
+  commentId: Overload:WebSockets.Core.DataMessage.Equals
+  href: WebSockets.Core.DataMessage.html#WebSockets_Core_DataMessage_Equals_WebSockets_Core_DataMessage_
+  name: Equals
+  nameWithType: DataMessage.Equals
+  fullName: WebSockets.Core.DataMessage.Equals
+- uid: System.IEquatable{WebSockets.Core.DataMessage}.Equals(WebSockets.Core.DataMessage)
+  commentId: M:System.IEquatable{WebSockets.Core.DataMessage}.Equals(WebSockets.Core.DataMessage)
+  parent: System.IEquatable{WebSockets.Core.DataMessage}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(DataMessage)
+  nameWithType: IEquatable<DataMessage>.Equals(DataMessage)
+  fullName: System.IEquatable<WebSockets.Core.DataMessage>.Equals(WebSockets.Core.DataMessage)
+  nameWithType.vb: IEquatable(Of DataMessage).Equals(DataMessage)
+  fullName.vb: System.IEquatable(Of WebSockets.Core.DataMessage).Equals(WebSockets.Core.DataMessage)
+  spec.csharp:
+  - uid: System.IEquatable{WebSockets.Core.DataMessage}.Equals(WebSockets.Core.DataMessage)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: WebSockets.Core.DataMessage
+    name: DataMessage
+    href: WebSockets.Core.DataMessage.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{WebSockets.Core.DataMessage}.Equals(WebSockets.Core.DataMessage)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: WebSockets.Core.DataMessage
+    name: DataMessage
+    href: WebSockets.Core.DataMessage.html
+  - name: )
+- uid: WebSockets.Core.DataMessage
+  commentId: T:WebSockets.Core.DataMessage
+  parent: WebSockets.Core
+  href: WebSockets.Core.DataMessage.html
+  name: DataMessage
+  nameWithType: DataMessage
+  fullName: WebSockets.Core.DataMessage
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )

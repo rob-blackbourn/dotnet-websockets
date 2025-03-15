@@ -1,0 +1,99 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  id: WebSockets.Core
+  children:
+  - WebSockets.Core.ClientHandshake
+  - WebSockets.Core.Handshake
+  - WebSockets.Core.HandshakeState
+  - WebSockets.Core.MessageProtocol
+  - WebSockets.Core.ProtocolState
+  - WebSockets.Core.ServerHandshake
+  - WebSockets.Core.WebRequest
+  - WebSockets.Core.WebResponse
+  langs:
+  - csharp
+  - vb
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  type: Namespace
+  assemblies:
+  - WebSockets.Core
+references:
+- uid: WebSockets.Core.ClientHandshake
+  commentId: T:WebSockets.Core.ClientHandshake
+  href: WebSockets.Core.ClientHandshake.html
+  name: ClientHandshake
+  nameWithType: ClientHandshake
+  fullName: WebSockets.Core.ClientHandshake
+- uid: WebSockets.Core.Handshake
+  commentId: T:WebSockets.Core.Handshake
+  parent: WebSockets.Core
+  href: WebSockets.Core.Handshake.html
+  name: Handshake
+  nameWithType: Handshake
+  fullName: WebSockets.Core.Handshake
+- uid: WebSockets.Core.HandshakeState
+  commentId: T:WebSockets.Core.HandshakeState
+  parent: WebSockets.Core
+  href: WebSockets.Core.HandshakeState.html
+  name: HandshakeState
+  nameWithType: HandshakeState
+  fullName: WebSockets.Core.HandshakeState
+- uid: WebSockets.Core.MessageProtocol
+  commentId: T:WebSockets.Core.MessageProtocol
+  href: WebSockets.Core.MessageProtocol.html
+  name: MessageProtocol
+  nameWithType: MessageProtocol
+  fullName: WebSockets.Core.MessageProtocol
+- uid: WebSockets.Core.ProtocolState
+  commentId: T:WebSockets.Core.ProtocolState
+  parent: WebSockets.Core
+  href: WebSockets.Core.ProtocolState.html
+  name: ProtocolState
+  nameWithType: ProtocolState
+  fullName: WebSockets.Core.ProtocolState
+- uid: WebSockets.Core.ServerHandshake
+  commentId: T:WebSockets.Core.ServerHandshake
+  href: WebSockets.Core.ServerHandshake.html
+  name: ServerHandshake
+  nameWithType: ServerHandshake
+  fullName: WebSockets.Core.ServerHandshake
+- uid: WebSockets.Core.WebRequest
+  commentId: T:WebSockets.Core.WebRequest
+  parent: WebSockets.Core
+  href: WebSockets.Core.WebRequest.html
+  name: WebRequest
+  nameWithType: WebRequest
+  fullName: WebSockets.Core.WebRequest
+- uid: WebSockets.Core.WebResponse
+  commentId: T:WebSockets.Core.WebResponse
+  parent: WebSockets.Core
+  href: WebSockets.Core.WebResponse.html
+  name: WebResponse
+  nameWithType: WebResponse
+  fullName: WebSockets.Core.WebResponse
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html

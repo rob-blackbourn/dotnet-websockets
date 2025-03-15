@@ -1,0 +1,195 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.MessageType
+  commentId: T:WebSockets.Core.MessageType
+  id: MessageType
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.MessageType.Binary
+  - WebSockets.Core.MessageType.Close
+  - WebSockets.Core.MessageType.Ping
+  - WebSockets.Core.MessageType.Pong
+  - WebSockets.Core.MessageType.Text
+  langs:
+  - csharp
+  - vb
+  name: MessageType
+  nameWithType: MessageType
+  fullName: WebSockets.Core.MessageType
+  type: Enum
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: MessageType
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 8
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The types of messages.
+  example: []
+  syntax:
+    content: public enum MessageType
+    content.vb: Public Enum MessageType
+- uid: WebSockets.Core.MessageType.Text
+  commentId: F:WebSockets.Core.MessageType.Text
+  id: Text
+  parent: WebSockets.Core.MessageType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: MessageType.Text
+  fullName: WebSockets.Core.MessageType.Text
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Text
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 10
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Text = 0
+    return:
+      type: WebSockets.Core.MessageType
+- uid: WebSockets.Core.MessageType.Binary
+  commentId: F:WebSockets.Core.MessageType.Binary
+  id: Binary
+  parent: WebSockets.Core.MessageType
+  langs:
+  - csharp
+  - vb
+  name: Binary
+  nameWithType: MessageType.Binary
+  fullName: WebSockets.Core.MessageType.Binary
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Binary
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 11
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Binary = 1
+    return:
+      type: WebSockets.Core.MessageType
+- uid: WebSockets.Core.MessageType.Ping
+  commentId: F:WebSockets.Core.MessageType.Ping
+  id: Ping
+  parent: WebSockets.Core.MessageType
+  langs:
+  - csharp
+  - vb
+  name: Ping
+  nameWithType: MessageType.Ping
+  fullName: WebSockets.Core.MessageType.Ping
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Ping
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 12
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Ping = 2
+    return:
+      type: WebSockets.Core.MessageType
+- uid: WebSockets.Core.MessageType.Pong
+  commentId: F:WebSockets.Core.MessageType.Pong
+  id: Pong
+  parent: WebSockets.Core.MessageType
+  langs:
+  - csharp
+  - vb
+  name: Pong
+  nameWithType: MessageType.Pong
+  fullName: WebSockets.Core.MessageType.Pong
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Pong
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 13
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Pong = 3
+    return:
+      type: WebSockets.Core.MessageType
+- uid: WebSockets.Core.MessageType.Close
+  commentId: F:WebSockets.Core.MessageType.Close
+  id: Close
+  parent: WebSockets.Core.MessageType
+  langs:
+  - csharp
+  - vb
+  name: Close
+  nameWithType: MessageType.Close
+  fullName: WebSockets.Core.MessageType.Close
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/Messages.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Close
+    path: src/WebSockets.Core/Messages.cs
+    startLine: 14
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Close = 4
+    return:
+      type: WebSockets.Core.MessageType
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: WebSockets.Core.MessageType
+  commentId: T:WebSockets.Core.MessageType
+  parent: WebSockets.Core
+  href: WebSockets.Core.MessageType.html
+  name: MessageType
+  nameWithType: MessageType
+  fullName: WebSockets.Core.MessageType

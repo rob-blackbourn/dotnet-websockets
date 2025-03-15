@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>dotnet-websockets | websockets-sansio </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="dotnet-websockets | websockets-sansio ">
+      
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="websockets-sansio">
+            websockets-sansio
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="dotnet-websockets">dotnet-websockets</h1>
+
+<p>A sans-io implementation of WebSockets in .Net.</p>
+<h2 id="status">Status</h2>
+<p>I believe this is working. Please report any issues.</p>
+<h2 id="the-api">The API</h2>
+<p>The API is actually very simple, but the read/write semantics can be confusing.</p>
+<p>At the heart of a sans-io implementation is a processing engine; which
+is known here as the &quot;protocol&quot;. When bytes are &quot;read&quot; from the network,
+they are &quot;written&quot; to the protocol. the protocol decodes the bytes to
+higher level objects like web requests and websocket messages. Some
+business logic is applied to these higher level objects, which produce
+other higher level objects (like web responses or new websocket messages).
+These objects are then written to the protocol which are encoded to bytes.
+Finally bytes are read from the protocol which are then written to the network.</p>
+<p>To Summarize there is a read flow and a write flow:</p>
+<h3 id="the-read-flow">The read flow</h3>
+<ul>
+<li>Read bytes from network</li>
+<li>Write bytes to protocol</li>
+<li>Read objects from protocol</li>
+</ul>
+<h3 id="the-write-flow">The write flow</h3>
+<ul>
+<li>Write objects to protocol</li>
+<li>Read bytes from protocol</li>
+<li>Write bytes to network.</li>
+</ul>
+<h2 id="web-handshake-messages-and-closing">Web Handshake, Messages, and Closing</h2>
+<p>A WebSocket goes through two protocol lifecycle stages.</p>
+<ul>
+<li>Connection Handshake</li>
+<li>Messages</li>
+</ul>
+<p>The connection handshake takes a web request and attempts to negotiate a
+websocket connection. This statement suggests a more complicated workflow
+than actually exists. What happens here is the client sends a standard &quot;GET&quot;
+web request with some headers that indicate a websocket is requested. If the
+server supports websockets an appropriate response is sent, and all
+subsequent communication uses the websocket protocol.</p>
+<h3 id="data-messages">Data Messages</h3>
+<p>Once the protocol is established, data messages can be sent between the client and the server.
+These messages can be either text, or binary.</p>
+<h3 id="control-messages">Control Messages</h3>
+<p>As well as data messages, there are some control messages that can be sent.</p>
+<ul>
+<li>Ping/Pong</li>
+<li>Close</li>
+</ul>
+<h4 id="pingpong">Ping/Pong</h4>
+<p>If a client receives a ping it is expected to respond with a pong with the same data received.</p>
+<h4 id="close">Close</h4>
+<p>Either participant can simply close the connection, however the protocol
+specifies a close handshake. The handshake consists of one side sending a
+close message with an optional code and text reason, where the other side
+responds with a close containing the same data.</p>
+<h2 id="the-implementation">The Implementation</h2>
+<p>There are two main parts to the implementation: The protocols and the messages.</p>
+<p>The messages provide a way to represent the information exchanged between the clients
+and the servers. The protocols provide the mechanism by which these messages are passed.</p>
+<h3 id="the-protocol">The Protocol</h3>
+<p>The protocol base class provides the following methods:</p>
+<ul>
+<li>ReadHandshakeData</li>
+<li>WriteHandshakeData</li>
+<li>ReadMessageData</li>
+<li>WriteMessageData</li>
+<li>ReadMessage</li>
+<li>WriteMessage</li>
+</ul>
+<h4 id="the-serverprotocol">The ServerProtocol</h4>
+<p>The server protocol provides the extra method:</p>
+<ul>
+<li>ProcessHandshakeRequest</li>
+</ul>
+<h4 id="the-clientprotocol">The ClientProtocol</h4>
+<p>The client protocol provides the extra methods:</p>
+<ul>
+<li>SendHandshakeRequest</li>
+<li>ProcessHandshakeResponse</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p>There is an example echo server written for both the client and the server.</p>
+<h2 id="development">Development</h2>
+<p>For documentation:</p>
+<pre><code class="lang-bash">docfx ./docfx.json --serve
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

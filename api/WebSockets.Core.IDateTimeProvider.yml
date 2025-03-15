@@ -1,0 +1,105 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.IDateTimeProvider
+  commentId: T:WebSockets.Core.IDateTimeProvider
+  id: IDateTimeProvider
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.IDateTimeProvider.Now
+  langs:
+  - csharp
+  - vb
+  name: IDateTimeProvider
+  nameWithType: IDateTimeProvider
+  fullName: WebSockets.Core.IDateTimeProvider
+  type: Interface
+  source:
+    remote:
+      path: src/WebSockets.Core/DateTimeProvider.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: IDateTimeProvider
+    path: src/WebSockets.Core/DateTimeProvider.cs
+    startLine: 4
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public interface IDateTimeProvider
+    content.vb: Public Interface IDateTimeProvider
+- uid: WebSockets.Core.IDateTimeProvider.Now
+  commentId: P:WebSockets.Core.IDateTimeProvider.Now
+  id: Now
+  parent: WebSockets.Core.IDateTimeProvider
+  langs:
+  - csharp
+  - vb
+  name: Now
+  nameWithType: IDateTimeProvider.Now
+  fullName: WebSockets.Core.IDateTimeProvider.Now
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/DateTimeProvider.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Now
+    path: src/WebSockets.Core/DateTimeProvider.cs
+    startLine: 6
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: DateTime Now { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: ReadOnly Property Now As Date
+  overload: WebSockets.Core.IDateTimeProvider.Now*
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: WebSockets.Core.IDateTimeProvider.Now*
+  commentId: Overload:WebSockets.Core.IDateTimeProvider.Now
+  href: WebSockets.Core.IDateTimeProvider.html#WebSockets_Core_IDateTimeProvider_Now
+  name: Now
+  nameWithType: IDateTimeProvider.Now
+  fullName: WebSockets.Core.IDateTimeProvider.Now
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

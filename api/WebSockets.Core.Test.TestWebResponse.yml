@@ -1,0 +1,463 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.Test.TestWebResponse
+  commentId: T:WebSockets.Core.Test.TestWebResponse
+  id: TestWebResponse
+  parent: WebSockets.Core.Test
+  children:
+  - WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody
+  - WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody
+  - WebSockets.Core.Test.TestWebResponse.TestRoundTrip
+  - WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody
+  langs:
+  - csharp
+  - vb
+  name: TestWebResponse
+  nameWithType: TestWebResponse
+  fullName: WebSockets.Core.Test.TestWebResponse
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestWebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestWebResponse
+    path: src/WebSockets.Core.Test/TestWebResponse.cs
+    startLine: 5
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestClass]
+
+      public sealed class TestWebResponse
+    content.vb: >-
+      <TestClass>
+
+      Public NotInheritable Class TestWebResponse
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody
+  commentId: M:WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody
+  id: TestParseResponseNoBody
+  parent: WebSockets.Core.Test.TestWebResponse
+  langs:
+  - csharp
+  - vb
+  name: TestParseResponseNoBody()
+  nameWithType: TestWebResponse.TestParseResponseNoBody()
+  fullName: WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestWebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestParseResponseNoBody
+    path: src/WebSockets.Core.Test/TestWebResponse.cs
+    startLine: 8
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestParseResponseNoBody()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestParseResponseNoBody()
+  overload: WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody
+  commentId: M:WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody
+  id: TestParseResponseWithBody
+  parent: WebSockets.Core.Test.TestWebResponse
+  langs:
+  - csharp
+  - vb
+  name: TestParseResponseWithBody()
+  nameWithType: TestWebResponse.TestParseResponseWithBody()
+  fullName: WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestWebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestParseResponseWithBody
+    path: src/WebSockets.Core.Test/TestWebResponse.cs
+    startLine: 28
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestParseResponseWithBody()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestParseResponseWithBody()
+  overload: WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestWebResponse.TestRoundTrip
+  commentId: M:WebSockets.Core.Test.TestWebResponse.TestRoundTrip
+  id: TestRoundTrip
+  parent: WebSockets.Core.Test.TestWebResponse
+  langs:
+  - csharp
+  - vb
+  name: TestRoundTrip()
+  nameWithType: TestWebResponse.TestRoundTrip()
+  fullName: WebSockets.Core.Test.TestWebResponse.TestRoundTrip()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestWebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestRoundTrip
+    path: src/WebSockets.Core.Test/TestWebResponse.cs
+    startLine: 53
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestRoundTrip()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestRoundTrip()
+  overload: WebSockets.Core.Test.TestWebResponse.TestRoundTrip*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+- uid: WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody
+  commentId: M:WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody
+  id: TestRoundTripWithBody
+  parent: WebSockets.Core.Test.TestWebResponse
+  langs:
+  - csharp
+  - vb
+  name: TestRoundTripWithBody()
+  nameWithType: TestWebResponse.TestRoundTripWithBody()
+  fullName: WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core.Test/TestWebResponse.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: TestRoundTripWithBody
+    path: src/WebSockets.Core.Test/TestWebResponse.cs
+    startLine: 80
+  assemblies:
+  - WebSockets.Core.Test
+  namespace: WebSockets.Core.Test
+  syntax:
+    content: >-
+      [TestMethod]
+
+      public void TestRoundTripWithBody()
+    content.vb: >-
+      <TestMethod>
+
+      Public Sub TestRoundTripWithBody()
+  overload: WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute.#ctor
+    arguments: []
+references:
+- uid: WebSockets.Core.Test
+  commentId: N:WebSockets.Core.Test
+  href: WebSockets.html
+  name: WebSockets.Core.Test
+  nameWithType: WebSockets.Core.Test
+  fullName: WebSockets.Core.Test
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Test
+    name: Test
+    href: WebSockets.Core.Test.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody*
+  commentId: Overload:WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody
+  href: WebSockets.Core.Test.TestWebResponse.html#WebSockets_Core_Test_TestWebResponse_TestParseResponseNoBody
+  name: TestParseResponseNoBody
+  nameWithType: TestWebResponse.TestParseResponseNoBody
+  fullName: WebSockets.Core.Test.TestWebResponse.TestParseResponseNoBody
+- uid: WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody*
+  commentId: Overload:WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody
+  href: WebSockets.Core.Test.TestWebResponse.html#WebSockets_Core_Test_TestWebResponse_TestParseResponseWithBody
+  name: TestParseResponseWithBody
+  nameWithType: TestWebResponse.TestParseResponseWithBody
+  fullName: WebSockets.Core.Test.TestWebResponse.TestParseResponseWithBody
+- uid: WebSockets.Core.Test.TestWebResponse.TestRoundTrip*
+  commentId: Overload:WebSockets.Core.Test.TestWebResponse.TestRoundTrip
+  href: WebSockets.Core.Test.TestWebResponse.html#WebSockets_Core_Test_TestWebResponse_TestRoundTrip
+  name: TestRoundTrip
+  nameWithType: TestWebResponse.TestRoundTrip
+  fullName: WebSockets.Core.Test.TestWebResponse.TestRoundTrip
+- uid: WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody*
+  commentId: Overload:WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody
+  href: WebSockets.Core.Test.TestWebResponse.html#WebSockets_Core_Test_TestWebResponse_TestRoundTripWithBody
+  name: TestRoundTripWithBody
+  nameWithType: TestWebResponse.TestRoundTripWithBody
+  fullName: WebSockets.Core.Test.TestWebResponse.TestRoundTripWithBody

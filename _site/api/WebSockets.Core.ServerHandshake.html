@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ServerHandshake | websockets-sansio </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ServerHandshake | websockets-sansio ">
+      
+      <meta name="description" content="The server side of the WebSocket handshake.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/rob-blackbourn/dotnet-websockets/new/docs/apiSpec/new?filename=WebSockets_Core_ServerHandshake.md&amp;value=---%0Auid%3A%20WebSockets.Core.ServerHandshake%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="websockets-sansio">
+            websockets-sansio
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WebSockets.Core.ServerHandshake">
+
+
+
+  <h1 id="WebSockets_Core_ServerHandshake" data-uid="WebSockets.Core.ServerHandshake" class="text-break">
+Class ServerHandshake  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WebSockets.html">WebSockets</a>.<a class="xref" href="WebSockets.Core.html">Core</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>WebSockets.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The server side of the WebSocket handshake.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ServerHandshake : Handshake</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="WebSockets.Core.Handshake.html">Handshake</a></div>
+      <div><span class="xref">ServerHandshake</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_State">Handshake.State</a>
+    </div>
+    <div>
+      <a class="xref" href="WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_SelectedSubProtocol">Handshake.SelectedSubProtocol</a>
+    </div>
+    <div>
+      <a class="xref" href="WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_ReadData_System_Byte___System_Int64__System_Int64_">Handshake.ReadData(byte[], ref long, long)</a>
+    </div>
+    <div>
+      <a class="xref" href="WebSockets.Core.Handshake.html#WebSockets_Core_Handshake_WriteData_System_Byte___System_Int64_System_Int64_">Handshake.WriteData(byte[], long, long)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+  <h2 id="WebSockets_Core_ServerHandshake_examples">Examples</h2>
+  <pre><code class="lang-csharp">using System;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+
+using WebSockets.Core;
+using WebSockets.Core.Messages;
+
+namespace ServerExample
+{
+    class Program
+    {
+        static void Main()
+        {
+            var listener = new TcpListener(IPAddress.Any, 8081);
+            listener.Start();
+            var tcpClient = listener.AcceptTcpClient();
+
+            var stream = client.GetStream();
+            var handshake = new ServerHandshake(subProtocols);
+
+            // Read the client request.
+            WebRequest? webRequest = null;
+            var buffer = new byte[1024];
+            while (webRequest is null)
+            {
+                var bytesRead = stream.Read(buffer);
+                if (bytesRead == 0)
+                    throw new EndOfStreamException();
+                handshake.WriteData(buffer, 0, bytesRead);
+
+                webRequest = handshake.ReadRequest();
+            }
+
+            // Send the response.
+            var webResponse = handshake.CreateWebResponse(webRequest);
+            handshake.WriteResponse(webResponse);
+            bool isDone = false;
+            while (!isDone)
+            {
+                var bytesRead = 0L;
+                _handshake.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                if (bytesRead == 0)
+                    isDone = true;
+                else
+                {
+                    _stream.Write(buffer, 0, (int)bytesRead);
+                    Console.WriteLine("Sent client data");
+                }
+            }
+        }
+    }
+}</code></pre>
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="WebSockets_Core_ServerHandshake__ctor_" data-uid="WebSockets.Core.ServerHandshake.#ctor*"></a>
+
+  <h3 id="WebSockets_Core_ServerHandshake__ctor_System_String___" data-uid="WebSockets.Core.ServerHandshake.#ctor(System.String[])">
+  ServerHandshake(string[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Construct a server handshake object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerHandshake(string[] subProtocols)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>subProtocols</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>The supported sub-protocols.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WebSockets_Core_ServerHandshake_CreateWebResponse_" data-uid="WebSockets.Core.ServerHandshake.CreateWebResponse*"></a>
+
+  <h3 id="WebSockets_Core_ServerHandshake_CreateWebResponse_WebSockets_Core_WebRequest_" data-uid="WebSockets.Core.ServerHandshake.CreateWebResponse(WebSockets.Core.WebRequest)">
+  CreateWebResponse(WebRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create the WebSocket response using the web request.</p>
+<p>If the response is valid an accept/upgrade response is generated.
+An invalid response will generate a 400 response containing the
+reason for the rejection.</p>
+<p>An application may inspect the request and create it's own bad
+response, for example if the path is not valid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebResponse CreateWebResponse(WebRequest webRequest)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webRequest</code> <a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a></dt>
+    <dd><p>The request from the client.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WebSockets.Core.WebResponse.html">WebResponse</a></dt>
+    <dd><p>The response to be sent to the client.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WebSockets_Core_ServerHandshake_ReadRequest_" data-uid="WebSockets.Core.ServerHandshake.ReadRequest*"></a>
+
+  <h3 id="WebSockets_Core_ServerHandshake_ReadRequest" data-uid="WebSockets.Core.ServerHandshake.ReadRequest">
+  ReadRequest()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Read a <a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a> from the protocol.</p>
+<p>The request will be available when all of the request bytes have been received.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebRequest? ReadRequest()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a></dt>
+    <dd><p>A <a class="xref" href="WebSockets.Core.WebRequest.html">WebRequest</a> if the complete message has been received; otherwise null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WebSockets_Core_ServerHandshake_WriteResponse_" data-uid="WebSockets.Core.ServerHandshake.WriteResponse*"></a>
+
+  <h3 id="WebSockets_Core_ServerHandshake_WriteResponse_WebSockets_Core_WebResponse_" data-uid="WebSockets.Core.ServerHandshake.WriteResponse(WebSockets.Core.WebResponse)">
+  WriteResponse(WebResponse)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Write a web response to the handshake buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteResponse(WebResponse webResponse)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webResponse</code> <a class="xref" href="WebSockets.Core.WebResponse.html">WebResponse</a></dt>
+    <dd><p>The response to send to the client.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/rob-blackbourn/dotnet-websockets/blob/docs/src/WebSockets.Core/ServerHandshake.cs/#L66" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,649 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.MessageProtocol
+  commentId: T:WebSockets.Core.MessageProtocol
+  id: MessageProtocol
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  - WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)
+  - WebSockets.Core.MessageProtocol.ReadMessage
+  - WebSockets.Core.MessageProtocol.State
+  - WebSockets.Core.MessageProtocol.WriteData(System.Byte[],System.Int64,System.Int64)
+  - WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)
+  langs:
+  - csharp
+  - vb
+  name: MessageProtocol
+  nameWithType: MessageProtocol
+  fullName: WebSockets.Core.MessageProtocol
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: MessageProtocol
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 12
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: >-
+    The base protocol class providing functionality shared by both clients
+
+    and servers.
+  example: []
+  syntax:
+    content: public class MessageProtocol
+    content.vb: Public Class MessageProtocol
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  commentId: M:WebSockets.Core.MessageProtocol.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: MessageProtocol(bool)
+  nameWithType: MessageProtocol.MessageProtocol(bool)
+  fullName: WebSockets.Core.MessageProtocol.MessageProtocol(bool)
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 19
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public MessageProtocol(bool isClient)
+    parameters:
+    - id: isClient
+      type: System.Boolean
+    content.vb: Public Sub New(isClient As Boolean)
+  overload: WebSockets.Core.MessageProtocol.#ctor*
+  nameWithType.vb: MessageProtocol.New(Boolean)
+  fullName.vb: WebSockets.Core.MessageProtocol.New(Boolean)
+  name.vb: New(Boolean)
+- uid: WebSockets.Core.MessageProtocol.State
+  commentId: P:WebSockets.Core.MessageProtocol.State
+  id: State
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: State
+  nameWithType: MessageProtocol.State
+  fullName: WebSockets.Core.MessageProtocol.State
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: State
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 42
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The state of the protocol.
+  example: []
+  syntax:
+    content: public ProtocolState State { get; protected set; }
+    parameters: []
+    return:
+      type: WebSockets.Core.ProtocolState
+      description: The protocol state.
+    content.vb: Public Property State As ProtocolState
+  overload: WebSockets.Core.MessageProtocol.State*
+- uid: WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)
+  commentId: M:WebSockets.Core.MessageProtocol.ReadData(System.Byte[],System.Int64@,System.Int64)
+  id: ReadData(System.Byte[],System.Int64@,System.Int64)
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: ReadData(byte[], ref long, long)
+  nameWithType: MessageProtocol.ReadData(byte[], ref long, long)
+  fullName: WebSockets.Core.MessageProtocol.ReadData(byte[], ref long, long)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ReadData
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 51
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Read data from the protocol.
+  example: []
+  syntax:
+    content: public bool ReadData(byte[] destination, ref long offset, long length)
+    parameters:
+    - id: destination
+      type: System.Byte[]
+      description: The array to which the data should be written.
+    - id: offset
+      type: System.Int64
+      description: The offset in the array to start writing the data.
+    - id: length
+      type: System.Int64
+      description: The length of the array.
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Function ReadData(destination As Byte(), offset As Long, length As Long) As Boolean
+  overload: WebSockets.Core.MessageProtocol.ReadData*
+  nameWithType.vb: MessageProtocol.ReadData(Byte(), Long, Long)
+  fullName.vb: WebSockets.Core.MessageProtocol.ReadData(Byte(), Long, Long)
+  name.vb: ReadData(Byte(), Long, Long)
+- uid: WebSockets.Core.MessageProtocol.WriteData(System.Byte[],System.Int64,System.Int64)
+  commentId: M:WebSockets.Core.MessageProtocol.WriteData(System.Byte[],System.Int64,System.Int64)
+  id: WriteData(System.Byte[],System.Int64,System.Int64)
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: WriteData(byte[], long, long)
+  nameWithType: MessageProtocol.WriteData(byte[], long, long)
+  fullName: WebSockets.Core.MessageProtocol.WriteData(byte[], long, long)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: WriteData
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 62
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Write data to the protocol.
+  example: []
+  syntax:
+    content: public void WriteData(byte[] source, long offset, long length)
+    parameters:
+    - id: source
+      type: System.Byte[]
+      description: The data to write.
+    - id: offset
+      type: System.Int64
+      description: The offset from which the data should be written.
+    - id: length
+      type: System.Int64
+      description: The available length of the data.
+    content.vb: Public Sub WriteData(source As Byte(), offset As Long, length As Long)
+  overload: WebSockets.Core.MessageProtocol.WriteData*
+  nameWithType.vb: MessageProtocol.WriteData(Byte(), Long, Long)
+  fullName.vb: WebSockets.Core.MessageProtocol.WriteData(Byte(), Long, Long)
+  name.vb: WriteData(Byte(), Long, Long)
+- uid: WebSockets.Core.MessageProtocol.ReadMessage
+  commentId: M:WebSockets.Core.MessageProtocol.ReadMessage
+  id: ReadMessage
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: ReadMessage()
+  nameWithType: MessageProtocol.ReadMessage()
+  fullName: WebSockets.Core.MessageProtocol.ReadMessage()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ReadMessage
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 83
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Read a message from the protocol.
+  example: []
+  syntax:
+    content: public Message? ReadMessage()
+    return:
+      type: WebSockets.Core.Messages.Message
+      description: If there is a complete message the message is returned, otherwise null.
+    content.vb: Public Function ReadMessage() As Message
+  overload: WebSockets.Core.MessageProtocol.ReadMessage*
+- uid: WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)
+  commentId: M:WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)
+  id: WriteMessage(WebSockets.Core.Messages.Message)
+  parent: WebSockets.Core.MessageProtocol
+  langs:
+  - csharp
+  - vb
+  name: WriteMessage(Message)
+  nameWithType: MessageProtocol.WriteMessage(Message)
+  fullName: WebSockets.Core.MessageProtocol.WriteMessage(WebSockets.Core.Messages.Message)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/MessageProtocol.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: WriteMessage
+    path: src/WebSockets.Core/MessageProtocol.cs
+    startLine: 112
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Write a message to the protocol.
+  example: []
+  syntax:
+    content: public void WriteMessage(Message message)
+    parameters:
+    - id: message
+      type: WebSockets.Core.Messages.Message
+      description: The message to write.
+    content.vb: Public Sub WriteMessage(message As Message)
+  overload: WebSockets.Core.MessageProtocol.WriteMessage*
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.MessageProtocol.#ctor*
+  commentId: Overload:WebSockets.Core.MessageProtocol.#ctor
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol__ctor_System_Boolean_
+  name: MessageProtocol
+  nameWithType: MessageProtocol.MessageProtocol
+  fullName: WebSockets.Core.MessageProtocol.MessageProtocol
+  nameWithType.vb: MessageProtocol.New
+  fullName.vb: WebSockets.Core.MessageProtocol.New
+  name.vb: New
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: WebSockets.Core.MessageProtocol.State*
+  commentId: Overload:WebSockets.Core.MessageProtocol.State
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_State
+  name: State
+  nameWithType: MessageProtocol.State
+  fullName: WebSockets.Core.MessageProtocol.State
+- uid: WebSockets.Core.ProtocolState
+  commentId: T:WebSockets.Core.ProtocolState
+  parent: WebSockets.Core
+  href: WebSockets.Core.ProtocolState.html
+  name: ProtocolState
+  nameWithType: ProtocolState
+  fullName: WebSockets.Core.ProtocolState
+- uid: WebSockets.Core.MessageProtocol.ReadData*
+  commentId: Overload:WebSockets.Core.MessageProtocol.ReadData
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_ReadData_System_Byte___System_Int64__System_Int64_
+  name: ReadData
+  nameWithType: MessageProtocol.ReadData
+  fullName: WebSockets.Core.MessageProtocol.ReadData
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: WebSockets.Core.MessageProtocol.WriteData*
+  commentId: Overload:WebSockets.Core.MessageProtocol.WriteData
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_WriteData_System_Byte___System_Int64_System_Int64_
+  name: WriteData
+  nameWithType: MessageProtocol.WriteData
+  fullName: WebSockets.Core.MessageProtocol.WriteData
+- uid: WebSockets.Core.MessageProtocol.ReadMessage*
+  commentId: Overload:WebSockets.Core.MessageProtocol.ReadMessage
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_ReadMessage
+  name: ReadMessage
+  nameWithType: MessageProtocol.ReadMessage
+  fullName: WebSockets.Core.MessageProtocol.ReadMessage
+- uid: WebSockets.Core.Messages.Message
+  commentId: T:WebSockets.Core.Messages.Message
+  parent: WebSockets.Core.Messages
+  href: WebSockets.Core.Messages.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: WebSockets.Core.Messages.Message
+- uid: WebSockets.Core.Messages
+  commentId: N:WebSockets.Core.Messages
+  href: WebSockets.html
+  name: WebSockets.Core.Messages
+  nameWithType: WebSockets.Core.Messages
+  fullName: WebSockets.Core.Messages
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Messages
+    name: Messages
+    href: WebSockets.Core.Messages.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  - name: .
+  - uid: WebSockets.Core.Messages
+    name: Messages
+    href: WebSockets.Core.Messages.html
+- uid: WebSockets.Core.MessageProtocol.WriteMessage*
+  commentId: Overload:WebSockets.Core.MessageProtocol.WriteMessage
+  href: WebSockets.Core.MessageProtocol.html#WebSockets_Core_MessageProtocol_WriteMessage_WebSockets_Core_Messages_Message_
+  name: WriteMessage
+  nameWithType: MessageProtocol.WriteMessage
+  fullName: WebSockets.Core.MessageProtocol.WriteMessage

@@ -1,0 +1,141 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.HandshakeState
+  commentId: T:WebSockets.Core.HandshakeState
+  id: HandshakeState
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.HandshakeState.Failed
+  - WebSockets.Core.HandshakeState.Pending
+  - WebSockets.Core.HandshakeState.Succeeded
+  langs:
+  - csharp
+  - vb
+  name: HandshakeState
+  nameWithType: HandshakeState
+  fullName: WebSockets.Core.HandshakeState
+  type: Enum
+  source:
+    remote:
+      path: src/WebSockets.Core/HandshakeState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: HandshakeState
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 5
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The state of the handshake.
+  example: []
+  syntax:
+    content: public enum HandshakeState
+    content.vb: Public Enum HandshakeState
+- uid: WebSockets.Core.HandshakeState.Pending
+  commentId: F:WebSockets.Core.HandshakeState.Pending
+  id: Pending
+  parent: WebSockets.Core.HandshakeState
+  langs:
+  - csharp
+  - vb
+  name: Pending
+  nameWithType: HandshakeState.Pending
+  fullName: WebSockets.Core.HandshakeState.Pending
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/HandshakeState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Pending
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 7
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Pending = 0
+    return:
+      type: WebSockets.Core.HandshakeState
+- uid: WebSockets.Core.HandshakeState.Succeeded
+  commentId: F:WebSockets.Core.HandshakeState.Succeeded
+  id: Succeeded
+  parent: WebSockets.Core.HandshakeState
+  langs:
+  - csharp
+  - vb
+  name: Succeeded
+  nameWithType: HandshakeState.Succeeded
+  fullName: WebSockets.Core.HandshakeState.Succeeded
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/HandshakeState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Succeeded
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 8
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Succeeded = 1
+    return:
+      type: WebSockets.Core.HandshakeState
+- uid: WebSockets.Core.HandshakeState.Failed
+  commentId: F:WebSockets.Core.HandshakeState.Failed
+  id: Failed
+  parent: WebSockets.Core.HandshakeState
+  langs:
+  - csharp
+  - vb
+  name: Failed
+  nameWithType: HandshakeState.Failed
+  fullName: WebSockets.Core.HandshakeState.Failed
+  type: Field
+  source:
+    remote:
+      path: src/WebSockets.Core/HandshakeState.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Failed
+    path: src/WebSockets.Core/HandshakeState.cs
+    startLine: 9
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: Failed = 2
+    return:
+      type: WebSockets.Core.HandshakeState
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: WebSockets.Core.HandshakeState
+  commentId: T:WebSockets.Core.HandshakeState
+  parent: WebSockets.Core
+  href: WebSockets.Core.HandshakeState.html
+  name: HandshakeState
+  nameWithType: HandshakeState
+  fullName: WebSockets.Core.HandshakeState

@@ -1,0 +1,877 @@
+### YamlMime:ManagedReference
+items:
+- uid: WebSockets.Core.WebRequest
+  commentId: T:WebSockets.Core.WebRequest
+  id: WebRequest
+  parent: WebSockets.Core
+  children:
+  - WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  - WebSockets.Core.WebRequest.Body
+  - WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  - WebSockets.Core.WebRequest.Headers
+  - WebSockets.Core.WebRequest.Parse(System.Byte[])
+  - WebSockets.Core.WebRequest.Path
+  - WebSockets.Core.WebRequest.ToString
+  - WebSockets.Core.WebRequest.Verb
+  - WebSockets.Core.WebRequest.Version
+  langs:
+  - csharp
+  - vb
+  name: WebRequest
+  nameWithType: WebRequest
+  fullName: WebSockets.Core.WebRequest
+  type: Class
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: WebRequest
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 11
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: A class modelling the required values of a WebSocket HTTP request.
+  example: []
+  syntax:
+    content: public class WebRequest
+    content.vb: Public Class WebRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  commentId: M:WebSockets.Core.WebRequest.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])
+  id: '#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}},System.Byte[])'
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  nameWithType: WebRequest.WebRequest(string, string, string, IDictionary<string, IList<string>>, byte[]?)
+  fullName: WebSockets.Core.WebRequest.WebRequest(string, string, string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>, byte[]?)
+  type: Constructor
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: .ctor
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 23
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Construct a web request.
+  example: []
+  syntax:
+    content: public WebRequest(string verb, string path, string version, IDictionary<string, IList<string>> headers, byte[]? body)
+    parameters:
+    - id: verb
+      type: System.String
+      description: The verb (GET, POST, etc).
+    - id: path
+      type: System.String
+      description: The server path.
+    - id: version
+      type: System.String
+      description: The HTTP version.
+    - id: headers
+      type: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+      description: The headers.
+    - id: body
+      type: System.Byte[]
+      description: An optional body.
+    content.vb: Public Sub New(verb As String, path As String, version As String, headers As IDictionary(Of String, IList(Of String)), body As Byte())
+  overload: WebSockets.Core.WebRequest.#ctor*
+  nameWithType.vb: WebRequest.New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
+  fullName.vb: WebSockets.Core.WebRequest.New(String, String, String, System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String)), Byte())
+  name.vb: New(String, String, String, IDictionary(Of String, IList(Of String)), Byte())
+- uid: WebSockets.Core.WebRequest.Verb
+  commentId: P:WebSockets.Core.WebRequest.Verb
+  id: Verb
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Verb
+  nameWithType: WebRequest.Verb
+  fullName: WebSockets.Core.WebRequest.Verb
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Verb
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 41
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The HTTP verb.
+  example: []
+  syntax:
+    content: public string Verb { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The verb.
+    content.vb: Public Property Verb As String
+  overload: WebSockets.Core.WebRequest.Verb*
+- uid: WebSockets.Core.WebRequest.Path
+  commentId: P:WebSockets.Core.WebRequest.Path
+  id: Path
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: WebRequest.Path
+  fullName: WebSockets.Core.WebRequest.Path
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Path
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 46
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The server path.
+  example: []
+  syntax:
+    content: public string Path { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The path for the server.
+    content.vb: Public Property Path As String
+  overload: WebSockets.Core.WebRequest.Path*
+- uid: WebSockets.Core.WebRequest.Version
+  commentId: P:WebSockets.Core.WebRequest.Version
+  id: Version
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: WebRequest.Version
+  fullName: WebSockets.Core.WebRequest.Version
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Version
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 51
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: The HTTP version.
+  example: []
+  syntax:
+    content: public string Version { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The version.
+    content.vb: Public Property Version As String
+  overload: WebSockets.Core.WebRequest.Version*
+- uid: WebSockets.Core.WebRequest.Headers
+  commentId: P:WebSockets.Core.WebRequest.Headers
+  id: Headers
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Headers
+  nameWithType: WebRequest.Headers
+  fullName: WebSockets.Core.WebRequest.Headers
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Headers
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 58
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: >-
+    The HTTP Headers.
+
+
+    Note: header keys are case insensitive.
+  example: []
+  syntax:
+    content: public IDictionary<string, IList<string>> Headers { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+      description: The headers.
+    content.vb: Public Property Headers As IDictionary(Of String, IList(Of String))
+  overload: WebSockets.Core.WebRequest.Headers*
+- uid: WebSockets.Core.WebRequest.Body
+  commentId: P:WebSockets.Core.WebRequest.Body
+  id: Body
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Body
+  nameWithType: WebRequest.Body
+  fullName: WebSockets.Core.WebRequest.Body
+  type: Property
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Body
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 59
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public byte[]? Body { get; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: Public ReadOnly Property Body As Byte()
+  overload: WebSockets.Core.WebRequest.Body*
+- uid: WebSockets.Core.WebRequest.Parse(System.Byte[])
+  commentId: M:WebSockets.Core.WebRequest.Parse(System.Byte[])
+  id: Parse(System.Byte[])
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: Parse(byte[])
+  nameWithType: WebRequest.Parse(byte[])
+  fullName: WebSockets.Core.WebRequest.Parse(byte[])
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: Parse
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 61
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static WebRequest Parse(byte[] data)
+    parameters:
+    - id: data
+      type: System.Byte[]
+    return:
+      type: WebSockets.Core.WebRequest
+    content.vb: Public Shared Function Parse(data As Byte()) As WebRequest
+  overload: WebSockets.Core.WebRequest.Parse*
+  nameWithType.vb: WebRequest.Parse(Byte())
+  fullName.vb: WebSockets.Core.WebRequest.Parse(Byte())
+  name.vb: Parse(Byte())
+- uid: WebSockets.Core.WebRequest.ToString
+  commentId: M:WebSockets.Core.WebRequest.ToString
+  id: ToString
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: WebRequest.ToString()
+  fullName: WebSockets.Core.WebRequest.ToString()
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: ToString
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 109
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: WebSockets.Core.WebRequest.ToString*
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  commentId: M:WebSockets.Core.WebRequest.CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  id: CreateUpgradeRequest(System.String,System.String,System.String,System.String,System.String[])
+  parent: WebSockets.Core.WebRequest
+  langs:
+  - csharp
+  - vb
+  name: CreateUpgradeRequest(string, string, string, string, string[]?)
+  nameWithType: WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest(string, string, string, string, string[]?)
+  type: Method
+  source:
+    remote:
+      path: src/WebSockets.Core/WebRequest.cs
+      branch: docs
+      repo: git@github.com:rob-blackbourn/dotnet-websockets.git
+    id: CreateUpgradeRequest
+    path: src/WebSockets.Core/WebRequest.cs
+    startLine: 126
+  assemblies:
+  - WebSockets.Core
+  namespace: WebSockets.Core
+  syntax:
+    content: public static WebRequest CreateUpgradeRequest(string path, string host, string origin, string key, string[]? subProtocols)
+    parameters:
+    - id: path
+      type: System.String
+    - id: host
+      type: System.String
+    - id: origin
+      type: System.String
+    - id: key
+      type: System.String
+    - id: subProtocols
+      type: System.String[]
+    return:
+      type: WebSockets.Core.WebRequest
+    content.vb: Public Shared Function CreateUpgradeRequest(path As String, host As String, origin As String, key As String, subProtocols As String()) As WebRequest
+  overload: WebSockets.Core.WebRequest.CreateUpgradeRequest*
+  nameWithType.vb: WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+  fullName.vb: WebSockets.Core.WebRequest.CreateUpgradeRequest(String, String, String, String, String())
+  name.vb: CreateUpgradeRequest(String, String, String, String, String())
+references:
+- uid: WebSockets.Core
+  commentId: N:WebSockets.Core
+  href: WebSockets.html
+  name: WebSockets.Core
+  nameWithType: WebSockets.Core
+  fullName: WebSockets.Core
+  spec.csharp:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+  spec.vb:
+  - uid: WebSockets
+    name: WebSockets
+    href: WebSockets.html
+  - name: .
+  - uid: WebSockets.Core
+    name: Core
+    href: WebSockets.Core.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: WebSockets.Core.WebRequest.#ctor*
+  commentId: Overload:WebSockets.Core.WebRequest.#ctor
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest__ctor_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Collections_Generic_IList_System_String___System_Byte___
+  name: WebRequest
+  nameWithType: WebRequest.WebRequest
+  fullName: WebSockets.Core.WebRequest.WebRequest
+  nameWithType.vb: WebRequest.New
+  fullName.vb: WebSockets.Core.WebRequest.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, IList<string>>
+  nameWithType: IDictionary<string, IList<string>>
+  fullName: System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>
+  nameWithType.vb: IDictionary(Of String, IList(Of String))
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, System.Collections.Generic.IList(Of String))
+  name.vb: IDictionary(Of String, IList(Of String))
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: WebSockets.Core.WebRequest.Verb*
+  commentId: Overload:WebSockets.Core.WebRequest.Verb
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Verb
+  name: Verb
+  nameWithType: WebRequest.Verb
+  fullName: WebSockets.Core.WebRequest.Verb
+- uid: WebSockets.Core.WebRequest.Path*
+  commentId: Overload:WebSockets.Core.WebRequest.Path
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Path
+  name: Path
+  nameWithType: WebRequest.Path
+  fullName: WebSockets.Core.WebRequest.Path
+- uid: WebSockets.Core.WebRequest.Version*
+  commentId: Overload:WebSockets.Core.WebRequest.Version
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Version
+  name: Version
+  nameWithType: WebRequest.Version
+  fullName: WebSockets.Core.WebRequest.Version
+- uid: WebSockets.Core.WebRequest.Headers*
+  commentId: Overload:WebSockets.Core.WebRequest.Headers
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Headers
+  name: Headers
+  nameWithType: WebRequest.Headers
+  fullName: WebSockets.Core.WebRequest.Headers
+- uid: WebSockets.Core.WebRequest.Body*
+  commentId: Overload:WebSockets.Core.WebRequest.Body
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Body
+  name: Body
+  nameWithType: WebRequest.Body
+  fullName: WebSockets.Core.WebRequest.Body
+- uid: WebSockets.Core.WebRequest.Parse*
+  commentId: Overload:WebSockets.Core.WebRequest.Parse
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_Parse_System_Byte___
+  name: Parse
+  nameWithType: WebRequest.Parse
+  fullName: WebSockets.Core.WebRequest.Parse
+- uid: WebSockets.Core.WebRequest
+  commentId: T:WebSockets.Core.WebRequest
+  parent: WebSockets.Core
+  href: WebSockets.Core.WebRequest.html
+  name: WebRequest
+  nameWithType: WebRequest
+  fullName: WebSockets.Core.WebRequest
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: WebSockets.Core.WebRequest.ToString*
+  commentId: Overload:WebSockets.Core.WebRequest.ToString
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_ToString
+  name: ToString
+  nameWithType: WebRequest.ToString
+  fullName: WebSockets.Core.WebRequest.ToString
+- uid: WebSockets.Core.WebRequest.CreateUpgradeRequest*
+  commentId: Overload:WebSockets.Core.WebRequest.CreateUpgradeRequest
+  href: WebSockets.Core.WebRequest.html#WebSockets_Core_WebRequest_CreateUpgradeRequest_System_String_System_String_System_String_System_String_System_String___
+  name: CreateUpgradeRequest
+  nameWithType: WebRequest.CreateUpgradeRequest
+  fullName: WebSockets.Core.WebRequest.CreateUpgradeRequest
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
