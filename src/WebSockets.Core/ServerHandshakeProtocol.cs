@@ -4,7 +4,7 @@ using System.Linq;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// The server side of the WebSocket handshake.
+    /// The server side of the WebSocket handshake protocol.
     /// </summary>
     public class ServerHandshakeProtocol : HandshakeProtocol
     {

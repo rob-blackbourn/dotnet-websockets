@@ -4,7 +4,7 @@ using System.Text;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// The client side of the WebSocket handshake.
+    /// The client side of the WebSocket handshake protocol.
     /// </summary>
     public class ClientHandshakeProtocol : HandshakeProtocol
     {

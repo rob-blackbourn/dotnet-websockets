@@ -5,8 +5,8 @@ using System.Text;
 namespace WebSockets.Core
 {
     /// <summary>
-    /// The base protocol class providing functionality shared by both clients
-    /// and servers.
+    /// The base handshake protocol class providing functionality shared by both
+    /// clients and servers.
     /// </summary>
     public abstract class HandshakeProtocol
     {
