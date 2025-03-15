@@ -43,8 +43,8 @@ namespace WebSockets.Core
         /// <summary>
         /// Create the WebSocket response using the web request.
         /// 
-        /// If the response is valid an accept/upgrade response is generated.
-        /// An invalid response will generate a 400 response containing the
+        /// If the request is valid an accept/upgrade response is generated.
+        /// An invalid request will generate a 400 response containing the
         /// reason for the rejection.
         /// 
         /// An application may inspect the request and create it's own bad
@@ -74,10 +74,13 @@ namespace WebSockets.Core
         {
             var data = webResponse.ToBytes();
             WriteData(data, 0, data.Length);
-            State = webResponse.Code == 101 ? HandshakeProtocolState.Succeeded : HandshakeProtocolState.Failed;
+            State = webResponse.Code == 101
+                ? HandshakeProtocolState.Succeeded
+                : HandshakeProtocolState.Failed;
         }
 
-        private (string responseKey, string? subProtocol) ProcessRequest(WebRequest webRequest)
+        private (string responseKey, string? subProtocol) ProcessRequest(
+            WebRequest webRequest)
         {
             if (webRequest.Verb != "GET")
                 throw new InvalidDataException("Expected GET request");
