@@ -49,10 +49,10 @@ namespace WebSockets.Core
         /// <param name="destination">The buffer containing the data.</param>
         /// <param name="offset">The offset into the buffer.</param>
         /// <param name="length">The length of the data.</param>
-        public void ReadData(byte[] destination, ref long offset, long length)
+        public long ReadData(byte[] destination, long offset, long length)
         {
             // TODO: Doesn't support offset and length.
-            offset = _buffer.Read(destination);
+            return _buffer.Read(destination);
             // TODO: Doesn't return bool.
         }
 

@@ -24,8 +24,7 @@ namespace WebSockets.Core.Test
             var isDone = false;
             while (!isDone)
             {
-                var bytesRead = 0L;
-                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = clientProtocol.ReadData(buffer, 0L, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -39,8 +38,7 @@ namespace WebSockets.Core.Test
             isDone = false;
             while (!isDone)
             {
-                var bytesRead = 0L;
-                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = serverProtocol.ReadData(buffer, 0, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -77,8 +75,7 @@ namespace WebSockets.Core.Test
             var isDone = false;
             while (!isDone)
             {
-                var bytesRead = 0L;
-                clientProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = clientProtocol.ReadData(buffer, 0L, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
@@ -92,8 +89,7 @@ namespace WebSockets.Core.Test
             isDone = false;
             while (!isDone)
             {
-                var bytesRead = 0L;
-                serverProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = serverProtocol.ReadData(buffer, 0L, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else

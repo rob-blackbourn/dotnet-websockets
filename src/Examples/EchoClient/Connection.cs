@@ -153,8 +153,7 @@ namespace EchoClient
             var isDone = false;
             while (!isDone)
             {
-                var bytesRead = 0L;
-                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = _handshakeProtocol.ReadData(buffer, 0L, buffer.LongLength);
                 if (bytesRead == 0)
                     isDone = true;
                 else
