@@ -27,27 +27,34 @@ namespace EchoClient
 
         private void SendHandshakeRequest()
         {
-            Console.WriteLine("Sending handshake request");
             _handshakeProtocol.WriteRequest("/chat", "www.example.com");
 
             var buffer = new byte[1024];
-            var isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = 0L;
-                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = _handshakeProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    _stream.Write(buffer, 0, (int)bytesRead);
+                    break;
+
+                _stream.Write(buffer, 0, (int)bytesRead);
             }
         }
+
+        ...
+    }
+}
 
 ```
 
 The server receives the request and returns a result.
 
 ```csharp
+using System;
+using System.IO;
+using System.Net.Sockets;
+
+using WebSockets.Core;
+
 namespace EchoServer
 {
     class Connection
@@ -55,10 +62,10 @@ namespace EchoServer
         private readonly Stream _stream;
         private readonly ServerHandshakeProtocol _handshakeProtocol;
 
+        ...
+
         private void ReceiveHandshakeRequest()
         {
-            Console.WriteLine("Receiving handshake request");
-
             WebRequest? webRequest = null;
             var buffer = new byte[1024];
             while (webRequest is null)
@@ -78,23 +85,18 @@ namespace EchoServer
 
         private void SendHandshakeResponse()
         {
-            Console.WriteLine("Sending handshake response");
-
-            bool isDone = false;
-            while (!isDone)
+            var buffer = new byte[1024];
+            while (true)
             {
-                var buffer = new byte[1024];
-                var bytesRead = 0L;
-                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = _handshakeProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                {
-                    _stream.Write(buffer, 0, (int)bytesRead);
-                    Console.WriteLine("Sent client data");
-                }
+                    break;
+
+                _stream.Write(buffer, 0, (int)bytesRead);
             }
         }
+
+        ...
     }
 }
 ```
@@ -120,24 +122,20 @@ namespace EchoClient
 
         private WebResponse? ReceiveHandshakeResponse()
         {
-            Console.WriteLine("Receiving handshake response");
             var buffer = new byte[1024];
-            var offset = 0L;
-            var isDone = false;
-            while (!isDone)
+            WebResponse? webResponse = null;
+            while (webResponse is null)
             {
                 var bytesRead = _stream.Read(buffer);
-                _handshakeProtocol.WriteData(
-                    buffer,
-                    offset,
-                    bytesRead);
-                if (offset == bytesRead)
-                    offset = 0;
-                isDone = _handshakeProtocol.ReadResponse() is not null;
+                _handshakeProtocol.WriteData(buffer, 0, bytesRead);
+                webResponse = _handshakeProtocol.ReadResponse();
             }
 
-            return _handshakeProtocol.ReadResponse();
+            return webResponse;
         }
+
+        ...
+        
     }
 }
 ```

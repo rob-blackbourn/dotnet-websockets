@@ -132,18 +132,15 @@ namespace EchoServer
         {
             Console.WriteLine("Sending handshake response");
 
-            bool isDone = false;
-            while (!isDone)
+            var buffer = new byte[1024];
+            while (true)
             {
-                var buffer = new byte[1024];
                 var bytesRead = _handshakeProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                {
-                    _stream.Write(buffer, 0, (int)bytesRead);
-                    Console.WriteLine("Sent client data");
-                }
+                    break;
+
+                _stream.Write(buffer, 0, (int)bytesRead);
+                Console.WriteLine("Sent client data");
             }
         }
 
