@@ -29,14 +29,18 @@ namespace WebSockets.Core
 
         public long Read(T[] destination)
         {
-            var offset = 0L;
-            while (offset < destination.LongLength && _buffer.Count > 0)
+            return Read(destination, 0, destination.LongLength);
+        }
+
+        public long Read(T[] destination, long offset, long length)
+        {
+            while (offset < length && _buffer.Count > 0)
             {
                 var last = _buffer.Last;
                 if (last == null)
                     break;
 
-                var bytesRequired = destination.Length - offset;
+                var bytesRequired = length - offset;
 
                 if (last.Value.Buffer == null)
                 {
@@ -75,8 +79,8 @@ namespace WebSockets.Core
 
         public void ReadExactly(T[] buffer)
         {
-            var TsRead = Read(buffer);
-            if (TsRead != buffer.LongLength)
+            var bytesRead = Read(buffer, 0L, buffer.LongLength);
+            if (bytesRead != buffer.LongLength)
                 throw new EndOfStreamException();
         }
 

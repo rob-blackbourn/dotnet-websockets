@@ -73,7 +73,7 @@ namespace WebSockets.Core
         public void WriteResponse(WebResponse webResponse)
         {
             var data = webResponse.ToBytes();
-            WriteData(data, 0, data.Length);
+            WriteData(data);
             State = webResponse.Code == 101
                 ? HandshakeProtocolState.Succeeded
                 : HandshakeProtocolState.Failed;

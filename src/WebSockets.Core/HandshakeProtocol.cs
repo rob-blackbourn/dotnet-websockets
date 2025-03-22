@@ -51,9 +51,16 @@ namespace WebSockets.Core
         /// <param name="length">The length of the data.</param>
         public long ReadData(byte[] destination, long offset, long length)
         {
-            // TODO: Doesn't support offset and length.
-            return _buffer.Read(destination);
-            // TODO: Doesn't return bool.
+            return _buffer.Read(destination, offset, length);
+        }
+
+        /// <summary>
+        /// Read handshake data from the handshake buffer into the array.
+        /// </summary>
+        /// <param name="destination">The buffer containing the data.</param>
+        public long ReadData(byte[] destination)
+        {
+            return ReadData(destination, 0, destination.LongLength);
         }
 
         /// <summary>
@@ -65,6 +72,11 @@ namespace WebSockets.Core
         public void WriteData(byte[] source, long offset, long length)
         {
             _buffer.Write(source, offset, length);
+        }
+
+        public void WriteData(byte[] source)
+        {
+            WriteData(source, 0, source.LongLength);
         }
 
         private protected static string CreateResponseKey(string requestKey)

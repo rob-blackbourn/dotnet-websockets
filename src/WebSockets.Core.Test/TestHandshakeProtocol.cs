@@ -21,28 +21,26 @@ namespace WebSockets.Core.Test
             clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
-            var isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = clientProtocol.ReadData(buffer, 0L, buffer.LongLength);
+                var bytesRead = clientProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
+                    break;
+
+                serverProtocol.WriteData(buffer, 0, bytesRead);
             }
 
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
             serverProtocol.WriteResponse(serverProtocol.CreateWebResponse(webRequest));
 
-            isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = serverProtocol.ReadData(buffer, 0, buffer.LongLength);
+                var bytesRead = serverProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
+                    break;
+
+                clientProtocol.WriteData(buffer, 0, bytesRead);
             }
 
             var webResponse = clientProtocol.ReadResponse();
@@ -72,28 +70,26 @@ namespace WebSockets.Core.Test
             clientProtocol.WriteRequest("/chat", "www.mordor.com");
 
             var buffer = new byte[1024];
-            var isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = clientProtocol.ReadData(buffer, 0L, buffer.LongLength);
+                var bytesRead = clientProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    serverProtocol.WriteData(buffer, 0, (int)bytesRead);
+                    break;
+
+                serverProtocol.WriteData(buffer, 0, bytesRead);
             }
 
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
             serverProtocol.WriteResponse(WebResponse.CreateErrorResponse("invalid path", dateTimeProvider.Now));
 
-            isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = serverProtocol.ReadData(buffer, 0L, buffer.LongLength);
+                var bytesRead = serverProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    clientProtocol.WriteData(buffer, 0, (int)bytesRead);
+                    break;
+
+                clientProtocol.WriteData(buffer, 0, bytesRead);
             }
 
             var webResponse = clientProtocol.ReadResponse();

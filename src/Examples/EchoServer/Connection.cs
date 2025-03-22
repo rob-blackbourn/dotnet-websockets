@@ -136,8 +136,7 @@ namespace EchoServer
             while (!isDone)
             {
                 var buffer = new byte[1024];
-                var bytesRead = 0L;
-                _handshakeProtocol.ReadData(buffer, ref bytesRead, buffer.LongLength);
+                var bytesRead = _handshakeProtocol.ReadData(buffer);
                 if (bytesRead == 0)
                     isDone = true;
                 else

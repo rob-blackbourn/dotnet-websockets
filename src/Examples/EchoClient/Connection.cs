@@ -150,14 +150,13 @@ namespace EchoClient
             _handshakeProtocol.WriteRequest("/chat", "www.example.com");
 
             var buffer = new byte[1024];
-            var isDone = false;
-            while (!isDone)
+            while (true)
             {
-                var bytesRead = _handshakeProtocol.ReadData(buffer, 0L, buffer.LongLength);
+                var bytesRead = _handshakeProtocol.ReadData(buffer);
                 if (bytesRead == 0)
-                    isDone = true;
-                else
-                    _stream.Write(buffer, 0, (int)bytesRead);
+                    break;
+
+                _stream.Write(buffer, 0, (int)bytesRead);
             }
         }
 
@@ -165,18 +164,15 @@ namespace EchoClient
         {
             Console.WriteLine("Receiving handshake response");
             var buffer = new byte[1024];
-            var offset = 0L;
-            var isDone = false;
-            while (!isDone)
+            WebResponse? webResponse = null;
+            while (webResponse is null)
             {
                 var bytesRead = _stream.Read(buffer);
-                _handshakeProtocol.WriteData(buffer, offset, bytesRead);
-                if (offset == bytesRead)
-                    offset = 0;
-                isDone = _handshakeProtocol.ReadResponse() is not null;
+                _handshakeProtocol.WriteData(buffer, 0, bytesRead);
+                webResponse = _handshakeProtocol.ReadResponse();
             }
 
-            return _handshakeProtocol.ReadResponse();
+            return webResponse;
         }
     }
 }

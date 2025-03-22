@@ -42,7 +42,7 @@ namespace WebSockets.Core
         {
             var webRequest = WebRequest.CreateUpgradeRequest(path, host, Origin, _key, _subProtocols);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
-            WriteData(data, 0, data.LongLength);
+            WriteData(data);
         }
 
         /// <summary>
