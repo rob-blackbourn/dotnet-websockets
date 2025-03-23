@@ -131,7 +131,7 @@ namespace EchoClient
         {
             Console.WriteLine("Performing handshake");
 
-            WriteHandshakeRequest();
+            WriteHandshakeRequest("/chat", "www.example.com");
             var response = ReadHandshakeResponse();
 
             if (response is null || response.Code != 101)
@@ -145,18 +145,15 @@ namespace EchoClient
             return response;
         }
 
-        private void WriteHandshakeRequest()
+        private void WriteHandshakeRequest(string path, string host)
         {
             Console.WriteLine("Sending handshake request");
-            _handshakeProtocol.WriteRequest("/chat", "www.example.com");
+            _handshakeProtocol.WriteRequest(path, host);
 
             var buffer = new byte[1024];
-            while (true)
+            while (_handshakeProtocol.HasData)
             {
                 var bytesRead = _handshakeProtocol.ReadData(buffer);
-                if (bytesRead == 0)
-                    break;
-
                 _stream.Write(buffer, 0, (int)bytesRead);
             }
         }

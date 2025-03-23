@@ -133,12 +133,9 @@ namespace EchoServer
             _handshakeProtocol.WriteResponse(webResponse);
 
             var buffer = new byte[1024];
-            while (true)
+            while (_handshakeProtocol.HasData)
             {
                 var bytesRead = _handshakeProtocol.ReadData(buffer);
-                if (bytesRead == 0)
-                    break;
-
                 _stream.Write(buffer, 0, (int)bytesRead);
                 Console.WriteLine("Sent client data");
             }

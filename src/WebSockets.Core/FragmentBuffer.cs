@@ -16,6 +16,7 @@ namespace WebSockets.Core
         private readonly LinkedList<ArrayBuffer<T>> _buffer = new();
 
         public long Count => _buffer.Aggregate(0L, (sum, x) => sum + x.Count);
+        public bool IsEmpty => _buffer.Count == 0;
 
         public void Write(T[] array)
         {
@@ -24,6 +25,11 @@ namespace WebSockets.Core
 
         public void Write(T[] array, long offset, long length)
         {
+            // We can simplify knowing if the buffer is empty by ensuring that
+            // fragments must have bytes.
+            if (length <= 0)
+                return;
+
             _buffer.AddFirst(new ArrayBuffer<T>(array, offset, length));
         }
 

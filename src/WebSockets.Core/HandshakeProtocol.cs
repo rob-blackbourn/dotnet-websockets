@@ -37,6 +37,8 @@ namespace WebSockets.Core
         /// <value>The connection state.</value>
         public HandshakeProtocolState State { get; protected set; } = HandshakeProtocolState.Pending;
 
+        public bool HasData => !_buffer.IsEmpty;
+
         /// <summary>
         /// The sub-protocol negotiated during the handshake.
         /// </summary>
