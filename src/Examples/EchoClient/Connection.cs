@@ -47,13 +47,13 @@ namespace EchoClient
                     {
                         // Send a message.
                         Console.WriteLine("Initiating close handshake");
-                        SendMessage(new CloseMessage(1000, "Client initiated close"));
+                        WriteMessage(new CloseMessage(1000, "Client initiated close"));
                     }
                     else
                     {
                         // Send a message.
                         Console.WriteLine("Sending message");
-                        SendMessage(new TextMessage(text));
+                        WriteMessage(new TextMessage(text));
                     }
 
                     // Receive the echoed response.
@@ -70,7 +70,7 @@ namespace EchoClient
                         {
                             // Send the close back.
                             Console.WriteLine("Responding with close (completing close handshake).");
-                            SendMessage(message);
+                            WriteMessage(message);
                         }
                         else if (_messageProtocol.State == MessageProtocolState.Closed)
                         {
@@ -96,6 +96,7 @@ namespace EchoClient
             }
             Console.WriteLine("bye");
         }
+
         private Message ReadMessage()
         {
             var buffer = new byte[1024];
@@ -112,7 +113,7 @@ namespace EchoClient
             }
         }
 
-        private void SendMessage(Message message)
+        private void WriteMessage(Message message)
         {
             _messageProtocol.WriteMessage(message);
 
@@ -130,8 +131,8 @@ namespace EchoClient
         {
             Console.WriteLine("Performing handshake");
 
-            SendHandshakeRequest();
-            var response = ReceiveHandshakeResponse();
+            WriteHandshakeRequest();
+            var response = ReadHandshakeResponse();
 
             if (response is null || response.Code != 101)
             {
@@ -144,7 +145,7 @@ namespace EchoClient
             return response;
         }
 
-        private void SendHandshakeRequest()
+        private void WriteHandshakeRequest()
         {
             Console.WriteLine("Sending handshake request");
             _handshakeProtocol.WriteRequest("/chat", "www.example.com");
@@ -160,7 +161,7 @@ namespace EchoClient
             }
         }
 
-        private WebResponse? ReceiveHandshakeResponse()
+        private WebResponse? ReadHandshakeResponse()
         {
             Console.WriteLine("Receiving handshake response");
             var buffer = new byte[1024];

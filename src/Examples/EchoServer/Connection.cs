@@ -47,12 +47,12 @@ namespace EchoServer
                         if (textMessage.Text == "close")
                         {
                             Console.WriteLine("Initiating close handshake");
-                            SendMessage(new CloseMessage(1000, "Server closed as requested"));
+                            WriteMessage(new CloseMessage(1000, "Server closed as requested"));
                         }
                         else
                         {
                             Console.WriteLine("Echoing message back to client");
-                            SendMessage(message);
+                            WriteMessage(message);
                         }
                     }
                     else if (message.Type == MessageType.Ping)
@@ -61,7 +61,7 @@ namespace EchoServer
 
                         var pingMessage = (PingMessage)message;
                         var pongMessage = new PongMessage(pingMessage.Data);
-                        SendMessage(pongMessage);
+                        WriteMessage(pongMessage);
                     }
                     else if (message.Type == MessageType.Close)
                     {
@@ -69,7 +69,7 @@ namespace EchoServer
                         if (_messageProtocol.State == MessageProtocolState.Closing)
                         {
                             Console.WriteLine("Sending close (completing close handshake).");
-                            SendMessage(message);
+                            WriteMessage(message);
                         }
                         else if (_messageProtocol.State == MessageProtocolState.Closed)
                         {
@@ -101,13 +101,13 @@ namespace EchoServer
         {
             Console.WriteLine("Performing handshake");
 
-            ReceiveHandshakeRequest();
-            SendHandshakeResponse();
+            ReadHandshakeRequest();
+            WriteHandshakeResponse();
 
             Console.WriteLine("Handshake completed");
         }
 
-        private void ReceiveHandshakeRequest()
+        private void ReadHandshakeRequest()
         {
             Console.WriteLine("Receiving handshake request");
 
@@ -128,7 +128,7 @@ namespace EchoServer
             _handshakeProtocol.WriteResponse(webResponse);
         }
 
-        private void SendHandshakeResponse()
+        private void WriteHandshakeResponse()
         {
             Console.WriteLine("Sending handshake response");
 
@@ -153,14 +153,14 @@ namespace EchoServer
                     return _messageProtocol.ReadMessage();
 
                 var bytesRead = _stream.Read(buffer);
-                if (bytesRead > 0)
-                    _messageProtocol.WriteData(buffer, 0, bytesRead);
-                else
+                if (bytesRead == 0)
                     throw new EndOfStreamException("The client closed the connection.");
+
+                _messageProtocol.WriteData(buffer, 0, bytesRead);
             }
         }
 
-        private void SendMessage(Message message)
+        private void WriteMessage(Message message)
         {
             _messageProtocol.WriteMessage(message);
 
