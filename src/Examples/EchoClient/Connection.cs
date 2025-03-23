@@ -4,6 +4,7 @@ using System.Net.Sockets;
 
 using WebSockets.Core;
 using WebSockets.Core.Messages;
+using WebSockets.Core.Http;
 
 namespace EchoClient
 {
@@ -127,7 +128,7 @@ namespace EchoClient
             }
         }
 
-        private WebResponse? PerformHandshake()
+        private Response? PerformHandshake()
         {
             Console.WriteLine("Performing handshake");
 
@@ -158,11 +159,11 @@ namespace EchoClient
             }
         }
 
-        private WebResponse? ReadHandshakeResponse()
+        private Response? ReadHandshakeResponse()
         {
             Console.WriteLine("Receiving handshake response");
             var buffer = new byte[1024];
-            WebResponse? webResponse = null;
+            Response? webResponse = null;
             while (webResponse is null)
             {
                 var bytesRead = _stream.Read(buffer);

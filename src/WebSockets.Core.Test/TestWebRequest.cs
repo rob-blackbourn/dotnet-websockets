@@ -19,7 +19,7 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Version: 13\r\n" +
                 "Origin: http://example.com\r\n" +
                 "\r\n";
-            var webRequest = WebRequest.Parse(Encoding.UTF8.GetBytes(text));
+            var webRequest = Http.Request.Parse(Encoding.UTF8.GetBytes(text));
             Assert.AreEqual("GET", webRequest.Verb);
             Assert.AreEqual("/chat", webRequest.Path);
             Assert.AreEqual("HTTP/1.1", webRequest.Version);

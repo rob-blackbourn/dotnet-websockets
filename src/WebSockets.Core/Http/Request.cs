@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace WebSockets.Core
+namespace WebSockets.Core.Http
 {
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP request.
     /// </summary>
-    public class WebRequest
+    public class Request
     {
         /// <summary>
         /// Construct a web request.
@@ -19,7 +19,7 @@ namespace WebSockets.Core
         /// <param name="version">The HTTP version.</param>
         /// <param name="headers">The headers.</param>
         /// <param name="body">An optional body.</param>
-        public WebRequest(
+        public Request(
             string verb,
             string path,
             string version,
@@ -57,7 +57,7 @@ namespace WebSockets.Core
         public IDictionary<string, IList<string>> Headers { get; private set; }
         public byte[]? Body { get; }
 
-        public static WebRequest Parse(byte[] data)
+        public static Request Parse(byte[] data)
         {
             var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
             if (index == -1)
@@ -71,7 +71,7 @@ namespace WebSockets.Core
             var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (verb, path, version) = ParseRequestLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
-            return new WebRequest(verb, path, version, headers, body);
+            return new Request(verb, path, version, headers, body);
         }
 
         private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
@@ -122,14 +122,14 @@ namespace WebSockets.Core
             return builder.ToString();
         }
 
-        public static WebRequest CreateUpgradeRequest(
+        public static Request CreateUpgradeRequest(
             string path,
             string host,
             string origin,
             string key,
             string[]? subProtocols)
         {
-            var webRequest = new WebRequest(
+            var webRequest = new Request(
                 "GET",
                 path,
                 "HTTP/1.1",

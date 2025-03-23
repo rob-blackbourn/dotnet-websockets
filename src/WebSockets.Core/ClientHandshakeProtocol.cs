@@ -40,7 +40,7 @@ namespace WebSockets.Core
         /// <param name="host">The server name.</param>
         public void WriteRequest(string path, string host)
         {
-            var webRequest = WebRequest.CreateUpgradeRequest(path, host, Origin, _key, _subProtocols);
+            var webRequest = Http.Request.CreateUpgradeRequest(path, host, Origin, _key, _subProtocols);
             var data = Encoding.ASCII.GetBytes(webRequest.ToString());
             WriteData(data);
         }
@@ -49,13 +49,13 @@ namespace WebSockets.Core
         /// Read a handshake response.
         /// </summary>
         /// <returns>The response from the server, or null if a complete response has yet to be received.</returns>
-        public WebResponse? ReadResponse()
+        public Http.Response? ReadResponse()
         {
             var index = _buffer.IndexOf(HTTP_EOM, 0);
             if (index == -1)
                 return null;
 
-            var webResponse = WebResponse.Parse(_buffer.ToArray());
+            var webResponse = Http.Response.Parse(_buffer.ToArray());
             if (webResponse.Code != 101)
             {
                 State = HandshakeProtocolState.Failed;
@@ -67,7 +67,7 @@ namespace WebSockets.Core
             return webResponse;
         }
 
-        private string? ProcessResponse(WebResponse webResponse)
+        private string? ProcessResponse(Http.Response webResponse)
         {
             if (webResponse.Version != "HTTP/1.1")
                 throw new InvalidDataException("Expected version HTTP/1.1");

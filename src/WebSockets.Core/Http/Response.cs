@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace WebSockets.Core
+namespace WebSockets.Core.Http
 {
-    public class WebResponse
+    public class Response
     {
-        public WebResponse(
+        public Response(
             string version,
             int code,
             string reason,
@@ -28,7 +28,7 @@ namespace WebSockets.Core
         public IDictionary<string, IList<string>> Headers { get; private set; }
         public byte[]? Body { get; }
 
-        public static WebResponse Parse(byte[] data)
+        public static Response Parse(byte[] data)
         {
             var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
             if (index == -1)
@@ -42,7 +42,7 @@ namespace WebSockets.Core
             var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
             var (version, code, reason) = ParseResponseLine(lines[0]);
             var headers = ParseHeaderLines(lines.Skip(1));
-            return new WebResponse(version, code, reason, headers, body);
+            return new Response(version, code, reason, headers, body);
         }
 
         private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
@@ -107,9 +107,9 @@ namespace WebSockets.Core
             return data;
         }
 
-        public static WebResponse CreateAcceptResponse(string responseKey, string? subProtocol)
+        public static Response CreateAcceptResponse(string responseKey, string? subProtocol)
         {
-            var webResponse = new WebResponse(
+            var webResponse = new Response(
                 "HTTP/1.1",
                 101,
                 "Switching Protocols",
@@ -127,9 +127,9 @@ namespace WebSockets.Core
             return webResponse;
         }
 
-        public static WebResponse CreateErrorResponse(string reason, DateTime date)
+        public static Response CreateErrorResponse(string reason, DateTime date)
         {
-            var webResponse = new WebResponse(
+            var webResponse = new Response(
                 "HTTP/1.1",
                 400,
                 "Bad Request",

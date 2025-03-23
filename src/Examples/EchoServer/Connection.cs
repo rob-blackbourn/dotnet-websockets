@@ -4,6 +4,7 @@ using System.Net.Sockets;
 
 using WebSockets.Core;
 using WebSockets.Core.Messages;
+using WebSockets.Core.Http;
 
 namespace EchoServer
 {
@@ -108,7 +109,7 @@ namespace EchoServer
             Console.WriteLine("Handshake completed");
         }
 
-        private WebRequest ReadHandshakeRequest()
+        private Request ReadHandshakeRequest()
         {
             Console.WriteLine("Receiving handshake request");
 
@@ -126,7 +127,7 @@ namespace EchoServer
             }
         }
 
-        private void WriteHandshakeResponse(WebResponse webResponse)
+        private void WriteHandshakeResponse(Response webResponse)
         {
             Console.WriteLine("Sending handshake response");
 
