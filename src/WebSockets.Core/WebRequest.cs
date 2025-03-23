@@ -122,7 +122,12 @@ namespace WebSockets.Core
             return builder.ToString();
         }
 
-        public static WebRequest CreateUpgradeRequest(string path, string host, string origin, string key, string[]? subProtocols)
+        public static WebRequest CreateUpgradeRequest(
+            string path,
+            string host,
+            string origin,
+            string key,
+            string[]? subProtocols)
         {
             var webRequest = new WebRequest(
                 "GET",
@@ -140,7 +145,10 @@ namespace WebSockets.Core
                 null
             );
             if (subProtocols is not null && subProtocols.Length > 0)
-                webRequest.Headers.Add("Sec-WebSocket-Protocol", new List<string> { string.Join(',', subProtocols) });
+                webRequest.Headers.Add(
+                    "Sec-WebSocket-Protocol",
+                    [string.Join(',', subProtocols)]
+                );
 
             return webRequest;
         }
