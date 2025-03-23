@@ -79,27 +79,26 @@ namespace EchoServer
 
         ...
 
-        private void ReadHandshakeRequest()
+        private WebRequest ReadHandshakeRequest()
         {
-            WebRequest? webRequest = null;
             var buffer = new byte[1024];
-            while (webRequest is null)
+            while (true)
             {
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
+
                 _handshakeProtocol.WriteData(buffer, 0, bytesRead);
-
-                webRequest = _handshakeProtocol.ReadRequest();
+                var webRequest = _handshakeProtocol.ReadRequest();
+                if (webRequest is not null)
+                    return webRequest;
             }
-
-            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
-
-            _handshakeProtocol.WriteResponse(webResponse);
         }
 
-        private void WriteHandshakeResponse()
+        private void WriteHandshakeResponse(WebResponse webResponse)
         {
+            _handshakeProtocol.WriteResponse(webResponse);
+
             var buffer = new byte[1024];
             while (true)
             {

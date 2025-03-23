@@ -101,36 +101,36 @@ namespace EchoServer
         {
             Console.WriteLine("Performing handshake");
 
-            ReadHandshakeRequest();
-            WriteHandshakeResponse();
+            var webRequest = ReadHandshakeRequest();
+            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
+            WriteHandshakeResponse(webResponse);
 
             Console.WriteLine("Handshake completed");
         }
 
-        private void ReadHandshakeRequest()
+        private WebRequest ReadHandshakeRequest()
         {
             Console.WriteLine("Receiving handshake request");
 
-            WebRequest? webRequest = null;
             var buffer = new byte[1024];
-            while (webRequest is null)
+            while (true)
             {
                 var bytesRead = _stream.Read(buffer);
                 if (bytesRead == 0)
                     throw new EndOfStreamException();
+
                 _handshakeProtocol.WriteData(buffer, 0, bytesRead);
-
-                webRequest = _handshakeProtocol.ReadRequest();
+                var webRequest = _handshakeProtocol.ReadRequest();
+                if (webRequest is not null)
+                    return webRequest;
             }
-
-            var webResponse = _handshakeProtocol.CreateWebResponse(webRequest);
-
-            _handshakeProtocol.WriteResponse(webResponse);
         }
 
-        private void WriteHandshakeResponse()
+        private void WriteHandshakeResponse(WebResponse webResponse)
         {
             Console.WriteLine("Sending handshake response");
+
+            _handshakeProtocol.WriteResponse(webResponse);
 
             var buffer = new byte[1024];
             while (true)
