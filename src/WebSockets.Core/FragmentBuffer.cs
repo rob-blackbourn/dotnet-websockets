@@ -113,6 +113,11 @@ namespace WebSockets.Core
             }
         }
 
+        public long IndexOf(T[] pattern)
+        {
+            return IndexOf(pattern, 0);
+        }
+
         public long IndexOf(T[] pattern, long offset)
         {
             for (long i = offset; i < 1 + Count - pattern.LongLength; ++i)
