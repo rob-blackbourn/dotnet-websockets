@@ -18,25 +18,23 @@ namespace WebSockets.Core.Http
         private readonly FragmentBuffer<byte> _buffer = new();
         private readonly FragmentBuffer<byte> _chunks = new();
         private int? _chunkLength = null;
-        private Request? _request = null;
+        private byte[]? _body = null;
 
-        public ChunkedBodyParser(
-            string verb,
-            string path,
-            string version,
-            IDictionary<string, IList<string>> headers)
-            : base(verb, path, version, headers)
+        public ChunkedBodyParser()
         {
         }
 
-        public Request ReadRequest()
+        public override bool NeedsData => _body is null;
+        public override bool HasBody => _body is not null;
+
+        public override byte[] ReadBody()
         {
-            if (_request is null)
+            if (_body is null)
                 throw new InvalidOperationException("Request not available");
-            return _request;
+            return _body;
         }
 
-        public void WriteData(byte[] array, long offset, long length)
+        public override void WriteData(byte[] array, long offset, long length)
         {
             _buffer.Write(array, offset, length);
 
@@ -58,15 +56,8 @@ namespace WebSockets.Core.Http
 
                 if (i == 0)
                 {
-                    // The chunk has started with cr/lf
-                    if (_chunks.Count > 0)
-                        throw new InvalidOperationException(
-                            "received cf/lf at start of stream while expecting the chunk length");
-
-                    // Consume buffer.
-                    _buffer.ToArray();
-                    _request = ToRequest(null);
-                    return;
+                    throw new InvalidOperationException(
+                        "received cf/lf at start of stream while expecting the chunk length");
                 }
 
                 // Read until the end of cr/lf.
@@ -81,9 +72,9 @@ namespace WebSockets.Core.Http
             {
                 if (_chunkLength.Value == 0)
                 {
-                    // The final chunk is of zero length.
+                    // The final chunk has zero length.
 
-                    // Expect cr/lf
+                    // Expect cr/lf termination.
                     if (_buffer.Count < EOL.Length)
                         return;
 
@@ -97,7 +88,7 @@ namespace WebSockets.Core.Http
                     if (_buffer.Count != 0)
                         throw new InvalidOperationException("Expected the buffer to be empty");
 
-                    _request = ToRequest(_chunks.ToArray());
+                    _body = _chunks.ToArray();
                 }
                 else
                 {

@@ -10,31 +10,24 @@ namespace WebSockets.Core.Http
     {
         private readonly FragmentBuffer<byte> _buffer = new();
         private readonly int _contentLength;
-        private Request? _request;
-        private byte[]? _unusedBytes;
+        private byte[]? _body = null;
 
-        public FixedLengthBodyParser(
-            string verb,
-            string path,
-            string version,
-            IDictionary<string, IList<string>> headers,
-            int contentLength)
-            : base(verb, path, version, headers)
+        public FixedLengthBodyParser(int contentLength)
         {
             _contentLength = contentLength;
         }
 
-        public bool HasRequest => _request is not null;
-        public bool NeedsData => _request is null && _buffer.Count < _contentLength;
+        public override bool HasBody => _body is not null;
+        public override bool NeedsData => _body is null && _buffer.Count < _contentLength;
 
-        public Request ReadRequest()
+        public override byte[] ReadBody()
         {
-            if (_request is null)
-                throw new InvalidOperationException("Request not available");
-            return _request;
+            if (_body is null)
+                throw new InvalidOperationException("Body not available");
+            return _body;
         }
 
-        public void WriteData(byte[] array, long offset, long length)
+        public override void WriteData(byte[] array, long offset, long length)
         {
             _buffer.Write(array, offset, length);
 
@@ -44,7 +37,7 @@ namespace WebSockets.Core.Http
             if (currentLength > _contentLength)
                 throw new InvalidDataException("too much data");
 
-            _request = ToRequest(_buffer.ToArray());
+            _body = _buffer.ToArray();
         }
     }
 }
