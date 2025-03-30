@@ -91,7 +91,7 @@ namespace WebSockets.Core.Http
             if (parts.Length != 3)
                 throw new InvalidDataException("The request line should have three parts separated by spaces");
 
-            _instruction = new Instruction(parts[0], parts[1], parts[1]);
+            _instruction = new Instruction(parts[0], parts[1], parts[2]);
         }
 
         private void ProcessHeaders()
@@ -104,9 +104,12 @@ namespace WebSockets.Core.Http
 
                 var line = new byte[index + EOL.Length];
                 _buffer.ReadExactly(line);
-                var text = Encoding.UTF8.GetString(line, 0, (int)index);
-                if (text == "\r\n")
+
+                if (index == 0)
                 {
+                    if (!line.SequenceEqual(EOL))
+                        throw new InvalidOperationException("Expected cr/lf");
+
                     if (_instruction is null)
                         throw new InvalidOperationException("Head termination received before instruction line");
 
@@ -120,6 +123,7 @@ namespace WebSockets.Core.Http
                     break;
                 }
 
+                var text = Encoding.UTF8.GetString(line, 0, (int)index);
                 var colon = text.IndexOf(':');
                 if (colon == -1)
                     throw new InvalidDataException("A header line should contain a colon");
