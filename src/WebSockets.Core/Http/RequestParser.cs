@@ -32,11 +32,13 @@ namespace WebSockets.Core.Http
 
         public void WriteData(byte[] data, long offset, long length)
         {
+            _buffer.Write(data, offset, length);
+
             if (_head is null)
             {
-                if (_headParser.NeedsData)
+                if (!_headParser.HasHead)
                 {
-                    WriteData(data, offset, length);
+                    _headParser.ProcessData();
                 }
 
                 if (_headParser.HasHead)
@@ -52,9 +54,14 @@ namespace WebSockets.Core.Http
                     _bodyParser = CreateBodyParser(_head);
                 }
 
-                if (_bodyParser.NeedsData)
+                if (!_bodyParser.HasBody)
                 {
-                    _bodyParser.WriteData(data, offset, length);
+                    _bodyParser.ProcessData();
+                }
+
+                if (_bodyParser.HasBody)
+                {
+                    _body = _bodyParser.ReadBody();
                 }
             }
 

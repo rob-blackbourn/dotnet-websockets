@@ -77,6 +77,19 @@ namespace WebSockets.Core.Http
             ProcessData();
         }
 
+        public void ProcessData()
+        {
+            if (_instruction is null)
+            {
+                ProcessInstruction();
+            }
+
+            if (_instruction is not null)
+            {
+                ProcessHeaders();
+            }
+        }
+
         private void ProcessInstruction()
         {
             var index = _buffer.IndexOf(EOL);
@@ -132,19 +145,6 @@ namespace WebSockets.Core.Http
                 if (!_headers.TryGetValue(name, out var values))
                     _headers.Add(name, values = []);
                 values.Add(value);
-            }
-        }
-
-        private void ProcessData()
-        {
-            if (_instruction is null)
-            {
-                ProcessInstruction();
-            }
-
-            if (_instruction is not null)
-            {
-                ProcessHeaders();
             }
         }
     }

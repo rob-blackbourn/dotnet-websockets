@@ -15,7 +15,12 @@ namespace WebSockets.Core.Http
 
         public override void WriteData(byte[] array, long offset, long length)
         {
-            throw new NotImplementedException();
+            if (length > 0)
+                throw new InvalidOperationException("No data is expected");
+        }
+
+        public override void ProcessData()
+        {
         }
     }
 }

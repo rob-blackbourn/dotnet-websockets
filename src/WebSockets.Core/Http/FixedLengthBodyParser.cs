@@ -32,6 +32,11 @@ namespace WebSockets.Core.Http
         {
             _buffer.Write(array, offset, length);
 
+            ProcessData();
+        }
+
+        public override void ProcessData()
+        {
             var currentLength = _buffer.Count;
             if (currentLength < _contentLength)
                 return;

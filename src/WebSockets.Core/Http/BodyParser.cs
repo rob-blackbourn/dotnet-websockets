@@ -8,5 +8,6 @@ namespace WebSockets.Core.Http
         public abstract byte[] ReadBody();
 
         public abstract void WriteData(byte[] array, long offset, long length);
+        public abstract void ProcessData();
     }
 }

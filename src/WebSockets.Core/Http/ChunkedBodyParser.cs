@@ -42,7 +42,7 @@ namespace WebSockets.Core.Http
             ProcessData();
         }
 
-        private void ProcessData()
+        public override void ProcessData()
         {
             // A chunk is an ascii encoded hexadecimal string number followed
             // by a CR/LF, followed by the number of bytes specified, followed
