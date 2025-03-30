@@ -59,19 +59,11 @@ namespace WebSockets.Core.Http
 
         public static Request Parse(byte[] data)
         {
-            var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
-            if (index == -1)
-                throw new ArgumentOutOfRangeException("Expected header terminator");
-
-            var header = Encoding.UTF8.GetString(data.SubArray(0, index + 2));
-            var body = data.Length == index + 4
-                ? null
-                : data.SubArray(index + 4);
-
-            var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-            var (verb, path, version) = ParseRequestLine(lines[0]);
-            var headers = ParseHeaderLines(lines.Skip(1));
-            return new Request(verb, path, version, headers, body);
+            var parser = new RequestParser();
+            parser.WriteData(data, 0, data.Length);
+            if (!parser.HasRequest)
+                throw new InvalidOperationException("Failed to parse request");
+            return parser.ReadRequest();
         }
 
         private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
