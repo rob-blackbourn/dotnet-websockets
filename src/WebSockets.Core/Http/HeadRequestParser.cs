@@ -11,9 +11,9 @@ namespace WebSockets.Core.Http
     /// </summary>
     class HeadRequestParser : Parser
     {
-        private class Instruction
+        private class RequestLine
         {
-            public Instruction(string verb, string path, string version)
+            public RequestLine(string verb, string path, string version)
             {
                 Verb = verb;
                 Path = path;
@@ -26,7 +26,7 @@ namespace WebSockets.Core.Http
         }
 
         private readonly FragmentBuffer<byte> _buffer;
-        private Instruction? _instruction = null;
+        private RequestLine? _requestLine = null;
         private readonly IDictionary<string, IList<string>> _headers = new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase);
 
         public HeadRequestParser(FragmentBuffer<byte> buffer)
@@ -55,18 +55,18 @@ namespace WebSockets.Core.Http
 
         public void ProcessData()
         {
-            if (_instruction is null)
+            if (_requestLine is null)
             {
-                ProcessInstruction();
+                ProcessRequestLine();
             }
 
-            if (_instruction is not null)
+            if (_requestLine is not null)
             {
                 ProcessHeaders();
             }
         }
 
-        private void ProcessInstruction()
+        private void ProcessRequestLine()
         {
             var index = _buffer.IndexOf(EOL);
             if (index == -1)
@@ -80,7 +80,7 @@ namespace WebSockets.Core.Http
             if (parts.Length != 3)
                 throw new InvalidDataException("The request line should have three parts separated by spaces");
 
-            _instruction = new Instruction(parts[0], parts[1], parts[2]);
+            _requestLine = new RequestLine(parts[0], parts[1], parts[2]);
         }
 
         private void ProcessHeaders()
@@ -99,13 +99,13 @@ namespace WebSockets.Core.Http
                     if (!line.SequenceEqual(EOL))
                         throw new InvalidOperationException("Expected cr/lf");
 
-                    if (_instruction is null)
+                    if (_requestLine is null)
                         throw new InvalidOperationException("Head termination received before instruction line");
 
                     _head = new RequestHead(
-                        _instruction.Verb,
-                        _instruction.Path,
-                        _instruction.Version,
+                        _requestLine.Verb,
+                        _requestLine.Path,
+                        _requestLine.Version,
                         _headers
                     );
 

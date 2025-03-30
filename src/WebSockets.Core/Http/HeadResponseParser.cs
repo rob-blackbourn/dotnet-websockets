@@ -11,9 +11,9 @@ namespace WebSockets.Core.Http
     /// </summary>
     class HeadResponseParser : Parser
     {
-        private class Result
+        private class StatusLine
         {
-            public Result(string version, int code, string reason)
+            public StatusLine(string version, int code, string reason)
             {
                 Version = version;
                 Code = code;
@@ -26,7 +26,7 @@ namespace WebSockets.Core.Http
         }
 
         private readonly FragmentBuffer<byte> _buffer;
-        private Result? _result = null;
+        private StatusLine? _statusLine = null;
         private readonly IDictionary<string, IList<string>> _headers = new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase);
 
         public HeadResponseParser(FragmentBuffer<byte> buffer)
@@ -55,18 +55,18 @@ namespace WebSockets.Core.Http
 
         public void ProcessData()
         {
-            if (_result is null)
+            if (_statusLine is null)
             {
-                ProcessResult();
+                ProcessStatusLine();
             }
 
-            if (_result is not null)
+            if (_statusLine is not null)
             {
                 ProcessHeaders();
             }
         }
 
-        private void ProcessResult()
+        private void ProcessStatusLine()
         {
             var index = _buffer.IndexOf(EOL);
             if (index == -1)
@@ -82,7 +82,7 @@ namespace WebSockets.Core.Http
             if (!int.TryParse(parts[1], out var code))
                 throw new InvalidDataException("The response code should be an integer");
 
-            _result = new Result(parts[0], code, parts[2]);
+            _statusLine = new StatusLine(parts[0], code, parts[2]);
         }
 
         private void ProcessHeaders()
@@ -101,13 +101,13 @@ namespace WebSockets.Core.Http
                     if (!line.SequenceEqual(EOL))
                         throw new InvalidOperationException("Expected cr/lf");
 
-                    if (_result is null)
+                    if (_statusLine is null)
                         throw new InvalidOperationException("Head termination received before instruction line");
 
                     _head = new ResponseHead(
-                        _result.Version,
-                        _result.Code,
-                        _result.Reason,
+                        _statusLine.Version,
+                        _statusLine.Code,
+                        _statusLine.Reason,
                         _headers
                     );
 
