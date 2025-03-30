@@ -48,62 +48,66 @@ namespace WebSockets.Core.Http
             // by a CR/LF, followed by the number of bytes specified, followed
             // by CR/LF.
             // 
-            if (!_chunkLength.HasValue)
+            while (true)
             {
-                var i = _buffer.IndexOf(EOL);
-
-                if (i == -1)
-                    return; // Not enough data
-
-                if (i == 0)
+                if (!_chunkLength.HasValue)
                 {
-                    throw new InvalidOperationException(
-                        "received cf/lf at start of stream while expecting the chunk length");
-                }
+                    var i = _buffer.IndexOf(EOL);
 
-                // Read until the end of cr/lf.
-                var buf = new byte[i + EOL.Length];
-                _buffer.ReadExactly(buf);
-                // Convert the hex string to the chunk length.
-                var text = Encoding.ASCII.GetString(buf, 0, (int)i);
-                _chunkLength = Convert.ToInt32(text, 16);
-            }
+                    if (i == -1)
+                        return; // Not enough data
 
-            if (_chunkLength.HasValue)
-            {
-                if (_chunkLength.Value == 0)
-                {
-                    // The final chunk has zero length.
+                    if (i == 0)
+                    {
+                        throw new InvalidOperationException(
+                            "received cf/lf at start of stream while expecting the chunk length");
+                    }
 
-                    // Expect cr/lf termination.
-                    if (_buffer.Count < EOL.Length)
-                        return;
-
-                    // Check the buffer contains the final cr/lf.
-                    var buf = new byte[EOL.Length];
+                    // Read until the end of cr/lf.
+                    var buf = new byte[i + EOL.Length];
                     _buffer.ReadExactly(buf);
-                    if (!buf.SequenceEqual(EOL))
-                        throw new InvalidOperationException("Invalid termination of chunk stream");
-
-                    // The buffer should now be empty.
-                    if (_buffer.Count != 0)
-                        throw new InvalidOperationException("Expected the buffer to be empty");
-
-                    _body = _chunks.ToArray();
+                    // Convert the hex string to the chunk length.
+                    var text = Encoding.ASCII.GetString(buf, 0, (int)i);
+                    _chunkLength = Convert.ToInt32(text, 16);
                 }
-                else
+
+                if (_chunkLength.HasValue)
                 {
-                    // Expect the chunk length plus cr/lf.
-                    if (_buffer.Count < _chunkLength.Value + EOL.Length)
+                    if (_chunkLength.Value == 0)
+                    {
+                        // The final chunk has zero length.
+
+                        // Expect cr/lf termination.
+                        if (_buffer.Count < EOL.Length)
+                            return;
+
+                        // Check the buffer contains the final cr/lf.
+                        var buf = new byte[EOL.Length];
+                        _buffer.ReadExactly(buf);
+                        if (!buf.SequenceEqual(EOL))
+                            throw new InvalidOperationException("Invalid termination of chunk stream");
+
+                        // The buffer should now be empty.
+                        if (_buffer.Count != 0)
+                            throw new InvalidOperationException("Expected the buffer to be empty");
+
+                        _body = _chunks.ToArray();
                         return;
+                    }
+                    else
+                    {
+                        // Expect the chunk length plus cr/lf.
+                        if (_buffer.Count < _chunkLength.Value + EOL.Length)
+                            return;
 
-                    // Get the chunk.
-                    var chunk = new byte[_chunkLength.Value];
-                    _buffer.ReadExactly(chunk);
-                    _chunks.Write(chunk);
+                        // Get the chunk.
+                        var chunk = new byte[_chunkLength.Value + EOL.Length];
+                        _buffer.ReadExactly(chunk);
+                        _chunks.Write(chunk, 0, _chunkLength.Value);
 
-                    // Clear the length to get the next.
-                    _chunkLength = null;
+                        // Clear the length to get the next.
+                        _chunkLength = null;
+                    }
                 }
             }
         }

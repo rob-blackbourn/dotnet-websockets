@@ -8,7 +8,7 @@ namespace WebSockets.Core.Test
     public sealed class TestRequestParser
     {
         [TestMethod]
-        public void TestParse()
+        public void TestParseHead()
         {
             var text =
                 "GET /chat HTTP/1.1\r\n" +
@@ -38,6 +38,23 @@ namespace WebSockets.Core.Test
             Assert.IsTrue(head.Headers.SingleCommaValues("Sec-WebSocket-Protocol")?.SequenceEqual(["chat", "superchat"]));
             Assert.AreEqual(head.Headers.SingleValue("Sec-WebSocket-Version"), "13");
             Assert.AreEqual(head.Headers.SingleValue("Origin"), "http://example.com");
+        }
+
+        [TestMethod]
+        public void TestParseChunkedBody()
+        {
+            var data = Encoding.UTF8.GetBytes(
+                "4\r\nWiki\r\n7\r\npedia i\r\nB\r\nn \r\nchunks.\r\n0\r\n\r\n"
+            );
+            var buffer = new FragmentBuffer<byte>();
+            var parser = new ChunkedBodyParser(buffer);
+            Assert.IsTrue(parser.NeedsData);
+            parser.WriteData(data, 0, data.LongLength);
+            Assert.IsFalse(parser.NeedsData);
+            Assert.IsTrue(parser.HasBody);
+            var body = parser.ReadBody();
+            var text = Encoding.UTF8.GetString(body);
+            Assert.AreEqual("Wikipedia in \r\nchunks.", text);
         }
     }
 }
