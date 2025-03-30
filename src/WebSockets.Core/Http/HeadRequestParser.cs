@@ -58,10 +58,17 @@ namespace WebSockets.Core.Http
             _buffer = buffer;
         }
 
-        public RequestHead? Head { get; private set; } = null;
+        private RequestHead? _head = null;
 
-        public bool NeedsData => Head is null;
-        public bool HasHead => Head is not null;
+        public bool NeedsData => _head is null;
+        public bool HasHead => _head is not null;
+
+        public RequestHead ReadHead()
+        {
+            if (_head is null)
+                throw new InvalidOperationException("head not ready");
+            return _head;
+        }
 
         public void WriteData(byte[] array, long offset, long length)
         {
@@ -103,7 +110,7 @@ namespace WebSockets.Core.Http
                     if (_instruction is null)
                         throw new InvalidOperationException("Head termination received before instruction line");
 
-                    Head = new RequestHead(
+                    _head = new RequestHead(
                         _instruction.Verb,
                         _instruction.Path,
                         _instruction.Version,

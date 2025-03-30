@@ -11,10 +11,63 @@ namespace WebSockets.Core.Http
         private readonly FragmentBuffer<byte> _buffer = new();
         private readonly HeadRequestParser _headParser;
         private BodyParser? _bodyParser = null;
+        private Request? _request = null;
+        private RequestHead? _head = null;
+        private byte[]? _body = null;
 
         public RequestParser()
         {
             _headParser = new HeadRequestParser(_buffer);
+        }
+
+        public bool NeedsData => _headParser.NeedsData || _bodyParser is null || _bodyParser.NeedsData;
+        public bool HasRequest => _request is not null;
+
+        public Request ReadRequest()
+        {
+            if (_request == null)
+                throw new InvalidOperationException("no request");
+            return _request;
+        }
+
+        public void WriteData(byte[] data, long offset, long length)
+        {
+            if (_head is null)
+            {
+                if (_headParser.NeedsData)
+                {
+                    WriteData(data, offset, length);
+                }
+
+                if (_headParser.HasHead)
+                {
+                    _head = _headParser.ReadHead();
+                }
+            }
+
+            if (_head is not null && _body is null)
+            {
+                if (_bodyParser is null)
+                {
+                    _bodyParser = CreateBodyParser(_head);
+                }
+
+                if (_bodyParser.NeedsData)
+                {
+                    _bodyParser.WriteData(data, offset, length);
+                }
+            }
+
+            if (_request is null && _head is not null && _body is not null)
+            {
+                _request = new Request(
+                    _head.Verb,
+                    _head.Path,
+                    _head.Version,
+                    _head.Headers,
+                    _body
+                );
+            }
         }
 
         private BodyParser CreateBodyParser(RequestHead head)
@@ -47,24 +100,6 @@ namespace WebSockets.Core.Http
             return contentLength.HasValue
                 ? new FixedLengthBodyParser(contentLength.Value, _buffer)
                 : new EmptyBodyParser();
-        }
-
-        public void WriteData(byte[] data, long offset, long length)
-        {
-            if (_headParser.NeedsData)
-            {
-                WriteData(data, offset, length);
-            }
-
-            if (_headParser.Head is not null && _bodyParser is null)
-            {
-                _bodyParser = CreateBodyParser(_headParser.Head);
-            }
-
-            if (_bodyParser is not null && _bodyParser.NeedsData)
-            {
-                _bodyParser.WriteData(data, offset, length);
-            }
         }
     }
 
