@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -12,9 +11,6 @@ namespace WebSockets.Core.Http
     /// </summary>
     class ChunkedBodyParser : BodyParser
     {
-        internal static byte[] EOL = "\r\n"u8.ToArray();
-        internal static byte[] EOM = "\r\n\r\n"u8.ToArray();
-
         private readonly FragmentBuffer<byte> _buffer;
         private readonly FragmentBuffer<byte> _chunks = new();
         private int? _chunkLength = null;

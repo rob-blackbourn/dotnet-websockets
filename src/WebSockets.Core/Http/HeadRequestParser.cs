@@ -1,36 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace WebSockets.Core.Http
 {
-    class RequestHead
-    {
-        public RequestHead(
-            string verb,
-            string path,
-            string version,
-            IDictionary<string, IList<string>> headers)
-        {
-            Verb = verb;
-            Path = path;
-            Version = version;
-            Headers = headers;
-        }
-
-        public string Verb { get; }
-        public string Path { get; }
-        public string Version { get; }
-        public IDictionary<string, IList<string>> Headers { get; set; }
-    }
-
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP request.
     /// </summary>
-    class HeadRequestParser
+    class HeadRequestParser : Parser
     {
         private class Instruction
         {
@@ -45,9 +24,6 @@ namespace WebSockets.Core.Http
             public string Path { get; }
             public string Version { get; }
         }
-
-        internal static byte[] EOL = "\r\n"u8.ToArray();
-        internal static byte[] EOM = "\r\n\r\n"u8.ToArray();
 
         private readonly FragmentBuffer<byte> _buffer;
         private Instruction? _instruction = null;

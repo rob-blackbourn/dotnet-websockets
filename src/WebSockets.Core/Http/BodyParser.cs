@@ -1,6 +1,6 @@
 namespace WebSockets.Core.Http
 {
-    abstract class BodyParser
+    abstract class BodyParser : Parser
     {
         public abstract bool NeedsData { get; }
         public abstract bool HasBody { get; }
