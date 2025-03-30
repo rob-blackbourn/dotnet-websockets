@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace WebSockets.Core.Http
@@ -30,52 +28,11 @@ namespace WebSockets.Core.Http
 
         public static Response Parse(byte[] data)
         {
-            var index = data.IndexOf(HandshakeProtocol.HTTP_EOM);
-            if (index == -1)
-                throw new ArgumentOutOfRangeException("Expected header terminator");
-
-            var header = Encoding.UTF8.GetString(data.SubArray(0, index + 2));
-            var body = data.Length == index + 4
-                ? null
-                : data.SubArray(index + 4);
-
-            var lines = header.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-            var (version, code, reason) = ParseResponseLine(lines[0]);
-            var headers = ParseHeaderLines(lines.Skip(1));
-            return new Response(version, code, reason, headers, body);
-        }
-
-        private static IDictionary<string, IList<string>> ParseHeaderLines(IEnumerable<string> lines)
-        {
-            var headers = new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase);
-            foreach (var line in lines)
-            {
-                var (name, value) = ParseHeaderLine(line);
-                if (!headers.TryGetValue(name, out var list))
-                    headers.Add(name, list = new List<string>());
-                list.Add(value);
-            }
-            return headers;
-        }
-
-        private static (string, int, string) ParseResponseLine(string requestLine)
-        {
-            var parts = requestLine.Split(' ', 3);
-            if (parts.Length != 3)
-                throw new InvalidDataException("The response line should have three parts separated by spaces");
-            if (!int.TryParse(parts[1], out var code))
-                throw new InvalidDataException("The response code should be an integer");
-            return (parts[0], code, parts[2]);
-        }
-
-        private static (string, string) ParseHeaderLine(string headerLine)
-        {
-            var index = headerLine.IndexOf(':');
-            if (index == -1)
-                throw new InvalidDataException("A header line should contain a colon");
-            var name = headerLine.Substring(0, index).Trim();
-            var value = headerLine.Substring(index + 1).Trim();
-            return (name.ToLowerInvariant(), value);
+            var parser = new ResponseParser();
+            parser.WriteData(data, 0, data.LongLength);
+            if (!parser.HasResponse)
+                throw new InvalidOperationException("Failed to parse response");
+            return parser.ReadResponse();
         }
 
         public byte[] ToBytes()
