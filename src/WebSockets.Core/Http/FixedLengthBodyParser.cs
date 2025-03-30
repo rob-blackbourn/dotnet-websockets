@@ -8,13 +8,14 @@ namespace WebSockets.Core.Http
 {
     class FixedLengthBodyParser : BodyParser
     {
-        private readonly FragmentBuffer<byte> _buffer = new();
+        private readonly FragmentBuffer<byte> _buffer;
         private readonly int _contentLength;
         private byte[]? _body = null;
 
-        public FixedLengthBodyParser(int contentLength)
+        public FixedLengthBodyParser(int contentLength, FragmentBuffer<byte> buffer)
         {
             _contentLength = contentLength;
+            _buffer = buffer;
         }
 
         public override bool HasBody => _body is not null;

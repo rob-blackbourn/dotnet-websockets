@@ -15,13 +15,14 @@ namespace WebSockets.Core.Http
         internal static byte[] EOL = "\r\n"u8.ToArray();
         internal static byte[] EOM = "\r\n\r\n"u8.ToArray();
 
-        private readonly FragmentBuffer<byte> _buffer = new();
+        private readonly FragmentBuffer<byte> _buffer;
         private readonly FragmentBuffer<byte> _chunks = new();
         private int? _chunkLength = null;
         private byte[]? _body = null;
 
-        public ChunkedBodyParser()
+        public ChunkedBodyParser(FragmentBuffer<byte> buffer)
         {
+            _buffer = buffer;
         }
 
         public override bool NeedsData => _body is null;

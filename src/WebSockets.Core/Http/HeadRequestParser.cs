@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace WebSockets.Core.Http
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP request.
     /// </summary>
-    public class HeadRequestParser
+    class HeadRequestParser
     {
         private class Instruction
         {
@@ -48,11 +49,19 @@ namespace WebSockets.Core.Http
         internal static byte[] EOL = "\r\n"u8.ToArray();
         internal static byte[] EOM = "\r\n\r\n"u8.ToArray();
 
-        private readonly FragmentBuffer<byte> _buffer = new();
+        private readonly FragmentBuffer<byte> _buffer;
         private Instruction? _instruction = null;
         private readonly IDictionary<string, IList<string>> _headers = new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase);
 
-        RequestHead? Head { get; set; } = null;
+        public HeadRequestParser(FragmentBuffer<byte> buffer)
+        {
+            _buffer = buffer;
+        }
+
+        public RequestHead? Head { get; private set; } = null;
+
+        public bool NeedsData => Head is null;
+        public bool HasHead => Head is not null;
 
         public void WriteData(byte[] array, long offset, long length)
         {

@@ -6,6 +6,68 @@ using System.Text;
 
 namespace WebSockets.Core.Http
 {
+    public class RequestParser
+    {
+        private readonly FragmentBuffer<byte> _buffer = new();
+        private readonly HeadRequestParser _headParser;
+        private BodyParser? _bodyParser = null;
+
+        public RequestParser()
+        {
+            _headParser = new HeadRequestParser(_buffer);
+        }
+
+        private BodyParser CreateBodyParser(RequestHead head)
+        {
+            string? transferEncoding =
+                !head.Headers.TryGetValue("transfer-encoding", out var transferEncodings) || transferEncodings.Count == 0
+                ? null
+                : transferEncodings.Count == 1
+                    ? transferEncodings[0].ToLowerInvariant()
+                    : throw new InvalidOperationException("Multiple values not allowed for transfer-encoding");
+
+            int? contentLength =
+                !head.Headers.TryGetValue("content-length", out var contentLengths) || contentLengths.Count == 0
+                ? null
+                : contentLengths.Count == 1
+                    ? int.Parse(contentLengths[0])
+                    : throw new InvalidOperationException("Multiple values not allowed for content-length");
+
+
+            if (transferEncoding == "chunked")
+            {
+                if (contentLength.HasValue)
+                    throw new InvalidOperationException("Cannot specify content-length if transfer-encoding is chunked");
+                return new ChunkedBodyParser(_buffer);
+            }
+
+            if (transferEncoding != null)
+                throw new InvalidOperationException("Only chunked is supported for transfer-encoding");
+
+            return contentLength.HasValue
+                ? new FixedLengthBodyParser(contentLength.Value, _buffer)
+                : new EmptyBodyParser();
+        }
+
+        public void WriteData(byte[] data, long offset, long length)
+        {
+            if (_headParser.NeedsData)
+            {
+                WriteData(data, offset, length);
+            }
+
+            if (_headParser.Head is not null && _bodyParser is null)
+            {
+                _bodyParser = CreateBodyParser(_headParser.Head);
+            }
+
+            if (_bodyParser is not null && _bodyParser.NeedsData)
+            {
+                _bodyParser.WriteData(data, offset, length);
+            }
+        }
+    }
+
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP request.
     /// </summary>
