@@ -5,7 +5,7 @@ using System.Text;
 namespace WebSockets.Core.Http
 {
     /// <summary>
-    /// A class modelling the required values of a WebSocket HTTP request.
+    /// An HTTP request.
     /// </summary>
     public class HttpRequest
     {
@@ -101,14 +101,14 @@ namespace WebSockets.Core.Http
                 "GET",
                 path,
                 "HTTP/1.1",
-                new Dictionary<string, IList<string>>
+                new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase)
                 {
-                    {"Host", new List<string> { host }},
-                    {"Upgrade", new List<string> { "websocket" }},
-                    {"Connection", new List<string> { "Upgrade" }},
-                    {"Origin", new List<string> { origin }},
-                    {"Sec-WebSocket-Version", new List<string> { "13" }},
-                    {"Sec-WebSocket-Key", new List<string> { key }},
+                    {"Host", [host] },
+                    {"Upgrade", ["websocket"] },
+                    {"Connection", ["Upgrade"] },
+                    {"Origin", [origin] },
+                    {"Sec-WebSocket-Version", ["13"] },
+                    {"Sec-WebSocket-Key", [key] },
                 },
                 null
             );

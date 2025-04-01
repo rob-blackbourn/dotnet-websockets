@@ -70,16 +70,16 @@ namespace WebSockets.Core.Http
                 "HTTP/1.1",
                 101,
                 "Switching Protocols",
-                new Dictionary<string, IList<string>>
+                new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase)
                 {
-                    {"Upgrade", new List<string> { "websocket" }},
-                    {"Connection", new List<string> { "upgrade" }},
-                    {"Sec-WebSocket-Accept", new List<string> { responseKey }},
+                    {"Upgrade", ["websocket"]},
+                    {"Connection", ["upgrade"]},
+                    {"Sec-WebSocket-Accept", [responseKey]},
                 },
                 null
             );
             if (subProtocol is not null)
-                webResponse.Headers.Add("Sec-WebSocket-Protocol", new List<string> { subProtocol });
+                webResponse.Headers.Add("Sec-WebSocket-Protocol", [subProtocol]);
 
             return webResponse;
         }
@@ -90,11 +90,11 @@ namespace WebSockets.Core.Http
                 "HTTP/1.1",
                 400,
                 "Bad Request",
-                new Dictionary<string, IList<string>>
+                new Dictionary<string, IList<string>>(StringComparer.InvariantCultureIgnoreCase)
                 {
-                    { "Date", new List<string> { date.ToUniversalTime().ToString("r") }},
-                    { "Connection", new List<string> { "close" }},
-                    { "Content-Type", new List<string> { "text/plain; charset=utf-8" }},
+                    { "Date", [date.ToUniversalTime().ToString("r")] },
+                    { "Connection", ["close"] },
+                    { "Content-Type", ["text/plain; charset=utf-8"] },
                 },
                 Encoding.UTF8.GetBytes(reason)
             );
