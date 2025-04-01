@@ -64,7 +64,7 @@ namespace WebSockets.Core.Http
             return reader.ReadRequest();
         }
 
-        public override string ToString()
+        public byte[] ToBytes()
         {
             var builder = new StringBuilder();
 
@@ -78,7 +78,16 @@ namespace WebSockets.Core.Http
             }
             builder.Append("\r\n");
 
-            return builder.ToString();
+            var text = builder.ToString();
+            var header = Encoding.ASCII.GetBytes(text);
+            if (Body is null || Body.Length == 0)
+                return header;
+
+            var data = new byte[header.Length + Body.Length];
+            Array.Copy(header, 0, data, 0, header.Length);
+            Array.Copy(Body, 0, data, header.Length, Body.Length);
+
+            return data;
         }
 
         public static HttpRequest CreateUpgradeRequest(
