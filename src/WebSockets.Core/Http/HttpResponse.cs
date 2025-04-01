@@ -4,9 +4,9 @@ using System.Text;
 
 namespace WebSockets.Core.Http
 {
-    public class Response
+    public class HttpResponse
     {
-        public Response(
+        public HttpResponse(
             string version,
             int code,
             string reason,
@@ -26,13 +26,13 @@ namespace WebSockets.Core.Http
         public IDictionary<string, IList<string>> Headers { get; private set; }
         public byte[]? Body { get; }
 
-        public static Response Parse(byte[] data)
+        public static HttpResponse Parse(byte[] data)
         {
-            var parser = new ResponseParser();
-            parser.WriteData(data, 0, data.LongLength);
-            if (!parser.HasResponse)
+            var reader = new HttpResponseReader();
+            reader.WriteData(data, 0, data.LongLength);
+            if (!reader.HasResponse)
                 throw new InvalidOperationException("Failed to parse response");
-            return parser.ReadResponse();
+            return reader.ReadResponse();
         }
 
         public byte[] ToBytes()
@@ -64,9 +64,9 @@ namespace WebSockets.Core.Http
             return data;
         }
 
-        public static Response CreateAcceptResponse(string responseKey, string? subProtocol)
+        public static HttpResponse CreateAcceptResponse(string responseKey, string? subProtocol)
         {
-            var webResponse = new Response(
+            var webResponse = new HttpResponse(
                 "HTTP/1.1",
                 101,
                 "Switching Protocols",
@@ -84,9 +84,9 @@ namespace WebSockets.Core.Http
             return webResponse;
         }
 
-        public static Response CreateErrorResponse(string reason, DateTime date)
+        public static HttpResponse CreateErrorResponse(string reason, DateTime date)
         {
-            var webResponse = new Response(
+            var webResponse = new HttpResponse(
                 "HTTP/1.1",
                 400,
                 "Bad Request",

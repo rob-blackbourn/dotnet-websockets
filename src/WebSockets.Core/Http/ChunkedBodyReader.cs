@@ -9,14 +9,14 @@ namespace WebSockets.Core.Http
     /// 
     /// https://en.wikipedia.org/wiki/Chunked_transfer_encoding
     /// </summary>
-    class ChunkedBodyParser : BodyParser
+    class ChunkedBodyReader : BodyReader
     {
         private readonly FragmentBuffer<byte> _buffer;
         private readonly FragmentBuffer<byte> _chunks = new();
         private int? _chunkLength = null;
         private byte[]? _body = null;
 
-        public ChunkedBodyParser(FragmentBuffer<byte> buffer)
+        public ChunkedBodyReader(FragmentBuffer<byte> buffer)
         {
             _buffer = buffer;
         }

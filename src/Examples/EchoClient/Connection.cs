@@ -128,7 +128,7 @@ namespace EchoClient
             }
         }
 
-        private Response? PerformHandshake()
+        private HttpResponse? PerformHandshake()
         {
             Console.WriteLine("Performing handshake");
 
@@ -159,11 +159,11 @@ namespace EchoClient
             }
         }
 
-        private Response? ReadHandshakeResponse()
+        private HttpResponse? ReadHandshakeResponse()
         {
             Console.WriteLine("Receiving handshake response");
             var buffer = new byte[1024];
-            Response? webResponse = null;
+            HttpResponse? webResponse = null;
             while (webResponse is null)
             {
                 var bytesRead = _stream.Read(buffer);

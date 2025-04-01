@@ -7,17 +7,17 @@ namespace WebSockets.Core.Http
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP request.
     /// </summary>
-    public class Request
+    public class HttpRequest
     {
         /// <summary>
-        /// Construct a web request.
+        /// Construct an HTTP request.
         /// </summary>
         /// <param name="verb">The verb (GET, POST, etc).</param>
         /// <param name="path">The server path.</param>
         /// <param name="version">The HTTP version.</param>
         /// <param name="headers">The headers.</param>
         /// <param name="body">An optional body.</param>
-        public Request(
+        public HttpRequest(
             string verb,
             string path,
             string version,
@@ -55,13 +55,13 @@ namespace WebSockets.Core.Http
         public IDictionary<string, IList<string>> Headers { get; private set; }
         public byte[]? Body { get; }
 
-        public static Request Parse(byte[] data)
+        public static HttpRequest Parse(byte[] data)
         {
-            var parser = new RequestParser();
-            parser.WriteData(data, 0, data.Length);
-            if (!parser.HasRequest)
+            var reader = new HttpRequestReader();
+            reader.WriteData(data, 0, data.Length);
+            if (!reader.HasRequest)
                 throw new InvalidOperationException("Failed to parse request");
-            return parser.ReadRequest();
+            return reader.ReadRequest();
         }
 
         public override string ToString()
@@ -81,14 +81,14 @@ namespace WebSockets.Core.Http
             return builder.ToString();
         }
 
-        public static Request CreateUpgradeRequest(
+        public static HttpRequest CreateUpgradeRequest(
             string path,
             string host,
             string origin,
             string key,
             string[]? subProtocols)
         {
-            var webRequest = new Request(
+            var webRequest = new HttpRequest(
                 "GET",
                 path,
                 "HTTP/1.1",

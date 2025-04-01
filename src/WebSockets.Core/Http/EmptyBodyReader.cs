@@ -2,7 +2,7 @@ using System;
 
 namespace WebSockets.Core.Http
 {
-    class EmptyBodyParser : BodyParser
+    class EmptyBodyReader : BodyReader
     {
         public override bool NeedsData => false;
 

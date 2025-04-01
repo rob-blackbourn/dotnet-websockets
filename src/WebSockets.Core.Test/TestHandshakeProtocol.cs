@@ -1,5 +1,7 @@
 ﻿using System;
 
+using WebSockets.Core.Http;
+
 namespace WebSockets.Core.Test
 {
     [TestClass]
@@ -82,7 +84,7 @@ namespace WebSockets.Core.Test
             var webRequest = serverProtocol.ReadRequest();
             Assert.IsNotNull(webRequest);
             serverProtocol.WriteResponse(
-                Http.Response.CreateErrorResponse(
+                HttpResponse.CreateErrorResponse(
                     "invalid path",
                     dateTimeProvider.Now));
 

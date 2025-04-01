@@ -2,16 +2,16 @@ using System;
 
 namespace WebSockets.Core.Http
 {
-    class RequestParser : Parser
+    class HttpRequestReader : Reader
     {
         private readonly FragmentBuffer<byte> _buffer = new();
         private readonly HeadRequestParser _headParser;
-        private BodyParser? _bodyParser = null;
-        private Request? _request = null;
+        private BodyReader? _bodyParser = null;
+        private HttpRequest? _request = null;
         private RequestHead? _head = null;
         private byte[]? _body = null;
 
-        public RequestParser()
+        public HttpRequestReader()
         {
             _headParser = new HeadRequestParser(_buffer);
         }
@@ -19,7 +19,7 @@ namespace WebSockets.Core.Http
         public bool NeedsData => _headParser.NeedsData || _bodyParser is null || _bodyParser.NeedsData;
         public bool HasRequest => _request is not null;
 
-        public Request ReadRequest()
+        public HttpRequest ReadRequest()
         {
             if (_request == null)
                 throw new InvalidOperationException("no request");
@@ -63,7 +63,7 @@ namespace WebSockets.Core.Http
 
             if (_request is null && _head is not null && _body is not null)
             {
-                _request = new Request(
+                _request = new HttpRequest(
                     _head.Verb,
                     _head.Path,
                     _head.Version,
@@ -73,7 +73,7 @@ namespace WebSockets.Core.Http
             }
         }
 
-        private BodyParser CreateBodyParser(RequestHead head)
+        private BodyReader CreateBodyParser(RequestHead head)
         {
             string? transferEncoding =
                 !head.Headers.TryGetValue("transfer-encoding", out var transferEncodings) || transferEncodings.Count == 0
@@ -94,15 +94,15 @@ namespace WebSockets.Core.Http
             {
                 if (contentLength.HasValue)
                     throw new InvalidOperationException("Cannot specify content-length if transfer-encoding is chunked");
-                return new ChunkedBodyParser(_buffer);
+                return new ChunkedBodyReader(_buffer);
             }
 
             if (transferEncoding != null)
                 throw new InvalidOperationException("Only chunked is supported for transfer-encoding");
 
             return contentLength.HasValue
-                ? new FixedLengthBodyParser(contentLength.Value, _buffer)
-                : new EmptyBodyParser();
+                ? new HttpFixedLengthBodyReader(contentLength.Value, _buffer)
+                : new EmptyBodyReader();
         }
     }
 }

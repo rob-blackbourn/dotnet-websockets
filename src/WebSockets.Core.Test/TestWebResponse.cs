@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
+using WebSockets.Core.Http;
+
 namespace WebSockets.Core.Test
 {
     [TestClass]
@@ -17,7 +19,7 @@ namespace WebSockets.Core.Test
                 "Sec-WebSocket-Protocol: chat\r\n" +
                 "\r\n";
             var data = Encoding.UTF8.GetBytes(text);
-            var webResponse = Http.Response.Parse(data);
+            var webResponse = HttpResponse.Parse(data);
             Assert.AreEqual("HTTP/1.1", webResponse.Version);
             Assert.AreEqual(101, webResponse.Code);
             Assert.AreEqual("Switching Protocols", webResponse.Reason);
@@ -38,7 +40,7 @@ namespace WebSockets.Core.Test
                 "\r\n" +
                 "invalid path";
             var data = Encoding.UTF8.GetBytes(text);
-            var webResponse = Http.Response.Parse(data);
+            var webResponse = HttpResponse.Parse(data);
             Assert.AreEqual("HTTP/1.1", webResponse.Version);
             Assert.AreEqual(400, webResponse.Code);
             Assert.AreEqual("Bad Request", webResponse.Reason);
@@ -54,7 +56,7 @@ namespace WebSockets.Core.Test
         [TestMethod]
         public void TestRoundTrip()
         {
-            var webResponse = new Http.Response(
+            var webResponse = new HttpResponse(
                 "HTTP/1.1",
                 101,
                 "Switching Protocols",
@@ -82,7 +84,7 @@ namespace WebSockets.Core.Test
 
         public void TestRoundTripWithBody()
         {
-            var webResponse = new Http.Response(
+            var webResponse = new HttpResponse(
                 "HTTP/1.1",
                 101,
                 "Switching Protocols",

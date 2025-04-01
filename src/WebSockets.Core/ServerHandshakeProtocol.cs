@@ -1,6 +1,8 @@
 using System.IO;
 using System.Linq;
 
+using WebSockets.Core.Http;
+
 namespace WebSockets.Core
 {
     /// <summary>
@@ -30,12 +32,12 @@ namespace WebSockets.Core
         /// The request will be available when all of the request bytes have been received.
         /// </summary>
         /// <returns>A <see cref="WebRequest"/> if the complete message has been received; otherwise null.</returns>
-        public Http.Request? ReadRequest()
+        public HttpRequest? ReadRequest()
         {
             if (_buffer.IndexOf(HTTP_EOM, 0) == -1)
                 return null;
 
-            var webRequest = Http.Request.Parse(_buffer.ToArray());
+            var webRequest = HttpRequest.Parse(_buffer.ToArray());
 
             return webRequest;
         }
@@ -52,17 +54,17 @@ namespace WebSockets.Core
         /// </summary>
         /// <param name="webRequest">The request from the client.</param>
         /// <returns>The response to be sent to the client.</returns>
-        public Http.Response CreateWebResponse(Http.Request webRequest)
+        public HttpResponse CreateWebResponse(HttpRequest webRequest)
         {
             try
             {
                 var (responseKey, subProtocol) = ProcessRequest(webRequest);
                 SelectedSubProtocol = subProtocol;
-                return Http.Response.CreateAcceptResponse(responseKey, subProtocol);
+                return HttpResponse.CreateAcceptResponse(responseKey, subProtocol);
             }
             catch (InvalidDataException error)
             {
-                return Http.Response.CreateErrorResponse(error.Message, _dateTimeProvider.Now);
+                return HttpResponse.CreateErrorResponse(error.Message, _dateTimeProvider.Now);
             }
         }
 
@@ -70,7 +72,7 @@ namespace WebSockets.Core
         /// Write a web response to the handshake buffer.
         /// </summary>
         /// <param name="webResponse">The response to send to the client.</param>
-        public void WriteResponse(Http.Response webResponse)
+        public void WriteResponse(HttpResponse webResponse)
         {
             var data = webResponse.ToBytes();
             WriteData(data);
@@ -80,7 +82,7 @@ namespace WebSockets.Core
         }
 
         private (string responseKey, string? subProtocol) ProcessRequest(
-            Http.Request webRequest)
+            HttpRequest webRequest)
         {
             if (webRequest.Verb != "GET")
                 throw new InvalidDataException("Expected GET request");

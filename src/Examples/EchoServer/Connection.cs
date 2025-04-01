@@ -109,7 +109,7 @@ namespace EchoServer
             Console.WriteLine("Handshake completed");
         }
 
-        private Request ReadHandshakeRequest()
+        private HttpRequest ReadHandshakeRequest()
         {
             Console.WriteLine("Receiving handshake request");
 
@@ -127,7 +127,7 @@ namespace EchoServer
             }
         }
 
-        private void WriteHandshakeResponse(Response webResponse)
+        private void WriteHandshakeResponse(HttpResponse webResponse)
         {
             Console.WriteLine("Sending handshake response");
 

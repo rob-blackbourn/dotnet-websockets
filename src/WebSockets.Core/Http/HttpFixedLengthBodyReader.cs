@@ -3,13 +3,13 @@ using System.IO;
 
 namespace WebSockets.Core.Http
 {
-    class FixedLengthBodyParser : BodyParser
+    class HttpFixedLengthBodyReader : BodyReader
     {
         private readonly FragmentBuffer<byte> _buffer;
         private readonly int _contentLength;
         private byte[]? _body = null;
 
-        public FixedLengthBodyParser(int contentLength, FragmentBuffer<byte> buffer)
+        public HttpFixedLengthBodyReader(int contentLength, FragmentBuffer<byte> buffer)
         {
             _contentLength = contentLength;
             _buffer = buffer;

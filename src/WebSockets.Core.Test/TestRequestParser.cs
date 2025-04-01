@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+
 using WebSockets.Core.Http;
 
 namespace WebSockets.Core.Test
@@ -47,7 +48,7 @@ namespace WebSockets.Core.Test
                 "4\r\nWiki\r\n7\r\npedia i\r\nB\r\nn \r\nchunks.\r\n0\r\n\r\n"
             );
             var buffer = new FragmentBuffer<byte>();
-            var parser = new ChunkedBodyParser(buffer);
+            var parser = new ChunkedBodyReader(buffer);
             Assert.IsTrue(parser.NeedsData);
             parser.WriteData(data, 0, data.LongLength);
             Assert.IsFalse(parser.NeedsData);
@@ -64,7 +65,7 @@ namespace WebSockets.Core.Test
                 "Wikipedia in \r\nchunks."
             );
             var buffer = new FragmentBuffer<byte>();
-            var parser = new FixedLengthBodyParser(data.Length, buffer);
+            var parser = new HttpFixedLengthBodyReader(data.Length, buffer);
             Assert.IsTrue(parser.NeedsData);
             parser.WriteData(data, 0, data.LongLength);
             Assert.IsFalse(parser.NeedsData);
@@ -88,7 +89,7 @@ namespace WebSockets.Core.Test
                 "Origin: http://example.com\r\n" +
                 "\r\n";
             var data = Encoding.UTF8.GetBytes(text);
-            var parser = new RequestParser();
+            var parser = new HttpRequestReader();
             Assert.IsTrue(parser.NeedsData);
             parser.WriteData(data, 0, data.LongLength);
             Assert.IsFalse(parser.NeedsData);
@@ -126,7 +127,7 @@ namespace WebSockets.Core.Test
                 "0\r\n" +
                 "\r\n";
             var data = Encoding.UTF8.GetBytes(text);
-            var parser = new RequestParser();
+            var parser = new HttpRequestReader();
             Assert.IsTrue(parser.NeedsData);
             parser.WriteData(data, 0, data.LongLength);
             Assert.IsFalse(parser.NeedsData);
@@ -166,7 +167,7 @@ namespace WebSockets.Core.Test
                 "\r\n" +
                 body;
             var data = Encoding.UTF8.GetBytes(text);
-            var parser = new RequestParser();
+            var parser = new HttpRequestReader();
             Assert.IsTrue(parser.NeedsData);
             parser.WriteData(data, 0, data.LongLength);
             Assert.IsFalse(parser.NeedsData);

@@ -9,7 +9,7 @@ namespace WebSockets.Core.Http
     /// <summary>
     /// A class modelling the required values of a WebSocket HTTP response.
     /// </summary>
-    class HeadResponseParser : Parser
+    class HeadResponseParser : Reader
     {
         private class StatusLine
         {
